@@ -1,0 +1,407 @@
+package com.sheplers.pages;
+
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class BrandsPage extends LoadableComponent<BrandsPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
+	private boolean ReviewDisplayed;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Brands - Starts *****************************
+	 **********************************************************************************************/
+
+	@FindBy(css = "header[class='section-head'] h1")
+	WebElement brandsCategoryHeader;
+
+	@FindBy(css = "div[class*='section-boots-features'] h2")
+	WebElement featureBrand;
+
+	@FindBy(css = "div[class*='widget-reviews'] h3")
+	WebElement reviewBrand;
+
+	@FindBy(css = "div[class='section-inner']")
+	WebElement lnkBrandCategory;
+
+	@FindBy(xpath = "//div[@class='section-aside']/div[starts-with(@class,'widget-history')]/header[2]/h3")
+	WebElement brandHistory;
+
+	@FindBy(css = ".section-aside div[class*='widget-videos']+div[class*='widget-history accordion-mobile widget-accordion']")
+	WebElement historyBelowVideoPanel;
+
+	@FindBy(css = "div[class*='header widget-head accordion-mobile-head']")
+	WebElement mobvideoPanel;
+
+	@FindBy(css = ".videos")
+	WebElement videoPanel;
+
+	@FindBy(css = "div[class*='section-lucchese'] img[src*='feature_content']")
+	List<WebElement> imgFeatureContent;
+
+	@FindBy(css = "div[class='section-boots-features section-lucchese']")
+	WebElement lnkFeaturedBrand;
+
+	@FindBy(css = "div[class*='widget-reviews']")
+	WebElement brandReview;
+
+	@FindBy(css = "div[class='review-content'] .review-template")
+	List<WebElement> reviewContent;
+
+	@FindBy(css = "div[style*='display: block;']")
+	WebElement historySection;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Brands Page - Ends **************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	public BrandsPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		elementLayer = new ElementLayer(driver);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		Utils.waitForPageLoad(driver);
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (isPageLoaded
+				&& !(Utils.waitForElement(driver, brandsCategoryHeader))) {
+			Log.fail("Brands Page did not open up. Site might be down.", driver);
+		}
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, brandsCategoryHeader);
+
+	}
+
+	/**
+	 * To Get the Brand Page Header Text
+	 * 
+	 * @return String txtCategoryHeader after fetching text from Brands Category
+	 *         Header
+	 * @throws Exception
+	 */
+	public String getTextFromBrandsCategoryHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtCategoryHeader = BrowserActions.getText(driver,
+				brandsCategoryHeader, "Fetching the Brand header");
+		Log.event("Fetching the Brand header" + txtCategoryHeader,
+				StopWatch.elapsedTime(startTime));
+		return txtCategoryHeader;
+
+	}
+
+	/**
+	 * To Get the Feature Brands header
+	 * 
+	 * @return String From BrandsFeatureSection
+	 * @throws Exception
+	 */
+	public String getTextFromBrandsFeatureSection() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtFeatureHeader = BrowserActions.getText(driver, featureBrand,
+				"Feature header");
+		Log.event("Fetching the feature Brand Header",
+				StopWatch.elapsedTime(startTime));
+		return txtFeatureHeader;
+
+	}
+
+	/**
+	 * To Select Category From Brand Category Selection
+	 * 
+	 * @param categoryHref
+	 * @return CategoryGridPage after selecting Category
+	 * @throws Exception
+	 */
+	public CategoryGridPage selectCategoryFromBrandCategorySection(
+			String categoryHref) throws Exception {
+		final long startTime = StopWatch.startTime();
+		try {
+			driver.findElement(
+					By.cssSelector("ul[class='list-links'] li a[href*='"
+							+ categoryHref + "']")).click();
+		} catch (Exception e) {
+			Log.exception(e, driver);
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Select Category From Brand Category Selection",
+				StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To Navigate to the Category Details Page
+	 * 
+	 * @param lnkCategory
+	 * @param txtToMatch
+	 * @return CategoryGridPage after navigating to Brand Category Details
+	 * @throws Exception
+	 */
+	public CategoryGridPage navigateToBrandCategoryDetails(String lnkCategory,
+			String txtToMatch) throws Exception {
+		WebElement brandCategory = BrowserActions
+				.getMachingTextElementFromList(lnkBrandCategory.findElements(By
+						.cssSelector("ul li a[href*='" + lnkCategory + "']")),
+						"" + txtToMatch + "", "contains");
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(brandCategory, driver,
+				"sub category(L3): txtToMatch");
+
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To click on the Feature content image
+	 * 
+	 * @return String Of BrandUrl
+	 * @throws Exception
+	 */
+	public String clickOnFeatureContentImage() throws Exception {
+		String brandurl = "";
+		if (imgFeatureContent.size() > 0) {
+			int rand = ThreadLocalRandom.current().nextInt(1,
+					imgFeatureContent.size());
+			BrowserActions.clickOnElement(imgFeatureContent.get(rand - 1),
+					driver, "clicked on the featured product image");
+			BrowserActions.nap(1);
+			Utils.waitForPageLoad(driver);
+			brandurl = driver.getCurrentUrl();
+		}
+		return brandurl;
+	}
+
+	/**
+	 * To click on the Feature product name (EX:Mens)
+	 * 
+	 * @param lnkCategory
+	 * @param txtToMatch
+	 * @return CategoryGridPage after navigating to Feature Product
+	 * @throws Exception
+	 */
+	public CategoryGridPage navigateToFeatureProduct(String lnkCategory,
+			String txtToCategory) throws Exception {
+
+		WebElement brandName = BrowserActions.getMachingTextElementFromList(
+				lnkFeaturedBrand.findElements(By.cssSelector("a[href*='"
+						+ lnkCategory + "']")), "" + txtToCategory + "",
+				"contains");
+		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(1);
+		BrowserActions.clickOnElement(brandName, driver,
+				"Clicked on : txtToMatch");
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To Verify the Review section (image, name and review)
+	 * 
+	 * @return ReviewDisplayed after verifying review section
+	 * @throws Exception
+	 */
+	public Boolean verifyReviewSection() throws Exception {
+		WebElement productImage = null;
+		WebElement productName = null;
+		WebElement productRating = null;
+		WebElement productDesc = null;
+		WebElement reviewDate = null;
+		WebElement reviewAuthor = null;
+
+		for (int category = 1; category < reviewContent.size(); category++) {
+			WebElement e = driver
+					.findElement(By
+							.cssSelector("div[class='review-content'] .review-template:nth-child("
+									+ category + ")"));
+
+			productImage = e.findElement(By.cssSelector(".product-info img"));
+			productName = e.findElement(By.cssSelector("div[class='title']"));
+			productRating = e
+					.findElement(By.cssSelector("div[class='rating']"));
+			productDesc = e.findElement(By
+					.cssSelector("div[class='description']"));
+			reviewDate = e.findElement(By.cssSelector("div[class='date']"));
+			reviewAuthor = e.findElement(By
+					.cssSelector("div[class='reviewer']"));
+			productImage.isDisplayed();
+			productName.isDisplayed();
+			productRating.isDisplayed();
+			productDesc.isDisplayed();
+			reviewDate.isDisplayed();
+			reviewAuthor.isDisplayed();
+		}
+		return ReviewDisplayed;
+	}
+
+	/**
+	 * Expand the video icon
+	 * 
+	 * @return void after expanding video icon
+	 * @throws Exception
+	 */
+	public void expandVideoIcon() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobvideoPanel, driver,
+				"clicked on the Video icon");
+		BrowserActions.nap(1);
+		Log.event("Expand the video icon", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Collapse Video panel
+	 * 
+	 * @return void after collapsing video icon
+	 * @throws Exception
+	 */
+	public void collapseVideoIcon() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(mobvideoPanel, driver,
+				"clicked on the Video icon");
+		BrowserActions.nap(2);
+		Log.event("Collapse the video icon", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Expand the history icon
+	 * 
+	 * @return after expanding history
+	 * @throws Exception
+	 */
+	public void expandHistory() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.nap(1);
+		BrowserActions.clickOnElement(brandHistory, driver, "History icon");
+		Utils.waitForPageLoad(driver);
+		Log.event("Expand History section", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Collapse history icon
+	 * 
+	 * @return after collapsing history
+	 * @throws Exception
+	 */
+	public void collapseHistory() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(brandHistory, driver, "History icon");
+		BrowserActions.nap(1);
+		Log.event("Collapse the video icon", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetching the text of Review Header in Brand Page
+	 * 
+	 * @return String txtFeatureHeader after fetching text from Brands Review
+	 *         Section
+	 * @throws Exception
+	 */
+	public String getTextFromBrandsReviewSection() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtFeatureHeader = BrowserActions.getText(driver, reviewBrand,
+				"Review header");
+		Log.event("Fetching the Review Brand Header",
+				StopWatch.elapsedTime(startTime));
+		return txtFeatureHeader;
+	}
+
+	/**
+	 * select category randomly
+	 * 
+	 * @return CategoryGridPage after clicking on any Category link
+	 * @throws Exception
+	 */
+	public CategoryGridPage clickAnyCategoryLink() throws Exception {
+
+		List<WebElement> categoryLinks = driver.findElements(By
+				.cssSelector(".list-links>li>a"));
+
+		if (categoryLinks.size() > 0) {
+			int rand = ThreadLocalRandom.current().nextInt(1,
+					categoryLinks.size());
+			BrowserActions.clickOnElement(categoryLinks.get(rand - 1), driver,
+					"clicked on the category link");
+			Utils.waitForPageLoad(driver);
+
+		}
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * Verify if the Category History is placed below Video Thumbnails
+	 *
+	 * @return boolean-returntype after verifying category history
+	 * @throws Exception
+	 */
+	public boolean verifyCategoryHistory() throws Exception {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			Point categoryHistory = driver.findElement(
+					By.cssSelector("header:nth-child(4) > h3")).getLocation();
+
+			if ((categoryHistory.x > 800) && (categoryHistory.x < 1420)) {
+				returntype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.exception(e, driver);
+		}
+		Log.event("Category History is placed below the Video Thumbnails",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+}// BRANDS PAGE

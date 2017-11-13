@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/BootBarn-QA/!svn/ver/1472/branches/Automation/Sheplers-QA/src/main/resources
+END
+config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/BootBarn-QA/!svn/ver/888/branches/Automation/Sheplers-QA/src/main/resources/config.properties
+END
+logback.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/BootBarn-QA/!svn/ver/17/branches/Automation/Sheplers-QA/src/main/resources/logback.xml
+END
+env.properties
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/BootBarn-QA/!svn/ver/1411/branches/Automation/Sheplers-QA/src/main/resources/env.properties
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/BootBarn-QA/!svn/ver/17/branches/Automation/Sheplers-QA/src/main/resources/log4j.properties
+END

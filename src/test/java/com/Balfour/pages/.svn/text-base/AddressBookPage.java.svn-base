@@ -1,0 +1,1181 @@
+package com.sheplers.pages;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.support.StopWatch;
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.Utils;
+
+public class AddressBookPage extends LoadableComponent<AddressBookPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public HomePage homePage;
+	public Headers headers;
+	public Footers footers;
+	public ElementLayer elementLayer;
+	public CategoryLandingPage categoryLandingPage;
+	public CategoryGridPage gridPage;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************************* WebElements of AddressBook Page - Starts *******************
+	 **********************************************************************************************/
+
+	public static final String searchField = "div[class='header-search']";
+	public static final String CUSTOMER_SIGNIN = "div.login-existing";
+	public static final String Customer_FirstName = "input[id='dwfrm_profile_address_firstname']";
+	public static final String Customer_LastName = "#dwfrm_profile_address_lastname";
+	public static final String Customer_Address1 = "input[id='dwfrm_profile_address_address1']";
+	public static final String Customer_Address2 = "input[id='dwfrm_profile_address_address2']";
+	public static final String Customer_Address3 = "input[id='dwfrm_profile_address_address3']";
+	public static final String Customer_Email = "input[id='dwfrm_billingaddress_email']";
+	public static final String Customer_ConfirmEmail = "input[id='dwfrm_billingaddress_emailconfirm']";
+	public static final String Customer_City = "input[id='dwfrm_profile_address_city']";
+	public static final String Customer_Postal = "input[id='dwfrm_profile_address_postal']";
+	public static final String Customer_Phone = "input[id='dwfrm_profile_address_phone']";
+	public static final String Customer_AddressNickName = "[placeholder='Address Nickname']";
+
+	public static final String ADDRESSFIRSTNAME = "form[id='edit-address-form'] input[placeholder='First Name']";
+	public static final String ADDRESSLASTNAME = "form[id='edit-address-form'] input[placeholder='Last Name']";
+	public static final String ADDRESSCOUNTRY = "select[id*='address_country']";
+	public static final String ADDRESSCOUNTRYSELECT = "#dwfrm_profile_address_country";
+	public static final String ADDRESS1 = "input[id='dwfrm_profile_address_address1']";
+	public static final String ADDRESS2 = "input[id='dwfrm_profile_address_address2']";
+	public static final String ADDRESSCITY = "input[id*='address_city']";
+	public static final String ADDRESSZIPCODE = "input[id*='address_postal']";
+	public static final String ADDRESSPHONE = "input[id*='address_phone']";
+	public static final String ADDRESSNICKNAME = "input[id*='address_addressid']";
+	public static final String Btn_Apply = "input[name*='address_create']";
+
+	public static final String ADDRESSSTATE = "#dwfrm_profile_address_states_state";
+	public static final String ADDRESSSTATESELECT = "#dwfrm_profile_address_country";
+
+	@FindBy(css = "form[id='edit-address-form'] input[placeholder='First Name']")
+	WebElement fldFirstName;
+
+	@FindBy(css = "form[id='edit-address-form'] input[placeholder='Last Name']")
+	WebElement fldLastName;
+
+	@FindBy(css = "select[id*='address_country']")
+	WebElement fldCountry;
+
+	@FindBy(css = "input[id='dwfrm_profile_address_address1']")
+	WebElement fldAddress;
+
+	@FindBy(css = "input[id*='address_city']")
+	WebElement fldCity;
+
+	@FindBy(css = "input[id*='address_postal']")
+	WebElement fldPostal;
+
+	@FindBy(css = "input[id*='address_phone']")
+	WebElement fldPhone;
+
+	@FindBy(css = "input[id='submitShipping']")
+	WebElement btnApply;
+
+	@FindBy(css = "div[class*='ca-account-landing']")
+	WebElement divMyAccount;
+
+	@FindBy(css = "h2[class='form-title']")
+	WebElement editPageHeader;
+
+	@FindBy(css = "a[class='btn btn-block btn-brown-border']")
+	WebElement btnCancel;
+
+	@FindBy(css = "input[class='btn btn-block btn-brown-border']")
+	WebElement btnDelete;
+
+	@FindBy(css = "h5.form-title-alt")
+	WebElement editHeader;
+
+	@FindBy(css = ".desktop-only nav a[href*='account']")
+	WebElement navAccount;
+
+	@FindBy(css = ".desktop-only nav a[href*='profile']")
+	WebElement navProfile;
+
+	@FindBy(css = ".desktop-only nav a[href*='address']")
+	WebElement navAddress;
+
+	@FindBy(css = ".address-edit")
+	WebElement lnkeditAddressBook;
+
+	@FindBy(css = ".address-delete.delete")
+	WebElement lnkDelete;
+
+	@FindBy(css = ".address-make-default")
+	List<WebElement> lnkMakeDefault;
+
+	@FindBy(css = ".addressBook-row")
+	WebElement addressDetails;
+
+	@FindBy(css = ".desktop-only ul li a[href*='sheplers_us/payments']")
+	WebElement lnkBillinAddress;
+
+	@FindBy(css = ".desktop-only nav a[href*='payment']")
+	WebElement navPayment;
+
+	@FindBy(css = ".desktop-only nav a[href*='order']")
+	WebElement navOrder;
+
+	@FindBy(css = "#addresses > ul > li:nth-child(1) > div > div.mini-address-title > span")
+	WebElement miniAddressTitle;
+
+	@FindBy(css = "btn-expand tablet-only")
+	WebElement search;
+
+	@FindBy(css = searchField + " input[type='text']")
+	WebElement txtSearch;
+
+	@FindBy(css = "form[name='simpleSearch'] input#q")
+	WebElement txtMobSearch;
+
+	@FindBy(css = searchField + " button[type='submit']")
+	WebElement btnSearch;
+
+	@FindBy(css = "ul[class='menu-utility-user'] li a[href*='account']")
+	WebElement lblSignIn;
+
+	@FindBy(css = "div[class*='desktop-hidden'] [role='search'] button[type*='submit']")
+	WebElement mobbtnSearch;
+
+	@FindBy(css = "a[href='#search']")
+	WebElement mobBtnSearch;
+
+	@FindBy(css = ".account-options li:nth-child(1) h2")
+	WebElement lnkAccountSettings;
+
+	@FindBy(css = ".account-options li:nth-child(2) h2")
+	WebElement lnkAddressBook;
+
+	@FindBy(css = ".account-options li:nth-child(3) h2")
+	WebElement lnkPaymentMethod;
+
+	@FindBy(css = ".account-options li:nth-child(4) h2")
+	WebElement lnkOrderHistory;
+
+	@FindBy(css = ".desktop-only>ul>li a[href*='payments']")
+	WebElement lnkPaymentMethods;
+
+	@FindBy(css = "nav[class='desktop-only'] a[href*='account']")
+	WebElement lnkMyAccount;
+	
+	@FindBy(css = ".user-panel a[href*='account']")
+	WebElement dropdownlnkMyAccount;
+
+	@FindBy(css = ".account-info")
+	WebElement lnkLogout;
+
+	@FindBy(css = ".ca-account-landing")
+	WebElement accountSection;
+
+	@FindBy(css = ".desktop-only nav")
+	WebElement navAccountSection;
+
+	@FindBy(css = ".nav-content-container")
+	WebElement customerServiceSection;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='account']")
+	WebElement drpAccount;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='profile']")
+	WebElement drpProfile;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='payment']")
+	WebElement drpPayment;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='order']")
+	WebElement drpOrder;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='address']")
+	WebElement drpAddress;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='Logout']")
+	WebElement drpLogout;
+
+	@FindBy(css = ".section-create-account h1")
+	WebElement headerAddressBook;
+
+	@FindBy(css = ".section-header-note.address-create.button")
+	WebElement addNewAddressLink;
+
+	@FindBy(css = ".primary-content")
+	WebElement divAddressBook;
+
+	@FindBy(css = ADDRESSCOUNTRY)
+	WebElement dropDownCountry;
+
+	@FindBy(css = ADDRESSSTATE)
+	WebElement dropDownState;
+
+	@FindBy(css = "label[for*='setasdefaultshipping']")
+	WebElement chkDefaultShipping;
+
+	@FindBy(css = "input[name='dwfrm_profile_address_create']")
+	WebElement btnCreateAddress;
+
+	@FindBy(css = "div[class*='active form-edit-address']")
+	WebElement addressPageMain;
+
+	@FindBy(css = ADDRESSFIRSTNAME)
+	WebElement addressFirstName;
+
+	@FindBy(css = ADDRESSLASTNAME)
+	WebElement addressLastName;
+
+	@FindBy(css = ADDRESSCOUNTRY)
+	WebElement addressCountry;
+
+	@FindBy(css = ADDRESS1)
+	WebElement addressAddress1;
+
+	@FindBy(css = ADDRESS2)
+	WebElement addressAddress2;
+
+	@FindBy(css = ADDRESSCITY)
+	WebElement addressCity;
+
+	@FindBy(css = ADDRESSZIPCODE)
+	WebElement addressZipcode;
+
+	@FindBy(css = ADDRESSPHONE)
+	WebElement addressPhone;
+
+	@FindBy(css = ADDRESSNICKNAME)
+	WebElement addressNickName;
+
+	@FindBy(css = Btn_Apply)
+	WebElement buttonApply;
+
+	@FindBy(css = "div.link-back a[href='/s/sheplers_us/account']")
+	WebElement lnkBackToAccount;
+
+	@FindBy(css = "label[for*='setasdefaultshipping']")
+	WebElement checkDefault;
+
+	@FindBy(css = "a[title='My Account']")
+	WebElement btnMyAccount;
+
+	@FindBy(css = "#dwfrm_profile_address_postal-error")
+	WebElement ErrorMessageInAddressBook;
+	
+	@FindBy(css = "#wrapper > div.top-banner > div.top-banner-bar > div.shell > div.top-banner-bar-aside > nav > ul > li.has-dropdown > a > span")
+	WebElement loginDropDown;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of AddressBookPage - Ends **********************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 */
+	public AddressBookPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}// AddressBookPage
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, divAddressBook))) {
+			Log.fail("My AddressBook Page did not open up.", driver);
+
+			Log.fail("AddressBookPage did not open up.", driver);
+
+		}
+		homePage = new HomePage(driver).get();
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+		categoryLandingPage = new CategoryLandingPage(driver);
+		gridPage = new CategoryGridPage(driver);
+	}// isLoaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}// load
+
+	/**
+	 * Fetch the header text from Address book Page
+	 * 
+	 * @return Boolean after Verifying Address Book Page
+	 * @throws Exception
+	 */
+	public Boolean verifyAddressBookPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			if (divAddressBook.isDisplayed()) {
+				returntype = true;
+			}
+		} // try
+		catch (Exception e) {
+			Log.event("add new Address page is displayed");
+		} // catch
+
+		Log.event("add new Address page is displayed",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Navigate to the Address book page via Add New address link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnAddAddressBookLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		try {
+			BrowserActions.clickOnElement(addNewAddressLink, driver,
+					"Clicked on the 'Address Book' link");
+		} // try
+		catch (Exception e) {
+			Log.event("Navigated to the add Address Book page");
+		} // catch
+		Log.event("Navigated to the add Address Book page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Select Country From DropDown
+	 * 
+	 * @return void after selecting country
+	 * @param country
+	 * @throws Exception
+	 */
+	public void selectCountryFromDropdown(String country) throws Exception {
+		final long startTime = StopWatch.startTime();
+		try {
+			WebElement dropdown = driver.findElement(By
+					.cssSelector("#dwfrm_profile_address_country"));
+			dropdown.click();
+			WebElement element = driver
+					.findElement(By
+							.cssSelector("#dwfrm_profile_address_country > option[label='"
+									+ country + "']"));
+			element.click();
+		}// try
+		catch (Exception e) {
+			Log.exception(e, driver);
+		} // catch
+		Log.event("Country is Selected From Country DropDown",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Select the country from the Shipping section
+	 * 
+	 * @param Country
+	 * @return String Country
+	 * @throws Exception
+	 */
+	public String shippingSelectCountry(String Country) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		BrowserActions.clickOnElement(dropDownCountry, driver,
+				"Clicked on the country drop down");
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("select[id='dwfrm_profile_address_country'] option[label='"
+								+ Country + "']"));
+		BrowserActions.clickOnElement(e, driver, "country select");
+
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the country from shipping section",
+				StopWatch.elapsedTime(startTime));
+		return Country;
+	}
+
+	/**
+	 * To Select the state from the Shipping section
+	 * 
+	 * @param state
+	 * @return
+	 * @throws Exception
+	 */
+	public String shippingSelectState(String state) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		BrowserActions.clickOnElement(dropDownState, driver,
+				"Clicked on the State drop down");
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("select[id='dwfrm_profile_address_states_state'] option[label='"
+								+ state + "']"));
+		BrowserActions.clickOnElement(e, driver, "state select");
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the country from Shipping section",
+				StopWatch.elapsedTime(startTime));
+		return state;
+
+	}
+
+	/**
+	 * Enter Shipping Address in Address book page
+	 * 
+	 * @param addressDetails
+	 * @throws Exception
+	 */
+	public void enterShippingAddress(
+			LinkedHashMap<String, String> addressDetails) throws Exception {
+		final long startTime = StopWatch.startTime();
+		LinkedHashMap<String, String> addressDetails1 = new LinkedHashMap<String, String>();
+		addressDetails1.put(
+				"type_FirstName_" + addressDetails.get("Firstname"),
+				ADDRESSFIRSTNAME);
+		addressDetails1.put("type_lastname_" + addressDetails.get("lastname"),
+				ADDRESSLASTNAME);
+		addressDetails1.put(
+				"type_address1_" + addressDetails.get("Shipping Address"),
+				ADDRESS1);
+
+		addressDetails1.put("type_city_" + addressDetails.get("Shipping city"),
+				ADDRESSCITY);
+		addressDetails1.put(
+				"type_postalcode_" + addressDetails.get("Shipping Zipcode"),
+				ADDRESSZIPCODE);
+
+		addressDetails1.put("type_phone_" + addressDetails.get("phone"),
+				ADDRESSPHONE);
+		addressDetails1.put(
+				"type_ShipNickName_" + addressDetails.get("Nickname"),
+				ADDRESSNICKNAME);
+
+		AccountUtils.doAccountOperations(addressDetails1, driver);
+
+		Log.event("Shipping address information is entered",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * verify data in edit address from is filled
+	 * 
+	 * @param address1
+	 * @returns true
+	 * @throws Exception
+	 */
+	public boolean verifyDataInEditAddressForm(String address1, String postal)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String address = BrowserActions.getTextFromAttribute(driver,
+				fldAddress, "value", "address");
+		String postalCode = BrowserActions.getTextFromAttribute(driver,
+				fldPostal, "value", "address");
+
+		if (address.contains(address1) && postalCode.contains(postal)) {
+			returntype = true;
+		}
+		Log.event("verified filled data in edit address form ",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * verify changed address is displayed in address book
+	 * 
+	 * @param idealAddress
+	 * @param ChangedAddress
+	 * @returns true
+	 */
+
+	public boolean verifyAddressInAddressBookPage(String idealAddress,
+			String ChangedAddress) {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			WebElement element = driver.findElement(By
+					.cssSelector(".mini-address-location"));
+			if (element.getText().contains(idealAddress)
+					&& !(element.getText().contains(ChangedAddress))) {
+				returntype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("changed address is not displayed in address book");
+		}
+		Log.event("changed address is not displayed in address book",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+
+	}
+
+	/**
+	 * click on delete link
+	 * 
+	 * @param Address
+	 * @throws Exception
+	 * @returns true
+	 */
+	public boolean clickOnDeleteLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForElement(driver, lnkDelete);
+		BrowserActions.clickOnElement(lnkDelete, driver, "Delete link");
+		WebDriverWait wait = new WebDriverWait(driver, 20 /* timeout in seconds */);
+		try {
+			if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
+				driver.switchTo().alert().accept();
+				returntype=true;
+			}
+		} catch (Exception e) {
+		}
+		Log.event("Clicked on delete link in address book",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To check default shipping checkbox is clicked
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+	public boolean chkDefaultShipping() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(chkDefaultShipping, driver,
+				"Default Shipping checkbox is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("Default Shipping checkbox is clicked",
+				StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * To click apply button after filling shipping address
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+	public boolean clickApplyBtn() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnApply, driver,
+				"shipping Address apply button");
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigated to the Address Book After clicking Apply btn",
+				StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * clcik on cancel button after making changes in edit address from
+	 * 
+	 * @param address
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage verifyCancelBtnMakingChangesInEditAddressBookPage(
+			String address) throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.typeOnTextField(fldAddress, address, driver, "address");
+		clickCancelBtn();
+		Log.event("Navigated to the Address Book After clicking cancel btn",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * To click cancel button in Shipping Address form
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+	public boolean clickCancelBtn() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnCancel, driver,
+				" Address Cancel button");
+		Utils.waitForPageLoad(driver);
+		Log.event(" clicked on Cancel btn", StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * To get text from header slot
+	 * 
+	 * @throws Exception
+	 * @return String txtHeader
+	 */
+
+	public String getAddressFromAddressBookPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = miniAddressTitle.getText();
+		txtHeader = txtHeader.trim().replaceAll("%s", "").toLowerCase();
+		Log.event("gets text from address book page",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * To select state from the State Dropdown
+	 * 
+	 * @param state
+	 * @throws Exception
+	 */
+	public void selectStateFromDropdown(String state) throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement dropdown = driver.findElement(By
+				.cssSelector("#dwfrm_profile_address_states_state"));
+		BrowserActions
+				.clickOnElement(dropdown, driver, "select state dropdown");
+		WebElement element = driver
+				.findElement(By
+						.cssSelector("#dwfrm_profile_address_states_state>option[label='"
+								+ state + "']"));
+		BrowserActions.clickOnElement(element, driver, "Select state");
+
+		Log.event("State is selected", StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * To verify address details in Address Book
+	 * 
+	 * @returns true
+	 */
+	public boolean verifyAddressDetailsInAddressBook() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		List<WebElement> addressList = driver.findElements(By
+				.cssSelector("ul.address-list li"));
+		for (WebElement e : addressList) {
+			if (e.getText().contains("Default Shipping Address ")) {
+				if (e.findElement(By.cssSelector(".address-delete.delete"))
+						.isDisplayed()
+						&& e.findElement(By.cssSelector(".address-edit"))
+								.isDisplayed()) {
+					returntype = true;
+				}
+			} else {
+				if (e.findElement(By.cssSelector(".address-delete.delete"))
+						.isDisplayed()
+						&& e.findElement(By.cssSelector(".address-edit"))
+								.isDisplayed()) {
+					returntype = true;
+				}
+			}
+		}
+		Log.event("checks edit link in address book",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+	/**
+	 * verify make default link in address book page
+	 * 
+	 * @returns true
+	 */
+	public boolean CheckMakeDefaultlinkForOtherShippingAddresses() {
+		final long startTime = StopWatch.startTime();
+
+		Boolean returntype = true;
+		String title1 = null;
+		String title2 = null;
+
+		List<WebElement> addressList1 = driver.findElements(By
+				.cssSelector("ul.address-list li"));
+		for (WebElement e1 : addressList1) {
+			if (e1.getText().contains("DEFAULT SHIPPING ADDRESS")) {
+				title1 = e1.findElement(By.cssSelector(".mini-address-title"))
+						.getText();
+			}
+		}
+
+		lnkMakeDefault.get(0).click();
+
+		List<WebElement> addressList2 = driver.findElements(By
+				.cssSelector("ul.address-list li"));
+		for (WebElement e2 : addressList2) {
+
+			if (e2.getText().contains("DEFAULT SHIPPING ADDRESS")) {
+				title2 = e2.findElement(By.cssSelector(".mini-address-title"))
+						.getText();
+			}
+		}
+
+		if (title1.equalsIgnoreCase(title2)) {
+			returntype = false;
+		}
+
+		Log.event("checks default link in address book",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+	/**
+	 * Search Product using ProductKeyword
+	 * 
+	 * @param textToSearch
+	 * @return pdpPage
+	 * @throws Exception
+	 */
+	public PdpPage searchsingleProductKeyword(String textToSearch)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			expandsearch();
+			BrowserActions.typeOnTextField(txtMobSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(mobbtnSearch, driver,
+					"Click on the search icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(btnSearch, driver,
+					"Click on the search icon");
+		}
+		Log.event("searched product using product keyword",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+
+	}
+
+	/**
+	 * To verify edit address page
+	 * 
+	 * @return returntype
+	 */
+	public Boolean verifyEditAddressBookPage() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		if ((editPageHeader.getText().trim()).equalsIgnoreCase("Address Book")
+				&& (editHeader.getText().trim())
+						.equalsIgnoreCase("Edit Address")) {
+			returntype = true;
+		}
+		Log.event("verified edit address page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To click edit link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickEditLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkeditAddressBook, driver,
+				"Edit link is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("clicked Edit link!", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click delete link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickDeleteButton() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		BrowserActions.clickOnElement(btnDelete, driver,
+				"delete link is clicked");
+		WebDriverWait wait = new WebDriverWait(driver, 20 /* timeout in seconds */);
+		try {
+			if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
+				driver.switchTo().alert().accept();
+			}
+		} catch (Exception e) {
+		}
+		Log.event("clicked delete link!", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Verify Product name in Cart
+	 * 
+	 * @param searchKey
+	 * @return cartPage
+	 * @throws Exception
+	 */
+	public CartPage checkproductInCart(String searchKey) throws Exception {
+		final long startTime = StopWatch.startTime();
+		PdpPage Pdppage = searchsingleProductKeyword(searchKey);
+		Pdppage.selectSize();
+		Utils.waitForElement(driver, headers.addToCart);
+		headers.addToCart();
+		Utils.waitForPageLoad(driver);
+		Log.event("Verify Product Name in pdp Page ",
+				StopWatch.elapsedTime(startTime));
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * Clicking on Payment Methods link
+	 * 
+	 * @return PaymentMethodsPage
+	 * @throws Exception
+	 */
+	public PaymentMethodsPage navigateToPaymentMethodsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkPaymentMethods, driver,
+				"Payment Methods link is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("navigates to Payment Methods Page!",
+				StopWatch.elapsedTime(startTime));
+		return new PaymentMethodsPage(driver).get();
+	}
+
+	/**
+	 * mobile- Expand the Search icon
+	 * 
+	 * @return void after expanding search
+	 * @throws Exception
+	 */
+	public void expandsearch() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobBtnSearch, driver,
+				"Expanding the search toggle");
+		Log.event("Expanding the search toggle",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Click on Billing Address Link
+	 * 
+	 * @return void after clicking billing address link
+	 * @throws Exception
+	 */
+	public void clickonBillingAddressLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkBillinAddress, driver,
+				"Click on Billing Address");
+		Log.event("click on BillingAddress link",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Verify the 'My Account' Page is placed on the left side of the page
+	 * 
+	 * @return Boolean value after VerifyMyAccountSeciton
+	 */
+	public boolean verfiyMyAccountSection() {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		Point accountSectionLoc = navAccountSection.getLocation();
+		if ((accountSectionLoc.x > 60) && (accountSectionLoc.x < 75)) {
+			returntype = true;
+		}
+		Log.event(
+				"'My Account' section is placed on the left side of the page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Verify the 'logout link' Page is placed on the middle of the page
+	 * 
+	 * @return Boolean Value after Verifying Logout Link
+	 */
+	public boolean verfiyLogoutLink() {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		Point lnkLogoutLoc = lnkLogout.getLocation();
+		if ((lnkLogoutLoc.x > 700) && (lnkLogoutLoc.x < 750)) {
+			returntype = true;
+		}
+		Log.event(
+				"'My Account' section is placed on the left side of the page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Fetching the text from sign-in label
+	 * 
+	 * @return String SignInText after fetched label
+	 * @throws Exception
+	 */
+	public String fetchSignedInLabel() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String signInText = BrowserActions.getText(driver, lblSignIn,
+				"Fetch text fromsign in label");
+		Log.event("fetch the sign in label text after logged-in",
+				StopWatch.elapsedTime(startTime));
+		return signInText;
+	}
+
+	/**
+	 * View customer profile drop down from header
+	 * 
+	 * @throws Exception
+	 */
+	public void viewCustomerDropDown() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.mouseHover(driver, lblSignIn);
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("click on the customer drop down",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Navigate to Account Edit Page
+	 * 
+	 * @return void after navigating to account setting
+	 * @throws Exception
+	 */
+	public void navigateToEditPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkAccountSettings, driver,
+				"Clicked on the 'Edit Account' link");
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetch the Edit Account Page Header Text
+	 * 
+	 * @return String txtHeader after fecthing text from header
+	 * @throws Exception
+	 */
+	public String fetchEditPageHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = BrowserActions.getText(driver, editPageHeader,
+				"Extact text from the Header");
+		Log.event("Get header text of edit account page",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * Navigate to the Edit account Page via header drop down
+	 * 
+	 * @return void after navigating to edit account
+	 * @throws Exception
+	 */
+	public void navigateToNavEditPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(navProfile, driver,
+				"Clicked on the 'Edit Account' link");
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetch the header text from Address book Page
+	 * 
+	 * @return Boolean returntype after fetching addressbook header text
+	 * @throws Exception
+	 */
+	public Boolean fetchAddressBookHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String txtHeader = BrowserActions.getText(driver, headerAddressBook,
+				"Extact text from the Header");
+		if (txtHeader.equalsIgnoreCase("Address book")) {
+			returntype = true;
+		}
+		Log.event("Get header text of Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Navigate to the Address Book Page via header drop down
+	 * 
+	 * @return void after navigating to Address Book
+	 * @throws Exception
+	 */
+	public void navigateToNavAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(navAddress, driver,
+				"Clicked on the 'Edit Account' link");
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Navigate to the Order history Page via link in the My Account section
+	 * 
+	 * @return OrderHistory Page
+	 * @throws Exception
+	 */
+	public OrderHistoryPage navigateToOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkOrderHistory, driver,
+				"Clicked on the 'Address Book' link");
+		Log.event("Navigated to the Order History page",
+				StopWatch.elapsedTime(startTime));
+		return new OrderHistoryPage(driver).get();
+
+	}
+
+	/**
+	 * Navigate to PaymentMethods Page via link in My Account Page
+	 * 
+	 * @return PaymentMethod Page
+	 * @throws Exception
+	 */
+	public PaymentMethodsPage navigateToPaymentMethodPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkPaymentMethod, driver,
+				"Payment Methods link is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigated to the Payment Methods link page",
+				StopWatch.elapsedTime(startTime));
+		return new PaymentMethodsPage(driver).get();
+	}
+
+	/**
+	 * Fetching text from Address Header in Add new Address Book Page
+	 * 
+	 * @return Stirng HeaderLabel after fetching label from Address Book Page
+	 *         Header
+	 */
+	public String getAddressHeaderLabel() {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver.findElement(By.cssSelector(".sectionheader h2"));
+		String HeaderLabel = e.getText();
+		Log.event("Fectching Header Label From Add new Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return HeaderLabel;
+	}
+
+	/**
+	 * Verify Default shipping Address
+	 * 
+	 * @param verifyShippingAddress
+	 * @return boolean after verifying Default Shipping Address
+	 */
+	public boolean verifyDefaultShippingAddress(String verifyShippingAddress) {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = false;
+		Utils.waitForPageLoad(driver);
+		List<WebElement> addressToVerify = driver.findElements(By
+				.cssSelector(".address-list li"));
+
+		for (int count = 0; count < addressToVerify.size(); count++) {
+			if (addressToVerify.get(count).getText()
+					.contains("DEFAULT SHIPPING ADDRESS")) {
+				WebElement expectedAddress = addressToVerify.get(count)
+						.findElement(By.cssSelector(" .addressBook-row"));
+				if (expectedAddress.getText().contains(verifyShippingAddress)) {
+					checkstatus = true;
+					break;
+				}
+			}
+		}
+		Log.event("Verify Default Address in Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return checkstatus;
+	}
+
+	/**
+	 * Fetch the header text from Address book Page
+	 * 
+	 * @return Boolean after Verifying Address Book Page
+	 * @throws Exception
+	 */
+	public Boolean verifyShippingAddressBookPage() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			if (divAddressBook.isDisplayed()) {
+				returntype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("add new Address page is displayed");
+		}
+		Log.event("add new Address page is displayed",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Navigate to My account Page
+	 * 
+	 * @return void after navigating to My Account Page
+	 * @throws Exception
+	 */
+	public void navigateToMyAccountPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(btnMyAccount, driver,
+					"My account is clicked");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.mouseHover(driver, loginDropDown);
+			BrowserActions.clickOnElement(dropdownlnkMyAccount, driver,
+					"My Account Link is clicked");
+		}
+		Log.event("Navigate to My account Page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * clicks on back to my account link
+	 * 
+	 * @returns MyAccountPage
+	 * @throws Exception
+	 */
+	public MyAccountPage clickOnBacktoMyAccountLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkBackToAccount, driver,
+				"Click on back to my account link");
+		Utils.waitForPageLoad(driver);
+		Log.event("clicked on back to my account  link",
+				StopWatch.elapsedTime(startTime));
+		return new MyAccountPage(driver).get();
+	}
+
+	/**
+	 * Click on Delete link in Address book page
+	 * @throws Exception
+	 */
+	public void clickonDeletelinkInAddress() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkDelete, driver, "Delete link");
+		WebDriverWait wait = new WebDriverWait(driver, 20 /* timeout in seconds */);
+		try {
+			if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
+				driver.switchTo().alert().accept();
+			}
+		} catch (Exception e) {
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked on delete link in address book",
+				StopWatch.elapsedTime(startTime));
+	}
+
+}// ADDRESSBOOK PAGE

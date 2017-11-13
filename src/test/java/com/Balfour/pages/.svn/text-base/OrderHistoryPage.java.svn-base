@@ -1,0 +1,760 @@
+package com.sheplers.pages;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class OrderHistoryPage extends LoadableComponent<OrderHistoryPage> {
+
+	private final WebDriver driver;
+	private boolean isPageLoaded;
+	public Headers headers;
+	public Footers footers;
+	public ElementLayer elementLayer;
+	AccountUtils AccountUtils;
+
+	/**********************************************************************************************
+	 ************************ WebElements of OrderHistory Page - Starts ***************************
+	 **********************************************************************************************/
+
+	@FindBy(css = ".sectiondetails")
+	WebElement divOrderHistory;
+
+	@FindBy(css = "div.order-total > span")
+	WebElement orderTotal;
+
+	@FindBy(css = "div.order-number > span.value")
+	WebElement orderNumber;
+
+	@FindBy(css = "div.order-date > span.value")
+	WebElement orderDate;
+
+	@FindBy(css = ".sectionheader h2")
+	WebElement orderHistoryHeader;
+
+	@FindBy(css = "a.review")
+	WebElement lnkReviewThisProduct;
+
+	@FindBy(css = "div.item-tracking-info > p.label")
+	WebElement lblTrackingNumber;
+
+	@FindBy(css = "ul[class='menu-utility-user'] li a[href*='account']")
+	WebElement lblSignIn;
+
+	@FindBy(css = ".desktop-only nav a[href*='order']")
+	WebElement navOrder;
+
+	@FindBy(css = ".link-back a")
+	WebElement lnkBackToAccnt;
+
+	@FindBy(css = ".order-details-btn.btn")
+	WebElement btnOrderDetail;
+
+	@FindBy(css = "div.order-history-info > p:nth-child(1) > span.value")
+	WebElement orderHistoryPageDetailsOrderDate;
+
+	@FindBy(css = "div.order-history-info > p:nth-child(2) > span.value")
+	WebElement orderHistoryPageDetialsOrderNumber;
+
+	@FindBy(css = "p.item-total > span.value")
+	WebElement orderHistoryPageDetialsItemTotal;
+
+	@FindBy(css = "div.order-history-total > p > span.value")
+	WebElement orderHistoryPageDetialsOrderTotal;
+
+	@FindBy(css = "p.shipping-cost > span.value")
+	WebElement orderHistoryPageDetialsShippingCost;
+
+	@FindBy(css = "p.taxes-cost > span.value")
+	WebElement orderHistoryPageDetialsSalesTax;
+
+	@FindBy(css = "div.product-list-item > div > p > a")
+	WebElement orderHistoryPageProductName;
+
+	@FindBy(css = "div.order-item-information > p:nth-child(1) > span.value")
+	WebElement orderHistoryPageProductColor;
+
+	@FindBy(css = "div.order-item-information > p:nth-child(2) > span.value")
+	WebElement orderHistoryPageProductSize;
+
+	@FindBy(css = "div.order-item-information > p:nth-child(3) > span.value")
+	WebElement orderHistoryPageProductStyle;
+
+	@FindBy(css = "div.order-item-price > p:nth-child(1) > span.value")
+	WebElement orderHistoryPageProductPrice;
+
+	@FindBy(css = "div.order-item-price > p:nth-child(2) > span.value")
+	WebElement orderHistoryPageProductQty;
+
+	@FindBy(css = "div.order-item-price > p:nth-child(3) > span.value")
+	WebElement orderHistoryPageProductItemTotal;
+
+	@FindBy(css = "div.order-item-image > img")
+	WebElement productImage;
+
+	@FindBy(css = "#bv-mbox-lightbox-list")
+	WebElement reviewPage;
+
+	@FindBy(css = "div.counter-widget > p > a")
+	WebElement lnkReview;
+
+	@FindBy(css = "div.no_orders div[class*='ca-no-order-history-text']")
+	WebElement divNoOrders;
+
+	@FindBy(css = "div[class='form-checkout shipping-address-section active form-edit-address order-landing-container'] .form-title")
+	WebElement txtOrderHeader;
+
+	@FindBy(css = ".order-details-btn.btn")
+	WebElement btnOrderDetails;
+
+	@FindBy(css = ".nav-content-container")
+	WebElement customerServiceSection;
+
+	@FindBy(css = ".desktop-only [href*='sheplers_us/profile']")
+	WebElement lnkAccountSettings;
+
+	@FindBy(css = ".desktop-only [href*='sheplers_us/addressbook']")
+	WebElement lnkAddressBook;
+
+	@FindBy(css = ".desktop-only [href*='/s/sheplers_us/payments']")
+	WebElement lnkPaymentMethods;
+
+	@FindBy(css = ".desktop-only [href*='/s/sheplers_us/orders']")
+	WebElement lnkOrderHistory;
+
+	@FindBy(css = "ul.search-result-items li")
+	WebElement orderDetails;
+
+	@FindBy(css = "div.shipTo p[class='value']")
+	WebElement lblShippedTo;
+
+	@FindBy(css = "div.order-description > div.item-details > ul > li > p > span")
+	List<WebElement> orderItem;
+
+	@FindBy(css = "span.value.processing.order_processed")
+	WebElement orderStatus;
+
+	@FindBy(css = "dl[class='billing-info'] dd p")
+	List<WebElement> orderHistoryPagebillingAddress;
+
+	@FindBy(css = "dl[class='shipping-info'] dd p")
+	List<WebElement> orderHistoryPageshippingAddress;
+
+	@FindBy(css = "dl.shipping-info > dd:nth-child(4) > p")
+	WebElement orderHistoryPageShippingMethod;
+
+	/*********************************************************************************************
+	 ************************ WebElements of OrderHistory Page - Ends ****************************
+	 *********************************************************************************************/
+
+	/**
+	 * 
+	 * Constructor class for Login page Here we initializing the driver for page
+	 * factory objects. For ajax element waiting time has added while
+	 * initialization
+	 * 
+	 * @param driver
+	 * @param url
+	 */
+	public OrderHistoryPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, orderHistoryHeader))) {
+			Log.fail("Order History Page didn't open up", driver);
+		}
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+	}// is loaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * Fetch the text of Order History Page Header
+	 * 
+	 * @return String Header text
+	 * @throws Exception
+	 */
+	public String fetchOrderHistoryPageHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = BrowserActions.getText(driver, orderHistoryHeader,
+				"Extact text from the Header");
+		Log.event("Get header text of Order History page",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * To get billing address to verify in Order History Page
+	 * 
+	 * @param billingAddressVerify
+	 * @return boolean - if address is verified
+	 * @throws Exception
+	 */
+	public boolean getBillingAddressToVerify(String billingAddressVerify)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = true;
+		try {
+			if (orderHistoryPagebillingAddress != null) {
+				for (int count = 1; count < orderHistoryPagebillingAddress
+						.size(); count++) {
+					String ExpectedValue = orderHistoryPagebillingAddress
+							.get(count).getText().trim();
+					if (ExpectedValue.equalsIgnoreCase(billingAddressVerify)) {
+						Log.event("Fetched Address to verify Billing Address",
+								StopWatch.elapsedTime(startTime));
+						return checkstatus;
+					}
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Get Billing address text for verfication");
+		}
+		return false;
+	}
+
+	/**
+	 * Click on Order details button
+	 * 
+	 * @return void after Order details button is clicked
+	 * @throws Exception
+	 */
+	public void clickOnOrderDetailsButton() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnOrderDetails, driver,
+				"Click on OrderDetails Button");
+		Log.event("Clicked on OrderDetails Button",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetch shipping address from order history page for verifying
+	 * 
+	 * @param shippingAddressVerify
+	 * @return boolean - if address is verified
+	 */
+	public boolean getShippingAddressToVerify(String shippingAddressVerify) {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = true;
+		try {
+			if (orderHistoryPageshippingAddress != null) {
+				for (int count = 1; count < orderHistoryPageshippingAddress
+						.size(); count++) {
+					String ExpectedValue = orderHistoryPageshippingAddress
+							.get(count).getText().trim();
+					if (ExpectedValue.equalsIgnoreCase(shippingAddressVerify)) {
+						Log.event("Fetched Address to verify Billing Address",
+								StopWatch.elapsedTime(startTime));
+						return checkstatus;
+					}
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Get Billing address text for verfication");
+		}
+		return false;
+	}
+
+	/**
+	 * Fetch Shipping Method in order history Page
+	 * 
+	 * @return String Shipping Method from order history Page
+	 * @throws Exception
+	 */
+	public String getShippingMethodInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String shippingMethod = "";
+		shippingMethod = BrowserActions.getText(driver,
+				orderHistoryPageShippingMethod, "shipping method");
+		Log.event("Fetch shippingMethod from order history page",
+				StopWatch.elapsedTime(startTime));
+		return shippingMethod;
+	}
+
+	/**
+	 * Fetch Order Total From Order History Page
+	 * 
+	 * @return String Total From Order History Page
+	 * @throws Exception
+	 */
+	public String getOrderTotalFromOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String total = BrowserActions
+				.getText(driver, orderTotal, "Order total");
+		Log.event("get text of OrderTotal", StopWatch.elapsedTime(startTime));
+		return total;
+	}
+
+	/**
+	 * Verifying Order Number In order History page
+	 * 
+	 * @param number
+	 * @return boolean - if order number is verified
+	 * @throws Exception
+	 */
+	public Boolean verifyOrderNumberInOrderHistoryPage(String number)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String OMSnumber = BrowserActions.getText(driver, orderNumber,
+				"Order Number");
+		if (OMSnumber.equals(OMSnumber)) {
+			returntype = true;
+		}
+		Log.event(" Verifies OMS number ", StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Fetch Order Date form Order History Page
+	 * 
+	 * @return String Date form Order History Page
+	 * @throws Exception
+	 */
+	public String getDateFromOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		String ExpectedOrderDate = "";
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+			String OrderDate = orderDate.getText();
+			Date date = formatter.parse(OrderDate);
+			ExpectedOrderDate = formatter.format(date);
+		} catch (Exception e) {
+			Log.exception(e);
+		}
+		Log.event("Fetched date to verify order date",
+				StopWatch.elapsedTime(startTime));
+		return ExpectedOrderDate;
+	}
+
+	/**
+	 * View customer profile drop down from header
+	 * 
+	 * @return void after customer profile drop down from header is visible
+	 * @throws Exception
+	 */
+	public void viewCustomerDropDown() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.mouseHover(driver, lblSignIn);
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("click on the customer drop down",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Navigate to the Order History Page via header drop down
+	 * 
+	 * @return void after navigated to Order History Page via header drop down
+	 * @throws Exception
+	 */
+	public void navigateToNavOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(navOrder, driver,
+				"Clicked on the 'Edit Account' link");
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * click order details button
+	 * 
+	 * @return void after Order Details button is clicked
+	 * @throws Exception
+	 */
+	public void clickOrderDetails() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnOrderDetail, driver,
+				"Clicked on the order details button");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click order details button",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetch order Date from order history page
+	 * 
+	 * @return String Order Date from order history page
+	 * @throws Exception
+	 */
+	public String getOrderDateInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ExpectedOrderDate = "";
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+			SimpleDateFormat Changeformatter = new SimpleDateFormat("MM/dd/yy");
+			String OrderDate = orderHistoryPageDetailsOrderDate.getText();
+			Date date = formatter.parse(OrderDate);
+			ExpectedOrderDate = Changeformatter.format(date);
+		} catch (Exception e) {
+			Log.exception(e);
+		}
+		Log.event("Fetched date from Order History Page to verify order date",
+				StopWatch.elapsedTime(startTime));
+		return ExpectedOrderDate;
+	}
+
+	/**
+	 * Fetch Order Number from Order History Page
+	 * 
+	 * @return String order number from Order History Page
+	 * @throws Exception
+	 */
+	public String getOrderNumberInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String OrderNumber = "";
+		OrderNumber = BrowserActions.getText(driver,
+				orderHistoryPageDetialsOrderNumber, "Order Number");
+		Log.event("Fetch Order Number from order history page",
+				StopWatch.elapsedTime(startTime));
+		return OrderNumber;
+	}
+
+	/**
+	 * Fetch Item Total from order history page
+	 * 
+	 * @return String Item total from order history page
+	 * @throws Exception
+	 */
+	public String getItemTotalInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ItemTotal = "";
+		ItemTotal = BrowserActions.getText(driver,
+				orderHistoryPageDetialsItemTotal, "Order Item total");
+		Log.event("Fetch Item Total from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ItemTotal;
+	}
+
+	/**
+	 * Fetch OrderTotal from order history page
+	 * 
+	 * @return String order total from order history page
+	 * @throws Exception
+	 */
+	public String getOrderTotalInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String OrderTotal = "";
+		OrderTotal = BrowserActions.getText(driver,
+				orderHistoryPageDetialsOrderTotal, "Order total");
+		Log.event("Fetch OrderTotal from order history page",
+				StopWatch.elapsedTime(startTime));
+		return OrderTotal;
+	}
+
+	/**
+	 * Fetch ShippingCost from order history page
+	 * 
+	 * @return String ShippingCost from order history page
+	 * @throws Exception
+	 */
+	public String getShippingCostInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ShippingCost = "";
+		ShippingCost = BrowserActions
+				.getText(driver, orderHistoryPageDetialsShippingCost,
+						"Order shipping cost text");
+		Log.event("Fetch ShippingCost from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ShippingCost;
+	}
+
+	/**
+	 * Fetch SalesTax from order history page
+	 * 
+	 * @return String SalesTax from order history page
+	 * @throws Exception
+	 */
+	public String getSalesTaxInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String SalesTax = "";
+		SalesTax = BrowserActions.getText(driver,
+				orderHistoryPageDetialsSalesTax, "Order sale tax");
+		Log.event("Fetch SalesTax from order history page",
+				StopWatch.elapsedTime(startTime));
+		return SalesTax;
+	}
+
+	/**
+	 * Fetch ProductName from order history page
+	 * 
+	 * @return String ProductName from order history page
+	 * @throws Exception
+	 */
+	public String getProductNameInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductName = "";
+		ProductName = BrowserActions.getText(driver,
+				orderHistoryPageProductName, "product name");
+		Log.event("Fetch ProductName from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductName;
+	}
+
+	/**
+	 * Fetch ProductColor from order history page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getProductColorInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductColor = "";
+		ProductColor = BrowserActions.getText(driver,
+				orderHistoryPageProductColor, "product color");
+		Log.event("Fetch ProductColor from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductColor;
+	}
+
+	/**
+	 * Fetch ProductSize from order history page
+	 * 
+	 * @return String ProductSize from order history page
+	 * @throws Exception
+	 */
+	public String getProductSizeInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductSize = "";
+		ProductSize = BrowserActions.getText(driver,
+				orderHistoryPageProductSize, "product size");
+		Log.event("Fetch ProductSize from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductSize;
+	}
+
+	/**
+	 * Fetch ProductPrice from order history page
+	 * 
+	 * @return String ProductPrice from order history page
+	 * @throws Exception
+	 */
+	public String getProductPriceInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductPrice = "";
+		ProductPrice = BrowserActions.getText(driver,
+				orderHistoryPageProductPrice, "product price");
+		Log.event("Fetch ProductPrice from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductPrice;
+	}
+
+	/**
+	 * Fetch ProductQty from order history page
+	 * 
+	 * @return ProductQty from order history page
+	 * @throws Exception
+	 */
+	public String getProductQtyInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductQty = "";
+		ProductQty = BrowserActions.getText(driver, orderHistoryPageProductQty,
+				"product Qty");
+		Log.event("Fetch ProductQty from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductQty;
+	}
+
+	/**
+	 * Fetch ProductItemTotal from order history page
+	 * 
+	 * @return String ProductItemTotal from order history page
+	 * @throws Exception
+	 */
+	public String getProductItemTotalInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductItemTotal = "";
+		ProductItemTotal = BrowserActions.getText(driver,
+				orderHistoryPageProductItemTotal, "product Item total");
+		Log.event("Fetch ProductItemTotal from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductItemTotal;
+	}
+
+	/**
+	 * Click Review this Product link Order history Page
+	 * 
+	 * @return void after clicking Review this Product link
+	 * @throws Exception
+	 */
+	public void clickReviewThisProduct() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkReview, driver,
+				"Review this product link");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Review this product link order history page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetch Product style from Order History Page
+	 * 
+	 * @return String ProductStyle from Order History Page
+	 * @throws Exception
+	 */
+	public String getProductStyleInOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductStyle = "";
+		ProductStyle = BrowserActions.getText(driver,
+				orderHistoryPageProductStyle, "product style");
+		Log.event("Fetch ProductStyle from order history page",
+				StopWatch.elapsedTime(startTime));
+		return ProductStyle;
+	}
+
+	/**
+	 * To get Shipping Address to verify in Order Confirmation Page
+	 * 
+	 * @param shippingAddressVerify
+	 * @return boolean - if shipping address is verified
+	 * @throws Exception
+	 */
+	public boolean verifyShippedTo(String lastname) throws Exception {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = false;
+		try {
+			if (lblShippedTo.getText().contains(lastname)) {
+				Log.event("Fetched Address to verify shipping address",
+						StopWatch.elapsedTime(startTime));
+				checkstatus = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Verify shipping Address");
+		}
+		return checkstatus;
+	}
+
+	/**
+	 * To get item total in Order History Page
+	 * 
+	 * @param itemdetails
+	 * @return boolean - if item total is verified
+	 * @throws Exception
+	 */
+	public Boolean getItemTotalInOrderHistoryPage(List<String> itemdetails)
+			throws Exception {
+
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		int i = 0;
+		ArrayList<String> actualValues = new ArrayList<String>();
+		for (WebElement e : orderItem) {
+			String product = BrowserActions.getTextFromAttribute(driver, e,
+					"title", "get item text");
+			actualValues.add(product);
+		}
+		for (String exp : itemdetails) {
+			if (exp.contains(actualValues.get(i++))) {
+			} else {
+				returntype = false;
+				break;
+			}
+		}
+		Log.event("Fetched Items to verify ", StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Order Status Verifying
+	 * 
+	 * @return boolean - if order status is verified
+	 * @throws Exception
+	 */
+	public Boolean checkOrderStatus() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			if ((orderStatus.getText().trim()).contains("Being Processed")) {
+				returntype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Fetched Items to verify");
+		}
+		Log.event("Fetched Items to verify", StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Get Currency Value in Order history Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCurrencyFromOrderDetails() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String currency = "";
+		currency = BrowserActions.getText(driver, orderTotal, "currency text");
+		Log.event("Fetch currency from order history page",
+				StopWatch.elapsedTime(startTime));
+		return currency;
+	}
+
+	/**
+	 * @throws Exception
+	 *
+	 */
+	public Boolean rightClickOnReviewThisProductLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean checkstatus = false;
+
+		List<WebElement> lnkReview = driver.findElements(By
+				.cssSelector("a.review"));
+		BrowserActions
+				.clickOnElement(lnkReview.get(0), driver, "Review Button");
+
+		if (reviewPage.isDisplayed()) {
+			checkstatus = true;
+		}
+
+		Log.event(" 'Review this product' link is opened in new Tab ",
+				StopWatch.elapsedTime(startTime));
+		return checkstatus;
+	}
+
+}// ORDERHISTORYPAGE

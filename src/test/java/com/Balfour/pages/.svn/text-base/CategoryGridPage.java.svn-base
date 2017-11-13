@@ -1,0 +1,2626 @@
+package com.sheplers.pages;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class CategoryGridPage extends LoadableComponent<CategoryGridPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	private boolean colorWatchDisplayedProperly;
+	private boolean leadMessageDisplayed;
+	public HomePage homePage;
+	public Headers headers;
+	public Footers footers;
+	public BrandsPage brandsPage;
+	public ElementLayer elementLayer;
+	public SearchResultPage searchPage;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Grid/PLP Page- Starts ***********************
+	 **********************************************************************************************/
+
+	private static final String BRAND = "div[class*='refinement brand'] ul li label";
+	private static final String lblProdcount = "#search-result-items";
+	private static final String PREVIOUSARROW = " .slick-prev.slick-arrow";
+	private static final String NEXTARROW = " .slick-next.slick-arrow";
+	private static final String NAVLEFTBESTSELLINGITEMS = "#best_selling_items"
+			+ PREVIOUSARROW;
+	private static final String NAVRIGHTBESTSELLINGITEMS = "#best_selling_items"
+			+ NEXTARROW;
+	private static final String NAVLEFTPEOPLEWHOBOUGHTSECTION = "#also_bought_items"
+			+ PREVIOUSARROW;
+	private static final String NAVRIGHTPEOPLEWHOBOUGHTSECTION = "#also_bought_items"
+			+ NEXTARROW;
+	private static final String COLORSWATCHES = " ul[class*='swatch-list'] a";
+	private static final String ALTERNATEIMAGES = "div[class*='slide thumb']:not([class*='selected'])";
+	private static final String NAVRIGHTMULTIPLEIMAGE = ".product-primary-image.search-img"
+			+ NEXTARROW;
+	@FindBy(css = "h1.product-name")
+	WebElement lblProductName;
+
+	@FindBy(css = "div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active'] div.product-image img")
+	List<WebElement> imgRecentlyViewedSection;
+
+	@FindBy(css = NAVLEFTBESTSELLINGITEMS)
+	WebElement navLeftBestSellingItems;
+
+	@FindBy(css = NAVLEFTPEOPLEWHOBOUGHTSECTION)
+	WebElement navLeftPteopleWhoBoughtSection;
+
+	@FindBy(css = NAVRIGHTBESTSELLINGITEMS)
+	WebElement navRightBestSellingItems;
+
+	@FindBy(css = NAVRIGHTPEOPLEWHOBOUGHTSECTION)
+	WebElement navRightPeopleWhoBoughtSection;
+
+	@FindBy(css = "div[class='desktop-only'] div[class='content-slot slot-grid-header']")
+	WebElement categoryGridSlotHeader;
+
+	@FindBy(css = "#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img")
+	List<WebElement> imgBestSellingItems;
+
+	@FindBy(css = "#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img")
+	List<WebElement> imgPeopleWhoBoughtSection;
+
+	@FindBy(css = "div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active']")
+	public List<WebElement> activeRecentlyViewedItems;
+
+	@FindBy(css = BRAND + " ul li")
+	List<WebElement> listAllBrands;
+
+	@FindBy(css = ".btn-zoom")
+	WebElement zoomIcon;
+
+	@FindBy(css = ".zoomContainer")
+	WebElement zoomWindow;
+
+	@FindBy(css = ".fancybox-nav.fancybox-prev>span")
+	WebElement btnZoomPrev;
+
+	@FindBy(css = ".fancybox-nav.fancybox-next>span")
+	WebElement btnZoomNxt;
+
+	@FindBy(css = "ul[class='list-product-info'] li [class*='content-asset'] img")
+	List<WebElement> imgProductFeature;
+
+	@FindBy(css = "#best_selling_items ul[class*='slick-slider'] li[class*='slick-active']")
+	public List<WebElement> activeBestSellingItems;
+
+	@FindBy(css = "#also_bought_items ul[class*='slick-slider'] li[class*='slick-active']")
+	List<WebElement> activePeopleWhoBoughtThisAlsoBoughtItems;
+
+	@FindBy(css = "#best_selling_items .accordion-head.active")
+	WebElement btnBestSellingItemsCollapse;
+
+	@FindBy(css = "#best_selling_items .accordion-head")
+	WebElement btnBestSellingItemsExpand;
+
+	@FindBy(css = "#also_bought_items .accordion-head.active")
+	WebElement btnPeopleBoughtCollapse;
+
+	@FindBy(css = "#also_bought_items .accordion-head")
+	WebElement btnPeopleBoughtExpand;
+
+	@FindBy(css = "div[id='pdpMain']")
+	WebElement pdPContent;
+
+	@FindBy(css = "div[class='refinements']")
+	WebElement mainCategoryLandingPage;
+
+	@FindBy(css = ".product-selections")
+	WebElement gridSelections;
+
+	@FindBy(css = ".table-sizes.size-matrix>table>tbody>tr>td>a[href='#']")
+	WebElement size;
+
+	@FindBy(css = "div[class='desktop-only'] div[class*='header'] h1")
+	WebElement categoryGridHeader;
+
+	@FindBy(css = ".mobile-only .content-slot.slot-grid-header>h1")
+	WebElement mobCategoryGridHeader;
+
+	@FindBy(css = "div[class='product-tile']")
+	List<WebElement> productContent;
+
+	@FindBy(css = BRAND)
+	List<WebElement> listSubBrand;
+
+	@FindBy(css = "div[class*='refinement size'] ul li a[id*='swatch']")
+	List<WebElement> listSize;
+
+	@FindBy(css = "div[class='sort-by']")
+	public WebElement sortBySection;
+
+	@FindBy(css = "#mCSB_4_container > ul > li:nth-child(1) > div.checkbox > label")
+	WebElement brandCheckbox;
+
+	@FindBy(css = "#mCSB_5_container > ul > li:nth-child(1) > div.checkbox > label")
+	WebElement styleCheckbox;
+
+	@FindBy(css = "div[class='desktop-only'] div[class*='breadcrumb']")
+	WebElement breadcrumb;
+
+	@FindBy(css = ".mobile-only div[class*='breadcrumb']")
+	WebElement mobBreadcrumb;
+
+	@FindBy(css = "#primary div.product-selections ul li:nth-child(1) span")
+	WebElement lblBlazin;
+
+	@FindBy(css = ".content-slot.slot-grid-header p")
+	WebElement lblAvailProd;
+
+	@FindBy(css = ".product-tile")
+	List<WebElement> availCatGrid;
+
+	@FindBy(css = "#primary > div.product-selections > ul > li:nth-child(1) > span")
+	WebElement lblYourSelection;
+
+	@FindBy(css = "ul.list-selections li:last-child")
+	WebElement lnkClearAll;
+
+	@FindBy(css = "div[class='product-content'] a[class='name-link']")
+	List<WebElement> productName;
+
+	@FindBy(css = ".product-content")
+	List<WebElement> productDesc;
+
+	@FindBy(css = ".list-selections li span")
+	public WebElement singleSelection;
+	
+	@FindBy(css = "select#grid-sort-header")
+	WebElement sortOption;
+
+	@FindBy(css = "#search-result .pagination>ul>li a[title='Next']")
+	WebElement lnkNext;
+
+	@FindBy(css = ".pagination>ul>li a[title='Previous']")
+	WebElement lnkPrevious;
+
+	@FindBy(css = "div.pagination .current-page")
+	WebElement currentPage;
+
+	@FindBy(css = ".pagination>ul>li:nth-last-child(2)")
+	WebElement lastPage;
+
+	@FindBy(css = ".pagination>ul>li:nth-child(2)")
+	WebElement firstPage;
+
+	@FindBy(css = ".pagination>ul>li")
+	List<WebElement> pages;
+
+	@FindBy(css = ".product-standard-price>del")
+	List<WebElement> priceLowToHigh;
+
+	@FindBy(css = "#grid-sort-header>option")
+	List<WebElement> sortBy;
+
+	@FindBy(css = "#grid-sort-header>option[value*='price-low-to-high']")
+	WebElement lowestPrice;
+
+	@FindBy(css = "div[class='refinements-inner']")
+	WebElement searchRefinementPanel;
+
+	@FindBy(css = ".list-selections>li>span")
+	public List<WebElement> yourSelections;
+
+	@FindBy(css = BRAND)
+	List<WebElement> listBrand;
+
+	@FindBy(css = "div.category-reviews>h3.toggle")
+	public WebElement txtCategoryReviews;
+
+	@FindBy(css = "#secondary .content-slot.slot-grid-header>h1")
+	public WebElement txtContentSlotHeader;
+
+	@FindBy(css = ".slick-track div[class*='slide thumb']>a")
+	List<WebElement> thumbnailCount;
+
+	@FindBy(css = "div[class='slide slick-slide slick-current slick-active'] a")
+	WebElement mainImage;
+
+	@FindBy(css = "div[class='slide thumb slick-slide slick-current slick-active selected']>a")
+	WebElement selectedThumbnail;
+
+	@FindBy(css = ".promo.promo-shipping.promo-shipping-Free.Shipping")
+	WebElement promoShippingMessage;
+
+	@FindBy(css = "#primary > div.desktop-only > div.content-slot.slot-grid-header > p:nth-child(2)")
+	public WebElement productCount;
+
+	@FindBy(css = "#secondary > div.mobile-only > div.content-slot.slot-grid-header > p:nth-child(2)")
+	public WebElement productMobCount;
+
+	@FindBy(css = "div.discount-details-entry.open > p:nth-child(3)")
+	WebElement couponExclusionContent;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Grid/PLP Page - Ends ************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	public CategoryGridPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		elementLayer = new ElementLayer(driver);
+		homePage = new HomePage(driver).get();
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		searchPage = new SearchResultPage(driver);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		Utils.waitForPageLoad(driver);
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		Utils.waitForPageLoad(driver);
+		if (isPageLoaded
+				&& !(Utils.waitForElement(driver, mainCategoryLandingPage))) {
+			Log.fail("grid Page did not open up. Site might be down.", driver);
+		}
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, mainCategoryLandingPage);
+
+	}
+
+	/**
+	 * To Fetch Header text of the Page
+	 * 
+	 * @return String From Category Grid Header
+	 * @throws Exception
+	 */
+	public String getTextFromCategoryGridHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtCategoryHeader = "";
+		if (runPlatForm == "desktop") {
+			txtCategoryHeader = BrowserActions.getText(driver,
+					categoryGridHeader,
+					"Fetching the invalid error message in the footer page");
+
+		}
+		if (runPlatForm == "mobile") {
+
+			txtCategoryHeader = BrowserActions.getText(driver,
+					mobCategoryGridHeader,
+					"Fetching the invalid error message in the footer page");
+		}
+		Log.event(" Gets text from category grid header!",
+				StopWatch.elapsedTime(startTime));
+		return txtCategoryHeader;
+
+	}
+
+	/**
+	 * To check Navigations in Zoom modal window
+	 * 
+	 * @return boolean-Zoom Page
+	 * @throws Exception
+	 */
+
+	public Boolean verifyNavigationInZoomModalWindoW() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String image1 = "";
+		String image2 = "";
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+
+			BrowserActions.clickOnElement(e, driver, "clicks a product ");
+			Utils.waitForPageLoad(driver);
+
+			if (pdPContent.isDisplayed()) {
+				if (thumbnailCount.size() > 2) {
+
+					BrowserActions
+							.clickOnElement(zoomIcon, driver, "Zoom icon");
+
+					Utils.waitForElement(driver, zoomWindow);
+
+					if (zoomWindow.isDisplayed()) {
+
+						BrowserActions.mouseHover(driver, zoomWindow);
+
+						WebElement element = (driver.findElement(By
+								.cssSelector("div.zoomContainer > div > div")));
+						if (element.getCssValue("display").contains("block")) {
+							image1 = BrowserActions.getTextFromAttribute(
+									driver, element, "style", "image");
+						}
+
+						Utils.waitForPageLoad(driver);
+
+						if (btnZoomPrev.isEnabled()) {
+							BrowserActions.clickOnElement(btnZoomPrev, driver,
+									"Next button");
+						}
+
+						BrowserActions.mouseHover(driver, zoomWindow);
+
+						WebElement element1 = (driver.findElement(By
+								.cssSelector(".zoomWindow")));
+						Utils.waitForElement(driver, element1);
+						if (element1.isEnabled()) {
+							if (element1.getCssValue("display").contains(
+									"block"))
+								;
+
+							image2 = BrowserActions.getTextFromAttribute(
+									driver, element1, "style", "image");
+						}
+
+						if (!image1.equalsIgnoreCase(image2)) {
+							if (verifyNextArrowNavigationInZoomModalWindoW(image2)) {
+								returntype = true;
+								break;
+							} else {
+								return returntype;
+							}
+						}
+					}
+				}
+			} else {
+				driver.navigate().back();
+			}
+		}
+		Log.event("naviagate to Zoom Window Page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Check next arrow navigations in zoom modal window in pdp page
+	 * 
+	 * @param image2
+	 * @return Boolean - true if next arrow navigates
+	 * @throws Exception
+	 */
+	public Boolean verifyNextArrowNavigationInZoomModalWindoW(String image2)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String image3 = " ";
+		if (btnZoomNxt.isEnabled()) {
+			BrowserActions.clickOnElement(btnZoomPrev, driver, "Next button");
+		}
+
+		BrowserActions.mouseHover(driver, zoomWindow);
+
+		WebElement element2 = (driver
+				.findElement(By.cssSelector(".zoomWindow")));
+		Utils.waitForElement(driver, element2);
+		if (element2.isEnabled()) {
+			if (element2.getCssValue("display").contains("block"))
+				;
+
+			image3 = BrowserActions.getTextFromAttribute(driver, element2,
+					"style", "image");
+		}
+		try {
+			if (!image2.equalsIgnoreCase(image3)) {
+				returntype = true;
+			}
+		} catch (Exception exp) {
+			Log.event("Images are not moved in swipe ,clicking on Next Arrow navigation");
+		}
+
+		Log.event("Verifying Next Arrow navigation in Zoom Window Page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Check Best selling items section in pdp page
+	 * 
+	 * @return Boolean - true if Best selling items section displayed
+	 */
+
+	public Boolean toCheckBestSellingItemsInPdpPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+			BrowserActions.clickOnElement(e, driver, "selecting a product");
+
+			if (driver
+					.findElement(
+							By.cssSelector(".accordion.product-reviews+#best_selling_items"))
+					.isDisplayed()) {
+				if (activeBestSellingItems.size() <= 4) {
+
+					if (btnBestSellingItemsCollapse.isEnabled()) {
+
+						BrowserActions.clickOnElement(
+								btnBestSellingItemsCollapse, driver,
+								"btnBestSellingItemsCollapse");
+						Utils.waitForPageLoad(driver);
+
+						if (btnBestSellingItemsExpand.isDisplayed()) {
+							returntype = true;
+							break;
+						}
+					}
+
+				}
+			}
+		}
+		Log.event("Verifying Best Selling Price in Pdp Page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To verify More link in search refinement
+	 * 
+	 * @return void - if more link present
+	 */
+	public void verifyMore(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (listAllBrands.size() > 9) {
+			WebElement btnMoreRefine = BrowserActions.checkLocator(driver,
+					"div[class*='" + categoryRefinement
+							+ "'] ul li a[class*='more-link']");
+			if (runPlatForm == "mobile") {
+				scrollToElement(btnMoreRefine);
+			}
+			String txtbtnMore = btnMoreRefine.getText();
+			try {
+				if (!(btnMoreRefine.isDisplayed() && txtbtnMore
+						.equalsIgnoreCase("More"))) {
+					Log.message("More link NOT present");
+				}
+			} catch (Exception e) {
+				Log.event("More link NOT present");
+			}
+		}
+		Log.event("More link in search Refinement found",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Check next arrow navigations in People Who Bought section pdp page
+	 * 
+	 * @return Boolean value - if next arrow navigates
+	 */
+	public Boolean CheckNextArrowNavigationsInPeopleWhoBoughtSectionOfPdpPage()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		if (elementLayer.existsElement(NAVRIGHTPEOPLEWHOBOUGHTSECTION)) {
+
+			for (WebElement element1 : imgPeopleWhoBoughtSection) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Next button");
+				productList1.add(str);
+			}
+
+			BrowserActions.javascriptClick(navRightPeopleWhoBoughtSection,
+					driver, "Next arrow");
+
+			Utils.waitForPageLoad(driver);
+
+			for (WebElement element2 : imgPeopleWhoBoughtSection) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previos button");
+				productList2.add(str1);
+			}
+			try {
+				if (!(productList1.containsAll(productList2))) {
+					returntype = true;
+				}
+			} catch (Exception exp) {
+				Log.event("Products are not moved in swipe carousel , next arrow navigations in People Who Bought section pdp page");
+			}
+		}
+		Log.event(
+				"Check next arrow navigations in People Who Bought section pdp page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To Verify the Product tile is displayed properly
+	 * 
+	 * @throws Exception
+	 * @return boolean - productTile
+	 */
+	public boolean verifyProductTile() throws Exception {
+		final long startTime = StopWatch.startTime();
+		boolean productTile = false;
+		for (int category = 1; category < productContent.size(); category++) {
+			WebElement e = productContent.get(category);
+			if (e.findElement(By.cssSelector("div[class='product-image']"))
+					.isDisplayed()
+					&& e.findElement(
+							By.cssSelector("div[class='product-content']"))
+							.isDisplayed()) {
+				productTile = true;
+			}
+		}
+		Log.event("To Verify the Product tile is displayed properly",
+				StopWatch.elapsedTime(startTime));
+		return productTile;
+	}
+
+	/**
+	 * To select product from any category content landing section
+	 * 
+	 * @param productTitle
+	 * @return PdpPage after selecting a product
+	 */
+	public PdpPage selectProductFromCategoryContentSection(String productTitle) {
+		final long startTime = StopWatch.startTime();
+
+		try {
+			driver.findElement(
+					By.cssSelector("h6[class='product-name'] a[title*='"
+							+ productTitle + "']")).click();
+		} catch (Exception exp) {
+			Log.event("Product is not selected from Category content section");
+		}
+
+		BrowserActions.nap(1);
+		Utils.waitForPageLoad(driver);
+		Log.event(
+				" To select product from any category content landing section",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To verify if Total Savings Are Not Displayed For Sales Excluded Product
+	 * 
+	 * @return true - if total savings not displayed for Sales Exc Product
+	 */
+
+	public boolean checkTotalSavingsAreNotDispForSalesExcProduct() {
+		int count = 0;
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			Utils.waitForElement(driver, e, 60);
+			try {
+				if (e.findElement(By.cssSelector(".product-pricing")).getText()
+						.trim().replaceAll("\\s", "").contains("TotalSavings")) {
+					count++;
+				}
+			} catch (Exception exp) {
+				Log.event("Product pricing is not found in page");
+			}
+		}
+		if (count == 0) {
+			return true;
+		}
+		Log.message(count + "products are not sale Excluded Products");
+		Log.event(
+				"Check TotalSavings Are Not Displayed For Sales ExcProducts ",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * To verify coupon is not displayed for coupon excluded product
+	 * 
+	 * @return true - if coupon not displayed
+	 * @throws Exception
+	 */
+
+	public boolean checkCoupondetailsNotDispForCouponExcProducts()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		int count = 0;
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+	
+			Utils.waitForElement(driver, e, 60);
+			try {
+				if (e.findElement(By.cssSelector("div.product-pricing"))
+						.getText().trim().replaceAll("\\s", "")
+						.contains("Coupon")) {
+					count++;
+				}
+			} catch (Exception exp) {
+				Log.event("coupon is not displayed for coupon excluded product not found in page!!");
+
+			}
+		}
+		if (count == 0) {
+			return true;
+		}
+
+		Log.event("Check coupon excluded products",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * To Check categories are collapsed in Search Refinement Panel
+	 * 
+	 * @returns true - if Search Refinement Panel is properly collapsed
+	 * @throws Exception
+	 */
+	public Boolean CheckCategoriesInSearchRefinementPanelIsCollapsed()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		CheckCategoriesInSearchRefinementPanelIsExpanded();
+		if(runPlatForm == "mobile")
+		{
+		WebElement element = driver.findElement(By.cssSelector(".mobile-only >.content-slot.slot-grid-header"));
+		scrollToElement(element);
+		}
+		List<WebElement> catList = driver
+				.findElements(By
+						.cssSelector("div[class*='refinement '] h3[class*='expanded']"));
+		for (WebElement cat : catList) {
+			try {
+				if (!(elementLayer.existsElement(cat))) {
+					scrollToElement(cat);
+				}
+			} catch (Exception e) {
+				Log.event(cat
+						+ "category is not present in Search Refinement Panel");
+			}
+			BrowserActions.clickOnElement(cat, driver, "category");
+			Utils.waitForPageLoad(driver);
+			try {
+				if (cat.getAttribute("class").contains("expanded")) {
+					returntype = false;
+					return returntype;
+				}
+			} catch (Exception e) {
+				Log.event(cat
+						+ "category does not identify attribute 'Expanded ");
+			}
+		}
+		Log.event("checks categories are collapsed or not!",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To check all the categories are expanded
+	 * 
+	 * @returns true - if Search Refinement Panel is properly expand
+	 * @throws Exception
+	 */
+	public Boolean CheckCategoriesInSearchRefinementPanelIsExpanded()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		List<WebElement> catList = driver
+				.findElements(By
+						.cssSelector("div[class*='refinement '] h3:not([class*='expanded'])"));
+		for (WebElement cat : catList) {
+			try {
+				if (!(elementLayer.existsElement(cat))) {
+					scrollToElement(cat);
+				}
+			} catch (Exception e) {
+				Log.event(cat
+						+ "category is not present in Search Refinement Panel");
+			}
+
+			BrowserActions.clickOnElement(cat, driver, "category");
+			Utils.waitForPageLoad(driver);
+			try {
+				if (!(cat.getAttribute("class").contains("expanded"))) {
+					returntype = false;
+					return returntype;
+				}
+			} catch (Exception e) {
+				Log.event(cat
+						+ "category does not identify attribute 'Expanded ");
+			}
+		}
+		Log.event("checks categories are expanded or not!",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+	/**
+	 * Verify Scroll option
+	 * 
+	 * @return void if scrolled
+	 * @param element
+	 * @throws InterruptedException
+	 */
+	public void scrollToElement(WebElement element) throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "desktop") {
+			BrowserActions.scrollToViewElement(element, driver);
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(element, driver);
+		}
+		Log.event("Scrolls the element", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Verify lineItem Discount Product Count in Gridpage
+	 * 
+	 * @return void - if lineItem Discount Product Count exists
+	 * @throws Exception
+	 */
+	public void verifylineItemDiscountProductCountinGridpage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			Utils.waitForElement(driver, e, 60);
+			try {
+				if (e.findElement(By.cssSelector("div.product-pricing"))
+						.getText().trim().replaceAll("\\s", "")
+						.contains("Coupon")) {
+				}
+			} catch (Exception exp) {
+				Log.event("Coupon element is not forund in page");
+			}
+
+		}
+
+		Log.event("verify lineItem Discount Product Count in Gridpage",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To verify clicking on Product image, page is navigated to PDP page After
+	 * Sale And LineItem Discount prices for all the products
+	 * 
+	 * @return boolean - if Product image clicked
+	 * @throws Exception
+	 */
+	public boolean clickOnProductimageInGridPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> list = driver.findElements(By
+				.cssSelector("ul[id='search-result-items']>li"));
+
+		for (int category = 1; category <= productDesc.size();) {
+			if (runPlatForm == "mobile") {
+				scrollToElement(list.get(0));
+			}
+			WebElement image = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") div.product-image"));
+			BrowserActions.clickOnElement(image, driver, " image ");
+			Utils.waitForElement(driver, pdPContent);
+			try {
+				if (pdPContent.isDisplayed()) {
+					return true;
+				}
+			} catch (Exception e) {
+				Log.event("pdPContent field not found in page!!");
+			}
+			Log.event(
+					"clicking on Product image, page is navigated to PDP page",
+					StopWatch.elapsedTime(startTime));
+		}
+		return false;
+	}
+
+	/**
+	 * To verify TotalSavings is displayed After Sale And LineItem Discount
+	 * prices for all the products
+	 * 
+	 * @return void - if TotalSavings is displayed After Sale And LineItem
+	 *         Discount prices
+	 */
+	public void verifyTotalSavingsDispAfterSaleAndLineItemDiscount() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			if (e.getText().trim().replaceAll("\\s", "").contains("Sale")) {
+
+				if (e.getText().trim().replaceAll("\\s", "").contains("Coupon")) {
+					if (e.findElement(
+							By.cssSelector(".product-pricing>.product-discount+.product-discount"))
+							.isDisplayed())
+						Utils.waitForElement(driver, e);
+
+					if (e.findElement(
+							By.cssSelector(".product-pricing>.product-discount+.product-discount+.product-total-price+.product-sales-price"))
+							.isDisplayed());
+					{
+					}
+				}
+			}
+		}
+
+		Log.event(
+				"TotalSavings is displayed After Sale And LineItem Discount prices",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Verify the selected brand value is displayed
+	 * 
+	 * @param expectedValue
+	 * @param actualValue
+	 * @return Boolean value - if selected brand value is displayed
+	 */
+	public Boolean IsSelectedBrandValuesDisplayed(String expectedValue,
+			String actualValue) {
+		final long startTime = StopWatch.startTime();
+		Boolean flag = false;
+		if (actualValue.contains(expectedValue)) {
+			flag = true;
+		}
+		Log.event("Verify the selected brand value is displayed",
+				StopWatch.elapsedTime(startTime));
+		return flag;
+	}
+
+	/**
+	 * check if selected brand products are display in grid page
+	 * 
+	 * @param brandselecetd
+	 * @return Boolean value if selected brand products are display in grid page
+	 * @throws Exception
+	 */
+	public boolean checkIfSelecetdBrandProductsAreDisplayed(String brandselecetd)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		int count = 0;
+		for (int category = 1; category < productDesc.size(); category++) {
+			if (runPlatForm == "mobile") {
+
+				scrollToElement(productDesc.get(category));
+			}
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") h6[class='product-name']"));
+
+			if (!(e.getText().trim().replaceAll("\\s", "")
+					.contains(brandselecetd))) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			return true;
+		}
+		Log.event("selected brand products are display in grid page",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * Check Search Refinement Panel
+	 * 
+	 * @return Boolean value
+	 */
+	public Boolean checkSearchRefinementPanel() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			if (searchRefinementPanel.isDisplayed()) {
+				returntype = true;
+			}
+		} catch (Exception e) {
+			Log.event("searchRefinementPanel  is not found in page");
+		}
+		Log.event("Check Search Refinement Panel",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * verify Final Price is displayed After Sale And LineItem Discount prices
+	 * for all the products
+	 * 
+	 * @return void - if final price displayed after Sale And LineItem Discount
+	 *         prices
+	 */
+	public void verifyFinalPriceIsDispAfterSaleAndLineItemDiscount() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			if (e.getText().trim().replaceAll("\\s", "").contains("Sale")) {
+
+				if (e.getText().trim().replaceAll("\\s", "").contains("Coupon")) {
+
+					if (e.findElement(
+							By.cssSelector(".product-pricing>.product-discount+.product-discount"))
+							.isDisplayed())
+						Utils.waitForElement(driver, e);
+					if (e.findElement(
+							By.cssSelector(".product-pricing>.product-discount+.product-discount+.product-total-price"))
+							.isDisplayed()) {
+					}
+				}
+			}
+		}
+
+		Log.event(
+				"verify Final Price is displayed After Sale And LineItem Discount prices",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To fetch ProductName having more than one color
+	 * 
+	 * @return PdpPage after product name with more than one color is fetched
+	 * @throws Exception
+	 */
+	public PdpPage fetchProductNameMoreThanOneColor() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (productDesc.size() > 0) {
+			for (int i = 1; i <= productDesc.size(); i++) {
+				WebElement element = BrowserActions.checkLocator(driver,
+						lblProdcount + " li:nth-child(" + i
+								+ ") .product-tile .product-name .name-link");
+
+				List<WebElement> colorsListInGridPage = BrowserActions
+						.checkLocators(driver, lblProdcount + " li:nth-child("
+								+ i + ")" + COLORSWATCHES);
+
+				if (colorsListInGridPage.size() > 1) {
+					try {
+						BrowserActions
+								.clickOnElement(element, driver, "swatch");
+					} catch (Exception e) {
+						Log.event("Multiple swatche are not  found in page");
+					}
+					break;
+				}
+			}
+		}
+		Log.event("fetch ProductName To Click",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To fetch Product having more than one color
+	 * 
+	 * @return boolean - if product fetched
+	 * @throws Exception
+	 */
+	public Boolean getProductWithMoreThanOneColor() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+
+		for (int i = 1; i <= productDesc.size(); i++) {
+
+			List<WebElement> colorsListInGridPage = BrowserActions
+					.checkLocators(driver, lblProdcount + " li:nth-child(" + i
+							+ ")" + COLORSWATCHES);
+
+			if (colorsListInGridPage.size() > 1) {
+				List<WebElement> colors = BrowserActions.checkLocators(driver,
+						lblProdcount + " li:nth-child(" + i
+								+ ") ul.swatch-list li a");
+
+				for (WebElement e : colors) {
+
+					if (!(BrowserActions.getTextFromAttribute(driver, e,
+							"class", "other swatches")).contains("selected")) {
+						String color = BrowserActions.getTextFromAttribute(
+								driver, e, "title", " swatch color ");
+						BrowserActions.clickOnElement(e, driver, "swatchcolor");
+
+						if (pdPContent.isDisplayed()) {
+							WebElement selectedColor = driver.findElement(By
+									.cssSelector(".current.color-current"));
+							Log.message(selectedColor.getText().toLowerCase()
+									+ "selectedColor");
+							Log.message(color.toLowerCase() + "color");
+
+							if (color.toLowerCase().contains(
+									selectedColor.getText().toLowerCase())) {
+								returntype = true;
+								return returntype;
+							} else {
+								returntype = false;
+							}
+						}
+					}
+
+				}
+			}
+		}
+		Log.event("fetch ProductName To Click",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Verify Total Available product
+	 * 
+	 * @return String ProductCount
+	 * @throws Exception
+	 */
+	public String CheckTotalAvailableProductsAutoPopulatedBelowCategoryHeader()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtmobProductCount = "";
+		WebElement mobProductCount = driver.findElement(By
+				.cssSelector(".content-slot.slot-grid-header>h1+p"));
+		if (driver.findElement(
+				By.cssSelector(".content-slot.slot-grid-header>h1+p"))
+				.isDisplayed()) {
+			txtmobProductCount = BrowserActions.getText(driver,
+					mobProductCount,
+					"Fetching the total product count in grid page");
+		}
+		Log.event("Fetching the total product count in grid page!",
+				StopWatch.elapsedTime(startTime));
+
+		return txtmobProductCount;
+	}
+
+	/**
+	 * Click Alternative ThumbnailImage in Pdp page
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean clickAlternateThumbnailImageInPdpPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+			BrowserActions.clickOnElement(e, driver, "clciks a product");
+
+			if (thumbnailCount.size() > 1) {
+				List<WebElement> list = BrowserActions.checkLocators(driver,
+						ALTERNATEIMAGES);
+				Random rand = new Random();
+				int rno = rand.nextInt(list.size());
+
+				Utils.waitForElement(driver, list.get(rno));
+
+				BrowserActions.clickOnElement(list.get(rno), driver,
+						"Clicks a random image from the alternate images");
+
+				if (selectedImageIsDisplayedAsMainImage()) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				driver.navigate().back();
+			}
+		}
+		Log.event("Click Alternative ThumbnailImage in Pdp page",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * Verify Selected Image is Displayed as Main Image
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean selectedImageIsDisplayedAsMainImage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String productMainImage = BrowserActions.getTextFromAttribute(driver,
+				mainImage, "href", "gets href link");
+
+		String selectedAlternateImage = BrowserActions.getTextFromAttribute(
+				driver, selectedThumbnail, "href", "gets href link");
+
+		if (productMainImage.equalsIgnoreCase(selectedAlternateImage)) {
+			return true;
+		}
+		Log.event("Verify Selected Image is Displayed as Main Image",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * Navigate to Product With Promo shipping message
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean navigateToProductWithPromoShippingMessage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+
+			BrowserActions.clickOnElement(e, driver, "Clicks a product");
+
+			if (promoShippingMessage.getText().contains("Promo-Free Shipping")) {
+				return true;
+			} else {
+				driver.navigate().back();
+			}
+
+		}
+		Log.event("Navigate to Product With Promo shipping message",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * Verify thumb nail page is displayed below Product main image
+	 * 
+	 * @return boolean value - if thumb nail displayed below Product main image
+	 * @throws Exception
+	 */
+	public Boolean checkThumbnailsDispBelowProductMainImage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+
+			BrowserActions.clickOnElement(e, driver, "Clicks a product");
+			if (thumbnailCount.size() > 0) {
+				if (driver
+						.findElement(
+								By.cssSelector("div[class*='product-primary-image']+#thumbnails"))
+						.isDisplayed()) {
+					return true;
+				}
+			} else {
+				driver.navigate().back();
+			}
+		}
+		Log.event(
+				"Verify thumb nail page is displayed below Product main image",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * If image is changed ,clicking on next arrow When more than a single image
+	 * associated with product default image,
+	 * 
+	 * @return true
+	 * 
+	 * @return false
+	 */
+
+	public Boolean CheckMobMultipleproductMainImageaDisplayedInSwipeCarouselInPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+			BrowserActions.clickOnElement(e, driver, "Clicks a product");
+
+			if (pdPContent.isDisplayed()) {
+				String slickDots = ".product-primary-image.search-img [class*='slick-list']  [class*='slick-active']";
+
+				if (elementLayer.existsElement(slickDots)) {
+
+					WebElement element1 = driver
+							.findElement(By
+									.cssSelector(".product-primary-image.search-img [class*='slick-list']  [class*='slick-active']"));
+
+					String str = BrowserActions.getTextFromAttribute(driver,
+							element1, "aria-describedby",
+							" image before clicking on Next button ");
+					BrowserActions.clickOnElement(NAVRIGHTMULTIPLEIMAGE,
+							driver, "click on Next arrow");
+
+					Utils.waitForPageLoad(driver);
+
+					WebElement element2 = driver
+							.findElement(By
+									.cssSelector(".product-primary-image.search-img [class*='slick-list']  [class*='slick-active']"));
+
+					String str1 = BrowserActions.getTextFromAttribute(driver,
+							element2, "aria-describedby",
+							" image after clicking on Next button ");
+
+					if (!(str.equalsIgnoreCase(str1))) {
+						returntype = true;
+					}
+				} else {
+
+					driver.navigate().back();
+				}
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Checks the Category Reviews are auto populated or not
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+
+	public Boolean verifySelectedCategoryReviewsAreAutoPopulated()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		String contentSlotHeaderText = BrowserActions
+				.getText(driver, txtContentSlotHeader, "contentSlotHeaderText")
+				.trim().replaceAll("\\s+", "");
+		;
+		String categoryReviewText = txtCategoryReviews.getText().trim()
+				.replaceAll("\\s+", "");
+		if (contentSlotHeaderText.contains(categoryReviewText)) {
+			return true;
+		}
+		Log.event("Checks the Category Reviews are auto populated or not",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * To get selected Refinement
+	 * 
+	 * @return List - actualValues
+	 * @throws Exception
+	 */
+	public List<String> iscorrectrefinementSelected() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<String> actualValues = new ArrayList<String>();
+		for (int i = 0; i < yourSelections.size(); i++) {
+			actualValues.add(yourSelections.get(i).getText().trim()
+					.replaceAll("\\s+", ""));
+		}
+		Log.event("Verify selected Refinement",
+				StopWatch.elapsedTime(startTime));
+		return actualValues;
+	}
+
+	/**
+	 * Verify selected Refinement Value
+	 * 
+	 * @param expectedValues
+	 * @param actualValues
+	 * @return boolean
+	 */
+	public Boolean IsSelectedRefinementValuesDisplayed(
+			List<String> expectedValues, List<String> actualValues) {
+		final long startTime = StopWatch.startTime();
+		int i = 0;
+		for (String act : actualValues) {
+			if (act.contains(expectedValues.get(i++))) {
+				return true;
+			}
+		}
+		Log.event("Verify Selected Refinement Value",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * To check current Page is refreshed After clicking check box
+	 * 
+	 * @param categoryRefinement
+	 * @return boolean
+	 * @throws Exception
+	 */
+	public Boolean checkIfCurrentpageIsrefreshesSelectingRefinementCheckBox(
+			String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		String product1 = getProductNameInGridPage();
+		BrowserActions.nap(1);
+		selectMultipleRefinment(categoryRefinement);
+		Utils.waitForPageLoad(driver);
+		String product2 = getProductNameInGridPage();
+		BrowserActions.nap(1);
+		if (!(product1.equalsIgnoreCase(product2))) {
+			returntype = true;
+		}
+		Log.event("Current Page is refreshed After clicking check box",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+
+	}
+
+	/**
+	 * To check Searched Results Are properly SortedIn SortBy Drop down
+	 * 
+	 * @return Boolean value
+	 * @throws Exception
+	 */
+	public Boolean checksSearchedResultsAreproperlySortedInSortByDropdown()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<String> optionList = Arrays.asList("Top Sellers", "% Off",
+				"$ Off", "Lowest Price", "Highest Price", "Highest Rated",
+				"Newest");
+		List<String> sortlist = new ArrayList<String>();
+
+		for (WebElement list1 : sortBy) {
+			sortlist.add(list1.getText());
+		}
+		if (sortlist.contains(lowestPrice.getText())) {
+			BrowserActions.clickOnElement(lowestPrice, driver,
+					"filters lowest price");
+			Utils.waitForPageLoad(driver);
+
+			if (Utils.compareTwoList(sortlist, optionList)) {
+
+				return true;
+			}
+		}
+		Log.event(
+				"checks Searched Results Are properly SortedIn SortBy Drop down",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * To select Multiple options from Search Refinement Panel
+	 * 
+	 * @return void - if multiple refinement selected
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void selectMultipleRefinment(String categoryRefinement)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int count = 0; count < 2; count++) {
+
+			checkIfCategoryIsexpanded(categoryRefinement);
+
+			BrowserActions.nap(2);
+			List<WebElement> list = driver.findElements(By
+					.cssSelector(".refinements div[class*='"
+							+ categoryRefinement + "'] ul li label"));
+
+			Utils.waitForPageLoad(driver);
+
+			BrowserActions.clickOnElement(list.get(count), driver,
+					"Clicks a random image from the alternate images");
+			Utils.waitForPageLoad(driver);
+		}
+		Log.event("Multiple Refinements selected",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Verify the category is Expanded
+	 * 
+	 * @return void if category expanded
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void checkIfCategoryIsexpanded(String categoryRefinement)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		String collapseCategory = ".refinements div[class*='"
+				+ categoryRefinement + "']>h3[class*='expanded']";
+		if (!elementLayer.existsElement(collapseCategory)) {
+
+			expandCategory(categoryRefinement);
+		}
+		Log.event("Verify the category is Expand",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Click on a particular category Refinement
+	 * 
+	 * @return void after category expanded
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void expandCategory(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement expandCategory = driver.findElement(By
+				.cssSelector(".refinements div[class*='" + categoryRefinement
+						+ "']>h3"));
+		BrowserActions.javascriptClick(expandCategory, driver,
+				"clicking on a particular category from refinement");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click on a particular category Refinement",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Check Price Is SortedFromLowToHigh
+	 * 
+	 * @return Boolean value
+	 * @throws InterruptedException
+	 */
+	public Boolean CheckPriceIsSortedFromLowToHigh()
+			throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		List<String> expectedList = new ArrayList<String>();
+		List<String> actualList = new ArrayList<String>();
+		for (WebElement value : priceLowToHigh) {
+			if (runPlatForm == "mobile") {
+				scrollToElement(value);
+			}
+			expectedList.add(replaceChar(value.getText()));
+			actualList.add(replaceChar(value.getText()));
+		}
+		Collections.sort(actualList);
+		if (Utils.compareTwoList(expectedList, actualList)) {
+			return true;
+		}
+		Log.event("Check Price Is SortedFromLowToHigh",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * Removing a character from string
+	 * 
+	 * @param s
+	 * @return String temp
+	 */
+	public String replaceChar(String s) {
+		final long startTime = StopWatch.startTime();
+		String temp = s.replaceAll("$", "");
+		Log.event("Removing a character from string",
+				StopWatch.elapsedTime(startTime));
+		return temp;
+	}
+
+	/**
+	 * Checks the pagination is proper or not
+	 * 
+	 * @return void - if previous navigation occurs
+	 * @throws Exception
+	 */
+	public void previousPageNavigations() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			WebElement e = driver.findElement(By.cssSelector("div[class='refinements']"));
+			scrollToElement(e);
+		}
+		Utils.waitForElement(driver, currentPage, 60);
+		if (pages.size() > 4) {
+			if (lnkNext.isDisplayed()) {
+				BrowserActions.clickOnElement(lnkNext, driver, "Next Button");
+				if (lnkPrevious.isEnabled()) {
+					BrowserActions.clickOnElement(lnkPrevious, driver,
+							"Next Button");
+				}
+			}
+		} else {
+			Log.message(" Limited number of pages are avaialable, so Previous and Next links are not present ");
+		}
+		Log.event("Checks the pagination is proper or not",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Checks the 1st pagination link is click able or not
+	 * 
+	 * @return boolean - if 1st pagination link is click able
+	 * @throws Exception
+	 */
+
+	public Boolean checkIfFirstPageIsDisplayed() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			WebElement e = driver.findElement(By.cssSelector("div[class='refinements']"));
+			scrollToElement(e);
+		}
+		if (firstPage.isDisplayed()) {
+			BrowserActions.clickOnElement(firstPage, driver, "First page");
+			if (lnkNext.isEnabled()) {
+				return true;
+			}
+		}
+		Log.event("Checks the 1st pagination link is clickable or not",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * To Get Breadcrumb text
+	 * 
+	 * @return string Breadcrumb content
+	 * @throws Exception
+	 */
+	public String getBreadcrumbContent() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtBreadcrumb = null;
+		if (runPlatForm == "desktop") {
+			txtBreadcrumb = BrowserActions.getText(driver, breadcrumb,
+					"Fetching the breadcrumb message");
+		}
+		if (runPlatForm == "mobile") {
+			txtBreadcrumb = BrowserActions.getText(driver, mobBreadcrumb,
+					"Fetching the breadcrumb message");
+		}
+		Log.event("Get Breadcrumb text", StopWatch.elapsedTime(startTime));
+		return txtBreadcrumb;
+
+	}
+
+	/**
+	 * Checks the last pagination link is click able or not
+	 * 
+	 * @return boolean - if last pagination link is click able
+	 * @throws Exception
+	 */
+	public Boolean checkIfLastPageIsDisplayed() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			WebElement e = driver.findElement(By.cssSelector("div[class='refinements']"));
+			scrollToElement(e);
+		}
+		if (lastPage.isDisplayed()) {
+			BrowserActions.clickOnElement(lastPage, driver, "Last page");
+			if (lnkPrevious.isEnabled()) {
+				return true;
+			}
+		}
+		Log.event("Checks the last pagination link is clickable or not",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * Converts String to Integer
+	 * 
+	 * @return int- value
+	 * @throws Exception
+	 */
+	public int conversionOfStringToInteger(WebElement element) {
+		final long startTime = StopWatch.startTime();
+		String str = element.getText();
+		int value = Integer.parseInt(str);
+		Log.event("Converts String to Integer",
+				StopWatch.elapsedTime(startTime));
+		return value;
+	}
+
+	/**
+	 * Checks the pagination is proper or not
+	 * 
+	 * @return void - if navigates to next page
+	 * @throws Exception
+	 */
+	public void nextPageNavigations() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (pages.size() > 4) {
+			if (lnkNext.isDisplayed()) {
+				BrowserActions.clickOnElement(lnkNext, driver, "Next Button");
+				if (lnkPrevious.isEnabled()) {
+					Log.message("(i) Previous link is enabled ");
+				}
+			}
+		} else {
+			Log.message(" Limited number of pages are avaialable, so Previous and Next links are not present ");
+		}
+		Log.event("Checks the pagination is proper or not",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * selects First Brand
+	 * 
+	 * @returns txtSelected
+	 * @throws Exception
+	 */
+	public String selectFirstBrand() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtSelected = "";
+		if (runPlatForm == "mobile") {
+			WebElement expandCategory = driver.findElement(By
+					.cssSelector(".refinements div[class*='brand']"));
+			BrowserActions.clickOnElement(expandCategory, driver,
+					"clicking on a particular category from refinement");
+		}
+		txtSelected = listSubBrand.get(0).getText();
+		BrowserActions.clickOnElement(listSubBrand.get(0), driver,
+				"First Brand");
+		// SearchUtils.selectRefinementFirstValue(listSubBrand, driver);
+		Log.event("selects First Brand", StopWatch.elapsedTime(startTime));
+		return txtSelected;
+	}
+
+	/**
+	 * select Multiple options from Search Refinement Panel
+	 * 
+	 * @param categoryRefinement
+	 * @returns txtSelected
+	 * @throws Exception
+	 */
+	public String selectFirstBrand(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtSelected = " ";
+		checkIfCategoryIsexpanded(categoryRefinement);
+		txtSelected = listSubBrand.get(0).getText();
+		BrowserActions.clickOnElement(listSubBrand.get(0), driver,
+				"Clicks a random image from the alternate images");
+		Utils.waitForPageLoad(driver);
+		Log.event(" First Brand Refinements selected",
+				StopWatch.elapsedTime(startTime));
+		return txtSelected;
+	}
+
+	/**
+	 * Selects first size from Search Refinement Panel
+	 * 
+	 * @return String - txtSelected from Search Refinement Panel
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public String selectFirstSize(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtSelected = " ";
+		checkIfCategoryIsexpanded(categoryRefinement);
+		txtSelected = listSize.get(0).getText();
+		BrowserActions.clickOnElement(listSize.get(0), driver,
+				" clicks the first size refinement ");
+		Utils.waitForPageLoad(driver);
+		Log.event(" First Size Refinement selected",
+				StopWatch.elapsedTime(startTime));
+		return txtSelected;
+	}
+
+	/**
+	 * if correct Brand is Selected
+	 * 
+	 * @returns expected value
+	 * @throws Exception
+	 */
+	public String iscorrectBrandSelected() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			scrollToElement(singleSelection);
+		}
+		String expectedvalue = BrowserActions
+				.getText(driver, singleSelection, "filters lowest price")
+				.trim().replaceAll("\\s+", "");
+		Log.event("correct Brand is Selected", StopWatch.elapsedTime(startTime));
+		return expectedvalue;
+	}
+
+	/**
+	 * Selects Multiple options from Search Refinement Panel
+	 * 
+	 * @returns expectedValues
+	 * @throws Exception
+	 */
+	public List<String> selectMultipleRefinment() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<String> expectedValues = new ArrayList<String>();
+
+		expectedValues.add(BrowserActions
+				.getText(driver, brandCheckbox, "Brand - Old West checked")
+				.trim().replaceAll("\\s+", ""));
+		BrowserActions.clickOnElement(brandCheckbox, driver,
+				"Brand - Old West checked");
+
+		Utils.waitForPageLoad(driver);
+
+		expectedValues.add(BrowserActions
+				.getText(driver, styleCheckbox, "Style - Zipper/Shoe Boot")
+				.trim().replaceAll("\\s+", ""));
+		BrowserActions.clickOnElement(styleCheckbox, driver,
+				"Style - Zipper/Shoe Boot");
+
+		Utils.waitForPageLoad(driver);
+
+		Log.event("Multiple Refinements selected",
+				StopWatch.elapsedTime(startTime));
+		return expectedValues;
+	}
+
+	/**
+	 * To check correct product count
+	 * 
+	 * @return Product count
+	 * @throws Exception
+	 */
+	public String getProductCountinSearchPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String text = " ";
+		if (runPlatForm == "desktop") {
+			text = BrowserActions.getText(driver, productCount, "productCount");
+		}
+		if (runPlatForm == "mobile") {
+			text = BrowserActions.getText(driver, productMobCount,
+					"productCount");
+		}
+		String Count = BrowserActions.trimNumber(text);
+		Log.event("To check correct product count",
+				StopWatch.elapsedTime(startTime));
+		return Count;
+	}
+
+	/**
+	 * To get product Name in Grid Page
+	 * 
+	 * @return String of Product Name in Grid Page
+	 */
+	@SuppressWarnings("unused")
+	public String getProductNameInGridPage() {
+		final long startTime = StopWatch.startTime();
+		String text = "";
+		for (int category = 1; category < productName.size(); category++) {
+			try {
+				text = productName.get(category).getText();
+			} catch (Exception e) {
+				Log.event(" productName is not obtained from page");
+			}
+			break;
+		}
+		Log.event("product Name in Grid Page", StopWatch.elapsedTime(startTime));
+		return text;
+	}
+
+	/**
+	 * To check Total Available Products displayed based on Search Refinements
+	 * in CLP
+	 * 
+	 * @return void - if Total count available products displayed based on
+	 *         Search Refinements
+	 * @throws Exception
+	 */
+	public void selectionVerusAvailCount() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String yourSelectionCount = BrowserActions.trimNumber(BrowserActions
+				.getText(driver, lblBlazin,
+						"Returns item count displayed in 'Your Selections:'"));
+		String availProductCount = BrowserActions.trimNumber(BrowserActions
+				.getText(driver, lblAvailProd,
+						"Returns Total Available Products count"));
+
+		if (yourSelectionCount.equals(availProductCount)) {
+			String prodTile = Integer.toString(availCatGrid.size());
+			if (availProductCount.equals(prodTile)) {
+				Log.message("Total Available product count matched with number of Product Tiles in the CLP");
+			}
+		} else {
+			Log.message("The item count in 'Your Selections' and 'Total Available products' NOT matched");
+		}
+		Log.event(
+				"check Total Available Products displayed based on Search Refinements in CLP",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To check Total Available Products updated based on Removing selection in
+	 * Search Refinements in CLP
+	 * 
+	 * @return boolean value
+	 */
+	public boolean removeAllRefinement() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkClearAll, driver,
+				"ClearAll link is clicked");
+		Utils.waitForPageLoad(driver);
+		boolean yourSelection = elementLayer.existsElement(lblYourSelection);
+		Log.event(
+				"To check Total Available Products updated based on Removing selection in Search Refinements in CLP",
+				StopWatch.elapsedTime(startTime));
+		return yourSelection;
+	}
+
+	/**
+	 * To navigate to PDPPage by selecting random product
+	 * 
+	 * @param ProductToClick
+	 * @return PdpPage after navigation
+	 * @throws Exception
+	 */
+	public PdpPage navigateToPDP(String ProductToClick) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		for (int category = 0; category < productName.size(); category++) {
+			String e = productName.get(category).getText();
+			if (e.equalsIgnoreCase(ProductToClick)) {
+				try {
+					BrowserActions.clickOnElement(productName.get(category),
+							driver, "Clicks on he product");
+				} catch (Exception exp) {
+					Log.message(" Random product is not clicked");
+				}
+				break;
+			}
+		}
+		Utils.waitForPageLoad(driver,20);
+		Log.event("navigate to PDP Page by selecting random product",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * gets coupon excluded product from grid page
+	 * 
+	 * @throws Exception
+	 * 
+	 * @returns PdpPage
+	 */
+	public PdpPage getCouponExcludedeProductFromGridPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			
+			if(runPlatForm == "desktop"){
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			if (e.getText().contains("Sale")
+					&& (!e.getText().contains("Coupon"))) {
+				BrowserActions.clickOnElement(e, driver,
+						"Clicks on the coupon excluded product");
+				break;
+			}
+			}
+			if(runPlatForm == "mobile")
+			{
+				WebElement e = driver.findElement(By
+						.cssSelector("ul[id='search-result-items']>li:nth-child("
+								+ category + ")"));
+
+				if (e.getText().contains("Sale")
+						&& (!e.getText().contains("Coupon"))) {
+					WebElement productname = e.findElement(By.cssSelector("div[class='product-image']"));
+					BrowserActions.clickOnElement(productname, driver,
+							"Clicks on the coupon excluded product");
+					break;
+				}
+			}
+		}
+		Log.event("gets coupon excluded product",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * fetch ProductName To Click
+	 * 
+	 * @return selectedProductName
+	 * @throws Exception
+	 */
+	public String fetchProductNameToClick() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String selectedProductName = "";
+		if (productName.size() > 0) {
+			int rand = ThreadLocalRandom.current().nextInt(1,
+					productContent.size());
+			selectedProductName = (productName.get(rand - 1).getText());
+		}
+		Log.event("fetch ProductName To Click",
+				StopWatch.elapsedTime(startTime));
+		return selectedProductName;
+	}
+
+	/**
+	 * Checks original price is displayed after product name
+	 */
+	public void orginalPricePresentAfterName() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			e.findElement(
+					By.cssSelector(".product-content>.product-name+.product-pricing"))
+					.isDisplayed();
+		}
+		Log.event("Checks original price is displayed after product name",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * verifies sale price is displayed below Original Price
+	 * 
+	 * @return void - if sale price is displayed below Original Price
+	 */
+	public void salePriceBelowOriginalPrice() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			if (e.getText().contains("Sale")) {
+				e.findElement(
+						By.cssSelector(".product-pricing>.product-standard-price+.product-discount"))
+						.isDisplayed();
+			}
+
+		}
+		Log.event("verifies sale price is displayed below Original Price",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * calculate Sale Price
+	 * 
+	 * @returns calSalePrice
+	 */
+	public double calculateSalePrice() {
+		final long startTime = StopWatch.startTime();
+		double calSalePrice = 0;
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			if (e.getText().contains("Sale") && e.getText().contains("Coupon")) {
+				String orgPrice = e
+						.findElement(
+								By.cssSelector("span[class='product-standard-price'] del"))
+						.getText().replace("$", "").trim();
+				String totPrice = e
+						.findElement(
+								By.cssSelector("span[class='product-total-price']"))
+						.getText().replace("$", "").trim();
+				String lineItem = e
+						.findElement(
+								By.cssSelector("span[class*='after-coupon-price']"))
+						.getText().replace("(20% Coupon)", "").replace("$", "")
+						.trim();
+				float originalPrice = Float.parseFloat(orgPrice);
+				float totalPrice = Float.parseFloat(totPrice);
+				float lineDiscount = Float.parseFloat(lineItem);
+				float calculatedSalePrice = originalPrice - totalPrice
+						- lineDiscount;
+				calSalePrice = Math.round(calculatedSalePrice * 100.0) / 100.0;
+
+			} else if (e.getText().contains("Sale")
+					&& !e.getText().contains("Coupon")) {
+				String orgPrice = e
+						.findElement(
+								By.cssSelector("span[class='product-standard-price'] del"))
+						.getText().replace("$", "").trim();
+				String totPrice = e
+						.findElement(
+								By.cssSelector("span[class='product-total-price']"))
+						.getText().replace("$", "").trim();
+				float originalPrice = Float.parseFloat(orgPrice);
+				float totalPrice = Float.parseFloat(totPrice);
+				float calculatedSalePrice = originalPrice - totalPrice;
+				calSalePrice = Math.round(calculatedSalePrice * 100.0) / 100.0;
+			}
+
+		}
+		Log.event("calculate Sale Price", StopWatch.elapsedTime(startTime));
+		return calSalePrice;
+	}
+
+	/**
+	 * gets the value of sale price
+	 * 
+	 * @return salePriceInPage
+	 */
+	public double getSalePrice() {
+		final long startTime = StopWatch.startTime();
+		double salePriceInPage = 0;
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			if (e.getText().contains("Sale")) {
+				String salPrice = e
+						.findElement(
+								By.cssSelector("span[class='product-discount']"))
+						.getText().replace("Sale", "").replace("$", "").trim();
+				float salePrice = Float.parseFloat(salPrice);
+				salePriceInPage = Math.round(salePrice * 100.0) / 100.0;
+			}
+		}
+		Log.event("The value of sale price", StopWatch.elapsedTime(startTime));
+		return salePriceInPage;
+	}
+
+	/**
+	 * verifies the Final price shown in checkout products
+	 * 
+	 * @return void - if Final price shown in checkout products
+	 */
+	public void verifyPriceInCheckout() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			if (!e.getText().contains("Coupon")
+					&& e.getText().contains("See price in checkout")) {
+				e.findElement(By.cssSelector("span[class*='price-checkout']"))
+						.isDisplayed();
+			}
+
+		}
+		Log.event(" verifies the Final price shown in checkout products",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * checks Total Savings is displayed below Final Price
+	 * 
+	 * @return void - if Total Savings is displayed below Final Price
+	 */
+	public void verifySavingsBelowFinalPrice() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			if (!e.getText().contains("Savings")) {
+				e.findElement(
+						By.cssSelector(".product-pricing>.product-total-price+.product-sales-price"))
+						.isDisplayed();
+			}
+
+		}
+		Log.event("checks Total Savings is displayed below Final Price",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetches the selection text from the Brands Page
+	 * 
+	 * @return txtSelection
+	 * @throws Exception
+	 */
+	public String getTextFromGridSelection() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		String txtSelection = BrowserActions.getText(driver, gridSelections,
+				"Fetching the Grid selection text");
+		Log.event("Fetching the Grid selection text",
+				StopWatch.elapsedTime(startTime));
+		return txtSelection;
+
+	}
+
+	/**
+	 * If products contains text "See price in checkout"
+	 * 
+	 * @return PdpPage after navigation
+	 */
+	public PdpPage navigatePdpWithFinalPriceAtCheckoutProducts() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			if (e.getText().contains("See price in checkout")) {
+				try {
+					e.findElement(By.cssSelector(".product-name")).click();
+				} catch (Exception exp) {
+					Log.event("see price in check out product is not clickable");
+				}
+				break;
+			}
+
+		}
+		Log.event("products contains text 'See price in checkout'",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To Verify checkSeePriceInCheckout products are Displayed searching with
+	 * Final price in CheckOut
+	 * 
+	 * @return void - if verified
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unused")
+	public void checksSeePriceCheckoutProductsDispForFinalCheckOut()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (productDesc.size() > 0) {
+			for (int i = 1; i <= productDesc.size(); i++) {
+				WebElement element = BrowserActions
+						.checkLocator(
+								driver,
+								lblProdcount
+										+ " li:nth-child("
+										+ i
+										+ ") .product-tile .product-content .product-name .name-link");
+			}
+		} else {
+			Log.message("No product found");
+		}
+		Log.event("Check See price in check out products",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Verify shipping Lead Message
+	 * 
+	 * @return boolean - if message is displayed
+	 */
+	public boolean verifyShipLeadMessage() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			e.findElement(By.cssSelector("div[class='availability-msg']"));
+		}
+		Log.event("shipping Lead Message", StopWatch.elapsedTime(startTime));
+		return leadMessageDisplayed;
+	}
+
+	/**
+	 * To verify if Color swatch is present Below ProductTile
+	 * 
+	 * @returns colorWatchDisplayedProperly
+	 */
+	public Boolean verifyColorSwatchBelowProductTile() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			e.findElement(By
+					.cssSelector(".product-content>.product-pricing+.product-promo+.product-swatches"));
+		}
+		Log.event("Color swatch is present Below ProductTile",
+				StopWatch.elapsedTime(startTime));
+		return colorWatchDisplayedProperly;
+	}
+
+	/**
+	 * To verify if the product contains related terms country Selected
+	 * 
+	 * @return boolean if the product contains related terms country Selected
+	 * @param countrySelected
+	 * @throws InterruptedException
+	 */
+	public boolean verifyCurrencySelected(String dollarSelected)
+			throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		boolean countrySelected = false;
+
+		for (int category = 1; category <= productDesc.size(); category++) {
+
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			if (e.getText().contains("Sale") && e.getText().contains("Coupon")) {
+
+				if (e.findElement(
+						By.cssSelector("span[class='product-standard-price'] del"))
+						.getText().contains(dollarSelected)
+						&& e.findElement(
+								By.cssSelector("span[class='product-total-price']"))
+								.getText().contains(dollarSelected)
+						&& e.findElement(
+								By.cssSelector("span[class*='after-coupon-price']"))
+								.getText().contains(dollarSelected)
+						&& e.findElement(
+								By.cssSelector("span[class='product-discount']"))
+								.getText().contains(dollarSelected)) {
+					countrySelected = true;
+				}
+			} else if (e.getText().contains("Sale")
+					&& (!e.getText().contains("Coupon"))) {
+
+				if (e.findElement(
+						By.cssSelector("span[class='product-standard-price'] del"))
+						.getText().contains(dollarSelected)
+						&& e.findElement(
+								By.cssSelector("span[class='product-total-price']"))
+								.getText().contains(dollarSelected)
+						&& e.findElement(
+								By.cssSelector("span[class='product-discount']"))
+								.getText().contains(dollarSelected)) {
+					countrySelected = true;
+				}
+			}
+
+		}
+		Log.event("the product contains related terms country Selected",
+				StopWatch.elapsedTime(startTime));
+		return countrySelected;
+
+	}
+
+	/**
+	 * To Verify the product details(Price, name and swatch)
+	 * 
+	 * @return void - if product details displayed
+	 * @throws Exception
+	 */
+	public void verifyProductDetails() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement productColorVariation = null;
+		WebElement productName = null;
+		WebElement productPrice = null;
+
+		for (int category = 1; category < productContent.size(); category++) {
+			WebElement e = productContent.get(category);
+			if (runPlatForm == "mobile") {
+				scrollToElement(e);
+			}
+			productColorVariation = e.findElement(By
+					.cssSelector("img[class='swatch-image']"));
+			productName = e.findElement(By.cssSelector("a[class='name-link']"));
+			productPrice = e.findElement(By
+					.cssSelector("div[class='product-pricing']"));
+
+			productColorVariation.isDisplayed();
+			productName.isDisplayed();
+			productPrice.isDisplayed();
+		}
+		Log.event("Verify the product details(Price, name and swatch)",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * check the arrow navigation in Recently Viewed Section
+	 * 
+	 * @return PdpPage
+	 */
+	public PdpPage toCheckRecentlyViewedSectionInPdpPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+			BrowserActions.clickOnElement(e, driver, "clicks a product");
+			BrowserActions.nap(2);
+
+			if (category > 4) {
+				break;
+			} else {
+				driver.navigate().back();
+				BrowserActions.nap(1);
+			}
+		}
+		Log.event("check the arrow navigation in Recently Viewed Section",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * check the arrow navigation in Best Selling items Section
+	 * 
+	 * @return PdpPage - after checking navigation
+	 */
+	public PdpPage checkNavigationArrowsInBestSellingItemsOfPdpPage()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+			BrowserActions.clickOnElement(e, driver, "clicks a product");
+
+			Utils.waitForPageLoad(driver);
+			if (pdPContent.isDisplayed()) {
+				Utils.waitForPageLoad(driver);
+				if ((elementLayer.existsElement(navLeftBestSellingItems))) {
+					Utils.waitForPageLoad(driver);
+					break;
+				} else {
+					driver.navigate().back();
+				}
+			}
+		}
+		Log.event("check the arrow navigation in Best Selling items Section",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * check the arrow Navigation people who bought section
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage checkNavigationArrowsInPeopleWhoBoughtSectionOfPdpPage()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") a[class='name-link']"));
+			BrowserActions.clickOnElement(e, driver, "clicks a product");
+
+			Utils.waitForPageLoad(driver);
+			if (pdPContent.isDisplayed()) {
+				Utils.waitForPageLoad(driver);
+				if ((elementLayer.existsElement(navLeftPteopleWhoBoughtSection))) {
+					Utils.waitForPageLoad(driver);
+					break;
+				} else {
+					driver.navigate().back();
+				}
+			}
+		}
+		Log.event("check the arrow Navigation people who bought section",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * Check People Who Bought Section IN Pdp page
+	 * 
+	 * @return Boolean value
+	 * @throws Exception
+	 */
+	public Boolean toCheckPeopleWhoBoughtSectionInPdpPage() throws Exception {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		if (driver.findElement(
+				By.cssSelector("#best_selling_items+#also_bought_items"))
+				.isDisplayed()) {
+
+			if (activePeopleWhoBoughtThisAlsoBoughtItems.size() == 4) {
+
+				if (btnPeopleBoughtCollapse.isEnabled()) {
+
+					BrowserActions.clickOnElement(btnPeopleBoughtCollapse,
+							driver, "collapses the section ");
+					Utils.waitForPageLoad(driver);
+
+					if (btnPeopleBoughtExpand.isDisplayed()) {
+						returntype = true;
+					}
+				}
+			}
+		}
+		Log.event("Check People Who Bought Section IN Pdp page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+
+	}
+
+	/**
+	 * Clicks on Any Category Link
+	 * 
+	 * @return void if category link clicked
+	 * @throws Exception
+	 */
+	public void clickAnyCategoryLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		List<WebElement> categoryLinks = driver
+				.findElements(By
+						.cssSelector("div[class='section-inner'] ul[class='list-links'] li"));
+		if (categoryLinks.size() > 0) {
+			int rand = ThreadLocalRandom.current().nextInt(1,
+					categoryLinks.size());
+			WebElement e = (categoryLinks.get(rand - 1));
+			BrowserActions.clickOnElement(e, driver, "clicks a category ");
+		}
+		Log.event(" Click Any category Link", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * If the Category Header section is placed below the bread crumbs
+	 *
+	 * @return returntype
+	 */
+	public boolean verifyCategoryHeader() {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+
+		Point categoryHeader = driver
+				.findElement(
+						By.cssSelector("#primary > div.desktop-only > div.content-slot.slot-grid-header > h1"))
+				.getLocation();
+
+		if ((categoryHeader.x > 60) && (categoryHeader.x < 600)) {
+			returntype = true;
+			Log.event("Category Header is placed below the Bread Crumbs",
+					StopWatch.elapsedTime(startTime));
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * checks the producst are related to selected price
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public Boolean checkProductDispWithExactPrice(String text) {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ") .product-total-price"));
+			if (!(e.getText().replaceAll("$", "").contains(text))) {
+				returntype = false;
+			}
+		}
+		Log.event("checks the producst are related to selected price",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+
+	}
+
+	/**
+	 * Select product whicn contain Product Review
+	 * 
+	 * @return pdp page
+	 * @throws Exception
+	 */
+	public PdpPage selectProductContainReview() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> productList = driver.findElements(By
+				.cssSelector(".product-tile"));
+		for (int count = 1; count < productList.size(); count++) {
+			WebElement product = driver.findElement(By
+					.cssSelector("#search-result-items > li:nth-child(" + count
+							+ ")"));
+			String Verify = product.getText();
+			WebElement review = driver.findElement(By
+					.cssSelector("dd[class='rating-stars'] > span"));
+			String match = review.getText();
+			if (Verify.contains(match)) {
+				BrowserActions.clickOnElement(product, driver,
+						"clicks a product ");
+				break;
+			}
+		}
+		Log.event("Click the product which contain Product Review",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * select product contain promotion
+	 * 
+	 * @throws Exception
+	 */
+	public PdpPage selectPromotionProduct() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> productList = driver.findElements(By
+				.cssSelector(".product-tile"));
+		for (int count = 1; count < productList.size(); count++) {
+			WebElement product = driver.findElement(By
+					.cssSelector("#search-result-items > li:nth-child(" + count
+							+ ")"));
+			String Verify = product.getText();
+			WebElement promotion = driver
+					.findElement(By
+							.cssSelector("span.product-discount.after-coupon-price > small"));
+			String match = promotion.getText();
+			if (Verify.contains(match)) {
+				BrowserActions.clickOnElement(product, driver,
+						"clicks a product ");
+				break;
+			}
+		}
+		Log.event("Click the product which is eligible for promotion",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * Select Product Contain Original price
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public PdpPage selectProductContainOriginalPrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> productList = driver.findElements(By
+				.cssSelector(".product-tile"));
+		for (int count = 1; count < productList.size(); count++) {
+			WebElement product = driver.findElement(By
+					.cssSelector("#search-result-items > li:nth-child(" + count
+							+ ")"));
+			String Verify = product.getText();
+			WebElement OriginalPrice = driver.findElement(By
+					.cssSelector("span.product-standard-price > small"));
+			String match = OriginalPrice.getText();
+			if (Verify.contains(match)) {
+				BrowserActions.clickOnElement(product, driver,
+						"clicks a product ");
+				break;
+			}
+		}
+		Log.event("Click the product which contain original price",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * Select Product contain Sale price
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public PdpPage selectProductContainSalePrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> productList = driver.findElements(By
+				.cssSelector(".product-tile"));
+		for (int count = 1; count < productList.size(); count++) {
+			WebElement product = driver.findElement(By
+					.cssSelector("#search-result-items > li:nth-child(" + count
+							+ ")"));
+			String Verify = product.getText();
+			WebElement salePrice = driver
+					.findElement(By
+							.cssSelector("div.product-pricing > span:nth-child(2) > small"));
+			String match = salePrice.getText();
+			if (Verify.contains(match)) {
+				BrowserActions.clickOnElement(product, driver,
+						"clicks a product ");
+				break;
+			}
+		}
+		Log.event("Click the product which contain sale price",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+}// CATEGORYGRID PAGE

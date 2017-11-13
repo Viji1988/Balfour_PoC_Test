@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Sheplers Test Automation" verbose="3" parallel="tests"
+	thread-count="400">
+	<parameter name="deviceHost" value="localhost" />
+	<parameter name="devicePort" value="4444" />
+	<parameter name="browserName" value="chrome_Windows" />
+	<parameter name="ProdwebSite" value="http://www.balfour.com/" />
+	<parameter name="QAWebsite" value="http://www-staging.balfour.com/"></parameter>
+
+	<test name="Balfour-test" thread-count="5" parallel="true">
+		<classes>
+			<class name="com.Balfour.testscripts.Balfour_PoC_Demo_Scripts">
+			</class>
+		</classes>
+	</test>
+</suite>

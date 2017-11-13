@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="400" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [Sheplers Test Automation]" parallel="tests">
+  <parameter name="deviceHost" value="localhost"/>
+  <parameter name="devicePort" value="4444"/>
+  <parameter name="browserName" value="chrome_Windows"/>
+  <parameter name="ProdwebSite" value="http://www.balfour.com/"/>
+  <parameter name="QAWebsite" value="http://www-staging.balfour.com/"/>
+  <test name="Balfour-test(failed)" parallel="methods">
+    <classes>
+      <class name="com.Balfour.testscripts.Balfour_PoC_Demo_Scripts">
+        <methods>
+          <include name="TC__Verify_AffinityWithCityName" invocation-numbers="0"/>
+          <include name="TC_NewProducts_OrderPlacement" invocation-numbers="0"/>
+          <include name="TC_Graduation_OrderPlacement" invocation-numbers="0"/>
+          <include name="TC_ClassRings_OrderPlacement" invocation-numbers="0"/>
+          <include name="TC__Verify_AffinityWithSchoolName" invocation-numbers="0"/>
+          <include name="TC__Verify_AffinityWithStateName" invocation-numbers="0"/>
+          <include name="TC_ClassApparels_OrderPlacement" invocation-numbers="0"/>
+          <include name="TC__Verify_Catalog_Page_Option" invocation-numbers="0"/>
+          <include name="TC_LetterMan_OrderPlacement" invocation-numbers="0"/>
+          <include name="TC__Verify_AffinityWithZipCode" invocation-numbers="0"/>
+          <include name="init"/>
+        </methods>
+      </class> <!-- com.Balfour.testscripts.Balfour_PoC_Demo_Scripts -->
+    </classes>
+  </test> <!-- Balfour-test(failed) -->
+</suite> <!-- Failed suite [Sheplers Test Automation] -->

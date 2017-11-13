@@ -1,0 +1,70 @@
+<h2>Methods that were not run</h2><table>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_028<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check Add to Cart button with default value in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_029<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check to click the Add to Cart button when user does not select any size in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_026<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check changing Quantity for the product in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_027<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check Add to Cart button in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_024<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check Quantity for the product in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_068</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_025<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check default Quantity for the product in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_069</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_066</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_022</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_023<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check different Color selection using the thumbnails for the product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_067</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_020</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_064</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_065</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_021</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_062</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_063</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_060</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_061</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_019<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check to select a size for the product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_039<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check alternate images in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_037<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check product main image with thumbnails in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_035</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_036<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check product main image in Product Detail page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_033</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_034</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_073<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Indicators in OUR BEST SELLING ITEMS in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_030<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i> Check Add to Cart button after changing the default value in Product Detail Page  </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_071<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Indicators while using navigation for the product images in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_072<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Indicators while using navigation for the product images in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_070</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_009<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Original Price for a product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_006<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check to click the Rating Star value/Comments count in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_007<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check Pricing for the product without Promotions in Product Detail Page	</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_048<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Recommendations for OUR BEST SELLING ITEMS in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_004<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Item Number for the product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_005<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Customer Reviews in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_049<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check to click the product image under OUR BEST SELLING ITEMS in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_002</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_046<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i> Check Product Features section in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_047</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_003<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Product Name for the product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_044</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_001</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_045<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i> Check Close Button in Zoom modal window in Product Details page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_042<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i> Check whether Image changes , hovering on other color swatch in  Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_040</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_041</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_017<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check default value for Size in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_018<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Size and Width selection for the product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_059</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_015<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Total Savings in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_016<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Size for the product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_013<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Final Price in Checkout in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_057</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_014<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check display of the Count Down in Product Detail Page </i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_058</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_055</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_011<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Line Item Discount for an order level promotion in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_056</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_012<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Final Price in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_053<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check to click the product image under PEOPLE WHO BOUGHT THIS ALSO BOUGHT in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_010<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check Sale Price for a product in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_054</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_051<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>Check the left and right navigation in OUR BEST SELLING ITEMS in Product Detail Page</i></td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_052</td></tr>
+<tr><td>com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_008<br/>&nbsp;&nbsp;&nbsp;&nbsp;<i>	Check Pricing for the product with Promotions in Product Detail Page	</i></td></tr>
+</table>

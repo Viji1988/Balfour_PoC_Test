@@ -1,0 +1,1078 @@
+package com.sheplers.pages;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.support.StopWatch;
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.Utils;
+
+public class PaymentMethodsPage extends LoadableComponent<PaymentMethodsPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public HomePage homePage;
+	public Headers headers;
+	public Footers footers;
+	public ElementLayer elementLayer;
+	public AddressBookPage addressBookPage;
+	public MyAccountPage myaccountPage;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************* WebElements of PaymentMethodsPage - Starts *****************************
+	 **********************************************************************************************/
+
+	public static final String PaymentNickname = "input[id*='paymentInstrumentNickname']";
+	public static final String CardName = "input[id*='newcreditcard_owner']";
+	public static final String CardType = "select[id*='newcreditcard_type']";
+	public static final String CardNumber = "input[id*='newcreditcard_number']";
+	public static final String ExpiryMonth = "select[id*='newcreditcard_month']";
+	public static final String ExpiryYear = "select[id*='newcreditcard_year']";
+
+	public static final String ADDRESSFIRSTNAME = "form[id='edit-address-form'] input[placeholder='First Name']";
+	public static final String ADDRESSLASTNAME = "form[id='edit-address-form'] input[placeholder='Last Name']";
+	public static final String ADDRESS1 = "input[id='dwfrm_profile_address_address1']";
+	public static final String ADDRESS2 = "input[id='dwfrm_profile_address_address2']";
+	public static final String ADDRESSCITY = "input[id*='address_city']";
+	public static final String ADDRESSZIPCODE = "input[id*='address_postal']";
+	public static final String ADDRESSPHONE = "input[id*='address_phone']";
+	public static final String ADDRESSNICKNAME = "input[id*='address_addressid']";
+	public static final String Btn_Apply = "input[name*='address_create']";
+	public static final String ADDRESSCOUNTRY = "select[id*='address_country']";
+	public static final String ADDRESSSTATE = "#dwfrm_profile_address_states_state";
+
+	@FindBy(css = ".paymentslist>h1")
+	WebElement divPayment;
+
+	@FindBy(css = ".form-title")
+	WebElement txtHeaderSlot;
+
+	@FindBy(css = "[href*='PaymentInstruments-Add']")
+	WebElement addCreditCard;
+
+	@FindBy(css = "input[id*='paymentInstrumentNickname']")
+	WebElement txtPaymentNickname;
+
+	@FindBy(css = "input[id*='newcreditcard_owner']")
+	WebElement txtName;
+
+	@FindBy(css = "div.action-block.edit-box > a")
+	WebElement lnkedit;
+
+	@FindBy(css = "select[id*='newcreditcard_type']>option")
+	List<WebElement> listPaymentCards;
+
+	@FindBy(css = "select[id*='newcreditcard_type']")
+	WebElement btnPaymentCards;
+
+	@FindBy(css = "input[id*='newcreditcard_number']")
+	WebElement txtNumber;
+
+	@FindBy(css = "select[id*='newcreditcard_month']>option")
+	List<WebElement> listMonth;
+
+	@FindBy(css = "select[id*='newcreditcard_year']>option")
+	List<WebElement> listYear;
+
+	@FindBy(css = "select[id*='newcreditcard_month']")
+	WebElement btnMonth;
+
+	@FindBy(css = "select[id*='newcreditcard_year']")
+	WebElement btnYear;
+
+	@FindBy(css = ".checkbox.label-inline.form-indent>label")
+	WebElement btnMakeDefault;
+
+	@FindBy(css = ".button-text.delete")
+	List<WebElement> btndelete;
+
+	@FindBy(css = "#submitShipping")
+	WebElement btnApply;
+
+	@FindBy(css = ".desktop-only ul li [href*='addressbook']")
+	WebElement lnkAddressBook;
+
+	@FindBy(css = ".desktop-only a[href*='account']")
+	WebElement lnkMyAccount;
+
+	@FindBy(css = ".desktop-only ul li [href*='orders']")
+	WebElement lnkorders;
+
+	@FindBy(css = ".desktop-only ul li [href*='payments']")
+	WebElement lnkpayments;
+
+	@FindBy(css = ".desktop-only ul li [href*='profile']")
+	WebElement lnkAccountSettings;
+
+	@FindBy(css = "div.link-back a[href='/s/sheplers_us/account']")
+	WebElement lnkBackToAccount;
+
+	@FindBy(css = ".content-asset.ca-account-nav-registered")
+	WebElement myAccountsection;
+
+	@FindBy(css = " div[class*='ca-customer-service-text'] .box>h5")
+	WebElement customerServiceSection;
+
+	@FindBy(css = "ul[class='menu-utility-user'] li a[href*='account']")
+	WebElement lblSignIn;
+
+	@FindBy(css = ".desktop-only nav a[href*='payment']")
+	WebElement navPayment;
+
+	@FindBy(css = ".form-row>label[for*='paymentInstrumentNickname']>span>span")
+	WebElement txtNickname;
+
+	@FindBy(css = "#primary > div > div.sectionheader > h5")
+	WebElement txtHeader;
+
+	@FindBy(css = ".btn.btn-block.btn-brown-border")
+	WebElement btnCancel;
+
+	@FindBy(css = "ul[class='account-options'] a[href*='addressbook']")
+	WebElement navAddress;
+
+	@FindBy(css = "[href*='Address-Add']")
+	WebElement addNewBillingAddress;
+
+	@FindBy(css = ADDRESSCOUNTRY)
+	WebElement dropDownCountry;
+
+	@FindBy(css = ADDRESSSTATE)
+	WebElement dropDownState;
+
+	@FindBy(css = ".primary-content")
+	WebElement divAddressBook;
+
+	@FindBy(css = ".primary-content")
+	WebElement divCreditCard;
+
+	@FindBy(css = ".section-header-note.address-create.button")
+	WebElement addNewAddressLink;
+
+	@FindBy(css = ".section-create-account h1")
+	WebElement headerAddressBook;
+
+	@FindBy(css = ".mini-address-location>address")
+	List<WebElement> addressBook;
+
+	@FindBy(css = ".button-text.setdefault")
+	WebElement lnkMakeDefault;
+
+	@FindBy(css = "a[title='My Account']")
+	WebElement btnMyAccount;
+
+	@FindBy(css = ".account-options li:nth-child(2) h2")
+	WebElement lnkmobAddressBook;
+
+	@FindBy(css = "#primary > div")
+	WebElement divEditPaymentForm;
+	
+	@FindBy(css = "#wrapper > div.top-banner > div.top-banner-bar > div.shell > div.top-banner-bar-aside > nav > ul > li.has-dropdown > a > span")
+	WebElement loginDropDown;
+	
+	@FindBy(css = ".user-panel a[href*='account']")
+	WebElement dropdownlnkMyAccount;
+
+	/**********************************************************************************************
+	 *************************** WebElements of PaymentMethodsPage - Ends *************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Web driver
+	 *
+	 */
+	public PaymentMethodsPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}// Payment Methods Page
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, divPayment))) {
+			Log.fail("Payment Methods page did not open up.", driver);
+		}
+		homePage = new HomePage(driver).get();
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+		myaccountPage = new MyAccountPage(driver);
+	}// isLoaded
+
+	@Override
+	protected void load() {
+
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}// load
+
+	/**
+	 * To get text from header slot
+	 * 
+	 * @return status
+	 */
+	public String getTextFromAddPaymentMethodsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = BrowserActions.getText(driver, txtNickname,
+				"Fetching the invalid error message in the footer page");
+		txtHeader = txtHeader.trim().replaceAll("%s", "").toLowerCase();
+		Log.event("Mouse Hovered on the Signin link",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * View customer profile drop down from header
+	 * 
+	 * @return void after customer profile drop down from header is visible
+	 * @throws Exception
+	 */
+
+	public void viewCustomerDropDown() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.mouseHover(driver, lblSignIn);
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("Mouse Hovered on the Signin link",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Checks if Fields are empty by default
+	 * 
+	 * @returns true after checking fields are empty
+	 */
+	public Boolean checkFieldsAreEmptyBydefault() {
+		final long startTime = StopWatch.startTime();
+		try{
+			if (txtPaymentNickname.getText().isEmpty()
+					&& txtName.getText().isEmpty() && txtNumber.getText().isEmpty()) {
+				return true;			
+			}
+		}
+		catch(Exception e){
+			Log.event("Elements 'txtPaymentNickname' , 'txtName' , 'txtNumber'  are not found in page ");
+		}
+
+		Log.event("check Fields Are Empty By default",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * adds New CardInAddNewPaymentMethodsPage
+	 * 
+	 * @return void after new card is added
+	 * @param CreditCardDetails
+	 * @throws Exception
+	 */
+	public void addNewCardInAddNewPaymentMethodsPage(
+			LinkedHashMap<String, String> CreditCardDetails) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		CreditCardDetails.put(
+				"type_PaymentNickname_" + CreditCardDetails.get("lastname"),
+				PaymentNickname);
+		CreditCardDetails.put(
+				"type_PaymentName_" + CreditCardDetails.get("firstname"),
+				CardName);
+		CreditCardDetails.put(
+				"select_PayementCardType_"
+						+ CreditCardDetails.get("crcardType"), CardType);
+		CreditCardDetails.put(
+				"type_PayementCardNumber_"
+						+ CreditCardDetails.get("cardNumber"), CardNumber);
+		CreditCardDetails.put(
+				"select_ExpirationMonth_"
+						+ CreditCardDetails.get("addexpiryMonth"), ExpiryMonth);
+		CreditCardDetails.put(
+				"select_ExpirationYear_" + CreditCardDetails.get("expiryYear"),
+				ExpiryYear);
+
+		AccountUtils.doAccountOperations(CreditCardDetails, driver);
+
+		BrowserActions.clickOnElement(btnMakeDefault, driver,
+				" Clicking on Make Default button ");
+
+		BrowserActions.clickOnElement(btnApply, driver,
+				" Clicking on Apply button ");
+
+		Log.event("Credit Card information is entered",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		Log.event(" New Card is added In Add New Payment Methods Page ",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * add New Card In PaymentMethod BillingPage
+	 * 
+	 * @param nickName
+	 * @param name
+	 * @param cardType
+	 * @param cardNummber
+	 * @param month
+	 * @param year
+	 * @throws Exception
+	 * @return void after new card is added
+	 */
+	public void addNewCardInPaymentMethodBillingPage(String nickName,
+			String name, String cardType, String cardNummber, String month,
+			String year) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForElement(driver, txtPaymentNickname);
+		BrowserActions.typeOnTextField(txtPaymentNickname, nickName, driver,
+				"Nickname");
+
+		BrowserActions.typeOnTextField(txtName, name, driver, "Name");
+
+		WebElement card = BrowserActions.checkLocator(driver,
+				"select[id*='newcreditcard_type']>option[value='" + cardType
+				+ "']");
+		BrowserActions.clickOnElement(card, driver,
+				" Clicking on a card from dropdown ");
+
+		BrowserActions.typeOnTextField(txtNumber, cardNummber, driver,
+				"card Nummber");
+
+		WebElement expMonth = BrowserActions.checkLocator(driver,
+				"select[id*='newcreditcard_month']>option[value='" + month
+				+ "']");
+		BrowserActions.clickOnElement(expMonth, driver,
+				" Clicking on a month from dropdown ");
+
+		WebElement expYear = BrowserActions
+				.checkLocator(driver,
+						"select[id*='newcreditcard_year']>option[value='"
+								+ year + "']");
+		BrowserActions.clickOnElement(expYear, driver, "clicking on card");
+
+		BrowserActions.clickOnElement(btnMakeDefault, driver,
+				" Clicking on Make Default button ");
+
+		BrowserActions.clickOnElement(btnApply, driver,
+				" Clicking on Apply button ");
+		Log.event(
+				" New Card is added In Add New Payment Methods Biiling Page ",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click edit link
+	 * @return after edit link is clicked
+	 * @throws Exception
+	 */
+	public void clickEditLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkedit, driver, "Edit link is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("clicked Edit link!", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To check the cancel button
+	 * 
+	 * @param name
+	 * @param cardType
+	 * @param cardNummber
+	 * @param month
+	 * @param year
+	 * @return boolean - if cancel button is clicked
+	 * @throws Exception
+	 */
+	public Boolean checkCancelButtonByEnteringMandatoryFields(String name,
+			String cardType, String cardNummber, String month, String year)
+					throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForElement(driver, txtPaymentNickname);
+
+		BrowserActions.typeOnTextField(txtName, name, driver, "Name");
+
+		WebElement card = BrowserActions.checkLocator(driver,
+				"select[id*='newcreditcard_type']>option[value='" + cardType
+				+ "']");
+		BrowserActions.clickOnElement(card, driver,
+				" Clicking on a card from dropdown ");
+
+		BrowserActions.typeOnTextField(txtNumber, cardNummber, driver,
+				"card Nummber");
+
+		WebElement expMonth = BrowserActions.checkLocator(driver,
+				"select[id*='newcreditcard_month']>option[value='" + month
+				+ "']");
+		BrowserActions.clickOnElement(expMonth, driver,
+				" Clicking on a month from dropdown ");
+
+		WebElement expYear = BrowserActions
+				.checkLocator(driver,
+						"select[id*='newcreditcard_year']>option[value='"
+								+ year + "']");
+		BrowserActions.clickOnElement(expYear, driver, "clicking on card");
+
+		BrowserActions.clickOnElement(btnCancel, driver,
+				" Clicking on CANCEL button ");
+		Utils.waitForElement(driver, txtPaymentNickname, 60);
+
+		if (addCreditCard.isDisplayed()) {
+			returntype = true;
+		}
+		Log.event(
+				" New Card is added In Add New Payment Methods Biiling Page ",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * checks Submit Button With Invalid Info InOutMandatoryFields
+	 * 
+	 * @return true - if submit button is clicked
+	 * @throws Exception
+	 */
+	public Boolean CheckSubmitButtonWithInvalidInfoInOutMandatoryFields()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForElement(driver, txtPaymentNickname);
+
+		if (driver
+				.findElement(
+						By.cssSelector("label[for*='newcreditcard_number'] ~ div[class*='error-message']"))
+						.isDisplayed()) {
+			returntype = true;
+		}
+		Log.event(
+				"clicked on submit button with out entering mandatory fields ",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * click on Apply button ,with out entering mandatory fields ,message if
+	 * message id displayed
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+
+	public Boolean CheckSubmitButtonleavingMandatoryFieldsEmpty()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		BrowserActions.clickOnElement(btnApply, driver, "Apply button");
+		Utils.waitForElement(driver, btnApply, 60);
+
+		if (driver
+				.findElement(
+						By.cssSelector("#dwfrm_paymentinstruments_creditcards_newcreditcard_owner-error"))
+						.getText().contains("This field is required")) {
+			returntype = true;
+		}
+		Log.event("clicked on submit button leaving mandatory fields",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To delete a card from saved cards
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean CheckDeleteLinkInPaymentMethodsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+		for (WebElement lnk : btndelete) {
+			if (lnk.isDisplayed()) {
+				BrowserActions.clickOnElement(lnk, driver, "delete link");
+					Alert alert = driver.switchTo().alert();
+					alert.accept();
+				if (elementLayer.existsElement(".button-text.delete")) {
+					returntype = true;
+				}
+			}
+		}
+		Log.event(" Delete Link Is verified in PaymentMethodsPage",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * clicks on add credit card link
+	 * 
+	 * @return String card
+	 * @throws Exception
+	 */
+	public String clickOnAddCreditCardLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(addCreditCard, driver,
+				"Click on creditcard link");
+		Utils.waitForPageLoad(driver);
+		String txtAddCreditCard = BrowserActions.getText(driver, txtHeaderSlot, "Header Slot text");
+		Log.event("clicked on Add Creditcard link",
+				StopWatch.elapsedTime(startTime));
+		return txtAddCreditCard;
+	}
+
+	/**
+	 * clicks on back to my account link
+	 * 
+	 * @returns MyAccountPage
+	 * @throws Exception
+	 */
+	public MyAccountPage clickOnBacktoMyAccountLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkBackToAccount, driver,
+				"Click on back to my account link");
+		Utils.waitForPageLoad(driver);
+		Log.event("clicked on back to my account  link",
+				StopWatch.elapsedTime(startTime));
+		return new MyAccountPage(driver).get();
+	}
+
+	/**
+	 * checks deafault card check box
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Boolean toCheckDefaulltCard(String name) {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		List<WebElement> cards = driver.findElements(By
+				.cssSelector("ul.payment-list li"));
+		for (WebElement e : cards) {
+			if (e.getText().contains(name)
+					&& e.getText().contains("DEFAULT PAYMENT METHOD")) {
+				returntype = true;
+			}
+		}
+		Log.event("checks default card", StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * verify default link in address book page
+	 * @throws Exception 
+	 * 
+	 * @returns true
+	 */
+	public boolean CheckMakeDefaultlinkForOtherCards() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		Boolean returntype = true;
+		String title1 = null;
+		String title2 = null;
+
+		List<WebElement> addressList1 = driver.findElements(By
+				.cssSelector("ul.payment-list li"));
+		for (WebElement e1 : addressList1) {
+			if (e1.getText().contains("DEFAULT PAYMENT METHOD")) {
+				title1 = e1.findElement(
+						By.cssSelector("ul.payment-list li div b")).getText();
+			}
+		}
+
+		BrowserActions.clickOnElement(lnkMakeDefault, driver,
+				"Click on Make Default link");
+
+		List<WebElement> addressList2 = driver.findElements(By
+				.cssSelector("ul.address-list li"));
+		for (WebElement e2 : addressList2) {
+
+			if (e2.getText().contains("DEFAULT PAYMENT METHOD")) {
+				title2 = e2.findElement(
+						By.cssSelector("ul.payment-list li div b")).getText();
+			}
+		}
+
+		if (title1.equalsIgnoreCase(title2)) {
+			returntype = false;
+		}
+
+		Log.event("checks default link in address book",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+	/**
+	 * To get text from header slot
+	 * 
+	 * @return status
+	 */
+	public String getTextFromPaymentMethodsHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtPaymentMethodsHeader = BrowserActions.getText(driver,
+				divPayment, "nickname");
+
+		txtPaymentMethodsHeader = txtPaymentMethodsHeader.trim().replaceAll(
+				"%s", "");
+		Log.event("gets text from payment method header",
+				StopWatch.elapsedTime(startTime));
+		return txtPaymentMethodsHeader;
+	}
+
+	/**
+	 * To get text from header slot
+	 * 
+	 * @return status
+	 */
+	public String getTextFromPaymentMethodsHeaderSlot() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeaderSlot = BrowserActions.getText(driver, txtHeader,
+				"Fetches header text");
+
+		txtHeaderSlot = txtHeaderSlot.trim().replaceAll("%s", "");
+		Log.event("gets text from payment method header",
+				StopWatch.elapsedTime(startTime));
+		return txtHeaderSlot;
+	}
+
+	/**
+	 * verify cards in payment methos page
+	 * 
+	 * @returns true
+	 */
+	public boolean verifycardsInPaymentMethodPage() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		List<WebElement> cards = driver.findElements(By
+				.cssSelector("ul.payment-list li"));
+		for (WebElement e : cards) {
+			if (e.getText().contains("DEFAULT PAYMENT METHOD")) {
+				if (e.findElement(By.cssSelector(".button-text.delete"))
+						.isDisplayed()) {
+					returntype = true;
+				}
+			} else {
+				if (e.findElement(By.cssSelector(".button-text.delete"))
+						.isDisplayed()
+						&& e.findElement(
+								By.cssSelector("div[class*='setdefault-box'] .button-text.setdefault"))
+								.isDisplayed()) {
+					returntype = true;
+				}
+			}
+		}
+		Log.event("gets text from payment method header",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * verifies account section on left side
+	 * 
+	 * @returns true
+	 */
+	public boolean verifyAccountsectionOnLeftSide() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		int s = 0;
+		try{
+			Point p = myAccountsection.getLocation();
+			s = p.getX();
+		}
+		catch(Exception exp){
+			Log.message(" point value is not obtained " );	
+		}
+		if (s > 50 && s < 250) {
+			returntype = true;
+		}
+		Log.event("gets text from payment method header",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Navigate to the Payment Method Page via header drop down
+	 * 
+	 * @throws Exception
+	 */
+	public void navigateToNavPaymentPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(navPayment, driver,
+				"Clicked on the 'Edit Account' link");
+		Log.event("Navigated to the Payment Method page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * select country from country drop down
+	 * 
+	 * @param Country
+	 * @return String selected country
+	 * @throws Exception
+	 */
+	public String billingselectCountry(String Country) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(dropDownCountry, driver,
+					"Clicked on the Country field drop down");
+			WebElement e = driver
+					.findElement(By
+							.cssSelector("select[id='dwfrm_profile_address_country'] option[label='"
+									+ Country + "']"));
+			BrowserActions.clickOnElement(e, driver,
+					" selects a  country");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(dropDownCountry, driver,
+					"Clicked on the Country field drop down");
+			WebElement e = driver
+					.findElement(By
+							.cssSelector("select[id='dwfrm_profile_address_country'] option[label='"
+									+ Country + "']"));
+			BrowserActions.clickOnElement(e, driver,
+					" selects a  country");
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the country from Billing section",
+				StopWatch.elapsedTime(startTime));
+		return Country;
+	}
+
+	/**
+	 * To Select state from the billing section
+	 * 
+	 * @param state
+	 * @return String selected state
+	 * @throws Exception
+	 */
+	public String billingselectState(String state) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(dropDownState, driver,
+					"Clicked on the State drop down");
+			WebElement e = driver
+					.findElement(By
+							.cssSelector("select[id='dwfrm_profile_address_states_state'] option[label='"
+									+ state + "']"));
+			BrowserActions.clickOnElement(e, driver,
+					" selects a  state");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(dropDownState, driver,
+					"Clicked on the State drop down");
+			WebElement e = driver
+					.findElement(By
+							.cssSelector("select[id='dwfrm_profile_address_states_state'] option[label='"
+									+ state + "']"));
+			BrowserActions.clickOnElement(e, driver,
+					" selects a  state");
+		}
+
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the State from Billing section",
+				StopWatch.elapsedTime(startTime));
+		return state;
+
+	}
+
+	/**
+	 * Entering Billing Address details
+	 * @return void after billing address is entered
+	 * @param addressDetails1
+	 * @throws Exception
+	 */
+	public void enterBillingAddress(
+			LinkedHashMap<String, String> addressDetails1) throws Exception {
+		final long startTime = StopWatch.startTime();
+		addressDetails1.put(
+				"type_FirstName_" + addressDetails1.get("firstname"),
+				ADDRESSFIRSTNAME);
+		addressDetails1.put("type_lastname_" + addressDetails1.get("lastname"),
+				ADDRESSLASTNAME);
+		addressDetails1.put(
+				"type_Address1_" + addressDetails1.get("Billing address"),
+				ADDRESS1);
+		addressDetails1.put("type_City_" + addressDetails1.get("Billing City"),
+				ADDRESSCITY);
+		addressDetails1.put(
+				"type_Zipcode_" + addressDetails1.get("Billing zipcode"),
+				ADDRESSZIPCODE);
+		addressDetails1.put("type_phone_" + addressDetails1.get("phone"),
+				ADDRESSPHONE);
+		addressDetails1.put("type_Nickname_" + addressDetails1.get("Nickname"),
+				ADDRESSNICKNAME);
+		addressDetails1.put("click_apply button has been clicked", Btn_Apply);
+		AccountUtils.doAccountOperations(addressDetails1, driver);
+
+		Log.event("Billing address information is entered",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * click Add New Billing Address
+	 * @return void after add New Billing Address is clicked
+	 * @throws Exception
+	 */
+	public void clickOnAddNewBillingAddress() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(addNewBillingAddress, driver,
+				"Click on New Billing Address link");
+		Utils.waitForPageLoad(driver);
+
+		Log.event("clicked on Add New Billing Address link",
+				StopWatch.elapsedTime(startTime));
+
+		Log.event("clicked on Add New Billing Address link",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Navigate to Address Book Page By clicking Address Book in side Link
+	 * 
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage navigateToAddressBookPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(lnkAddressBook, driver,
+
+					"Clicked on the 'AddressBook' link");
+
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(navAddress, driver,
+					"Clicked on the 'AddressBook' link");
+		}
+
+		Log.event("Navigated to the AddressBook page",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * Fetch the header text from Address book Page
+	 * 
+	 * @return Boolean after Verifying Address Book Page
+	 * @throws Exception
+	 */
+	public Boolean verifyBillingAddressBookPage() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try{
+		if (divAddressBook.isDisplayed()) {
+			returntype = true;
+		}
+		}
+		catch(Exception e){
+			Log.event(" divAddressBook element is not found in page ");
+		}
+		Log.event("add new Address page is displayed",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Navigate to Add New Billing address Page
+	 * 
+	 * @return void after Add New Billing link is clicked
+	 * @throws Exception
+	 */
+	public void clickOnAddBillingAddressBookLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(addNewAddressLink, driver,
+				"Clicked on the 'Add New Billing Address Book' link");
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigated to the add New Billing Address Book page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetch the header text from Address book Page
+	 * 
+	 * @return String- txtHeader
+	 * @throws Exception
+	 */
+	public String fetchAddressBookHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = BrowserActions.getText(driver, headerAddressBook,
+				"Extact text from the Header");
+		Log.event("Get header text of Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * Verify Default address in Billing Address
+	 * 
+	 * @param verifyBillingAddress
+	 * @return boolean - if default address is verified
+	 */
+	public boolean verifyDefaultBillingAddress(String verifyBillingAddress) {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = false;
+		Utils.waitForPageLoad(driver);
+		List<WebElement> addressToVerify = driver.findElements(By
+				.cssSelector(".address-list li"));
+
+		for (int count = 0; count < addressToVerify.size(); count++) {
+			if (addressToVerify.get(count).getText()
+					.contains("DEFAULT BILLING ADDRESS")) {
+				WebElement expectedAddress = addressToVerify.get(count)
+						.findElement(By.cssSelector(" .addressBook-row"));
+				if (expectedAddress.getText().contains(verifyBillingAddress)) {
+					checkstatus = true;
+					break;
+				}
+			}
+		}
+		Log.event("Verify Default Billing Address in Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return checkstatus;
+	}
+
+	/**
+	 * Navigate to the Address book page via address book link
+	 * 
+	 * @return void AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage navigateToAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(lnkmobAddressBook, driver,
+					"mobileAddress Book Page Link");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(lnkAddressBook, driver,
+					"Clicked on the 'Address Book' link");
+		}
+		Log.event("Navigated to the Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	public boolean getBillingAddressToVerify(String billingAddressVerify) {
+		boolean checkstatus = true;
+		if (addressBook != null) {
+			for (int count = 1; count < addressBook.size(); count++) {
+				String ExpectedValue = addressBook.get(count).getText().trim();
+				if (ExpectedValue.equalsIgnoreCase(billingAddressVerify)) {
+					return checkstatus;
+				}
+
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Navigate to My account Page
+	 * @return void navigateToMyAccountPage
+	 * @throws Exception
+	 */
+	public void navigateToMyAccountPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(btnMyAccount, driver,
+					"My account is clicked");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.mouseHover(driver, loginDropDown);
+			BrowserActions.clickOnElement(dropdownlnkMyAccount, driver,
+					"My Account Link is clicked");
+		}
+		Log.event("Navigate to My account Page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To verify credit card in PaymentMethods Page
+	 * @return boolean - if card is verified
+	 */
+	public boolean verifyAddCreditCardPage() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try{
+			if (divCreditCard.isDisplayed()) {
+				returntype = true;
+			}
+			}
+			catch(Exception e){
+				Log.event(" divCreditCard element is not found in page ");
+			}
+		Log.event("add credit card page is displayed",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Checks if Fields are filled with entered values
+	 * 
+	 * @throws Exception
+	 * 
+	 * @returns true
+	 */
+	public Boolean checkFieldsAreWithAddedValues(
+			LinkedHashMap<String, String> paymentDetails) throws Exception {
+		String paymentNickName = paymentDetails.get("paymentNickname");
+		String paymentName = paymentDetails.get("name");
+		String paymentCardType = paymentDetails.get("cardtype");
+
+		String paymentYear = paymentDetails.get("year");
+
+		final long startTime = StopWatch.startTime();
+		String nickname = BrowserActions.getTextFromAttribute(driver,
+				txtPaymentNickname, "value", "nickname");
+		String Name = BrowserActions.getTextFromAttribute(driver, txtName,
+				"value", "name");
+
+		WebElement card = BrowserActions.checkLocator(driver,
+				"select[id*='newcreditcard_type']>option[value='"
+						+ paymentCardType + "']");
+		String cardtype = BrowserActions.getTextFromAttribute(driver, card,
+				"value", "nickname");
+
+		WebElement expYear = BrowserActions.checkLocator(driver,
+				"select[id*='newcreditcard_year']>option[value='" + paymentYear
+				+ "']");
+
+		String year = BrowserActions.getTextFromAttribute(driver, expYear,
+				"value", "year");
+		if (nickname.contains(paymentNickName) && Name.contains(paymentName)
+				&& cardtype.contains(paymentCardType)
+				&& year.contains(paymentYear) && btnApply.isDisplayed()
+				&& btnCancel.isDisplayed()) {
+			Log.event("check Fields have entered value",
+					StopWatch.elapsedTime(startTime));
+			return true;
+		}
+		return false;
+	}
+
+}// PAYMENTMETHODS PAGE

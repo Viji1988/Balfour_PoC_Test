@@ -1,0 +1,344 @@
+<table border='1'>
+<tr>
+<th>Class name</th>
+<th>Method name</th>
+<th>Groups</th>
+</tr><tr>
+<td>com.sheplers.testscripts.productsection.ProductDetailSection</td>
+<td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@Test</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_039</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_002</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_023</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_018</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_044</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_040</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_061</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_027</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_048</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_065</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_014</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_006</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_010</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_035</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_052</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_056</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_073</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_043</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_017</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_024</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_001</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_020</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_005</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_062</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_047</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_066</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_028</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_009</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_013</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_036</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_051</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_055</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_059</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_070</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_042</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_021</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_004</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_067</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_046</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_025</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_063</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_029</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_033</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_054</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_008</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_012</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_071</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_016</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_037</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_050</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_058</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_019</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_022</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_003</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_041</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_060</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_026</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_045</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_068</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_049</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_064</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_053</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_069</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_034</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_007</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_011</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_015</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_030</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_057</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>TC_SHEPLERS_PDP_072</td>
+<td>desktop mobile </td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@BeforeClass</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@BeforeMethod</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@AfterMethod</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@AfterClass</td>
+</tr>
+</table>

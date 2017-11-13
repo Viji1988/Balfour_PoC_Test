@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/BootBarn-QA/!svn/ver/1478/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages
+END
+MyAccountPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/BootBarn-QA/!svn/ver/1449/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/MyAccountPage.java
+END
+SearchResultPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/BootBarn-QA/!svn/ver/1473/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/SearchResultPage.java
+END
+BrandsPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/BootBarn-QA/!svn/ver/1449/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/BrandsPage.java
+END
+Demandware.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/BootBarn-QA/!svn/ver/1431/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/Demandware.java
+END
+CategoryLandingPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/BootBarn-QA/!svn/ver/1464/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/CategoryLandingPage.java
+END
+PdpPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/BootBarn-QA/!svn/ver/1473/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/PdpPage.java
+END
+CategoryGridPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/BootBarn-QA/!svn/ver/1473/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/CategoryGridPage.java
+END
+OrderConfirmationPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/BootBarn-QA/!svn/ver/1396/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/OrderConfirmationPage.java
+END
+HomePage.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/BootBarn-QA/!svn/ver/1458/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/HomePage.java
+END
+ElementLayer.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/BootBarn-QA/!svn/ver/1396/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/ElementLayer.java
+END
+CartPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/BootBarn-QA/!svn/ver/1478/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/CartPage.java
+END
+SignIn.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/BootBarn-QA/!svn/ver/1458/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/SignIn.java
+END
+DecorPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/BootBarn-QA/!svn/ver/1449/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/DecorPage.java
+END
+OrderHistoryPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/BootBarn-QA/!svn/ver/1404/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/OrderHistoryPage.java
+END
+AddressBookPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/BootBarn-QA/!svn/ver/1464/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/AddressBookPage.java
+END
+PaymentMethodsPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/BootBarn-QA/!svn/ver/1464/branches/Automation/Sheplers-QA/src/test/java/com/sheplers/pages/PaymentMethodsPage.java
+END

@@ -1,0 +1,517 @@
+package com.sheplers.pages;
+
+import java.util.LinkedHashMap;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class SignIn extends LoadableComponent<SignIn> {
+
+	private final WebDriver driver;
+	private boolean isPageLoaded;
+	public Headers headers;
+	public Footers footers;
+	public HomePage homePage;
+	public ElementLayer elementLayer;
+	private boolean createAccountPageLoaded;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************************* WebElements of SignIn Page- starts *************************
+	 **********************************************************************************************/
+
+	private static final String Sign_In = "div[class='form-create-account']";
+	private static final String orderNumber = "input[id*='orderNumber']";
+	private static final String emailAddress = "input[id*='orderEmail']";
+	private static final String billingCode = "input[id*='ordertrack_postalCode']";
+	private static final String orderButton = "button[name*='ordertrack_findorder']";
+	private static final String btnlookUpAnOrder = ".btn-lookup-order";
+
+	public static final String Customer_FirstName = "input[name*='customer_firstname']";
+	public static final String Customer_LastName = "input[name*='customer_lastname']";
+	public static final String Customer_Email = "input[name='dwfrm_profile_customer_email']";
+	public static final String Customer_ConfirmEmail = "input[name='dwfrm_profile_customer_emailconfirm']";
+	public static final String Customer_Password = "input[name*='dwfrm_profile_login_password']";
+	public static final String Customer_ConfirmPassword = "input[name*='profile_login_passwordconfirm']";
+	public static final String Btn_CreateAccount = "button[name*='confirm']";
+
+	public static final String signInCustomer_Email = "#dwfrm_login_username";
+	public static final String signInCustomer_Password = "[id*='dwfrm_login_password']";
+
+	@FindBy(css = "div[class='form-create-account']")
+	WebElement divLoginBox;
+
+	@FindBy(css = "ul[class='menu-utility-user'] li a[href*='account']")
+	WebElement lblSignIn;
+
+	@FindBy(css = "Sign_In")
+	WebElement createAccountSection;
+
+	@FindBy(css = "a[class='btn btn-block btn-brown-border']")
+	WebElement btnCreateAccount;
+
+	@FindBy(css = ".error-form")
+	WebElement invalidEmailError;
+
+	@FindBy(css = btnlookUpAnOrder)
+	WebElement btnLookUpAnOrder;
+
+	@FindBy(css = "div[class*='ordernotfound-msg']")
+	WebElement orderStatusError;
+
+	@FindBy(css = "div[class='form-create-account'] div[class*='head'] h2[class*='title']")
+	WebElement lblSignInHeader;
+
+	@FindBy(css = "div[class*='forgotpassword'] a")
+	WebElement lnkForgetPassword;
+
+	@FindBy(css = ".form-body .checks-alt label")
+	WebElement chckRememberMe;
+
+	@FindBy(css = Sign_In + "  div[class*='button'] button")
+	WebElement btnSignIn;
+
+	@FindBy(css = "div[class='col col-size2'] a[href*='register']")
+	WebElement lnkCreateAnAccount;
+
+	@FindBy(css = ".nav-content-container")
+	WebElement customerServiceLoc;
+
+	@FindBy(css = ".sectiondetails")
+	WebElement divOrderHistory;
+
+	@FindBy(css = ".sectionheader h2")
+	WebElement orderHistoryHeader;
+
+	@FindBy(css = Customer_FirstName)
+	WebElement txtFirstName;
+
+	@FindBy(css = Customer_LastName)
+	WebElement txtLastName;
+
+	@FindBy(css = signInCustomer_Email)
+	WebElement txtEmailAddress;
+
+	@FindBy(css = Customer_Email)
+	WebElement txtAccountEmailAddress;
+
+	@FindBy(css = Customer_ConfirmEmail)
+	WebElement txtConfirmEmailAddress;
+
+	@FindBy(css = signInCustomer_Password)
+	WebElement txtPassword;
+
+	@FindBy(css = Customer_Password)
+	WebElement txtAccountPassword;
+
+	@FindBy(css = Customer_ConfirmPassword)
+	WebElement txtConfirmPassword;
+
+	@FindBy(css = "label[for='dwfrm_profile_customer_addtoemaillist']")
+	WebElement checkboxSignUp;
+
+	@FindBy(css = ".nav-content-container")
+	WebElement customerServiceSection;
+
+	@FindBy(css = ".errors-header")
+	WebElement invalidPasswordError;
+
+	@FindBy(css = ".primary-content")
+	WebElement resetPasswordMain;
+
+	@FindBy(css = ".account-logout")
+	WebElement lnkLogout;
+
+	@FindBy(css = "#dwfrm_requestpassword_email")
+	WebElement txtEmail;
+
+	@FindBy(css = "#PasswordResetForm > fieldset > button")
+	WebElement btnEmailSubmit;
+
+	@FindBy(css = "#dwfrm_requestpassword_email-error")
+	WebElement errorInvalidEmail;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of SignIn Page - ends **************************
+	 **********************************************************************************************/
+
+	/**
+	 * 
+	 * Constructor class for Login page Here we initializing the driver for page
+	 * factory objects. For ajax element waiting time has added while
+	 * initialization
+	 * 
+	 * @param driver
+	 * @param url
+	 */
+	public SignIn(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+		homePage = new HomePage(driver);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, divLoginBox))) {
+			Log.fail("SignIn page didn't open up", driver);
+		}
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+	}// is loaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * Sign in to the Application
+	 * 
+	 * @param emailId
+	 * @param password
+	 * @return MyAccountPage
+	 * @throws Exception
+	 */
+	public MyAccountPage signInToMyAccount(String emailId, String password)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.typeOnTextField(txtEmailAddress, emailId, driver,
+				"Email id");
+		BrowserActions.typeOnTextField(txtPassword, password, driver,
+				"Password");
+		BrowserActions.javascriptClick(chckRememberMe, driver,
+				"Remember me check box is clicked");
+		BrowserActions.clickOnElement(btnSignIn, driver, "Login");
+		Log.event("Clicked 'Login' button on SignIn page",
+				StopWatch.elapsedTime(startTime));
+		return new MyAccountPage(driver).get();
+	}
+
+	/**
+	 * Sign in with Invalid Credential
+	 * 
+	 * @param emailId
+	 * @param password
+	 * @return SignIn page
+	 * @throws Exception
+	 */
+	public SignIn signInwithInvalidData(String emailId, String password)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.typeOnTextField(txtEmailAddress, emailId, driver,
+				"Email id");
+		BrowserActions.typeOnTextField(txtPassword, password, driver,
+				"Password");
+		BrowserActions.javascriptClick(chckRememberMe, driver,
+				"Remember me check box is clicked");
+		BrowserActions.clickOnElement(btnSignIn, driver, "Login");
+		Log.event("Clicked 'Login' button on SignIn page",
+				StopWatch.elapsedTime(startTime));
+		return new SignIn(driver).get();
+	}
+
+	/**
+	 * If the customer service section is placed on the left side of the Page
+	 *
+	 * @return returntype
+	 * @throws Exception
+	 */
+	public boolean verfiyCustomerService() throws Exception {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			if (runPlatForm == "desktop") {
+				Point customerServiceLoc = driver.findElement(
+						By.cssSelector(".nav-content-container")).getLocation();
+				if ((customerServiceLoc.x > 60) && (customerServiceLoc.x < 450)) {
+					returntype = true;
+					Log.event(
+							"Customer service section is placed at the left side of the Page",
+							StopWatch.elapsedTime(startTime));
+				}
+			}
+
+			if (runPlatForm == "mobile") {
+				Point mobCustomerServiceLoc = driver.findElement(
+						By.cssSelector("#secondary > div > div")).getLocation();
+				if ((mobCustomerServiceLoc.x > 15)
+						&& (mobCustomerServiceLoc.x < 25)) {
+					returntype = true;
+					Log.event(
+							"Customer service section is placed at the bootom of the Page",
+							StopWatch.elapsedTime(startTime));
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Verify customer service section");
+		}
+		return returntype;
+	}
+
+	/**
+	 * Verify the create an account section page is placed middle of the page
+	 * 
+	 * @return returntype
+	 */
+	public boolean verifyCreateAccountSection() throws Exception {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			if (runPlatForm == "desktop") {
+				Point createAccountSection = driver.findElement(
+						By.cssSelector("div[class='form-create-account']"))
+						.getLocation();
+				if ((80 < createAccountSection.x)
+						&& (createAccountSection.x < 600)) {
+					returntype = true;
+					Log.event(
+							"Create Account section is placed at the middle of the Page",
+							StopWatch.elapsedTime(startTime));
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Verify create account section");
+		}
+		return returntype;
+	}
+
+	/**
+	 * Verify the create an account button is placed on the right side of the
+	 * page
+	 * 
+	 * @return returntype
+	 */
+	public boolean verfiyCreateAccountButton() throws Exception {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			if (runPlatForm == "desktop") {
+				Point createAccountButtonSection = driver.findElement(
+						By.cssSelector(".col-size2")).getLocation();
+				if (createAccountButtonSection.x > 780) {
+					returntype = true;
+					Log.event("Create Account button is placed at the right of the Page ");
+				}
+			}
+
+			if (runPlatForm == "mobile") {
+				if (driver.findElement(
+						By.cssSelector("div[class='form-create-account']"))
+						.isDisplayed()) {
+					returntype = true;
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Verify create account button");
+		}
+		Log.event("verified the location of Sign In Page elements",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+	/**
+	 * Entering the details in look up an order fields
+	 * 
+	 * @param productOrderDetails
+	 * @throws Exception
+	 */
+	public void navigateToOrderHistory(
+			LinkedHashMap<String, String> productOrderDetails) throws Exception {
+		final long startTime = StopWatch.startTime();
+		productOrderDetails.put("click_order", btnlookUpAnOrder);
+		productOrderDetails.put(
+				"type_orderNumber_" + productOrderDetails.get("ordNumber"),
+				orderNumber);
+		productOrderDetails.put(
+				"type_EmailAddress_" + productOrderDetails.get("emailId"),
+				emailAddress);
+		productOrderDetails.put(
+				"type_zipcode_" + productOrderDetails.get("zipCode"),
+				billingCode);
+		productOrderDetails.put("click_check stats has been clicked",
+				orderButton);
+		AccountUtils.doAccountOperations(productOrderDetails, driver);
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigated to the Order History Page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To navigate to create account page
+	 * 
+	 * @return createAccountPageLoaded
+	 * @throws Exception
+	 */
+	public boolean navigateToCreateAccountPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCreateAccount, driver,
+				"Click on the 'Create an account' button");
+		StopWatch.elapsedTime(startTime);
+		return createAccountPageLoaded;
+
+	}
+
+	/**
+	 * creates new account
+	 * 
+	 * @param accountDetails
+	 * @return MyAccountPage
+	 * @throws Exception
+	 */
+
+	public MyAccountPage createAccount(
+			LinkedHashMap<String, String> accountDetails) throws Exception {
+		LinkedHashMap<String, String> accountDetails1 = new LinkedHashMap<String, String>();
+
+		accountDetails1.put(
+				"type_FirstName_" + accountDetails.get("firstname"),
+				Customer_FirstName);
+		accountDetails1.put("type_lastname_" + accountDetails.get("lastname"),
+				Customer_LastName);
+		accountDetails1.put("type_emailid_" + accountDetails.get("email"),
+				Customer_Email);
+		accountDetails1.put(
+				"type_confirmemailid_" + accountDetails.get("confirmemail"),
+				Customer_ConfirmEmail);
+		accountDetails1.put(
+				"type_confirmemailid_" + accountDetails.get("password"),
+				Customer_Password);
+		accountDetails1
+				.put("type_confirmpassword_"
+						+ accountDetails.get("confirmPassword"),
+						Customer_ConfirmPassword);
+		accountDetails1.put("click_apply button has been clicked",
+				Btn_CreateAccount);
+
+		AccountUtils.doAccountOperations(accountDetails1, driver);
+
+		Utils.waitForPageLoad(driver);
+		return new MyAccountPage(driver).get();
+	}
+
+	/**
+	 * for verify Error message during account creation
+	 * 
+	 * @param accountDetails
+	 * @throws Exception
+	 */
+	public void verifyCreateAccount(LinkedHashMap<String, String> accountDetails)
+			throws Exception {
+		LinkedHashMap<String, String> accountDetails1 = new LinkedHashMap<String, String>();
+
+		accountDetails1.put(
+				"type_FirstName_" + accountDetails.get("firstname"),
+				Customer_FirstName);
+		accountDetails1.put("type_lastname_" + accountDetails.get("lastname"),
+				Customer_LastName);
+		accountDetails1.put("type_emailid_" + accountDetails.get("email"),
+				Customer_Email);
+		accountDetails1.put(
+				"type_confirmemailid_" + accountDetails.get("confirmemail"),
+				Customer_ConfirmEmail);
+		accountDetails1.put(
+				"type_confirmemailid_" + accountDetails.get("password"),
+				Customer_Password);
+		accountDetails1
+				.put("type_confirmpassword_"
+						+ accountDetails.get("confirmPassword"),
+						Customer_ConfirmPassword);
+		accountDetails1.put("click_apply button has been clicked",
+				Btn_CreateAccount);
+
+		AccountUtils.doAccountOperations(accountDetails1, driver);
+		Utils.waitForPageLoad(driver);
+
+	}
+
+	/**
+	 * Click Forget Password Link
+	 * 
+	 * @return void
+	 * @throws Exception
+	 */
+	public void clickForgetPasswordLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(lnkForgetPassword, driver,
+				"Click on the Forget Password link");
+		StopWatch.elapsedTime(startTime);
+	}
+
+	/**
+	 * Clicking Logout link
+	 * 
+	 * @return void
+	 * @throws Exception
+	 */
+	public void clickLogoutLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkLogout, driver,
+				"LogOut link is clicked");
+		Log.event("Navigated to Home page by clicking Logout link",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * enter email Address text in Reset Password page
+	 * 
+	 * @return void
+	 * @throws Exception
+	 */
+	public void enterEmailAddressInResetPasswordPage(String email)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.typeOnTextField(txtEmail, email, driver,
+				"Email Address Entering");
+		BrowserActions.clickOnElement(btnEmailSubmit, driver,
+				"Email submit button");
+		Log.event("Enter Email Address in Reset Password Page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+}// SIGNIN

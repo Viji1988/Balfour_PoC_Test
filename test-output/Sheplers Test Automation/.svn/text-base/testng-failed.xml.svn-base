@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="250" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [Sheplers Test Automation]" parallel="tests">
+  <parameter name="webSite" value="https://development-web-sheplers.demandware.net/"/>
+  <parameter name="deviceHost" value="localhost"/>
+  <parameter name="devicePort" value="4444"/>
+  <parameter name="browserName" value="chrome_Windows"/>
+  <test name="Productsection - ProductDetailSection - Mobile(failed)">
+    <classes>
+      <class name="com.sheplers.testscripts.productsection.ProductDetailSection">
+        <methods>
+          <include name="TC_SHEPLERS_PDP_043" invocation-numbers="0"/>
+          <include name="TC_SHEPLERS_PDP_050" invocation-numbers="0"/>
+          <include name="init"/>
+        </methods>
+      </class> <!-- com.sheplers.testscripts.productsection.ProductDetailSection -->
+    </classes>
+  </test> <!-- Productsection - ProductDetailSection - Mobile(failed) -->
+</suite> <!-- Failed suite [Sheplers Test Automation] -->

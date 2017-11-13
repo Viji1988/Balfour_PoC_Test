@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Sheplers Test Automation" verbose="3" parallel="tests"
+	thread-count="200">
+	<parameter name="deviceHost" value="localhost" />
+	<parameter name="devicePort" value="4444" />
+	<parameter name="browserName" value="chrome_Windows" />
+	<parameter name="webSite"
+		value="https://storefront:bootboot@staging-web-sheplers.demandware.net/s/sheplers_us/" />
+	<parameter name="demandwareWebsite"
+		value="https://staging-web-sheplers.demandware.net/on/demandware.store/Sites-Site/default/ViewApplication-ProcessLogin"></parameter>
+
+	<test name="Sheplers - Test (Mobile)" thread-count="1" parallel="false">
+	<groups>
+			<run>
+				<include name="mobile"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sheplers.testscripts.cartcheckoutsection.OrderPlacement">
+				<methods>
+					<include name="TC_SHEPLERS_OP_014"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

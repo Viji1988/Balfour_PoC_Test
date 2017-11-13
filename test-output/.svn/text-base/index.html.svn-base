@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Sheplers_Test_Automation">
+              <span class="suite-name border-failed">Sheplers Test Automation</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Sheplers_Test_Automation">
+                    <span>E:\New_Updated_Dec29_12\Sheplers-QA\test-xml\sheplers_test.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Sheplers_Test_Automation">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Sheplers_Test_Automation">
+                    <span>2 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Sheplers_Test_Automation">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Sheplers_Test_Automation">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Sheplers_Test_Automation">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Sheplers_Test_Automation">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">2 methods, 2 failed,   </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Sheplers_Test_Automation" class="hide-methods failed suite-Sheplers_Test_Automation"> (hide)</a> <!-- hide-methods failed suite-Sheplers_Test_Automation -->
+                      <a href="#" panel-name="suite-Sheplers_Test_Automation" class="show-methods failed suite-Sheplers_Test_Automation"> (show)</a> <!-- show-methods failed suite-Sheplers_Test_Automation -->
+                    </span>
+                    <div class="method-list-content failed suite-Sheplers_Test_Automation">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Sheplers_Test_Automation" title="com.sheplers.testscripts.productsection.ProductDetailSection" hash-for-method="TC_SHEPLERS_PDP_043((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)">TC_SHEPLERS_PDP_043((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Sheplers_Test_Automation" title="com.sheplers.testscripts.productsection.ProductDetailSection" hash-for-method="TC_SHEPLERS_PDP_050((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)">TC_SHEPLERS_PDP_050((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Sheplers_Test_Automation -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Sheplers_Test_Automation" class="panel Sheplers_Test_Automation">
+          <div class="suite-Sheplers_Test_Automation-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.sheplers.testscripts.productsection.ProductDetailSection</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_SHEPLERS_PDP_043((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)">
+                  </a> <!-- TC_SHEPLERS_PDP_043((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP) -->
+                  <span class="method-name">TC_SHEPLERS_PDP_043</span>
+                  <span class="parameters">((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</span>
+                  <div class="stack-trace">java.lang.AssertionError: 6. Image is not zoomed hovering on the image in Zoom window, plz check the event log
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.sheplers.support.Log.fail(Log.java:514)
+	at com.sheplers.support.Log.assertThat(Log.java:692)
+	at com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_043(ProductDetailSection.java:2360)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:100)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:811)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+</div> <!-- stack-trace -->
+                  <em>
+( Check Product Details Zoom in Product Details Page )                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_SHEPLERS_PDP_050((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)">
+                  </a> <!-- TC_SHEPLERS_PDP_050((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP) -->
+                  <span class="method-name">TC_SHEPLERS_PDP_050</span>
+                  <span class="parameters">((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</span>
+                  <div class="stack-trace">java.lang.AssertionError: 4. Unable to view the product details in OUR BEST SELLING ITEMS section , plz check the log event
+	at org.testng.Assert.fail(Assert.java:94)
+	at com.sheplers.support.Log.fail(Log.java:514)
+	at com.sheplers.support.Log.assertThat(Log.java:692)
+	at com.sheplers.testscripts.productsection.ProductDetailSection.TC_SHEPLERS_PDP_050(ProductDetailSection.java:2756)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:100)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:646)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:811)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Check details of the product under OUR BEST SELLING ITEMS in Product Detail Page)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Sheplers_Test_Automation-class-failed -->
+        </div> <!-- panel Sheplers_Test_Automation -->
+        <div panel-name="test-xml-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">E:\New_Updated_Dec29_12\Sheplers-QA\test-xml\sheplers_test.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite thread-count=&quot;250&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;3&quot; name=&quot;Sheplers Test Automation&quot; parallel=&quot;tests&quot;&gt;
+  &lt;parameter name=&quot;webSite&quot; value=&quot;https://development-web-sheplers.demandware.net/&quot;/&gt;
+  &lt;parameter name=&quot;deviceHost&quot; value=&quot;localhost&quot;/&gt;
+  &lt;parameter name=&quot;devicePort&quot; value=&quot;4444&quot;/&gt;
+  &lt;parameter name=&quot;browserName&quot; value=&quot;chrome_Windows&quot;/&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;Productsection - ProductDetailSection - Mobile&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.sheplers.testscripts.productsection.ProductDetailSection&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;TC_SHEPLERS_PDP_043&quot;/&gt;
+          &lt;include name=&quot;TC_SHEPLERS_PDP_050&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.sheplers.testscripts.productsection.ProductDetailSection --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Productsection - ProductDetailSection - Mobile --&gt;
+&lt;/suite&gt; &lt;!-- Sheplers Test Automation --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Sheplers Test Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Productsection - ProductDetailSection - Mobile (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Sheplers Test Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">desktop</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC_SHEPLERS_PDP_043</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC_SHEPLERS_PDP_050</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">mobile</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC_SHEPLERS_PDP_043</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC_SHEPLERS_PDP_050</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Sheplers Test Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Sheplers_Test_Automation');
+function tableData_Sheplers_Test_Automation() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(2);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'TC_SHEPLERS_PDP_043')
+data.setCell(0, 2, 'com.sheplers.testscripts.productsection.ProductDetailSection')
+data.setCell(0, 3, 45110);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'TC_SHEPLERS_PDP_050')
+data.setCell(1, 2, 'com.sheplers.testscripts.productsection.ProductDetailSection')
+data.setCell(1, 3, 39290);
+window.suiteTableData['Sheplers_Test_Automation']= { tableData: data, tableDiv: 'times-div-Sheplers_Test_Automation'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <div id="times-div-Sheplers_Test_Automation">
+              </div> <!-- times-div-Sheplers_Test_Automation -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Sheplers Test Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">TC_SHEPLERS_PDP_043((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:28 532 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:28 786 - mobileEmulation settings::==> {deviceMetrics={pixelRatio=2.0, width=414, height=736}, userAgent=Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25}</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:32 714 - <b>0</b> - Driver::initialize::Get - com.sheplers.support.WebDriverFactory.get(WebDriverFactory.java:450)</small> </font> </div></span>
+                <span class="reporter-method-output">&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Verify the customer able to see Promo Area on the top main image In the PDP Page BUGID: COMMENTS:</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;</span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:32 732 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:32 858 - Page URL:: data:,</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:32 859 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:38 817 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: a[href='#search']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:38 818 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:38 864 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:38 865 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 092 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 093 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 132 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 132 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 214 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .footer-mobile]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;1. Navigated to 'Sheplers' Home Page!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 283 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .menu-toggle]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 318 - <b>0</b> - Searched the provided product! - com.sheplers.pages.HomePage.expandMenu(HomePage.java:410)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp; Mobile Menu is expanded</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 393 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(1) a[href='']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 528 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 529 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 627 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 627 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 712 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 713 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:39 784 - Element is displayed:: [[[[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(1) div.level-2]] -> css selector: ul li ul.level-3 li a[href*='mens-cowboy-boots']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 624 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 625 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 626 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 629 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 667 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 667 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 727 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 728 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 762 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 763 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 823 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .footer-mobile]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 856 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 857 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 887 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 888 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:43 974 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='sidebar-category']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 004 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 005 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 034 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 034 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 088 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='sidebar-category']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;2. Navigated to exact category</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp; Category Landing page is displayed as expected&emsp;<a href=".\ScreenShot\TC_SHEPLERS_PDP_043_1.png" target="_blank" >[ScreenShot]</a></div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 381 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: a[title*='View All'][class='view-btn']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 417 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:44 421 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 036 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 036 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 132 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 133 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 164 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 165 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 231 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .footer-mobile]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 232 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 266 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 267 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 305 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:01:52 306 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 148 - Unable to find a element after 0 sec ==> Proxy element for: AjaxElementLocator 'By.cssSelector: div.desktop-only > div > h1 > a.keyword-search-phrase-header-link'</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 179 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 179 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 213 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 213 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 299 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: #primary]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 336 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 336 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 368 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 369 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 430 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='refinements']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 459 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 459 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 488 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 489 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:10 539 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='refinements']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;3. Navigated to the Product listing page from Category landing Pagehttp://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;4.Product details to be navigatedTwisted X Red Hooey Cowboy Boots - Square Toe</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:11 623 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:11 628 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 330 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 331 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 404 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 436 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 436 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 468 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 468 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 515 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[id='pdpMain']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 545 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 545 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 575 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 575 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 596 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[id='pdpMain']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:15 661 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .btn-zoom]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;5. Clicked on Zoom icon</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:16 546 - Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .zoomContainer]</small> </font> </div></span>
+                <span class="reporter-method-output"><!--FAIL--></span>
+                <span class="reporter-method-output"><div class="test-result"><br><font color="red"><strong> 6. Image is not zoomed hovering on the image in Zoom window, plz check the event log </strong></font> <a href=".\ScreenShot\TC_SHEPLERS_PDP_043_2.png" target="_blank" >[ScreenShot]</a></div>&emsp;</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">TC_SHEPLERS_PDP_050((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:17 843 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:17 844 - mobileEmulation settings::==> {deviceMetrics={pixelRatio=2.0, width=414, height=736}, userAgent=Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25}</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:21 464 - <b>0</b> - Driver::initialize::Get - com.sheplers.support.WebDriverFactory.get(WebDriverFactory.java:450)</small> </font> </div></span>
+                <span class="reporter-method-output">&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Check details of the product under OUR BEST SELLING ITEMS in Product Detail Page BUGID: COMMENTS:</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;</span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:21 473 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:21 543 - Page URL:: data:,</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:21 544 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 564 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: a[href='#search']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 565 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 619 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 619 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 701 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 702 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 730 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 731 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 803 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: .footer-mobile]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;1. Navigated to 'Sheplers' Home Page!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 881 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: .menu-toggle]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:27 951 - <b>0</b> - Searched the provided product! - com.sheplers.pages.HomePage.expandMenu(HomePage.java:410)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp; Mobile Menu is expanded</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 547 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) a[href='']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 626 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 627 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 699 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 700 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 794 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 795 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 875 - Element is displayed:: [[[[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) div.level-2]] -> css selector: ul li ul.level-3 li a[href*='mens-levis-jeans/']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 913 - Page URL:: https://development-web-sheplers.demandware.net/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 914 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:28 946 - Element is displayed:: [[[[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) div.level-2]] -> css selector: ul li ul.level-3 li a[href*='mens-levis-jeans/']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 280 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 281 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 281 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 282 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 315 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 316 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 383 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 383 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 421 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 421 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 479 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: .footer-mobile]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 479 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 508 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 508 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 542 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:33 542 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 369 - Unable to find a element after 0 sec ==> Proxy element for: AjaxElementLocator 'By.cssSelector: div.desktop-only > div > h1 > a.keyword-search-phrase-header-link'</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 400 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 401 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 430 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 430 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 493 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: #primary]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 523 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 523 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 551 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 551 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 617 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[class='refinements']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 648 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 648 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 676 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 676 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 725 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[class='refinements']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;2. Page Navigated from 5 > mens-levis-jeans/</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;LLLLLLLLLLLLLLLtxtCategoryHeaderLLLLLLLLLLLLLLLLLLLLLLLLevi's Jeans for Men</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:51 758 - <b>0</b> -  Gets text from category grid header! - com.sheplers.pages.CategoryGridPage.getTextFromCategoryGridHeader(CategoryGridPage.java:312)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp; Category grid page is displayed as expected&emsp;<a href=".\ScreenShot\TC_SHEPLERS_PDP_050_3.png" target="_blank" >[ScreenShot]</a></div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 388 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 388 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 389 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 391 - Running platform type:: mobile</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 451 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 451 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 523 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div [class='top-banner-bar']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 553 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 553 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 581 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 581 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 621 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[id='pdpMain']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 649 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 649 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 678 - Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 678 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:78)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 03 Jan 10:02:59 698 - Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[id='pdpMain']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;3. Product details to be navigated Boot Cut Stretch</div></span>
+                <span class="reporter-method-output"><!--FAIL--></span>
+                <span class="reporter-method-output"><div class="test-result"><br><font color="red"><strong> 4. Unable to view the product details in OUR BEST SELLING ITEMS section , plz check the log event </strong></font> <a href=".\ScreenShot\TC_SHEPLERS_PDP_050_4.png" target="_blank" >[ScreenShot]</a></div>&emsp;</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">68 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.sheplers.testscripts.productsection.ProductDetailSection</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_028</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_029</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_026</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_027</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_024</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_068</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_025</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_069</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_066</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_022</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_023</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_067</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_020</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_064</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_065</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_021</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_062</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_063</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_060</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_061</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_019</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_039</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_037</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_035</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_036</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_033</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_034</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_073</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_030</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_071</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_072</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_070</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_009</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_006</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_007</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_048</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_004</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_005</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_049</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_002</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_046</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_047</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_003</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_044</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_001</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_045</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_042</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_040</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_041</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_017</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_018</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_059</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_015</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_016</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_013</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_057</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_014</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_058</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_055</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_011</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_056</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_012</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_053</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_010</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_054</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_051</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_052</span>
+                <br/>
+                <span class="ignored-method-name">TC_SHEPLERS_PDP_008</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Sheplers_Test_Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.sheplers.testscripts.productsection.ProductDetailSection</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">init(org.testng.TestRunner@37cd4ef2)</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">TC_SHEPLERS_PDP_043((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</span>
+                <span class="method-start">4456 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">TC_SHEPLERS_PDP_050((Browser: chrome, Hub: ASPIRE1230, Node: LOCALHOST), chrome_XP)</span>
+                <span class="method-start">53205 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

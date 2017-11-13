@@ -1,0 +1,2825 @@
+package com.sheplers.pages;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class CartPage extends LoadableComponent<CartPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public Headers headers;
+	public Footers footers;
+	public HomePage homePage;
+	public PdpPage pdpPage;
+	public CategoryLandingPage clsPage;
+	public ElementLayer elementLayer;
+	public CategoryGridPage gridPage;
+	public SearchResultPage searchPage;
+	public BrandsPage brandsPage;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/*********************************************************************************************
+	 ********************************* WebElements of Cart Page - Starts *************************
+	 *********************************************************************************************/
+
+	private static final String CART_PAGE = ".cart-empty.section-order-items";
+	public static final String searchField = "div[class='header-search']";
+	public static final String CUSTOMER_SIGNIN = "div.login-existing";
+	public static final String billing_Customer_FirstName = "input[id='dwfrm_billingaddress_firstName']";
+	public static final String billing_Customer_LastName = "input[id='dwfrm_billingaddress_lastName']";
+	public static final String billing_Customer_Email = "input[id='dwfrm_billingaddress_email']";
+	public static final String billing_Customer_ConfirmEmail = "input[id='dwfrm_billingaddress_emailconfirm']";
+	public static final String billing_Customer_Address1 = "input[id='dwfrm_billingaddress_address1']";
+	public static final String billing_Customer_City = "input[id='dwfrm_billingaddress_city']";
+	public static final String billing_Customer_Postal = "input[id='dwfrm_billingaddress_postal']";
+	public static final String billing_Customer_Phone = "input[id='dwfrm_billingaddress_phone']";
+	public static final String billing_Customer_ChkShippingAddress = "label[for='shpsame']";
+	public static final String shipping_Customer_FirstName = "input[id='dwfrm_shippingaddress_firstName']";
+	public static final String shipping_Customer_LastName = "input[id='dwfrm_shippingaddress_lastName']";
+	public static final String shipping_Customer_Address1 = "input[id='dwfrm_shippingaddress_address1']";
+	public static final String shipping_Customer_City = "input[id='dwfrm_shippingaddress_city']";
+	public static final String shipping_Customer_Postal = "input[id='dwfrm_shippingaddress_postal']";
+	public static final String shipping_Customer_Phone = "input[id='dwfrm_shippingaddress_phone']";
+	public static final String shipping_Customer_ChkShippingAddress = "label[for='dwfrm_singleshipping_shippingAddress_setDefaultShipping']";
+	public static final String shipping_Customer_CardOwner = "#dwfrm_billing_paymentMethods_creditCard_owner";
+	public static final String shipping_Customer_CardNumber = "div[class*='payment-method-expanded'] input[id*='creditCard_number']";
+	public static final String shipping_Customer_CardSecurityCode = "input[id*='dwfrm_billing_paymentMethods_creditCard_cvn']";
+	public static final String shipping_Customer_CardExpiryMonth = "#dwfrm_billing_paymentMethods_creditCard_month";
+	public static final String shipping_Customer_CardExpiryYear = "#dwfrm_billing_paymentMethods_creditCard_year";
+	public static final String GuestCustomer_Email = ".guest-checkout";
+
+	@FindBy(css = "#opc-cc-list img[src*='/on/demandware.static/-/Sites/default/dwccddbaec/cards/ico-visa.png']")
+	WebElement visaCard;
+
+	@FindBy(css = "#opc-cc-list img[src*='/on/demandware.static/-/Sites/default/dwc4f9ccb9/cards/ico-americanexpress.png']")
+	WebElement amexCard;
+
+	@FindBy(css = "#opc-cc-list img[src*='/on/demandware.static/-/Sites/default/dw85e9acf6/cards/ico-mastercard.png']")
+	WebElement masterCard;
+
+	@FindBy(css = "#opc-cc-list img[src*='/on/demandware.static/-/Sites/default/dw329fab70/cards/ico-discover.png']")
+	WebElement discoverCard;
+
+	@FindBy(css = "#opc-cc-list img[src*='/on/demandware.static/-/Sites/default/dw6cf2431e/cards/jbc_logo.png']")
+	WebElement japanCard;
+
+	@FindBy(css = "#cart-table .product-list-item")
+	List<WebElement> productList;
+
+	@FindBy(css = shipping_Customer_CardOwner)
+	WebElement cardName;
+
+	@FindBy(css = shipping_Customer_CardNumber)
+	WebElement cardNumber;
+
+	@FindBy(css = "tr.order-subtotal td:nth-child(1)")
+	WebElement merchandiseSubTotal;
+
+	@FindBy(css = shipping_Customer_CardSecurityCode)
+	WebElement securityCode;
+
+	@FindBy(css = shipping_Customer_CardExpiryMonth)
+	WebElement expiryMonth;
+
+	@FindBy(css = shipping_Customer_CardExpiryYear)
+	WebElement expiryYear;
+
+	@FindBy(css = "label[for='shipping-method-Sheplers Contiguous USA Best Ground']")
+	WebElement bestWayGrndShippingMethod;
+
+	@FindBy(css = "label[for='shipping-method-Sheplers Contiguous USA UPS Ground']")
+	WebElement UPSGrndShippingMethod;
+
+	@FindBy(css = "label[for='shipping-method-Sheplers Contiguous USA UPS 2nd Day Air']")
+	WebElement UPSsecondDayAirShippingMethod;
+
+	@FindBy(css = "label[for='shipping-method-Sheplers Contiguous USA UPS Next Day Air']")
+	WebElement UPSnectDayAirShippingMethod;
+
+	@FindBy(css = "#specialInstrucions")
+	WebElement deliveryInstructions;
+
+	@FindBy(css = "a[class*='international-header toggle top']")
+	WebElement lnkInternationalOrders;
+
+	@FindBy(css = "#dwfrm_shippingaddress_firstName-error")
+	WebElement errorMsgshippingFirstName;
+
+	@FindBy(css = "#dwfrm_shippingaddress_lastName-error")
+	WebElement errorMsgshippingLastName;
+
+	@FindBy(css = "#dwfrm_shippingaddress_address1-error")
+	WebElement errorMsgshippingAddress;
+
+	@FindBy(css = "#dwfrm_shippingaddress_city-error")
+	WebElement errorMsgshippingCity;
+
+	@FindBy(css = "#dwfrm_shippingaddress_postal-error")
+	WebElement errorMsgshippingZipcode;
+
+	@FindBy(css = "#dwfrm_shippingaddress_phone-error")
+	WebElement errorMsgshippingPhone;
+
+	@FindBy(css = billing_Customer_FirstName)
+	WebElement txt_FirstName;
+
+	@FindBy(css = billing_Customer_LastName)
+	WebElement txt_LastName;
+
+	@FindBy(css = billing_Customer_Email)
+	WebElement txt_Email;
+
+	@FindBy(css = billing_Customer_ConfirmEmail)
+	WebElement txt_ConfirmEmail;
+
+	@FindBy(css = billing_Customer_Address1)
+	WebElement txt_Address1;
+
+	@FindBy(css = "input[id='dwfrm_billingaddress_address2']")
+	WebElement txt_Address2;
+
+	@FindBy(css = "input[id='dwfrm_billingaddress_address3']")
+	WebElement txt_Address3;
+
+	@FindBy(css = billing_Customer_Postal)
+	WebElement txt_Postal;
+
+	@FindBy(css = billing_Customer_City)
+	WebElement txt_City;
+
+	@FindBy(css = billing_Customer_Phone)
+	WebElement txt_Phone;
+
+	@FindBy(css = "div[class='checkbox save-addr label-inline form-indent'] label[for='shpsame']")
+	WebElement lbl_UsebillingAddres;
+
+	@FindBy(css = "div[class='checkbox save-addr label-inline form-indent'] label[for='newslettersignup']")
+	WebElement lbl_newslettersignup;
+
+	@FindBy(css = shipping_Customer_FirstName)
+	WebElement txt_shippingFirstName;
+
+	@FindBy(css = shipping_Customer_LastName)
+	WebElement txt_shippingLastName;
+
+	@FindBy(css = shipping_Customer_Address1)
+	WebElement txt_shippingAddress1;
+
+	@FindBy(css = "input[id='dwfrm_shippingaddress_address2']")
+	WebElement txt_shippingAddress2;
+
+	@FindBy(css = "input[id='dwfrm_shippingaddress_address3']")
+	WebElement txt_shippingAddress3;
+
+	@FindBy(css = shipping_Customer_City)
+	WebElement txt_shippingCity;
+
+	@FindBy(css = shipping_Customer_Postal)
+	WebElement txt_shippingPostal;
+
+	@FindBy(css = shipping_Customer_Phone)
+	WebElement txt_shippingPhone;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_firstName-error']")
+	WebElement lbl_firstNameError;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_lastName-error']")
+	WebElement lbl_lastNameError;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_lastName-error']")
+	WebElement lbl_countryError;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_address1-error']")
+	WebElement lbl_address1Error;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_city-error']")
+	WebElement lbl_cityError;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_postal-error']")
+	WebElement lbl_postalError;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_phone-error']")
+	WebElement lbl_phoneError;
+
+	@FindBy(css = "span[id='dwfrm_billingaddress_emailconfirm-error']")
+	WebElement lbl_emailconfirmError;
+	@FindBy(css = "span[class='error custom-email-error']")
+	WebElement lbl_equalEmailAddress;
+
+	@FindBy(css = "div[class='form-checkout payment-section active']")
+	WebElement nav_shippingMethodSelection;
+
+	@FindBy(css = CUSTOMER_SIGNIN + " input[id*='dwfrm_login_username']")
+	WebElement secExistingUserName;
+
+	@FindBy(css = CUSTOMER_SIGNIN + " input[id*='dwfrm_login_password']")
+	WebElement secExistingPassword;
+
+	@FindBy(css = CUSTOMER_SIGNIN + " [name='dwfrm_login_login']")
+	WebElement secExistingSignIn;
+
+	@FindBy(css = "div.billing-address-form > div.billing-address-data.form-info > div > p > a")
+	WebElement lnkEdit;
+
+	@FindBy(css = "tr.order-total > td.order-value")
+	WebElement orderTotal;
+
+	@FindBy(css = "form[id='paymentSection'] div[class='order-total-cont'] span[class='value']")
+	WebElement paymentOrderTotalPrice;
+
+	@FindBy(css = "#submitOPCPayment")
+	WebElement btnPlaceOrder;
+
+	@FindBy(css = ".shipping-discounts-info")
+	WebElement freeShipping;
+
+	@FindBy(css = "select[id='dwfrm_billingaddress_country']")
+	WebElement drpBillingCountry;
+
+	@FindBy(css = "#dwfrm_billingaddress_states_state")
+	WebElement drpBillingState;
+
+	@FindBy(css = "#dwfrm_shippingaddress_states_state")
+	WebElement drpShippingState;
+
+	@FindBy(css = "select[id='dwfrm_shippingaddress_country']")
+	WebElement drpShippingCountry;
+
+	@FindBy(css = ".shipping-restrictions-popup.shipping-restrictions-popup__visible")
+	WebElement msgshippingRestriction;
+
+	@FindBy(css = "#itemno_1 > div.order-item-content > div > div.order-item-title > div.product-list-item > div > p > a")
+	WebElement Productname;
+
+	@FindBy(css = "[class='order-original-price-total'] td:nth-child(2)")
+	WebElement orgPrice;
+
+	@FindBy(css = "[class='order-sale-price-total'] td:nth-child(2)")
+	WebElement salePrice;
+
+	@FindBy(css = "[class='order-total-savings'] td:nth-child(2)")
+	WebElement couponSaving;
+
+	@FindBy(css = "[class='order-total-savings summary-savings'] td:nth-child(2)")
+	WebElement totalSaving;
+
+	@FindBy(css = ".cc-image")
+	WebElement ccImage;
+
+	@FindBy(css = "tr.order-total-savings")
+	WebElement copounExcludedTotalSavings;
+
+	@FindBy(css = "tr.order-total-savings td:nth-child(2)")
+	WebElement copounExcludedTotalSavingPriceValue;
+
+	@FindBy(css = "table[class*='order-total-savings'] tr:nth-child(1) td:nth-child(2)")
+	WebElement orgPriceValue;
+
+	@FindBy(css = ".billing-address-type-selector>span>input[value='2']")
+	WebElement radioNewAddress;
+
+	@FindBy(css = "table[class*='order-total-savings'] tr:nth-child(2) td:nth-child(2)")
+	WebElement salePriceValue;
+
+	@FindBy(css = "table[class*='order-total-savings'] tr:nth-child(3) td:nth-child(2)")
+	WebElement couponPriceValue;
+
+	@FindBy(css = "tr[class='order-total-savings']")
+	WebElement couponPresent;
+
+	@FindBy(css = "tr[class='order-total-savings summary-savings'] td:nth-child(2)")
+	WebElement totalPriceValue;
+
+	@FindBy(css = "tr.order-shipping > td:nth-child(2)")
+	WebElement shipWayValue;
+
+	@FindBy(css = "tr.order-sales-tax > td:nth-child(2)")
+	WebElement taxValue;
+
+	@FindBy(css = "table[class='order-totals-table order-totals-table-alt'] tr:nth-child(4) td:nth-child(2)")
+	WebElement subTotal;
+
+	@FindBy(css = "tr.order-shipping > td:nth-child(2)")
+	WebElement shippingPrice;
+
+	@FindBy(css = ".order-detail-summary")
+	WebElement OrderSummary;
+
+	@FindBy(css = ".item-total-price span[class='value']")
+	WebElement finalPrice;
+
+	@FindBy(css = ".order-detail-summary div[class*='cart-promox cart-promo-approaching']")
+	WebElement promotionalMessage;
+
+	@FindBy(css = ".order-shipping")
+	WebElement orderShippingMethod;
+
+	@FindBy(css = billing_Customer_ChkShippingAddress)
+	WebElement chkShippingAddress;
+
+	@FindBy(css = "label[for='dwfrm_billing_billingAddress_addToAddressBook']")
+	WebElement chkAddToAddressBook;
+
+	@FindBy(css = "label[for='dwfrm_singleshipping_shippingAddress_addToAddressBook']")
+	WebElement chkshipAddToAddressBook;
+
+	@FindBy(css = "input[id='submitBilling']")
+	WebElement btnCheckout;
+
+	@FindBy(css = "#submitShipping")
+	WebElement btnShipping;
+
+	@FindBy(css = ".order-item-image>img")
+	WebElement cartProductImage;
+
+	@FindBy(css = ".name>p>a")
+	WebElement cartProductName;
+
+	@FindBy(css = "div[class='order-item-details'] p[data-attribute='size']")
+	WebElement cartProductSize;
+
+	@FindBy(css = "div[class='order-item-details'] p[data-attribute='color']")
+	WebElement cartProductColour;
+
+	@FindBy(css = "p[class='attribute']")
+	WebElement cartProductStyle;
+
+	@FindBy(css = "p[class='item-total-price']")
+	WebElement cartProductTotalPrice;
+
+	@FindBy(css = "p[class='unadjusted-price']")
+	WebElement cartProductOriginalPrice;
+
+	@FindBy(css = "div[class='counter-widget'] input[class='input-text opc-qty field']")
+	WebElement cartProductQuantity;
+
+	@FindBy(css = ".remove")
+	WebElement cartProductRemove;
+
+	@FindBy(css = "[class*='confirmation-checkout']")
+	WebElement divCart;
+
+	@FindBy(css = ".item-total-price span[class='value']")
+	WebElement txtFinalPrice;
+
+	@FindBy(css = ".cart-promox.cart-promo-approaching")
+	WebElement promotionMessage;
+
+	@FindBy(css = "div.login-existing")
+	WebElement secExistingCustomerSignIn;
+
+	@FindBy(css = "div.guest-checkout")
+	WebElement SecSecureGuestCheckOut;
+
+	@FindBy(css = "div.form-checkout.address-section")
+	WebElement secBillingAddress;
+
+	@FindBy(css = "div[class*='shipping-address-section']")
+	WebElement secShippingAddress;
+
+	@FindBy(css = "div[class*='payment-section']")
+	WebElement secPaymentsection;
+
+	@FindBy(css = ".section-transaction-summary")
+	WebElement transactionSummarySection;
+
+	@FindBy(css = ".input-text.opc-qty.field")
+	WebElement fldcartProductQuantity;
+
+	@FindBy(css = "div [class='primary-logo mb-hidden']")
+	WebElement headerBadge;
+
+	@FindBy(css = ".confirmation-message h2")
+	WebElement lblShoppingCart;
+
+	@FindBy(css = ".section-transaction-summary .cart-footer .section-head h2")
+	WebElement lblOrderSummary;
+
+	@FindBy(css = ".ul[id='cart-table'] li ul[class='product-availability-list'] li[class='not-available']")
+	WebElement msgAdjustQtyInCartPage;
+
+	@FindBy(css = "#itemno_1 div.order-item-content div div.order-item-title div.product-list-item div p a")
+	WebElement lblProductNameCart;
+
+	@FindBy(css = "btn-expand tablet-only")
+	WebElement search;
+
+	@FindBy(css = searchField + " input[type='text']")
+	WebElement txtSearch;
+
+	@FindBy(css = "div[class*='desktop-hidden '] input[id='q']")
+	WebElement mobtxtSearch;
+
+	@FindBy(css = searchField + " button[type='submit']")
+	WebElement btnSearch;
+
+	@FindBy(css = "div[class*='desktop-hidden'] [role='search'] button[type*='submit']")
+	WebElement mobbtnSearch;
+
+	@FindBy(css = "div[class*='cart-element']")
+	WebElement cartPageElements;
+
+	@FindBy(css = "a[title='View Cart'] .fa.fa-shopping-cart")
+	WebElement mobCartIcon;
+
+	@FindBy(css = "a.btn-minicart i.fa.fa-shopping-cart")
+	WebElement cartIcon;
+
+	@FindBy(css = "#cart-items-form > div.section-order-items > div > h2 > span")
+	WebElement lblYourOrdersCount;
+
+	@FindBy(css = ".item-count.mobile-only >span")
+	WebElement moblblYourOrdersCount;
+
+	@FindBy(css = "a[href='#search']")
+	WebElement mobBtnSearch;
+
+	@FindBy(css = ".btn-minicart>span")
+	WebElement itemsInCart;
+
+	@FindBy(css = "[title='View Cart'] span")
+	WebElement mobItemsInCart;
+
+	@FindBy(css = "div.product-list-item .name>p>a")
+	WebElement lblCartProductName;
+
+	@FindBy(css = CART_PAGE + " form[id='continue-shopping']")
+	WebElement cntnueshoppingbtn;
+
+	@FindBy(css = CUSTOMER_SIGNIN + " input[id*='username']")
+	WebElement secCustomerEmailAddress;
+
+	@FindBy(css = CUSTOMER_SIGNIN + " input[id*='password']")
+	WebElement secCustomerPassword;
+
+	@FindBy(css = ".shipping-address-data.form-info")
+	WebElement shippingAddressInfo;
+
+	@FindBy(css = ".increase.plus")
+	WebElement increaseSign;
+
+	@FindBy(css = ".decrease.minus")
+	WebElement decreaseSign;
+
+	@FindBy(css = ".remove")
+	List<WebElement> btnRemove;
+
+	@FindBy(css = ".name>p>a")
+	List<WebElement> cartProductNames;
+
+	@FindBy(css = "div[class='order-item-details'] p[data-attribute='color'] span[class='value']")
+	WebElement cartProductColorName;
+
+	@FindBy(css = ".adjustment-price.coupon-savings")
+	WebElement lineItemDiscount;
+
+	@FindBy(css = "p button[name='dwfrm_cart_shipments_i0_items_i1_deleteProduct']")
+	WebElement RemoveItem;
+
+	@FindBy(css = "p[class='unadjusted-price'] span[class='value']")
+	WebElement OriginalPrice;
+
+	@FindBy(css = "p[class='sale-price'] span[class='value']")
+	WebElement SalePrice;
+
+	@FindBy(css = "p[class='adjustment-price coupon-savings'] span[class='value']")
+	WebElement Savings;
+
+	@FindBy(css = "input[id*='dwfrm_billing_paymentMethods_creditCard_cvn']")
+	WebElement txtSecurityCode;
+
+	@FindBy(css = "p[class='adjustment-price coupon-savings'] span[class='label']")
+	WebElement lbl_promotionApplied;
+
+	@FindBy(css = ".order-detail-summary .order-subtotal>td:nth-child(2)")
+	WebElement subTotalPrice;
+
+	@FindBy(css = ".no-shipping-methods")
+	WebElement noShippingMethods;
+
+	@FindBy(css = shipping_Customer_FirstName)
+	WebElement ShippingAddressFirstName;
+
+	@FindBy(css = shipping_Customer_LastName)
+	WebElement ShippingAddressLastName;
+
+	@FindBy(css = shipping_Customer_Address1)
+	WebElement shippingAddress;
+
+	@FindBy(css = shipping_Customer_City)
+	WebElement shippingAddressCity;
+
+	@FindBy(css = shipping_Customer_Phone)
+	WebElement shippingAddressPhone;
+
+	@FindBy(css = shipping_Customer_Postal)
+	WebElement shippingAddressZipcode;
+
+	@FindBy(css = ".billing-address-data")
+	WebElement billingAddressSeciton;
+
+	@FindBy(css = ".shipping-address-data")
+	WebElement shippingAddressSection;
+
+	@FindBy(css = ".form-checkout.address-section.active")
+	WebElement addBillingAddressSection;
+
+	@FindBy(css = ".form-checkout.shipping-address-section")
+	WebElement addShippingAddressSection;
+
+	@FindBy(css = ".content-asset.ca-account-nav-registered-dropdown>ul>li>a[href*='payments']")
+	WebElement lnkPaymentMethods;
+
+	@FindBy(css = "ul.account-options a[href='https://staging-web-sheplers.demandware.net/s/sheplers_us/payments']")
+	WebElement lnkMobPaymentMethods;
+
+	@FindBy(css = ".content-asset.ca-account-nav-registered-dropdown>ul>li>a[href*='addressbook']")
+	WebElement lnkAddressBook;
+
+	@FindBy(css = ".first-child.has-dropdown>a>span")
+	WebElement lnkAccount;
+
+	@FindBy(css = "a[href*='https://staging-web-sheplers.demandware.net/s/sheplers_us/profile']")
+	WebElement lnkMobAccount;
+
+	@FindBy(css = GuestCustomer_Email + " input[id*='username']")
+	WebElement GuestCustomerEmail;
+
+	@FindBy(css = ".billing-address-type-selector input[value='1']")
+	WebElement btnSavedAddress;
+
+	@FindBy(css = ".billing-address-type-selector input[value='2']")
+	WebElement btnNewAddress;
+
+	@FindBy(css = "#dwfrm_billing_addressList")
+	WebElement dropdownSavedAddress;
+
+	@FindBy(css = ".checkbox.save-addr.label-inline.form-indent label[for='shpsame']")
+	WebElement chkUseBillingAsShipping;
+
+	@FindBy(css = ".checkbox.save-addr.label-inline.form-indent label[for='newslettersignup']")
+	WebElement chkSignUpEmail;
+
+	@FindBy(css = ".shipping-address-data .edit-address-det")
+	WebElement lnkEditShipping;
+
+	@FindBy(css = ".shipping-address-type-selector input[value='1']")
+	WebElement btnShippingSavedAddress;
+
+	@FindBy(css = ".shipping-address-type-selector input[value='2']")
+	WebElement btnShippingNewAddress;
+
+	@FindBy(css = "#dwfrm_singleshipping_addressList")
+	WebElement dropdownshippingSavedAddress;
+
+	@FindBy(css = "#password-reset")
+	WebElement lnkForgetPassword;
+
+	@FindBy(css = ".primary-content")
+	WebElement resetPasswordMain;
+
+	@FindBy(css = "button[name='dwfrm_login_login']")
+	WebElement btnSignInAndCheckOut;
+
+	@FindBy(css = "span[id*='dwfrm_login_username']")
+	WebElement fieldRequiredErrorInUserName;
+
+	@FindBy(css = "span[id*='dwfrm_login_password']")
+	WebElement fieldRequiredErrorInPassword;
+
+	@FindBy(css = "#dwfrm_login_username")
+	WebElement txtGuestEmailId;
+
+	@FindBy(css = ".guest-checkout #guestCheckout")
+	WebElement btnGuestCheckout;
+
+	@FindBy(css = "span[id*='dwfrm_login_username']")
+	WebElement errorInvalidEmail;
+
+	@FindBy(css = ".login-notification.error")
+	WebElement errorMismatch;
+
+	@FindBy(css = "span[id*='dwfrm_billing_paymentMethods_creditCard_owner']")
+	WebElement errorFieldInPaymentName;
+
+	@FindBy(css = "span[id*='dwfrm_billing_paymentMethods_creditCard_number']")
+	WebElement errorFieldInCardNumber;
+
+	@FindBy(css = "span[id*='dwfrm_billing_paymentMethods_creditCard_cvn']")
+	WebElement errorFieldInCVN;
+
+	@FindBy(css = "span[id*='dwfrm_billing_paymentMethods_creditCard_month']")
+	WebElement errorFieldInExpiryMonth;
+
+	@FindBy(css = "span[id*='dwfrm_billing_paymentMethods_creditCard_year']")
+	WebElement errorFieldInExpiryYear;
+
+	@FindBy(css = "select[name*='creditCardList']")
+	WebElement paymentDropDowmSavedCards;
+
+	@FindBy(css = "label[for*='saveCard']")
+	WebElement btnSaveCard;
+
+	@FindBy(css = "#errorBoxOPC")
+	WebElement errorInPaymentSection;
+
+	@FindBy(css = ".mini-cart-link .fa.fa-shopping-cart")
+	WebElement btnmobCartIcon;
+
+	@FindBy(css = "a[title='My Account']")
+	WebElement btnMyAccount;
+
+	@FindBy(css = ".account-options li:nth-child(2) h2")
+	WebElement AddressBookLink;
+
+	@FindBy(css = "div.form-checkout.address-section > div > h2")
+	WebElement concealedBillingAddress;
+
+	@FindBy(css = "div.form-checkout.shipping-address-section > div > h2")
+	WebElement concealedShippingAddress;
+
+	@FindBy(css = "div.form-checkout.payment-section > div > h2")
+	WebElement concealedPayment;
+
+	@FindBy(css = "div.shipping-payment-cont > div.content-asset.ca-cart-badges > ul li")
+	WebElement SecurityBadges;
+
+	@FindBy(css = "div.form-checkout.address-section.active")
+	WebElement billingForm;
+	
+	@FindBy(css = "div.form-checkout.shipping-address-section.active")
+	WebElement shippingForm;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Cart Page - Ends ****************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 *
+	 */
+	public CartPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, divCart))) {
+			Log.fail("Cart page did not open up.", driver);
+		}
+
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+		homePage = new HomePage(driver);
+		pdpPage = new PdpPage(driver);
+		clsPage = new CategoryLandingPage(driver);
+		gridPage = new CategoryGridPage(driver);
+		searchPage = new SearchResultPage(driver);
+		brandsPage = new BrandsPage(driver);
+	}// isLoaded
+
+	@Override
+	protected void load() {
+
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}// load
+
+	/**
+	 * Verify cart page is displayed
+	 * 
+	 * @return true
+	 */
+	public Boolean verifyCartPage() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+		if (elementLayer.existsElement(divCart)) {
+			returntype = true;
+		}
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Sign in into customer signin section
+	 * 
+	 * @param emailId
+	 * @param password
+	 * @return void after signing into account
+	 * @throws Exception
+	 */
+	public void signInToMyAccountInExistingCustomerSignIn(String emailId,
+			String password) throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.typeOnTextField(secExistingUserName, emailId, driver,
+				"Email id");
+		BrowserActions.typeOnTextField(secExistingPassword, password, driver,
+				"Password");
+		BrowserActions.clickOnElement(secExistingSignIn, driver, "Login");
+		Log.event("Clicked 'Login' button on SignIn page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * TO get text from Billing Section
+	 * 
+	 * @return String name after getting text from Billing Address Section
+	 * @throws Exception
+	 */
+	public String getBillingAddressText() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver.findElement(By
+				.cssSelector("[id='editprofile'] .address-details-st>div"));
+		String name = BrowserActions.getText(driver, e, "Billing address text");
+		Log.event("to get text from billing section",
+				StopWatch.elapsedTime(startTime));
+		return name;
+	}
+
+	/**
+	 * Insert Quantity Value in Product Quantity
+	 * 
+	 * @param quantity
+	 * @return String quantity after checking inserted quantity
+	 * @throws Exception
+	 */
+	public String checkInsertedQuantityValue(String quantity) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		fldcartProductQuantity.clear();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.typeOnTextField(fldcartProductQuantity, quantity,
+				driver, "quantity field");
+		fldcartProductQuantity.submit();
+		Log.event("Inserted Quantity Value in Product Quantity",
+				StopWatch.elapsedTime(startTime));
+		return quantity;
+	}
+
+	/**
+	 * Gets default quantity in QTY field
+	 * 
+	 * @return String of cart quantity
+	 * @throws Exception
+	 */
+	public String CartQuantity() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String QtyOfProduct = BrowserActions.getTextFromAttribute(driver,
+				fldcartProductQuantity, "value", " Product quantity");
+		Log.event("Fetching Product quantity from Cart page",
+				StopWatch.elapsedTime(startTime));
+		return QtyOfProduct;
+	}
+
+	/**
+	 * Clicking the Product Name in Cart Page
+	 * 
+	 * @return after clicking product name
+	 * @param productName
+	 */
+	public void clickProductname(String productName) {
+		if (cartProductNames != null) {
+			for (int count = 1; count <= cartProductNames.size(); count++) {
+				String ExpectedName = cartProductNames.get(count).getText();
+				if (ExpectedName.contains(productName)) {
+					cartProductNames.get(count).click();
+					break;
+				}
+			}
+			Utils.waitForPageLoad(driver);
+		} else {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Verifying Color with Expected color
+	 * 
+	 * @param expectedColor
+	 * @return Boolean by Matching Color
+	 */
+	public boolean VerifyColor(String expectedColor) {
+		final long startTime = StopWatch.startTime();
+		boolean check = true;
+		if (cartProductColorName.getText().equalsIgnoreCase(expectedColor)) {
+			Log.event("Veirfy Color in Cart page",
+					StopWatch.elapsedTime(startTime));
+			return check;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * To Click the Cart Icon
+	 * 
+	 * @return CartPage after clicking cart icon
+	 * @throws Exception
+	 */
+	public CartPage clickOnCartIcon() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(1);
+		if (runPlatForm == "mobile") {
+			BrowserActions.javascriptClick(mobCartIcon, driver, "Cart Icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(cartIcon, driver, "Cart Icon");
+		}
+		Log.event("Item added to Bag", StopWatch.elapsedTime(startTime));
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * To click on International orders link
+	 * 
+	 * @returns true after clicking on International orders link
+	 * @throws Exception
+	 */
+	public Boolean clickOnInternationalOrdersLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		Boolean returnype = false;
+		lnkInternationalOrders.click();
+		if (driver.findElement(By.cssSelector("#internationalinfo"))
+				.isDisplayed()) {
+			returnype = true;
+		}
+		Log.event("Check International Orders Instructions in Cart page",
+				StopWatch.elapsedTime(startTime));
+		return returnype;
+	}
+
+	/**
+	 * To check promotion message for products less than $100
+	 * 
+	 * @return boolean - if item price lesser than $100
+	 * @throws Exception
+	 */
+	public Boolean CheckPromotionMessageForItemPriceLesserThan$100()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returnype = false;
+		try {
+			String price = txtFinalPrice.getText().replace("$", "");
+			float finalPrice = Float.parseFloat(price);
+			if (finalPrice < 100.0 && promotionMessage.isDisplayed()) {
+				returnype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Check promotion message in Cart page");
+		}
+		Log.event("Check promotion message in Cart page",
+				StopWatch.elapsedTime(startTime));
+		return returnype;
+	}
+
+	/**
+	 * To check promotion message for products greater than $100
+	 * 
+	 * @return boolean - if item price greater than $100
+	 * @throws Exception
+	 */
+	public Boolean CheckPromotionMessageForItemPriceGreaterThan$100()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returnype = false;
+		try {
+			WebElement e = driver.findElement(By
+					.cssSelector(".price-section.order-item-price"));
+
+			String OrgPrice = e
+					.findElement(
+							By.cssSelector("p[class='unadjusted-price'] span[class='value']"))
+					.getText().replace("$", "").replace(",", "");
+			float OriginalPrice = Float.parseFloat(OrgPrice);
+
+			String salPrice = e
+					.findElement(
+							By.cssSelector(".sale-price span[class='value']"))
+					.getText().replace("-$", "").replace(",", "");
+			float salePrice = Float.parseFloat(salPrice);
+
+			double price = OriginalPrice - salePrice;
+			double price1 = (Math.round(price * 100.0) / 100.0);
+
+			if (price1 > 100.0) {
+				if (!(elementLayer.existsElement(promotionMessage))) {
+					returnype = true;
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Check promotion message in Cart page");
+		}
+		Log.event("Check promotion message in Cart page",
+				StopWatch.elapsedTime(startTime));
+		return returnype;
+	}
+
+	/**
+	 * To check promotion message by increasing quantity
+	 * 
+	 * @return boolean - if promotion message gets updated correctly
+	 */
+	public Boolean CheckPromotionMessageByincreasingQuantityUntilItemPriceGreaterThan$100() {
+		final long startTime = StopWatch.startTime();
+		Boolean returnype = false;
+
+		for (int count = 1; count <= 15; count++) {
+			increaseSign.click();
+			BrowserActions.nap(1);
+
+			String price = driver
+					.findElement(
+							By.cssSelector(".item-total-price span[class='value']"))
+					.getText().replace("$", "");
+			float finalPrice = Float.parseFloat(price);
+
+			if (finalPrice > 100.0) {
+				if (!(elementLayer.existsElement(promotionMessage))) {
+					returnype = true;
+					break;
+				}
+			}
+		}
+		Log.event(
+				"Check promotion message by increasing quantity in Cart page",
+				StopWatch.elapsedTime(startTime));
+		return returnype;
+
+	}
+
+	/**
+	 * To Check promotion message is not displayed for coupon excluded products
+	 * in Cart page
+	 * 
+	 * @return boolean - if promotion message is not displayed
+	 * @throws Exception
+	 */
+	public Boolean CheckPromotionsForCouponExcludedProductsInCartPage()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returnype = false;
+		try {
+			if (!(elementLayer.existsElement(lineItemDiscount))) {
+				returnype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Check promotion message is not displayed for"
+					+ "coupon excluded products in Cart page");
+		}
+		Log.event("Check promotion message is not displayed for"
+				+ "coupon excluded products in Cart page",
+				StopWatch.elapsedTime(startTime));
+		return returnype;
+	}
+
+	/**
+	 * Increase the Quantity Option
+	 * 
+	 * @return Integer Of Quantity
+	 * @throws Exception
+	 */
+	public int clickIncreaseOption() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> list = driver
+				.findElements(By
+						.cssSelector("#cart-table li[id*='itemno'] .counter-widget a[class*='increase plus']"));
+
+		BrowserActions.clickOnElement(list.get(0), driver, "+ sign of Qty");
+		Utils.waitForPageLoad(driver);
+		Log.event("increasing product quantity",
+				StopWatch.elapsedTime(startTime));
+		return multipleItemCount();
+	}
+
+	/**
+	 * To Verify the Quanity in Cart Page
+	 * 
+	 * @param expectedQty
+	 * @return boolean by verifying quantity matching
+	 */
+	public boolean VerifyQunatity(Integer expectedQty) {
+		boolean check = true;
+		int QtyOfProduct = Integer.parseInt(cartProductQuantity
+				.getAttribute("value"));
+		if (QtyOfProduct == expectedQty) {
+			return check;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Clicking on Payment Methods link
+	 * 
+	 * @returns PaymentMethodsPage after navigating to Payment Methods Page
+	 * @throws Exception
+	 */
+	public PaymentMethodsPage NavigateToPaymentMethodsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+
+			WebElement element = driver.findElement(By
+					.cssSelector("[href*='/s/sheplers_us/account'] span"));
+			BrowserActions.mouseHover(driver, element);
+			BrowserActions.clickOnElement(lnkPaymentMethods, driver,
+					"Payment Methods link is clicked");
+		}
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(lnkMobPaymentMethods, driver,
+					"Payment Methods link is clicked");
+		}
+
+		Utils.waitForPageLoad(driver);
+		Log.event("navigates to Payment Methods Page!",
+				StopWatch.elapsedTime(startTime));
+		return new PaymentMethodsPage(driver).get();
+	}
+
+	/**
+	 * Clicking on My Profile Link
+	 * 
+	 * @returns MyAccountPage after navigating to My Account Page
+	 * @throws Exception
+	 */
+	public MyAccountPage navigateTomyAccountPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		WebElement e = driver.findElement(By
+				.cssSelector("[href*='/s/sheplers_us/account'] span"));
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(e, driver, "Clicked on name link");
+		}
+
+		Utils.waitForPageLoad(driver);
+		Log.event(" Navigates to MyAccount Page !",
+				StopWatch.elapsedTime(startTime));
+		return new MyAccountPage(driver).get();
+	}
+
+	/**
+	 * Verify final price is displayed in cart page
+	 * 
+	 * @return Boolean Value
+	 */
+	public Boolean verifyFinalPriceForSeePriceInCheckOutProductsIncartPage() {
+		Boolean returnype = false;
+		final long startTime = StopWatch.startTime();
+		if (driver.findElement(By.cssSelector(".item-total-price"))
+				.isDisplayed()) {
+			returnype = true;
+		}
+		Log.event("Check Final Price in Cart page",
+				StopWatch.elapsedTime(startTime));
+		return returnype;
+	}
+
+	/**
+	 * Clicking Decrease Quantity option
+	 * 
+	 * @return Integer of Quantity
+	 * @throws Exception
+	 */
+	public int clickDecreaseOption() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		Utils.waitForPageLoad(driver);
+		List<WebElement> list = driver
+				.findElements(By
+						.cssSelector("#cart-table li[id*='itemno'] .counter-widget a[class*='decrease minus']"));
+
+		BrowserActions.clickOnElement(list.get(0), driver, "- sign of Qty");
+		Utils.waitForPageLoad(driver);
+		Log.event("decreasing product quantity",
+				StopWatch.elapsedTime(startTime));
+		return multipleItemCount();
+	}
+
+	/**
+	 * To get item count in 'YourOrders' pane
+	 * 
+	 * @return Integer from Your Order pane
+	 */
+	public Integer getItemCountInYourOrdersPane() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String itemCount = null;
+		if (runPlatForm == "desktop") {
+			itemCount = BrowserActions.trimNumber(lblYourOrdersCount.getText());
+		}
+		if (runPlatForm == "mobile") {
+			itemCount = BrowserActions.trimNumber(moblblYourOrdersCount.getText());
+		}
+		int count = Integer.parseInt(itemCount);
+		Log.event(" Item Count " + count, StopWatch.elapsedTime(startTime));
+		return count;
+	}
+
+	/**
+	 * To gets the count of items besides the products in cart page
+	 * 
+	 * @return Integer of the Item Count
+	 * @throws Exception
+	 */
+	public Integer multipleItemCount() throws Exception {
+		final long startTime = StopWatch.startTime();
+		int totalValue = 0;
+		List<WebElement> list = driver.findElements(By
+				.cssSelector(".input-text.opc-qty.field"));
+		for (WebElement element : list) {
+			String value = BrowserActions.getTextFromAttribute(driver, element,
+					"value", "value");
+			int a = Integer.parseInt(value);
+			totalValue = totalValue + a;
+		}
+		Log.event(" Item Count " + totalValue, StopWatch.elapsedTime(startTime));
+		return totalValue;
+	}
+
+	/**
+	 * Verify sub total in order summary section
+	 * 
+	 * @return expectedPrice
+	 */
+
+	public String verifyTheSubTotalInCartPage() {
+		final long startTime = StopWatch.startTime();
+		String[] strsubtotal = null;
+		String subtotal = "";
+		String subTotalvalue = "";
+
+		WebElement OriginalPrice = driver
+				.findElement(By
+						.cssSelector("tr.order-original-price-total > td:nth-child(2)"));
+		String Originalprice = OriginalPrice.getText().replace("$", "")
+				.replace(",", "");
+		float orgprice = Float.parseFloat(Originalprice);
+		double orgPrice = Math.round(orgprice * 100.0) / 100.0;
+
+		if (OrderSummary.getText().contains("20% Savings")
+				&& !(OrderSummary.getText().contains("Sale Savings:"))) {
+			String coupPrice = couponSaving.getText().replace("-$", "")
+					.replace(",", "");
+			float couponPrice = Float.parseFloat(coupPrice);
+			double coupon = Math.round(couponPrice * 100.0) / 100.0;
+			Utils.waitForPageLoad(driver, 30);
+
+			double subTotal = orgPrice - coupon;
+			subtotal = Double.toString(subTotal);
+		}
+
+		if (OrderSummary.getText().contains("20% Savings")
+				&& OrderSummary.getText().contains("Sale Savings:")) {
+			String salPrice = salePrice.getText().replace("-$", "")
+					.replace(",", "");
+			String coupPrice = couponSaving.getText().replace("-$", "")
+					.replace(",", "");
+			float salePrice = Float.parseFloat(salPrice);
+			float couponPrice = Float.parseFloat(coupPrice);
+			float totSaving = salePrice + couponPrice;
+			double totalSaving = Math.round(totSaving * 100.0) / 100.0;
+
+			double subTotal = orgPrice - totalSaving;
+			subtotal = Double.toString(subTotal);
+
+		}
+		if (!OrderSummary.getText().contains("20% Savings")
+				&& (OrderSummary.getText().contains("Sale Savings:"))) {
+			String salPrice = salePrice.getText().replace("-$", "")
+					.replace(",", "");
+			float salePrice = Float.parseFloat(salPrice);
+			double sale = Math.round(salePrice * 100.0) / 100.0;
+
+			double subTotal = orgPrice - sale;
+			subtotal = Double.toString(subTotal);
+
+		}
+
+		if (!OrderSummary.getText().contains("20% Savings")
+				&& !(OrderSummary.getText().contains("Sale Savings:"))) {
+			subtotal = Double.toString(orgPrice);
+		}
+		strsubtotal = subtotal.split("\\.");
+		subTotalvalue = strsubtotal[0];
+
+		Log.event(" Verifying subTotal ", StopWatch.elapsedTime(startTime));
+		return subTotalvalue;
+
+	}
+
+	/**
+	 * Final Price Verifying in cart page
+	 * 
+	 * @return String-value1 from Cart Page
+	 * @throws Exception
+	 */
+	public String FinalPriceInCartPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		String str1[] = null;
+		String value1 = "";
+		double value = 0;
+		double ref = 0;
+		double savings = 0;
+		double savings1 = 0;
+		double temp = 0;
+
+		List<WebElement> list = driver.findElements(By
+				.cssSelector(".price-section.order-item-price"));
+
+		for (WebElement e : list) {
+			if (e.getText().contains("20% Savings")) {
+
+				String OrgPrice = e
+						.findElement(
+								By.cssSelector("p[class='unadjusted-price'] span[class='value']"))
+						.getText().replace("$", "").replace(",", "");
+				float OriginalPrice = Float.parseFloat(OrgPrice);
+
+				String salPrice = e
+						.findElement(
+								By.cssSelector(".sale-price span[class='value']"))
+						.getText().replace("-$", "").replace(",", "");
+				float salePrice = Float.parseFloat(salPrice);
+
+				float price = OriginalPrice - salePrice;
+				double price1 = (Math.round(price * 100.0) / 100.0);
+				temp = temp + price1;
+				ref = ref + price1;
+
+				String Promo = e
+						.findElement(
+								By.cssSelector(".adjustment-price.coupon-savings span[class='value']"))
+						.getText().replace("-$", "").replace(",", "");
+				float Promotion = Float.parseFloat(Promo);
+				savings = savings + Promotion;
+				savings1 = (Math.round(savings * 100.0) / 100.0);
+
+			}
+
+			if ((e.getText().contains("Original Price:"))
+					&& (e.getText().contains("Sale Savings:"))
+					&& (!(e.getText().contains("20% Savings")))) {
+
+				String OrgPrice = e
+						.findElement(
+								By.cssSelector("p[class='unadjusted-price'] span[class='value']"))
+						.getText().replace("$", "").replace(",", "");
+				float OriginalPrice = Float.parseFloat(OrgPrice);
+
+				String salPrice = e
+						.findElement(
+								By.cssSelector(".sale-price span[class='value']"))
+						.getText().replace("-$", "").replace(",", "");
+				float salePrice = Float.parseFloat(salPrice);
+
+				float price = OriginalPrice - salePrice;
+				double price1 = (Math.round(price * 100.0) / 100.0);
+				ref = ref + price1;
+			}
+
+			if ((e.getText().contains("Original Price:"))
+					&& (!(e.getText().contains("Sale Savings:")))
+					&& (!(e.getText().contains("20% Savings")))) {
+
+				String OrgPrice = e
+						.findElement(
+								By.cssSelector("p[class='unadjusted-price'] span[class='value']"))
+						.getText().replace("$", "").replace(",", "");
+				float OriginalPrice = Float.parseFloat(OrgPrice);
+				ref = ref + OriginalPrice;
+
+			}
+
+			if ((e.getText().contains("Original Price:"))
+					&& ((e.getText().contains("Final Price:"))
+							&& (!(e.getText().contains("Sale Savings:"))) && (!(e
+								.getText().contains("20% Savings"))))) {
+
+				String finPrice = e
+						.findElement(
+								By.cssSelector(".item-total-price span[class='value']"))
+						.getText().replace("$", "").replace(",", "");
+				float finalPrice = Float.parseFloat(finPrice);
+				ref = ref + finalPrice;
+			}
+		}
+
+		if (temp > 100.0) {
+			value = (Math.round((ref - savings1) * 100.0) / 100.0);
+		} else {
+			value = (Math.round((ref) * 100.0) / 100.0);
+		}
+		String str = Double.toString(value);
+		str1 = str.split("\\.");
+		value1 = str1[0];
+		Log.event(" Verifying Final price  ", StopWatch.elapsedTime(startTime));
+		return value1;
+	}
+
+	/**
+	 * To get the order total value
+	 * 
+	 * @return String - orderTotalValue
+	 */
+
+	public String getOrderTotalPrice() {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		String orderTotalValue = orderTotal.getText();
+		Log.event("Retured Order Total value from cart Page",
+				StopWatch.elapsedTime(startTime));
+		return orderTotalValue;
+	}
+
+	/**
+	 * To verify whether the Items count gets updated based on the Removed item
+	 * 
+	 * @returns Integer cart count
+	 * @throws Exception
+	 */
+	public Integer checkItemCountRemovingItem() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> list = driver.findElements(By
+				.cssSelector(".input-text.opc-qty.field"));
+		List<WebElement> removeList = driver.findElements(By
+				.cssSelector("[id='cart-table'] .remove"));
+		Utils.waitForPageLoad(driver);
+		String value = BrowserActions.getTextFromAttribute(driver, list.get(0),
+				"value", "value");
+		int itemCount = Integer.parseInt(value);
+		BrowserActions.clickOnElement(removeList.get(0), driver,
+				"remove button");
+		BrowserActions.nap(2);
+		Log.event(" Item Count ", StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(5);
+		return itemCount;
+	}
+
+	/**
+	 * To get Product name from Cart page
+	 * 
+	 * @return String txtProductName
+	 * @throws Exception
+	 */
+	public String getProductNameCart() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtProductName = BrowserActions.getText(driver,
+				lblProductNameCart, "Product Name in Cart");
+		Log.event("Fetching Product name from Cart page",
+				StopWatch.elapsedTime(startTime));
+		return txtProductName;
+	}
+
+	/**
+	 * To search single ProductKeyword
+	 * 
+	 * @param textToSearch
+	 * @return PdpPage after searching a single product
+	 * @throws Exception
+	 */
+	public PdpPage searchsingleProductKeyword(String textToSearch)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			expandsearch();
+			BrowserActions.typeOnTextField(mobtxtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(mobbtnSearch, driver,
+					"Click on the search icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(btnSearch, driver,
+					"Click on the search icon");
+		}
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To check product InCart
+	 * 
+	 * @param searchKey
+	 * @return boolean - if the product is present in cart
+	 * @throws Exception
+	 */
+	public Boolean checkproductInCart(String searchKey) throws Exception {
+		PdpPage Pdppage = searchsingleProductKeyword(searchKey);
+		Pdppage.selectSize();
+		String prodNamePdp = Pdppage.getProductName();
+		Utils.waitForElement(driver, headers.addToCart);
+		headers.addToCart();
+		Utils.waitForElement(driver, lblCartProductName);
+		String txtProductName = BrowserActions.getText(driver,
+				lblCartProductName, "CartProduct Name").trim();
+		if (prodNamePdp.contains(txtProductName)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * To Expand the search icon(mobile)
+	 * 
+	 * @throws Exception
+	 */
+	public void expandsearch() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobBtnSearch, driver,
+				"Expanding the search toggle");
+		Log.event("clicked on the search toggle!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Click on the 'Continue shopping' button from cart Page
+	 * 
+	 * @return HomePage after clicking on Continue shopping
+	 * @throws Exception
+	 */
+	public HomePage verifyCntueShoppingBtnInCartPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (cntnueshoppingbtn.isDisplayed()) {
+			BrowserActions.clickOnElement(cntnueshoppingbtn, driver,
+					"Continue Shopping");
+			Utils.waitForPageLoad(driver);
+		}
+		Log.event("Verifying Continue shopping Button in cartPage",
+				StopWatch.elapsedTime(startTime));
+		return new HomePage(driver).get();
+	}
+
+	/**
+	 * Get back to home page from cart page by clicking on Sheplers Logo
+	 * 
+	 * @return HomePage after clicking on Sheplers Logo
+	 * @throws Exception
+	 */
+
+	public HomePage ClickonSheplersLogo() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (headerBadge.isDisplayed()) {
+			BrowserActions.clickOnElement(headerBadge, driver, "Sheplers logo");
+			Utils.waitForPageLoad(driver);
+		}
+		Log.event("click on sheplers Logo", StopWatch.elapsedTime(startTime));
+		return new HomePage(driver).get();
+	}
+
+	/**
+	 * Item Count In cart
+	 * 
+	 * @return String - cart item count
+	 * @throws Exception
+	 */
+	public String isCorrectCountOfItemsDisplayedIncart() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String Cartitems = BrowserActions.getText(driver, itemsInCart,
+				"ItemsInCart");
+		Log.event("Item Count In cart", StopWatch.elapsedTime(startTime));
+		return Cartitems;
+	}
+
+	/**
+	 * To select the country from billing section
+	 * 
+	 * @param Country
+	 * @return String - selected country from the billing section
+	 * @throws Exception
+	 */
+	public String billingselectCountry(String Country) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(billingForm, driver);
+		}
+
+		BrowserActions.clickOnElement(drpBillingCountry, driver,
+				"Clicked on the COUNTRY drop down");
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("select[id='dwfrm_billingaddress_country'] option[label='"
+								+ Country + "']"));
+		e.click();
+
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the country from Billing section",
+				StopWatch.elapsedTime(startTime));
+		return Country;
+	}
+
+	/**
+	 * To Select state from the billing section
+	 * 
+	 * @param state
+	 * @return String - selected state from the billing section section
+	 * @throws Exception
+	 */
+	public String billingselectState(String state) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(drpBillingCountry, driver);
+		}
+
+		BrowserActions.clickOnElement(drpBillingState, driver,
+				"Clicked on the STATE drop down");
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("select[id='dwfrm_billingaddress_states_state'] option[label='"
+								+ state + "']"));
+		e.click();
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the country from Billing section",
+				StopWatch.elapsedTime(startTime));
+		return state;
+
+	}
+
+	/**
+	 * To select the country via drop down from the shipping section
+	 * 
+	 * @param Country
+	 * @return String - selected country from the shipping section
+	 * @throws Exception
+	 */
+	public String shippingSelectCountry(String Country) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(shippingForm, driver);
+		}
+
+		BrowserActions.clickOnElement(drpShippingCountry, driver,
+				"Clicked on the Country field drop down");
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("select[id='dwfrm_shippingaddress_country'] option[label='"
+								+ Country + "']"));
+		e.click();
+
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the country from Shipping section",
+				StopWatch.elapsedTime(startTime));
+		return Country;
+	}
+
+	/**
+	 * To Select the state from the Shipping section
+	 * 
+	 * @param state
+	 * @return String - selected state from the Shipping section
+	 * @throws Exception
+	 */
+	public String shippingSelectState(String state) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(drpShippingCountry, driver);
+		}
+
+		BrowserActions.clickOnElement(drpShippingState, driver,
+				"Clicked on the state drop down");
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("select[id='dwfrm_shippingaddress_states_state'] option[label='"
+								+ state + "']"));
+		e.click();
+		Utils.waitForPageLoad(driver);
+		Log.event("Selected the State from Shipping section",
+				StopWatch.elapsedTime(startTime));
+		return state;
+
+	}
+
+	/**
+	 * Enter the Billing address in the Cart Page
+	 * 
+	 * @return void after details entered
+	 * @param BillingAddressDetails
+	 * @throws Exception
+	 */
+	public void enterBillingAddress(
+			LinkedHashMap<String, String> BillingAddressDetails)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BillingAddressDetails.put(
+				"type_FirstName_" + BillingAddressDetails.get("firstname"),
+				billing_Customer_FirstName);
+		BillingAddressDetails.put(
+				"type_lastname_" + BillingAddressDetails.get("lastname"),
+				billing_Customer_LastName);
+		BillingAddressDetails
+				.put("type_address1_"
+						+ BillingAddressDetails.get("Billing address"),
+						billing_Customer_Address1);
+		BillingAddressDetails.put(
+				"type_city_" + BillingAddressDetails.get("Billing City"),
+				billing_Customer_City);
+		BillingAddressDetails.put(
+				"type_postalcode_"
+						+ BillingAddressDetails.get("Billing zipcode"),
+				billing_Customer_Postal);
+		BillingAddressDetails.put(
+				"type_phone_" + BillingAddressDetails.get("phone"),
+				billing_Customer_Phone);
+
+		BillingAddressDetails.put(
+				"type_email_" + BillingAddressDetails.get("email"),
+				billing_Customer_Email);
+		/*
+		 * BillingAddressDetails.put( "type_confirmemail_" +
+		 * BillingAddressDetails.get("confirmemail"),
+		 * billing_Customer_ConfirmEmail);
+		 */
+
+		AccountUtils.doAccountOperations(BillingAddressDetails, driver);
+		Log.event("Billing address information is entered",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+
+	}
+
+	/**
+	 * Enter the Shipping address in the Cart Page
+	 * 
+	 * @return void after shipping details entered
+	 * @param BillingAddressDetails
+	 * @throws Exception
+	 */
+	public void enterShippingAddress(
+			LinkedHashMap<String, String> ShippingAddressDetails)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		ShippingAddressDetails.put(
+				"type_FirstName_" + ShippingAddressDetails.get("firstname"),
+				shipping_Customer_FirstName);
+		ShippingAddressDetails.put(
+				"type_lastname_" + ShippingAddressDetails.get("lastname"),
+				shipping_Customer_LastName);
+		ShippingAddressDetails.put(
+				"type_address1_"
+						+ ShippingAddressDetails.get("Shipping Address"),
+				shipping_Customer_Address1);
+		ShippingAddressDetails.put(
+				"type_city_" + ShippingAddressDetails.get("Shipping city"),
+				shipping_Customer_City);
+		ShippingAddressDetails.put(
+				"type_postalcode_"
+						+ ShippingAddressDetails.get("Shipping Zipcode"),
+				shipping_Customer_Postal);
+		ShippingAddressDetails.put(
+				"type_phone_" + ShippingAddressDetails.get("phone"),
+				shipping_Customer_Phone);
+		AccountUtils.doAccountOperations(ShippingAddressDetails, driver);
+		Log.event("Billing address information is entered",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To Enter Payment Details in Cart Page
+	 * 
+	 * @return void after payment details entered
+	 * @param paymentDetails
+	 * @throws Exception
+	 * 
+	 */
+	public void enterPaymentDetails(LinkedHashMap<String, String> paymentDetails)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		LinkedHashMap<String, String> paymentDetails1 = new LinkedHashMap<String, String>();
+		paymentDetails1.put(
+				"type_FirstName_" + paymentDetails.get("firstname"),
+				shipping_Customer_CardOwner);
+		paymentDetails1.put(
+				"type_cardNumber_" + paymentDetails.get("cardNumber"),
+				shipping_Customer_CardNumber);
+		paymentDetails1.put(
+				"type_securityCode_" + paymentDetails.get("securityCode"),
+				shipping_Customer_CardSecurityCode);
+		paymentDetails1.put(
+				"select_Expiry Month_" + paymentDetails.get("expireMonth"),
+				shipping_Customer_CardExpiryMonth);
+		paymentDetails1.put(
+				"select_ExpiryYear_" + paymentDetails.get("expiryYear"),
+				shipping_Customer_CardExpiryYear);
+		AccountUtils.doAccountOperations(paymentDetails1, driver);
+		Log.event("Payment information is entered",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * changing Quantity value in cart page
+	 * 
+	 * @return Boolean - if page loaded properly
+	 */
+	public Boolean adjustQtyInCartPage() {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> list = driver.findElements(By
+				.cssSelector(".order-item-title .item-quantity-details ul li"));
+
+		for (WebElement item : list) {
+
+			if (elementLayer.existsElement(item.findElement(By
+					.cssSelector("[class='not-available']")))) {
+
+				Log.message("msgAdjustQtyInCartPage.getText()"
+						+ item.findElement(
+								By.cssSelector("[class='not-available']"))
+								.getText());
+
+				while (!(Utils
+						.waitUntilElementDisappear(driver, item.findElement(By
+								.cssSelector("[class='not-available']"))))) {
+					decreaseSign.click();
+
+				}
+			}
+		}
+		Log.event("Chnaging Quanity in cart Page",
+				StopWatch.elapsedTime(startTime));
+		return isPageLoaded;
+	}
+
+	/**
+	 * verifying Order total with Payment Total
+	 * 
+	 * @return boolean - if order total matches
+	 * @throws Exception
+	 */
+	public boolean verifyOrdertotalWithPayment() throws Exception {
+		Boolean OrderTotalMatched = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			String orderTotalValue = orderTotal.getText().replace("$", "");
+			String PaymentTotal = paymentOrderTotalPrice.getText().replace("$",
+					"");
+
+			if (orderTotalValue.equals(PaymentTotal)) {
+				OrderTotalMatched = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("verify the ordertotal price with Payment Total");
+		}
+		Log.event("verify the ordertotal price with Payment Total",
+				StopWatch.elapsedTime(startTime));
+		return OrderTotalMatched;
+	}
+
+	/**
+	 * To Click the 'Use same as billing address' check box
+	 * 
+	 * @return true - when Billing Address CheckBox unchecked
+	 * @throws Exception
+	 */
+	public boolean UncheckUseBillingAddressCheckBox() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(chkShippingAddress, driver,
+				"Clicked on the Use same billing address checkbox");
+		Log.event("Use same billing address checkbox!",
+				StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * click on 'Proceed to checkout' button
+	 * 
+	 * @return true after click proceed to checkout
+	 * @throws Exception
+	 */
+	public boolean clckProceedToCheckout() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.nap(2);
+		BrowserActions.javascriptClick(btnCheckout, driver,
+				"Clicked on Proceed to Checkout button");
+		//BrowserActions.nap(40);
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked proceed to check out!",
+				StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * Click proceed to Payment
+	 * 
+	 * @return true after clicking proceed to payment
+	 * @throws Exception
+	 */
+	public boolean clckProceedToPayment() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(btnShipping, driver,
+				"Clicked on the Proceed to payment button");
+		//BrowserActions.nap(40);
+		Log.event("Proceed to payment button!",
+				StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * Verify the shipping text value
+	 * 
+	 * @return boolean true when shipping text value verified
+	 * @throws Exception
+	 */
+	public boolean verifyFreeTextInFreeshipping() throws Exception {
+		boolean freeShippingValue = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			if (freeShipping.getText().contains("FREE")) {
+				if (shipWayValue.getText().contains("FREE")) {
+					freeShippingValue = true;
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("verify the Free text is include in the Shipping method");
+		}
+		Log.event("verify the Free text is include in the Shipping method",
+				StopWatch.elapsedTime(startTime));
+		return freeShippingValue;
+	}
+
+	/**
+	 * Product name text
+	 * 
+	 * @return String product after checking product in cart page
+	 * @throws Exception
+	 */
+	public String CheckProductInCartPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String product = BrowserActions.getText(driver, Productname,
+				"product name");
+		Log.event("Product Name in cart page", StopWatch.elapsedTime(startTime));
+		return product;
+	}
+
+	/**
+	 * To click on Cart Link
+	 * 
+	 * @return cartpage after clicking on Cart Link
+	 * @throws Exception
+	 */
+	public CartPage clickOnCartLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(itemsInCart, driver, "ADD TO CART");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions
+					.clickOnElement(mobItemsInCart, driver, "ADD TO CART");
+		}
+
+		Log.event("Item added to Bag", StopWatch.elapsedTime(startTime));
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * To get cart quantity value
+	 * 
+	 * @return Quantity Value
+	 * @throws Exception
+	 */
+	public int cartQuantity() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String IntialQuantity = itemsInCart.getText().toString();
+		int QuantityValue = Integer.parseInt(IntialQuantity.replaceAll(
+				"[^0-9]", ""));
+		Log.event("cart quantity value", StopWatch.elapsedTime(startTime));
+		return QuantityValue;
+	}
+
+	/**
+	 * To verify item after updating quantity
+	 * 
+	 * @param NewQunatity
+	 * @return Verified or not condition checked
+	 * @throws Exception
+	 */
+	public boolean verifyItem(Integer NewQunatity) throws Exception {
+		final long startTime = StopWatch.startTime();
+		boolean check = true;
+		String FinalQuantity = itemsInCart.getText().toString();
+		int QuantityValue = Integer.parseInt(FinalQuantity.replaceAll("[^0-9]",
+				""));
+		if (QuantityValue == NewQunatity) {
+			Log.event("Verify items in cart", StopWatch.elapsedTime(startTime));
+			return check;
+
+		} else {
+
+			return false;
+		}
+	}
+
+	/**
+	 * To select the card type
+	 * 
+	 * @param cardType
+	 *            - if card selected
+	 * @throws Exception
+	 */
+	public void selectCardType(String cardType) throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement element = driver.findElement(By.cssSelector("img[src*='"
+				+ cardType + "']"));
+		BrowserActions.clickOnElement(element, driver, "select card type");
+		Log.event("Card Type is selected", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Verify the card type in card number field
+	 * 
+	 * @param cardType
+	 * @return boolean - true - if selected is present
+	 * @throws Exception
+	 */
+	public boolean verifyCardTypeInField(String cardType) throws Exception {
+		boolean card = false;
+		final long startTime = StopWatch.startTime();
+		try {
+			if (driver.findElement(
+					By.cssSelector("img[src*='" + cardType + "']"))
+					.isDisplayed()) {
+				card = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("CardType in the input field verified");
+		}
+		Log.event("CardType in the input field verified",
+				StopWatch.elapsedTime(startTime));
+		return card;
+	}
+
+	/**
+	 * To Click on the 'Place Order' button
+	 * 
+	 * @return OrderConfirmationPage after clicking Place Order
+	 * @throws Exception
+	 */
+	public OrderConfirmationPage ClickPlaceOrder() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnPlaceOrder, driver,
+				"clicked on the place order button");
+		BrowserActions.nap(30);
+		Log.event("Place Order is selected", StopWatch.elapsedTime(startTime));
+		return new OrderConfirmationPage(driver).get();
+	}
+
+	/**
+	 * Fetched the whole cart Page text
+	 * 
+	 * @return String - Cart Page text
+	 * @throws Exception
+	 */
+	public String verifyPriceIncartPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String cartPageText = BrowserActions.getText(driver, cartPageElements,
+				"Fetching the cart page text");
+		Log.event("Retured the Cart Page text",
+				StopWatch.elapsedTime(startTime));
+		return cartPageText;
+	}
+
+	/**
+	 * Fetching the Order Summary Content
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String fetchOrderSummaryContent() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String cartPageText = BrowserActions.getText(driver, OrderSummary,
+				"Fetching the cart page text");
+		Log.event("Retured the Cart Page text",
+				StopWatch.elapsedTime(startTime));
+		return cartPageText;
+	}
+
+	/**
+	 * Enter Security Code
+	 * 
+	 * @param paymentSecurityCode
+	 * @return String paymentSecurityCode after entering security code
+	 * @throws Exception
+	 */
+	public String enterSecurityCode(String paymentSecurityCode)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.typeOnTextField(txtSecurityCode, paymentSecurityCode,
+				driver, "SecurityCode");
+		Log.event("Security code is entered", StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return paymentSecurityCode;
+
+	}
+
+	/**
+	 * To Verify the total savings calculation
+	 * 
+	 * @return true - if price matches
+	 */
+	public boolean verifyTotalSaving() {
+		boolean totalSavingMatched = false;
+		final long startTime = StopWatch.startTime();
+		if (OrderSummary.getText().contains("20% Savings")
+				&& !(OrderSummary.getText().contains("Sale Savings:"))) {
+			String coupPrice = couponPriceValue.getText().replace("$", "")
+					.replace(",", "");
+			float couponPrice = Float.parseFloat(coupPrice);
+			String expPrice = totalPriceValue.getText().replace("$", "")
+					.replace(",", "");
+			float expectPrice = Float.parseFloat(expPrice);
+			double expectedPrice = Math.round(couponPrice * 100.0) / 100.0;
+			double totalSaving = Math.round(expectPrice * 100.0) / 100.0;
+			Utils.waitForPageLoad(driver, 30);
+			Log.event("Total saving calaculation",
+					StopWatch.elapsedTime(startTime));
+
+			if (expectedPrice == totalSaving) {
+				totalSavingMatched = true;
+			}
+		}
+		if (OrderSummary.getText().contains("20% Savings")
+				&& OrderSummary.getText().contains("Sale Savings:")) {
+			String salPrice = salePriceValue.getText().replace("$", "")
+					.replace(",", "");
+			String coupPrice = couponPriceValue.getText().replace("$", "")
+					.replace(",", "");
+			float salePrice = Float.parseFloat(salPrice);
+			float couponPrice = Float.parseFloat(coupPrice);
+			float totSaving = salePrice + couponPrice;
+			String expPrice = totalPriceValue.getText().replace("$", "")
+					.replace(",", "");
+			float expectPrice = Float.parseFloat(expPrice);
+			double expectedPrice = Math.round(expectPrice * 100.0) / 100.0;
+			double totalSaving = Math.round(totSaving * 100.0) / 100.0;
+
+			if (expectedPrice == totalSaving) {
+				totalSavingMatched = true;
+			}
+		}
+		if (!OrderSummary.getText().contains("20% Savings")
+				&& (OrderSummary.getText().contains("Sale Savings:"))) {
+			String salPrice = salePriceValue.getText().replace("$", "")
+					.replace(",", "");
+			float salePrice = Float.parseFloat(salPrice);
+
+			double expectedPrice = Math.round(salePrice * 100.0) / 100.0;
+
+			String expPrice = totalPriceValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float expectPrice = Float.parseFloat(expPrice);
+			double totalSaving = Math.round(expectPrice * 100.0) / 100.0;
+
+			if (expectedPrice == totalSaving) {
+				totalSavingMatched = true;
+			}
+
+		}
+
+		if (!OrderSummary.getText().contains("20% Savings")
+				&& !(OrderSummary.getText().contains("Sale Savings:"))) {
+			Log.message("This product is not applicable for total savings in order summary ");
+			totalSavingMatched = true;
+		}
+
+		Log.event("Total saving calaculation", StopWatch.elapsedTime(startTime));
+		return totalSavingMatched;
+	}
+
+	/**
+	 * Verify the Sub Total calculation is done properly
+	 * 
+	 * @return true - if price matches
+	 */
+	public boolean verifyOrderTotal() {
+		boolean totalSavingMatched = false;
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		String[] strcal = null;
+		String ordertotal = orderTotal.getText().replace("$", "")
+				.replace(",", "");
+		String[] strcmp = ordertotal.split("\\.");
+
+		if (!(OrderSummary.getText().contains("20% Savings"))
+				&& !(OrderSummary.getText().contains("Sale Savings:"))
+				&& (shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+
+			double expectedOrderTotal = Original + Tax;
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+		}
+
+		if (!(OrderSummary.getText().contains("20% Savings"))
+				&& !(OrderSummary.getText().contains("Sale Savings:"))
+				&& !(shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+			String shipValue = shippingPrice.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float tax = Float.parseFloat(taxPrice);
+			float ship = Float.parseFloat(shipValue);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Ship = Math.round(ship * 100.0) / 100.0;
+
+			double expectedOrderTotal = Original + Tax + Ship;
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+		}
+
+		if ((OrderSummary.getText().contains("20% Savings"))
+				&& (OrderSummary.getText().contains("Sale Savings:"))
+				&& !(shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String saleValue = salePrice.getText().replace("-$", "")
+					.replace(",", "");
+			String couponValue = couponSaving.getText().replace("-$", "")
+					.replace(",", "");
+			String shipValue = shippingPrice.getText().replace("$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float sale = Float.parseFloat(saleValue);
+			float coupon = Float.parseFloat(couponValue);
+			float ship = Float.parseFloat(shipValue);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Sale = Math.round(sale * 100.0) / 100.0;
+			double Ship = Math.round(ship * 100.0) / 100.0;
+			double Coupon = Math.round(coupon * 100.0) / 100.0;
+
+			double expectedOrderTotal = (Original + Tax + Ship)
+					- (Sale + Coupon);
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+
+		}
+
+		if ((OrderSummary.getText().contains("20% Savings"))
+				&& (OrderSummary.getText().contains("Sale Savings:"))
+				&& (shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String saleValue = salePrice.getText().replace("-$", "")
+					.replace(",", "");
+			String couponValue = couponSaving.getText().replace("-$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float sale = Float.parseFloat(saleValue);
+			float coupon = Float.parseFloat(couponValue);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Sale = Math.round(sale * 100.0) / 100.0;
+			double Coupon = Math.round(coupon * 100.0) / 100.0;
+
+			double expectedOrderTotal = (Original + Tax) - (Sale + Coupon);
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+
+		}
+
+		if (!(OrderSummary.getText().contains("20% Savings"))
+				&& (OrderSummary.getText().contains("Sale Savings:"))
+				&& (shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String saleValue = salePrice.getText().replace("-$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float sale = Float.parseFloat(saleValue);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Sale = Math.round(sale * 100.0) / 100.0;
+
+			double expectedOrderTotal = (Original + Tax) - Sale;
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+
+		}
+
+		if (!(OrderSummary.getText().contains("20% Savings"))
+				&& (OrderSummary.getText().contains("Sale Savings:"))
+				&& !(shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String saleValue = salePrice.getText().replace("-$", "")
+					.replace(",", "");
+			String shipValue = shippingPrice.getText().replace("$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float sale = Float.parseFloat(saleValue);
+			float ship = Float.parseFloat(shipValue);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Sale = Math.round(sale * 100.0) / 100.0;
+			double Ship = Math.round(ship * 100.0) / 100.0;
+
+			double expectedOrderTotal = (Original + Tax + Ship) - (Sale);
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+
+		}
+		if ((OrderSummary.getText().contains("20% Savings"))
+				&& !(OrderSummary.getText().contains("Sale Savings:"))
+				&& !(shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String couponValue = couponSaving.getText().replace("-$", "")
+					.replace(",", "");
+			String shipValue = shippingPrice.getText().replace("$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float coupon = Float.parseFloat(couponValue);
+			float ship = Float.parseFloat(shipValue);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Coupon = Math.round(coupon * 100.0) / 100.0;
+			double Ship = Math.round(ship * 100.0) / 100.0;
+
+			double expectedOrderTotal = (Original + Tax + Ship) - (Coupon);
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+
+		}
+
+		if ((OrderSummary.getText().contains("20% Savings"))
+				&& !(OrderSummary.getText().contains("Sale Savings:"))
+				&& (shipWayValue.getText().contains("FREE"))) {
+			String orgnalPrice = orgPrice.getText().replace("$", "")
+					.replace(",", "");
+			String couponValue = couponSaving.getText().replace("-$", "")
+					.replace(",", "");
+			String taxPrice = taxValue.getText().replace("$", "")
+					.replace(",", "");
+
+			float org = Float.parseFloat(orgnalPrice);
+			float coupon = Float.parseFloat(couponValue);
+			float tax = Float.parseFloat(taxPrice);
+
+			double Original = Math.round(org * 100.0) / 100.0;
+			double Tax = Math.round(tax * 100.0) / 100.0;
+			double Coupon = Math.round(coupon * 100.0) / 100.0;
+
+			double expectedOrderTotal = (Original + Tax) - (Coupon);
+			String ExpectedOrderTotal = Double.toString(expectedOrderTotal);
+
+			strcal = ExpectedOrderTotal.split("\\.");
+			if (strcmp[0].equals(strcal[0])) {
+				totalSavingMatched = true;
+			}
+
+		}
+
+		Log.event("verify the OrderTotal price",
+				StopWatch.elapsedTime(startTime));
+		return totalSavingMatched;
+
+	}
+
+	/**
+	 * Verify promotion Applicable for the product
+	 * 
+	 * @return boolean-promotionApplied , if promotion applied
+	 */
+	public boolean verifyPromotionAppliedProduct() {
+		boolean promotionApplied = false;
+		final long startTime = StopWatch.startTime();
+		if (OrderSummary.getText().contains("20% Savings")) {
+
+			promotionApplied = true;
+		}
+		Log.event("verify the 20% savings is include in the Shipping method",
+				StopWatch.elapsedTime(startTime));
+		return promotionApplied;
+	}
+
+	/**
+	 * Selected the shipping methods
+	 * 
+	 * @param shippingMethod
+	 * @return true - if shipping method selected
+	 * @throws Exception
+	 */
+
+	public boolean selectShippingMethods(String shippingMethod)
+			throws Exception {
+
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+			WebElement e = driver.findElement(By.cssSelector("label[for='"
+					+ shippingMethod + "']"));
+			e.click();
+		}
+		if (runPlatForm == "mobile") {
+			WebElement e = driver.findElement(By.cssSelector("label[for='"
+					+ shippingMethod + "']"));
+			e.click();
+		}
+
+		Log.event("Selected the shipping method!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return true;
+	}
+
+	/**
+	 * Verifying Shipping Price
+	 * 
+	 * @param expectedShippingPrice
+	 * @return true - if shipping price matches
+	 */
+	public boolean verifyShippingPrice(String expectedShippingPrice) {
+		final long startTime = StopWatch.startTime();
+		boolean shipprice = false;
+		if (!shippingPrice.getText().contains("$")) {
+			String shipPrice1 = shippingPrice.getText();
+
+			if (shipPrice1.equals(expectedShippingPrice)) {
+				shipprice = true;
+			}
+		}
+		if (shippingPrice.getText().contains("$")) {
+			String shipPrice = shippingPrice.getText().replace("$", "");
+			float shipPriceFree = Float.parseFloat(shipPrice);
+			double shipPriceValue = Math.round(shipPriceFree * 100.0) / 100.0;
+			float expectShipPrice = Float.parseFloat(expectedShippingPrice);
+			double expectedShipPrice = Math.round(expectShipPrice * 100.0) / 100.0;
+			if (shipPriceValue == expectedShipPrice) {
+				shipprice = true;
+			}
+
+		}
+		Log.event("Verifying the Shipping Price !",
+				StopWatch.elapsedTime(startTime));
+		return shipprice;
+	}
+
+	/**
+	 * Verify Shipping Restriction Message
+	 * 
+	 * @param shippingMethod
+	 * @return true - if restriction is popped up
+	 * @throws Exception
+	 */
+	public boolean verifyshippingRestrictionmessage(String productName,
+			String Place) throws Exception {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		if (msgshippingRestriction.isDisplayed()) {
+
+			WebElement e = driver
+					.findElement(By
+							.cssSelector("div.shipping-restrictions-popup.shipping-restrictions-popup__visible > div > div > ul li"));
+
+			if (e.getText().trim().contains(productName)
+					&& e.getText().trim().contains(Place)) {
+				returntype = true;
+			}
+		}
+		Log.event("Verifying the restricted Product!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver, 30);
+		return returntype;
+	}
+
+	/**
+	 * To navigate to PDP from Cart Page
+	 * 
+	 * @return PdpPage after navigating
+	 */
+	public PdpPage navigateToPdpPage() {
+		final long startTime = StopWatch.startTime();
+		driver.navigate().back();
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigate back  to PDP page",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * Un check Use Billing Address as shipping
+	 * 
+	 * @return true after unchecked
+	 * @throws Exception
+	 */
+	public boolean clckUseBillingAddressCheckBox() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(chkShippingAddress, driver,
+				"Clicked on the Use same billing address checkbox");
+		Log.event("Use same billing address checkbox!",
+				StopWatch.elapsedTime(startTime));
+		return true;
+	}
+
+	/**
+	 * To click on Edit link in Billing Address section in CartPage
+	 * 
+	 * @return void after click edit link
+	 * @throws Exception
+	 */
+	public void clickEditLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(lnkEdit, driver,
+				"Clicked on the Edit Link in billing address");
+		Log.event("Edit Link is clicked", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click New Address Radio Button
+	 * 
+	 * @return after clicking new address radio button
+	 * @throws Exception
+	 */
+	public void clickNewAddress() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(radioNewAddress, driver,
+				"Clicked on New Address Radio Button");
+		Log.event("Clicked on New Address Radio Button",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click Save to Address Book in Billing Address Section
+	 * 
+	 * @return void after clicking add to address book
+	 * @throws Exception
+	 */
+	public void clickAddToAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(chkAddToAddressBook, driver,
+				"Clicked on Add to Address Book check box");
+		Log.event("Clicked on Add to Address Book check box",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click Save to Address Book in Shipping Address Section
+	 * 
+	 * @return void after clicking add to address book from Shipping Section
+	 * @throws Exception
+	 */
+	public void clickshippingAddToAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(chkshipAddToAddressBook, driver,
+				"Clicked on Add to Address Book check box");
+		Log.event("Clicked on Add to Address Book check box",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To verify error message entering wrong card detail
+	 * 
+	 * @return void - if error message displayed
+	 * @param cardType
+	 * @throws Exception
+	 */
+	public void verifyErrorMessageEnteringOtherCardDetails(String cardType)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnPlaceOrder, driver,
+				"clicked on the place order button");
+
+		Log.event("Card Type is selected", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Naviagtes to Address Book page from Cart Page
+	 * 
+	 * @return AddressBookPage after navigating
+	 * @throws Exception
+	 */
+
+	public AddressBookPage NavigateToAddressBookPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+			BrowserActions.mouseHover(driver, lnkAccount);
+			BrowserActions.clickOnElement(lnkAddressBook, driver,
+					"Clicked on Address book on the Header");
+		}
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(btnMyAccount, driver,
+					"My account is clicked");
+			Utils.waitForPageLoad(driver);
+			BrowserActions.clickOnElement(AddressBookLink, driver,
+					"address book link");
+		}
+		Utils.waitForPageLoad(driver);
+
+		Log.event("Clicked on Address book on the Header",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * Billing address Edit link is clicked
+	 * 
+	 * @return void after clicking edit link
+	 * @throws Exception
+	 */
+	public void clickEditLinkInBilling() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(lnkEdit, driver,
+				"Clicked on the Edit Link in billing address");
+		Log.event("Edit Link in billing is clicked",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click Shipping Address section Edit Link
+	 * 
+	 * @return void after clicking edit link in shipping section
+	 * @throws Exception
+	 */
+	public void clickEditLinkInShipping() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(lnkEditShipping, driver,
+				"Clicked on the Edit Link in Shipping address");
+		Log.event("Edit Link in shipping is clicked",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * To click forget password link
+	 * 
+	 * @return void after link is clicked
+	 * @throws Exception
+	 */
+	public void clickForgetPassword() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(lnkForgetPassword, driver,
+				"Clicked on the forget password in existing user block");
+		Log.event("Forget password link is clicked",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * click SignIn and CheckOut button
+	 * 
+	 * @return void after button is clicked
+	 * @throws Exception
+	 */
+	public void clckSignInAndCheckout() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.javascriptClick(btnSignInAndCheckOut, driver,
+				"Clicked the SignIn and CheckOut button");
+		Utils.waitForPageLoad(driver);
+		Log.event("SignIn and CheckOut button is clicked",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Check in as Guest User from Cart Page
+	 * 
+	 * @return void after checking out as guest user
+	 * @param emailAddress
+	 * @throws Exception
+	 */
+	public void SignInToMyAccountAsGuestUser() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement element = driver.findElement(By
+				.cssSelector(".guest-checkout"));
+		BrowserActions.scrollToViewElement(element, driver);
+		/*
+		 * BrowserActions.typeOnTextField(txtGuestEmailId, emailAddress, driver,
+		 * "email Address is entered in guest checkout user name");
+		 */
+		BrowserActions.clickOnElement(btnGuestCheckout, driver,
+				"Guest Checkout button is clicked");
+		Log.event("Sign in using guest checkout",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To un-check the save card in payment section
+	 * 
+	 * @return void - if unchecked
+	 * @throws Exception
+	 */
+	public void uncheckSaveCardInPayment() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnSaveCard, driver,
+				"check box save card is unchecked");
+		Log.event("save card is unchecked", StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * To verify Tax is included for the Product
+	 * 
+	 * @return boolean - TaxApplied
+	 */
+	public boolean verifyTaxIncluded() {
+		boolean TaxApplied = false;
+		final long startTime = StopWatch.startTime();
+		if (OrderSummary.getText().contains("EST. Sales Tax")
+				&& !OrderSummary.getText().contains("$0.00")) {
+
+			TaxApplied = true;
+		}
+		Log.event("verify the Tax is include in the Shipping Price",
+				StopWatch.elapsedTime(startTime));
+		return TaxApplied;
+	}
+
+	/**
+	 * place order is clicked for verification
+	 * 
+	 * @return void - if place order is clicked
+	 * @throws Exception
+	 */
+	public void VerifyToClickPlaceOrder() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnPlaceOrder, driver,
+				"clicked on the place order button");
+		Log.event("Place Order is selected", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Verify Restricted shipping method in cart Page
+	 * 
+	 * @param shippingMethod
+	 * @return boolean true - if shipping is restricted
+	 */
+	public boolean verifyShippingMethod(String shippingMethod) {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		WebElement actualshippingMethod = driver.findElement(By
+				.cssSelector("div[id='shipping-method-list']"));
+		if (actualshippingMethod.getText().contains(shippingMethod)) {
+			returntype = true;
+		}
+		Log.event("Verifying the restricted shipping Method!",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Fetch numbers of items added in cart page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public int productTileQuantity() throws Exception {
+		final long startTime = StopWatch.startTime();
+		int tileValue = 0;
+		tileValue = productList.size();
+		Log.event("product Tile Quantity fetched",
+				StopWatch.elapsedTime(startTime));
+		return tileValue;
+	}
+
+	/**
+	 * Fetch the Tax value from the order summary
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String fetchTaxValue() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String Tax = BrowserActions.getText(driver, taxValue,
+				"Tax from the checkout page is fetched");
+		String taxPrice = Tax.replace("$", "");
+		Log.event("Fetch the tax value from the checkout page",
+				StopWatch.elapsedTime(startTime));
+		return taxPrice;
+	}
+
+	/**
+	 * Fetch the Shipment value from the order summary
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String fetchShipmentValue() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String Shippment = BrowserActions.getText(driver, shipWayValue,
+				"Shipping price from the checkout page is fetched");
+		String shippingPrice = Shippment.replace("$", "");
+		Log.event("Fetch the tax value from the checkout page",
+				StopWatch.elapsedTime(startTime));
+		return shippingPrice;
+	}
+
+}// CART PAGE
+

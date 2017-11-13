@@ -1,0 +1,192 @@
+03-Jan-2017 10:01:32:727 INFO  [PoolService-0]  
+03-Jan-2017 10:01:32:730 INFO  [PoolService-0] ****             Verify the customer able to see Promo Area on the top main image In the PDP Page             ***** 
+03-Jan-2017 10:01:32:730 INFO  [PoolService-0]  
+03-Jan-2017 10:01:32:732 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:32:858 DEBUG [PoolService-0] Page URL:: data:, 
+03-Jan-2017 10:01:32:859 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:38:817 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: a[href='#search']] 
+03-Jan-2017 10:01:38:818 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:38:864 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:01:38:865 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:39:092 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:01:39:093 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:39:132 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:01:39:132 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:39:214 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .footer-mobile] 
+03-Jan-2017 10:01:39:215 INFO  [PoolService-0] 1. Navigated to 'Sheplers' Home Page! 
+03-Jan-2017 10:01:39:283 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .menu-toggle] 
+03-Jan-2017 10:01:39:318 DEBUG [PoolService-0] Searched the provided product! 
+03-Jan-2017 10:01:39:318 INFO  [PoolService-0]  Mobile Menu is expanded 
+03-Jan-2017 10:01:39:393 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(1) a[href='']] 
+03-Jan-2017 10:01:39:528 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:01:39:529 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:39:627 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:01:39:627 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:39:712 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:01:39:713 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:39:784 DEBUG [PoolService-0] Element is displayed:: [[[[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(1) div.level-2]] -> css selector: ul li ul.level-3 li a[href*='mens-cowboy-boots']] 
+03-Jan-2017 10:01:43:624 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:43:625 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:43:626 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:43:629 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:43:667 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:43:667 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:43:727 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:01:43:728 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:43:762 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:43:763 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:43:823 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .footer-mobile] 
+03-Jan-2017 10:01:43:856 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:43:857 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:43:887 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:43:888 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:43:974 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='sidebar-category']] 
+03-Jan-2017 10:01:44:005 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:44:005 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:44:034 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html 
+03-Jan-2017 10:01:44:034 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:44:089 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='sidebar-category']] 
+03-Jan-2017 10:01:44:089 INFO  [PoolService-0] 2. Navigated to exact category 
+03-Jan-2017 10:01:44:311 INFO  [PoolService-0]  Category Landing page is displayed as expected 
+03-Jan-2017 10:01:44:382 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: a[title*='View All'][class='view-btn']] 
+03-Jan-2017 10:01:44:417 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:44:421 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:52:036 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:01:52:037 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:52:132 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:01:52:133 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:52:164 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:01:52:165 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:52:231 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .footer-mobile] 
+03-Jan-2017 10:01:52:232 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:01:52:266 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:01:52:267 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:01:52:305 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:01:52:306 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:148 DEBUG [PoolService-0] Unable to find a element after 0 sec ==> Proxy element for: AjaxElementLocator 'By.cssSelector: div.desktop-only > div > h1 > a.keyword-search-phrase-header-link' 
+03-Jan-2017 10:02:10:179 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:180 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:213 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:213 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:299 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: #primary] 
+03-Jan-2017 10:02:10:336 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:337 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:368 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:369 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:430 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='refinements']] 
+03-Jan-2017 10:02:10:459 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:459 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:489 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:489 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:10:539 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[class='refinements']] 
+03-Jan-2017 10:02:10:544 INFO  [PoolService-0] 3. Navigated to the Product listing page from Category landing Pagehttp://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/ 
+03-Jan-2017 10:02:10:611 INFO  [PoolService-0] 4.Product details to be navigatedTwisted X Red Hooey Cowboy Boots - Square Toe 
+03-Jan-2017 10:02:11:623 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:11:629 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:15:330 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1 
+03-Jan-2017 10:02:15:331 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:15:404 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:02:15:436 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1 
+03-Jan-2017 10:02:15:436 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:15:468 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1 
+03-Jan-2017 10:02:15:468 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:15:515 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[id='pdpMain']] 
+03-Jan-2017 10:02:15:545 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1 
+03-Jan-2017 10:02:15:545 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:15:575 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1 
+03-Jan-2017 10:02:15:575 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:15:596 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: div[id='pdpMain']] 
+03-Jan-2017 10:02:15:661 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .btn-zoom] 
+03-Jan-2017 10:02:15:696 INFO  [PoolService-0] 5. Clicked on Zoom icon 
+03-Jan-2017 10:02:16:547 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -> css selector: .zoomContainer] 
+03-Jan-2017 10:02:16:885 ERROR [PoolService-0] 6. Image is not zoomed hovering on the image in Zoom window, plz check the event log 
+03-Jan-2017 10:02:16:886 INFO  [PoolService-0] ****             -E---N---D-             ***** 
+03-Jan-2017 10:02:17:843 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:17:844 DEBUG [PoolService-0] mobileEmulation settings::==> {deviceMetrics={pixelRatio=2.0, width=414, height=736}, userAgent=Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25} 
+03-Jan-2017 10:02:21:464 DEBUG [PoolService-0] Driver::initialize::Get 
+03-Jan-2017 10:02:21:472 INFO  [PoolService-0]  
+03-Jan-2017 10:02:21:473 INFO  [PoolService-0] ****             Check details of the product under OUR BEST SELLING ITEMS in Product Detail Page             ***** 
+03-Jan-2017 10:02:21:473 INFO  [PoolService-0]  
+03-Jan-2017 10:02:21:473 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:21:543 DEBUG [PoolService-0] Page URL:: data:, 
+03-Jan-2017 10:02:21:544 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:27:564 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: a[href='#search']] 
+03-Jan-2017 10:02:27:565 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:27:619 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:02:27:619 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:27:701 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:02:27:702 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:27:730 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:02:27:731 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:27:803 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: .footer-mobile] 
+03-Jan-2017 10:02:27:803 INFO  [PoolService-0] 1. Navigated to 'Sheplers' Home Page! 
+03-Jan-2017 10:02:27:881 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: .menu-toggle] 
+03-Jan-2017 10:02:27:951 DEBUG [PoolService-0] Searched the provided product! 
+03-Jan-2017 10:02:27:952 INFO  [PoolService-0]  Mobile Menu is expanded 
+03-Jan-2017 10:02:28:547 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) a[href='']] 
+03-Jan-2017 10:02:28:627 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:02:28:627 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:28:699 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:02:28:700 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:28:795 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:02:28:795 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:28:875 DEBUG [PoolService-0] Element is displayed:: [[[[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) div.level-2]] -> css selector: ul li ul.level-3 li a[href*='mens-levis-jeans/']] 
+03-Jan-2017 10:02:28:914 DEBUG [PoolService-0] Page URL:: https://development-web-sheplers.demandware.net/ 
+03-Jan-2017 10:02:28:914 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:28:946 DEBUG [PoolService-0] Element is displayed:: [[[[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) div.level-2]] -> css selector: ul li ul.level-3 li a[href*='mens-levis-jeans/']] 
+03-Jan-2017 10:02:33:280 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:33:281 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:33:281 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:33:283 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:33:315 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:33:316 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:33:383 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:02:33:383 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:33:421 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:33:421 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:33:479 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: .footer-mobile] 
+03-Jan-2017 10:02:33:479 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:33:508 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:33:508 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:33:542 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:33:542 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:369 DEBUG [PoolService-0] Unable to find a element after 0 sec ==> Proxy element for: AjaxElementLocator 'By.cssSelector: div.desktop-only > div > h1 > a.keyword-search-phrase-header-link' 
+03-Jan-2017 10:02:51:401 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:51:401 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:430 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:51:431 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:493 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: #primary] 
+03-Jan-2017 10:02:51:523 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:51:523 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:551 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:51:551 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:617 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[class='refinements']] 
+03-Jan-2017 10:02:51:648 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:51:648 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:676 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/ 
+03-Jan-2017 10:02:51:676 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:51:725 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[class='refinements']] 
+03-Jan-2017 10:02:51:725 INFO  [PoolService-0] 2. Page Navigated from 5 > mens-levis-jeans/ 
+03-Jan-2017 10:02:51:757 INFO  [PoolService-0] LLLLLLLLLLLLLLLtxtCategoryHeaderLLLLLLLLLLLLLLLLLLLLLLLLevi's Jeans for Men 
+03-Jan-2017 10:02:51:758 DEBUG [PoolService-0]  Gets text from category grid header! 
+03-Jan-2017 10:02:51:955 INFO  [PoolService-0]  Category grid page is displayed as expected 
+03-Jan-2017 10:02:59:388 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1 
+03-Jan-2017 10:02:59:389 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:59:389 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:59:391 DEBUG [PoolService-0] Running platform type:: mobile 
+03-Jan-2017 10:02:59:451 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1 
+03-Jan-2017 10:02:59:451 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:59:523 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div [class='top-banner-bar']] 
+03-Jan-2017 10:02:59:553 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1 
+03-Jan-2017 10:02:59:553 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:59:581 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1 
+03-Jan-2017 10:02:59:581 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:59:621 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[id='pdpMain']] 
+03-Jan-2017 10:02:59:649 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1 
+03-Jan-2017 10:02:59:649 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:59:678 DEBUG [PoolService-0] Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1 
+03-Jan-2017 10:02:59:678 DEBUG [PoolService-0] Page Load Wait: (Sync) 
+03-Jan-2017 10:02:59:698 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -> css selector: div[id='pdpMain']] 
+03-Jan-2017 10:02:59:699 INFO  [PoolService-0] 3. Product details to be navigated Boot Cut Stretch 
+03-Jan-2017 10:03:00:028 ERROR [PoolService-0] 4. Unable to view the product details in OUR BEST SELLING ITEMS section , plz check the log event 
+03-Jan-2017 10:03:00:028 INFO  [PoolService-0] ****             -E---N---D-             ***** 

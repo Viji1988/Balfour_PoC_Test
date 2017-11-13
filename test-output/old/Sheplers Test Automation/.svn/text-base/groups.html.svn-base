@@ -1,0 +1,4 @@
+<h2>Groups used for this test run</h2><table border="1">
+<tr> <td align="center"><b>Group name</b></td><td align="center"><b>Methods</b></td></tr><tr><td>desktop</td><td>ProductDetailSection.TC_SHEPLERS_PDP_043(java.lang.String)[pri:0, instance:com.sheplers.testscripts.productsection.ProductDetailSection@7a9273a8]<br/>ProductDetailSection.TC_SHEPLERS_PDP_050(java.lang.String)[pri:0, instance:com.sheplers.testscripts.productsection.ProductDetailSection@7a9273a8]<br/></td></tr>
+<tr><td>mobile</td><td>ProductDetailSection.TC_SHEPLERS_PDP_043(java.lang.String)[pri:0, instance:com.sheplers.testscripts.productsection.ProductDetailSection@7a9273a8]<br/>ProductDetailSection.TC_SHEPLERS_PDP_050(java.lang.String)[pri:0, instance:com.sheplers.testscripts.productsection.ProductDetailSection@7a9273a8]<br/></td></tr>
+</table>

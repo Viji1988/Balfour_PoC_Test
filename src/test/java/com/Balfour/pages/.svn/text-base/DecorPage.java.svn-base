@@ -1,0 +1,102 @@
+package com.sheplers.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class DecorPage extends LoadableComponent<DecorPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Decor Page- Starts **************************
+	 **********************************************************************************************/
+
+	@FindBy(css = "div[class='sidebar-category']")
+	WebElement mainDecorPage;
+
+	@FindBy(css = "div[class*='category-slot'] h1")
+	WebElement DecorcategoryHeader;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Decor Page - Ends ****************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	public DecorPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		Utils.waitForPageLoad(driver);
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, mainDecorPage))) {
+			Log.fail("Decor Page did not open up. Site might be down.", driver);
+		}
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, mainDecorPage);
+
+	}
+
+	/**
+	 * To getText From Decor Category Header
+	 *
+	 * @return Text in CategoryHeader
+	 * @throws Exception
+	 */
+	public String getTextFromDecorCategoryHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtCategoryHeader = BrowserActions.getText(driver,
+				DecorcategoryHeader,
+				"Fetching the invalid error message in the footer page");
+		Log.event("Got text from Decor Category Header!",
+				StopWatch.elapsedTime(startTime));
+		return txtCategoryHeader;
+	}
+
+}// DecorPage

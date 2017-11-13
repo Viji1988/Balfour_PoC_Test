@@ -1,0 +1,1752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Application log</title>
+<style type="text/css">
+<!--
+body, table {font-family: arial,sans-serif; font-size: x-small;}
+th {background: #336699; color: #FFFFFF; text-align: left;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
+<hr size="1" noshade>
+Log session start time Tue Jan 03 10:01:28 IST 2017<br>
+<br>
+<table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
+<tr>
+<th>Time</th>
+<th>Thread</th>
+<th>Level</th>
+<th>Category</th>
+<th>File:Line</th>
+<th>Message</th>
+</tr>
+
+<tr>
+<td>0</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Log.java:212</td>
+<td title="Message"></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2326</td>
+<td title="Message">****             Verify the customer able to see Promo Area on the top main image In the PDP Page             *****</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Log.java:214</td>
+<td title="Message"></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>131</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: data:,</td>
+</tr>
+
+<tr>
+<td>132</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>6090</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: a[href='#search']]</td>
+</tr>
+
+<tr>
+<td>6091</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>6137</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>6138</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>6365</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>6366</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>6405</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>6405</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>6487</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: .footer-mobile]</td>
+</tr>
+
+<tr>
+<td>6488</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2330</td>
+<td title="Message">1. Navigated to 'Sheplers' Home Page!</td>
+</tr>
+
+<tr>
+<td>6556</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: .menu-toggle]</td>
+</tr>
+
+<tr>
+<td>6591</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>HomePage.java:410</td>
+<td title="Message">Searched the provided product!</td>
+</tr>
+
+<tr>
+<td>6591</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2334</td>
+<td title="Message"> Mobile Menu is expanded</td>
+</tr>
+
+<tr>
+<td>6666</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(1) a[href='']]</td>
+</tr>
+
+<tr>
+<td>6801</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>6802</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>6900</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>6900</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>6985</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>6986</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>7057</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[[[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(1) div.level-2]] -&gt; css selector: ul li ul.level-3 li a[href*='mens-cowboy-boots']]</td>
+</tr>
+
+<tr>
+<td>10897</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>10898</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>10899</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>10902</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>10940</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>10940</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>11000</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>11001</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>11035</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>11036</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>11096</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: .footer-mobile]</td>
+</tr>
+
+<tr>
+<td>11129</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>11130</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>11160</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>11161</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>11247</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div[class='sidebar-category']]</td>
+</tr>
+
+<tr>
+<td>11278</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>11278</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>11307</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/mens-cowboy-boots.html</td>
+</tr>
+
+<tr>
+<td>11307</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>11362</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div[class='sidebar-category']]</td>
+</tr>
+
+<tr>
+<td>11362</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2339</td>
+<td title="Message">2. Navigated to exact category</td>
+</tr>
+
+<tr>
+<td>11584</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2341</td>
+<td title="Message"> Category Landing page is displayed as expected</td>
+</tr>
+
+<tr>
+<td>11655</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: a[title*='View All'][class='view-btn']]</td>
+</tr>
+
+<tr>
+<td>11690</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>11694</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>19309</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>19310</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>19405</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>19406</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>19437</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>19438</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>19504</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: .footer-mobile]</td>
+</tr>
+
+<tr>
+<td>19505</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>19539</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>19540</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>19578</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>19579</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37421</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:194</td>
+<td title="Message">Unable to find a element after 0 sec ==&gt; Proxy element for: AjaxElementLocator 'By.cssSelector: div.desktop-only &gt; div &gt; h1 &gt; a.keyword-search-phrase-header-link'</td>
+</tr>
+
+<tr>
+<td>37452</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37453</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37486</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37486</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37572</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: #primary]</td>
+</tr>
+
+<tr>
+<td>37609</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37610</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37641</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37642</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37703</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div[class='refinements']]</td>
+</tr>
+
+<tr>
+<td>37732</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37732</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37762</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37762</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>37812</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div[class='refinements']]</td>
+</tr>
+
+<tr>
+<td>37817</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2349</td>
+<td title="Message">3. Navigated to the Product listing page from Category landing Pagehttp://development-web-sheplers.demandware.net/s/sheplers_us/cowboy-boots/mens/view-all-cowboy-boots-and-shoes/</td>
+</tr>
+
+<tr>
+<td>37884</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2353</td>
+<td title="Message">4.Product details to be navigatedTwisted X Red Hooey Cowboy Boots - Square Toe</td>
+</tr>
+
+<tr>
+<td>38896</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>38902</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>42603</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</td>
+</tr>
+
+<tr>
+<td>42604</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>42677</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>42709</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</td>
+</tr>
+
+<tr>
+<td>42709</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>42741</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</td>
+</tr>
+
+<tr>
+<td>42741</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>42788</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div[id='pdpMain']]</td>
+</tr>
+
+<tr>
+<td>42818</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</td>
+</tr>
+
+<tr>
+<td>42818</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>42848</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/twisted-x-red-hooey-cowboy-boots---square-toe/036n51.html?dwvar_036n51_color=7010#start=1</td>
+</tr>
+
+<tr>
+<td>42848</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>42869</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: div[id='pdpMain']]</td>
+</tr>
+
+<tr>
+<td>42934</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: .btn-zoom]</td>
+</tr>
+
+<tr>
+<td>42969</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2358</td>
+<td title="Message">5. Clicked on Zoom icon</td>
+</tr>
+
+<tr>
+<td>43820</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (b60e37d4-d69c-4d24-914c-6886d19d57c7)] -&gt; css selector: .zoomContainer]</td>
+</tr>
+
+<tr>
+<td>44158</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#993300"><strong>ERROR</strong></font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2360</td>
+<td title="Message">6. Image is not zoomed hovering on the image in Zoom window, plz check the event log</td>
+</tr>
+
+<tr>
+<td>44159</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Log.java:273</td>
+<td title="Message">****             -E---N---D-             *****</td>
+</tr>
+
+<tr>
+<td>45116</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>45117</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>WebDriverFactory.java:671</td>
+<td title="Message">mobileEmulation settings::==&gt; {deviceMetrics={pixelRatio=2.0, width=414, height=736}, userAgent=Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25}</td>
+</tr>
+
+<tr>
+<td>48737</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>WebDriverFactory.java:450</td>
+<td title="Message">Driver::initialize::Get</td>
+</tr>
+
+<tr>
+<td>48745</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Log.java:212</td>
+<td title="Message"></td>
+</tr>
+
+<tr>
+<td>48746</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2732</td>
+<td title="Message">****             Check details of the product under OUR BEST SELLING ITEMS in Product Detail Page             *****</td>
+</tr>
+
+<tr>
+<td>48746</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Log.java:214</td>
+<td title="Message"></td>
+</tr>
+
+<tr>
+<td>48746</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>48816</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: data:,</td>
+</tr>
+
+<tr>
+<td>48817</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>54837</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: a[href='#search']]</td>
+</tr>
+
+<tr>
+<td>54838</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>54892</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>54892</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>54974</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>54975</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>55003</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>55004</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>55076</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: .footer-mobile]</td>
+</tr>
+
+<tr>
+<td>55076</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2736</td>
+<td title="Message">1. Navigated to 'Sheplers' Home Page!</td>
+</tr>
+
+<tr>
+<td>55154</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: .menu-toggle]</td>
+</tr>
+
+<tr>
+<td>55224</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>HomePage.java:410</td>
+<td title="Message">Searched the provided product!</td>
+</tr>
+
+<tr>
+<td>55225</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2740</td>
+<td title="Message"> Mobile Menu is expanded</td>
+</tr>
+
+<tr>
+<td>55820</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) a[href='']]</td>
+</tr>
+
+<tr>
+<td>55900</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>55900</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>55972</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>55973</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>56068</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>56068</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>56148</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[[[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) div.level-2]] -&gt; css selector: ul li ul.level-3 li a[href*='mens-levis-jeans/']]</td>
+</tr>
+
+<tr>
+<td>56187</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: https://development-web-sheplers.demandware.net/</td>
+</tr>
+
+<tr>
+<td>56187</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>56219</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[[[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: nav[id='navigation'] ul[class*='level-1'] li:nth-child(5) div.level-2]] -&gt; css selector: ul li ul.level-3 li a[href*='mens-levis-jeans/']]</td>
+</tr>
+
+<tr>
+<td>60553</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>60554</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>60554</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>60556</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>60588</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>60589</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>60656</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>60656</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>60694</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>60694</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>60752</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: .footer-mobile]</td>
+</tr>
+
+<tr>
+<td>60752</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>60781</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>60781</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>60815</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>60815</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78642</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:194</td>
+<td title="Message">Unable to find a element after 0 sec ==&gt; Proxy element for: AjaxElementLocator 'By.cssSelector: div.desktop-only &gt; div &gt; h1 &gt; a.keyword-search-phrase-header-link'</td>
+</tr>
+
+<tr>
+<td>78674</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>78674</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78703</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>78704</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78766</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: #primary]</td>
+</tr>
+
+<tr>
+<td>78796</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>78796</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78824</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>78824</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78890</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div[class='refinements']]</td>
+</tr>
+
+<tr>
+<td>78921</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>78921</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78949</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/brands/levis-jeans/mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>78949</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>78998</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div[class='refinements']]</td>
+</tr>
+
+<tr>
+<td>78998</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2744</td>
+<td title="Message">2. Page Navigated from 5 &gt; mens-levis-jeans/</td>
+</tr>
+
+<tr>
+<td>79030</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>CategoryGridPage.java:310</td>
+<td title="Message">LLLLLLLLLLLLLLLtxtCategoryHeaderLLLLLLLLLLLLLLLLLLLLLLLLevi's Jeans for Men</td>
+</tr>
+
+<tr>
+<td>79031</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>CategoryGridPage.java:312</td>
+<td title="Message"> Gets text from category grid header!</td>
+</tr>
+
+<tr>
+<td>79228</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2746</td>
+<td title="Message"> Category grid page is displayed as expected</td>
+</tr>
+
+<tr>
+<td>86661</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</td>
+</tr>
+
+<tr>
+<td>86662</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>86662</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>86664</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:403</td>
+<td title="Message">Running platform type:: mobile</td>
+</tr>
+
+<tr>
+<td>86724</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</td>
+</tr>
+
+<tr>
+<td>86724</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>86796</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div [class='top-banner-bar']]</td>
+</tr>
+
+<tr>
+<td>86826</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</td>
+</tr>
+
+<tr>
+<td>86826</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>86854</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</td>
+</tr>
+
+<tr>
+<td>86854</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>86894</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div[id='pdpMain']]</td>
+</tr>
+
+<tr>
+<td>86922</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</td>
+</tr>
+
+<tr>
+<td>86922</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>86951</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:66</td>
+<td title="Message">Page URL:: http://development-web-sheplers.demandware.net/s/sheplers_us/levis--517-jeans---boot-cut-stretch/010740.html?dwvar_010740_color=7001#start=1</td>
+</tr>
+
+<tr>
+<td>86951</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:78</td>
+<td title="Message">Page Load Wait: (Sync)</td>
+</tr>
+
+<tr>
+<td>86971</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#339933">DEBUG</font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Utils.java:190</td>
+<td title="Message">Element is displayed:: [[RemoteWebDriver: chrome on XP (1ffb3365-9db8-4a25-8d10-07f03f004cde)] -&gt; css selector: div[id='pdpMain']]</td>
+</tr>
+
+<tr>
+<td>86972</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2754</td>
+<td title="Message">3. Product details to be navigated Boot Cut Stretch</td>
+</tr>
+
+<tr>
+<td>87301</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level"><font color="#993300"><strong>ERROR</strong></font></td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>ProductDetailSection.java:2756</td>
+<td title="Message">4. Unable to view the product details in OUR BEST SELLING ITEMS section , plz check the log event</td>
+</tr>
+
+<tr>
+<td>87301</td>
+<td title="PoolService-0 thread">PoolService-0</td>
+<td title="Level">INFO</td>
+<td title="PoolService-0 category">PoolService-0</td>
+<td>Log.java:273</td>
+<td title="Message">****             -E---N---D-             *****</td>
+</tr>

@@ -1,0 +1,824 @@
+package com.sheplers.pages;
+
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.reusablecomponents.SearchUtils;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class HomePage extends LoadableComponent<HomePage> {
+
+	private String appURL;
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public Headers headers;
+	public Footers footers;
+	public ElementLayer elementLayer;
+	public CategoryGridPage gridPage;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	public static final String searchField = "div[class='header-search']";
+
+	/**********************************************************************************************
+	 **********************************************************************************************/
+
+	@FindBy(css = ".search-holder input[id='q']")
+	WebElement txtSearch;
+
+	@FindBy(css = ".search-holder button[type='submit']")
+	WebElement btnSearch;
+	
+	@FindBy(css = "div.top-banner-inner")
+	WebElement globalNavBar;
+	
+	@FindBy(css = "div.top-banner-inner")
+	WebElement mobGlobalMenu;
+
+	@FindBy(css = "div[class*='desktop-hidden'] input[id='q']")
+	WebElement mobtxtSearch;
+
+	@FindBy(css = "div[class*='desktop-hidden '] form[role='search'] button[type='Submit']")
+	WebElement mobbtnSearch;
+
+	@FindBy(css = "button[title='Close']")
+	WebElement btnEmailClosePopup;
+
+	@FindBy(css = "#search > form > fieldset > button > span[class='visually-hidden']")
+	WebElement lblSearchText;
+
+	@FindBy(css = "div[class='phrase-suggestions'] div[class='hitgroup'] a[href*='Earl']")
+	WebElement searchLink;
+
+	@FindBy(css = "div[class='search-suggestion-wrapper full']")
+	WebElement autoSuggestPopup;
+
+	@FindBy(css = ".slot-data>.grid-layout")
+	List<WebElement> contentSlots;
+
+	@FindBy(css = "div[class='search-suggestion-wrapper full'] div[class = 'product-suggestions-right']")
+	WebElement autoSearchSuggestionRight;
+
+	@FindBy(css = "div[class='search-suggestion-wrapper full'] div[class = 'product-suggestions-left']")
+	WebElement autoSearchSuggestionLeft;
+
+	@FindBy(css = "div[id='mini-cart'] span[class='minicart-quantity']")
+	WebElement itemCount;
+
+	@FindBy(css = ".error-text")
+	WebElement lblerrorText;
+
+	@FindBy(css = "div.product-list-item .name>p>a")
+	WebElement lblCartProductName;
+
+	@FindBy(css = "#add-to-cart")
+	WebElement btnaddToCart;
+
+	@FindBy(css = "a[title='View Cart'] .fa.fa-shopping-cart")
+	WebElement mobCartIcon;
+
+	@FindBy(css = ".fa.fa-shopping-cart")
+	WebElement cartIcon;
+
+	@FindBy(css = "a[href='#search']")
+	WebElement mobBtnSearch;
+
+	@FindBy(css = ".menu-toggle")
+	WebElement mobMenu;
+
+	@FindBy(css = "a.second-mobnav.tablet-only")
+	WebElement mobSecMenu;
+
+	@FindBy(css = ".menu-toggle")
+	WebElement closeMenu;
+
+	@FindBy(css = ".customer-service .service-toggle-item")
+	WebElement customerServiceMenu;
+
+	@FindBy(css = ".customer-service a[class*='active']")
+	WebElement collapseCustomerServiceMenu;
+
+	@FindBy(css = "#ext-gen18")
+	WebElement btnSettings;
+
+	@FindBy(css = ".dw-sf-control-menu-preview")
+	WebElement btnSitePreview;
+
+	@FindBy(css = "#primary > div > div > div")
+	WebElement aboutSheplersPage;
+
+	@FindBy(css = "#primary > div > div > div")
+	WebElement careersPage;
+
+	@FindBy(css = ".article-brands")
+	WebElement brandsPage;
+
+	@FindBy(css = "#navigation > ul > li[class='has-dropdown']")
+	List<WebElement> categories;
+
+	@FindBy(css = "#LowestPriceGuarantee")
+	WebElement priceGuaranteePage;
+
+	@FindBy(css = "#theme-header > div > div.logo")
+	WebElement BlogWebsite;
+
+	@FindBy(css = "div.flex.flex-wrap.relative")
+	WebElement pinterestWebsite;
+
+	@FindBy(css = "#main")
+	WebElement homePage;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Home Page - Ends ****************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	public HomePage(WebDriver driver, String url) {
+		appURL = url;
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);	
+	}// HomePage
+
+	/**
+	 * 
+	 * @param driver
+	 *            : webdriver
+	 */
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+		appURL = driver.getCurrentUrl();
+	}// HomePage
+
+	@Override
+	protected void isLoaded() {
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		if (runPlatForm == "desktop") {
+			if (isPageLoaded && !(Utils.waitForElement(driver, globalNavBar))) {
+				Log.fail("Home Page did not open up. Site might be down.",
+						driver);
+			}
+			headers = new Headers(driver).get();
+			footers = new Footers(driver).get();
+			elementLayer = new ElementLayer(driver);
+
+		}
+
+		if (runPlatForm == "mobile") {
+			if (isPageLoaded && !(Utils.waitForElement(driver, mobGlobalMenu))) {
+				Log.fail("Home Page did not open up. Site might be down.",
+						driver);
+			}
+			headers = new Headers(driver).get();
+			footers = new Footers(driver).get();
+			elementLayer = new ElementLayer(driver);
+
+		}// isLoaded
+	}
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+		driver.get(appURL);
+	}// load
+
+	/**
+	 * To navigate to Search Result Page
+	 * 
+	 * @param textToSearch
+	 * @return SearchResultPage
+	 * @throws Exception
+	 */
+	public SearchResultPage searchProductKeyword(String textToSearch)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.typeOnTextField(mobtxtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(mobbtnSearch, driver,
+					"Click on the search icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(btnSearch, driver,
+					"Click on the search icon");
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+		return new SearchResultPage(driver).get();
+	}
+
+	/**
+	 * Single product search using Product Style no. Navigates to PDP Page
+	 * 
+	 * @param textToSearch
+	 * @return Product Name in Cart
+	 * @throws Exception
+	 */
+	public PdpPage KeywordSearchResult(String textToSearch) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.typeOnTextField(mobtxtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(mobbtnSearch, driver,
+					"Click on the search icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(btnSearch, driver,
+					"Click on the search icon");
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * @throws Exception
+	 * @return void - if search is expanded
+	 */
+	public void expandsearch() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobBtnSearch, driver,
+				"Expanding the search toggle");
+		Log.event("clicked on the search toggle!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To verify products in the Cart
+	 * 
+	 * @param searchKey
+	 * @return Product Name in Pdp
+	 * @throws Exception
+	 */
+	public Boolean checkproductInCart(String searchKey) throws Exception {
+		final long startTime = StopWatch.startTime();
+		PdpPage Pdppage = searchsingleProductKeyword(searchKey);
+		String prodNamePdp = Pdppage.getProductName();
+		Log.message("prodName in Pdp Page  : " + prodNamePdp);
+		Utils.waitForElement(driver, headers.addToCart);
+		headers.addToCart();
+		String prodNameCart = Pdppage.getCartProductName();
+		Log.message("prodName in Cart Page: " + prodNameCart);
+		Log.event("Products in Cart is checked!",
+				StopWatch.elapsedTime(startTime));
+		return prodNamePdp.equalsIgnoreCase(prodNameCart);
+	}
+
+	/**
+	 * To search any product with clicking 'Enter' Key in the keyboard The
+	 * parameterized product name
+	 * 
+	 * @param String
+	 *            txtTo Search
+	 * @throws Exception
+	 * @return SearchResultPage
+	 */
+	public PdpPage searchProductWithEnterKey(String textToSearch)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Log.message("textToSearch: " + textToSearch);
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, textToSearch, driver,
+					"Entering category in the search field");
+			txtSearch.sendKeys(Keys.ENTER);
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.typeOnTextField(mobtxtSearch, textToSearch, driver,
+					"Entering category in the search field");
+			mobtxtSearch.sendKeys(Keys.ENTER);
+		}
+		Log.event("Product with keyword is searched!",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To search a single product with keyword
+	 * 
+	 * @param textToSearch
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage searchsingleProductKeyword(String textToSearch)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		SearchUtils.doSearch(txtSearch, btnSearch, textToSearch, driver);
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To get the product name in the cart
+	 * 
+	 * @return Text Product Name
+	 * @throws Exception
+	 */
+	public String getCartProductName() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForElement(driver, lblCartProductName);
+		String txtProductName = BrowserActions.getText(driver,
+				lblCartProductName, "CartProduct Name").trim();
+		Log.event("Got the Product Name!", StopWatch.elapsedTime(startTime));
+		return txtProductName;
+	}
+
+	/**
+	 * clicking on cart icon
+	 * 
+	 * @return CartPage
+	 * @throws Exception
+	 */
+	public CartPage clickOnCartIcon() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			BrowserActions.javascriptClick(mobCartIcon, driver, "Cart Icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(cartIcon, driver, "Cart Icon");
+		}
+		Log.event("Item added to Bag", StopWatch.elapsedTime(startTime));
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * To search products with the Suggestion
+	 * 
+	 * @param textToSearch
+	 * @param suggestedElement
+	 * @return SearchResultPage
+	 * @throws Exception
+	 */
+	public SearchResultPage searchProductWithAutoSuggestionLeftPanel(
+			String textToSearch, String SearchLink) throws Exception {
+		final long startTime = StopWatch.startTime();
+		// SearchLink=sProductName;
+		String sProductName = "//div[@class='search-suggestion-wrapper full']//div[@class='product-suggestions-left']//a[contains(.,'"
+				+ SearchLink + "')]";
+		SearchUtils.selectFromSearchAutoProductSuggestion(txtSearch,
+				textToSearch, sProductName, driver);
+		Log.event("Searched product with the Suggestion!",
+				StopWatch.elapsedTime(startTime));
+		return new SearchResultPage(driver).get();
+	}
+
+	/**
+	 * To search product with Auto Suggestion Right Panel
+	 * 
+	 * @param textToSearch
+	 * @param suggestedElement
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage searchProductWithAutoSuggestionRightPanel(
+			String textToSearch, String SearchLink) throws Exception {
+		final long startTime = StopWatch.startTime();
+		// String SearchLink = null;
+		String sProductName = "//div[@class='search-suggestion-wrapper full']//div[@class='product-suggestions-right']//a[contains(.,'"
+				+ SearchLink + "')]";
+		SearchUtils.selectFromSearchAutoProductSuggestion(txtSearch,
+				textToSearch, sProductName, driver);
+		Log.event("Searched product with auto the Suggestion!",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To get Attribute text from Home page
+	 * 
+	 * @param lblSearchText
+	 *            : WebElement from which Text need to extracted
+	 * @param driver
+	 *            : WebDriver instance
+	 * 
+	 * @return: String - text from Home page
+	 * @throws Exception
+	 */
+	public String getTextFromSearchTextBox() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver.findElement(By.cssSelector("#q"));
+		String txtSearchTextBox = e.getAttribute("placeholder").toString();
+		Log.event("Fetched the search text value in the search result page!",
+				StopWatch.elapsedTime(startTime));
+		return txtSearchTextBox;
+	}
+
+	/**
+	 * Get Text From search Box
+	 * 
+	 * @return String txtSearchTextBox
+	 * @throws Exception
+	 */
+	public String getTextFromSearchBox() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver.findElement(By.cssSelector("#q"));
+		String txtSearchTextBox = e.getText();
+		Log.event("Fetched the search text value in the search result page!",
+				StopWatch.elapsedTime(startTime));
+		return txtSearchTextBox;
+	}
+
+	/**
+	 * To search any product with out click search button The parameterized
+	 * product name
+	 * 
+	 * @return void if product is entered
+	 * @param String
+	 *            txtTo Search
+	 * @throws Exception
+	 */
+
+	public void entringProduct(String txtToSearch) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, txtToSearch, driver,
+					"Enter product in the search text box");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.typeOnTextField(mobtxtSearch, txtToSearch, driver,
+					"Enter product in the search text box");
+		}
+		Log.event("Entered product text to search!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Verify Search Box behavior
+	 * 
+	 * @return void - if icon clicked
+	 * @throws Exception
+	 */
+
+	public void clickingSearchTextBox() throws Exception {
+		BrowserActions.clickOnElement(btnSearch, driver,
+				"clicking on search button");
+	}
+
+	/**
+	 * Clicking the Search icon
+	 * 
+	 * @return SearchResultPage
+	 * @throws Exception
+	 */
+	public SearchResultPage clickingSearchIcon() throws Exception {
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(btnSearch, driver,
+					"clicking on search button");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(mobbtnSearch, driver,
+					"clicking on search button");
+
+		}
+		return new SearchResultPage(driver).get();
+	}
+
+	/**
+	 * To verify the content slot count in the home page, if content slot count
+	 * should be less than or equal to 15, then it will return 'true' else
+	 * false.
+	 * 
+	 * @return boolean value
+	 */
+	public boolean verifyContentSlotCount() {
+		return contentSlots.size() <= 15;
+	}
+
+	/**
+	 * To get text from Item Count
+	 * 
+	 * @return
+	 * @throws Exception
+	 * @return String - Text Item Count
+	 */
+	public String getTextFromItemCount() throws Exception {
+		String txtItemCount = BrowserActions.getText(driver, itemCount,
+				"item count");
+		return txtItemCount;
+	}
+
+	/**
+	 * To get text from Zero Item
+	 * 
+	 * @return text- Error Message
+	 * @throws Exception
+	 */
+	public String getTextFromZeroItem() throws Exception {
+		String error_Message = BrowserActions.getText(driver, lblerrorText,
+				"0 item found message");
+		return error_Message;
+	}
+
+	/**
+	 * To wait for Auto Suggestion Pop Up
+	 * 
+	 * @return boolean - Element Appear
+	 * @throws Exception
+	 */
+	public boolean waitForAutoSuggestionPopup() throws Exception {
+		boolean elementAppear = false;
+		elementAppear = Utils.waitForElement(driver, autoSuggestPopup, 10);
+		return elementAppear;
+	}
+
+	/**
+	 * To expand the Menu
+	 * 
+	 * @return void if menu is expanded
+	 * @throws Exception
+	 */
+	public void expandMenu() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobMenu, driver,
+				"clicked on the Menu toggle");
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Expand the Customer service section from footer
+	 * 
+	 * @return void if customer service expanded
+	 * @throws Exception
+	 */
+	public void expandCustomerServices() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(customerServiceMenu, driver,
+				"clicked on the Customer service toggle");
+		Log.event("clicked on the Customer service toggle!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Close the Menu
+	 * 
+	 * @return boolean- page loaded or not
+	 * @throws Exception
+	 */
+	public boolean closeMenu() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(closeMenu, driver,
+				"clicked on the Menu toggle");
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("Menu is closed!", StopWatch.elapsedTime(startTime));
+		return isPageLoaded;
+	}
+
+	/**
+	 * To expand the Search Box
+	 * 
+	 * @return void - if search box expanded
+	 * @throws Exception
+	 */
+	public void expandSearchBox() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobBtnSearch, driver,
+				"clicked on the Menu toggle");
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("Menu is closed!", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Collapse the Customer Services Menu
+	 * 
+	 * @return boolean - if Customer Services Menu is collapsed
+	 * @throws Exception
+	 */
+	public boolean collapseCustomerServices() throws Exception {
+
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(collapseCustomerServiceMenu, driver,
+				"clicked on the Customer service toggle");
+		Log.event("clicked on the Customer service toggle!",
+				StopWatch.elapsedTime(startTime));
+		return isPageLoaded;
+	}
+
+	/**
+	 * Site preview changing for website
+	 * 
+	 * @return void - if geo target is changed
+	 * @param siteCountry
+	 * @throws Exception
+	 */
+	public void changeGeoTarget(String siteCountry) throws Exception {
+
+		final long startTime = StopWatch.startTime();
+		driver.switchTo().frame("DW-SFToolkit");
+		BrowserActions.javascriptClick(btnSettings, driver,
+				"clicked on the Setting button");
+		BrowserActions.javascriptClick(btnSitePreview, driver,
+				"clicked on the site preview button");
+		BrowserActions.nap(1);
+		driver.switchTo().frame("dwControlPanel");
+		WebElement e = driver.findElement(By.cssSelector("#controlsTable"));
+		if (e.isDisplayed()) {
+			WebElement country = e.findElement(By
+					.cssSelector("#controlsCustomerGroup option[value='"
+							+ siteCountry + "']"));
+			country.click();
+			WebElement accept = e.findElement(By.cssSelector("#controlsOk"));
+			accept.click();
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Site change for Geo Targeting",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetch Top Banner Message method
+	 * 
+	 * @return BannerMessage
+	 * @throws Exception
+	 */
+	public String getTextFromTopBanner() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement TopBanner = driver.findElement(By
+				.cssSelector(".top-banner-message"));
+		String BannerMessage = BrowserActions.getText(driver, TopBanner,
+				"Top Banner text");
+		Log.event("Top banner Text", StopWatch.elapsedTime(startTime));
+		return BannerMessage;
+	}
+
+	/**
+	 * Navigate to About sheplers page
+	 * 
+	 * @return void - if navigated to About Sheplers Page
+	 * @throws Exception
+	 */
+	public void navigateToAboutSheplersPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			WebElement aboutSheplers = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer:nth-child(5) > div > div > div:nth-child(1) > div > div > ul:nth-child(2) > li:nth-child(1) > a"));
+			BrowserActions.clickOnElement(aboutSheplers, driver,
+					"about sheplers link");
+		}
+		if (runPlatForm == "mobile") {
+			WebElement aboutSheplers = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer.footer.footer-mobile > div > div.customer-service > div > div > ul:nth-child(2) > li:nth-child(1) > a"));
+			BrowserActions.clickOnElement(aboutSheplers, driver,
+					"about sheplers link");
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicking About Sheplers link",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Navigate to careers page
+	 * 
+	 * @return void after navigating to Careers Page
+	 * @throws Exception
+	 */
+	public void navigateToCareersPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			WebElement careers = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer:nth-child(5) > div > div > div:nth-child(1) > div > div > ul:nth-child(2) > li:nth-child(2) > a"));
+			BrowserActions.clickOnElement(careers, driver, "Careers link");
+		}
+		if (runPlatForm == "mobile") {
+			WebElement careers = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer.footer.footer-mobile > div > div.customer-service > div > div > ul:nth-child(2) > li:nth-child(2) > a"));
+			BrowserActions.clickOnElement(careers, driver, "Careers link");
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicking Careers link", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Navigate to Brands Page
+	 * 
+	 * @return void after navigated to Brands Page
+	 * @throws Exception
+	 */
+	public void navigateToBrandsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			WebElement brands = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer:nth-child(5) > div > div > div:nth-child(1) > div > div > ul:nth-child(2) > li:nth-child(4) > a"));
+			BrowserActions.clickOnElement(brands, driver, "Brands link");
+		}
+		if (runPlatForm == "mobile") {
+			WebElement brands = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer.footer.footer-mobile > div > div.customer-service > div > div > ul:nth-child(2) > li:nth-child(4) > a"));
+			BrowserActions.clickOnElement(brands, driver, "Brands link");
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicking Brands link", StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Clicking price guarantee icon in footer
+	 * 
+	 * @return void after clicking guarantee icon
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnPriceGuaranteeIcon() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			WebElement priceGuaranteeIcon = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer:nth-child(5) > div > div > div:nth-child(1) > a > img"));
+			BrowserActions.clickOnElement(priceGuaranteeIcon, driver,
+					"Price Guarantee icon");
+		}
+		if (runPlatForm == "mobile") {
+			WebElement priceGuaranteeIcon = driver
+					.findElement(By
+							.cssSelector("#wrapper > footer.footer.footer-mobile > div > div.footer-inner-mobile > a > img"));
+			BrowserActions.clickOnElement(priceGuaranteeIcon, driver,
+					"Price Guarantee icon");
+		}
+
+		Log.event("Clicking Price Guarantee icon",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * clicks the offer link
+	 * 
+	 * @param input
+	 * @return
+	 * @throws Exception
+	 */
+
+	public CategoryGridPage clickOnOfferLink(String input) throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement lnkOffer = driver
+				.findElement(By.cssSelector("ul.list-offer-links li a[title*='"
+						+ input + "']"));
+		BrowserActions.clickOnElement(lnkOffer, driver, input);
+		Log.event("Selects the offer link!", StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To expand the Menu
+	 * 
+	 * @return void if menu is expanded
+	 * @throws Exception
+	 */
+	public void expandSecondaryMenu() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(mobSecMenu, driver,
+				"clicked on the Menu toggle");
+		Log.event("Searched the provided product!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+}// HOMEPAGE

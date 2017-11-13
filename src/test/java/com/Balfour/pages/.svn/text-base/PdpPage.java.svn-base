@@ -1,0 +1,2956 @@
+package com.sheplers.pages;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.reusablecomponents.AddRemoveBagUtils;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class PdpPage extends LoadableComponent<PdpPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public Headers headers;
+	public ElementLayer elementLayer;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of PDP Page - Starts ***************************
+	 **********************************************************************************************/
+
+	String runPlatForm = Utils.getRunPlatForm();
+	private static final String PRODUCT = "div[class='product-brand']";
+	private static final String QUANTITY = "select#Quantity";
+
+	private static final String SELECTEDCOLOR = "ul[class='swatches color']>li.selected>a>img";
+	private static final String LISTOFCOLOR = ".color.color-options li:not([class*='selected-value']) a";
+	private static final String LISTOFQUANTITY = "select#Quantity >option";
+	private static final String UNSELECTECOLORS = "ul.color.color-options li:not([class*='selected']) a";
+	private static final String PREVIOUSARROW = " .slick-prev.slick-arrow";
+	private static final String NEXTARROW = " .slick-next.slick-arrow";
+	private static final String NAVLEFTBESTSELLINGITEMS = "#best_selling_items"
+			+ PREVIOUSARROW;
+	private static final String NAVRIGHTBESTSELLINGITEMS = "#best_selling_items"
+			+ NEXTARROW;
+	private static final String NAVLEFTPEOPLEWHOBOUGHTSECTION = "#also_bought_items"
+			+ PREVIOUSARROW;
+	private static final String NAVRIGHTPEOPLEWHOBOUGHTSECTION = "#also_bought_items"
+			+ NEXTARROW;
+	private static final String NAVLEFTRECENTLYVIEWEDSECTION = "div[class*='last-visited']"
+			+ PREVIOUSARROW;
+	private static final String NAVRIGHTRECENTLYVIEWEDSECTION = "div[class*='last-visited']"
+			+ NEXTARROW;
+
+	private static final String NAVRIGHTMULTIPLEIMAGE = ".product-primary-image.search-img"
+			+ NEXTARROW;
+
+	@FindBy(css = "#also_bought_items")
+	WebElement secPeopleWhoBought;
+
+	@FindBy(css = "#best_selling_items")
+	WebElement secBestSellingItems;
+
+	@FindBy(css = "div.product-list-item .name>p>a")
+	WebElement lblCartProductName;
+
+	@FindBy(css = "div[class*='last-visited']")
+	WebElement secRecentlyViewed;
+
+	@FindBy(css = ".product-primary-image.search-img [class*='slick-active'] a")
+	WebElement mainImage;
+
+	@FindBy(css = "#thumbnails [class*='slick-current slick-active'] a")
+	WebElement defaultImage;
+
+	@FindBy(css = ".product-primary-image.search-img" + PREVIOUSARROW)
+	WebElement leftNavArrow;
+
+	@FindBy(css = ".product-primary-image.search-img" + NEXTARROW)
+	WebElement RIghtNavArrow;
+
+	@FindBy(css = ".list-product-info li[aria-describedby*='ui-id']")
+	WebElement zoomedFeature;
+
+	@FindBy(css = "#best_selling_items .slick-prev.slick-arrow")
+	WebElement navLeftBestSellingItems;
+
+	@FindBy(css = "div[class*='last-visited'] .accordion-head.active")
+	WebElement btnRecentlyViewedCollapse;
+
+	@FindBy(css = "div[class*='last-visited'] .accordion-head")
+	WebElement btnRecentlyViewedExpand;
+
+	@FindBy(css = "#also_bought_items .accordion-head.active")
+	WebElement btnPeopleBoughtCollapse;
+
+	@FindBy(css = "#also_bought_items .accordion-head")
+	WebElement btnPeopleBoughtExpand;
+
+	@FindBy(css = "#best_selling_items .accordion-head.active")
+	WebElement btnBestSellingItemsCollapse;
+
+	@FindBy(css = "#best_selling_items .accordion-head")
+	WebElement btnBestSellingItemsExpand;
+
+	@FindBy(css = "ul[class='list-product-info'] li [class*='content-asset'] img")
+	List<WebElement> imgProductFeature;
+
+	@FindBy(css = "#also_bought_items .slick-prev.slick-arrow")
+	WebElement navLeftPteopleWhoBoughtSection;
+
+	@FindBy(css = "#best_selling_items .slick-next.slick-arrow")
+	WebElement navRightBestSellingItems;
+
+	@FindBy(css = "#also_bought_items .slick-next.slick-arrow")
+	WebElement navRightPeopleWhoBoughtSection;
+
+	@FindBy(css = "#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img")
+	List<WebElement> imgBestSellingItems;
+
+	@FindBy(css = "#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img")
+	List<WebElement> imgPeopleWhoBoughtSection;
+
+	@FindBy(css = "div[class*='last-visited'] .slick-prev.slick-arrow")
+	WebElement navLeftRecentlyViewedSection;
+
+	@FindBy(css = "div[class*='last-visited'] .slick-next.slick-arrow")
+	WebElement navRightRecentlyViewedSection;
+
+	@FindBy(css = "div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active'] div.product-image img")
+	List<WebElement> imgRecentlyViewedSection;
+
+	@FindBy(css = "div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active']")
+	List<WebElement> activeRecentlyViewedItems;
+
+	@FindBy(css = ".btn-zoom")
+	WebElement zoomIcon;
+
+	@FindBy(css = ".zoomContainer")
+	WebElement zoomWindow;
+
+	@FindBy(css = "div.fancybox-wrap.fancybox-mobile.fancybox-type-image.wrapMobile.fancybox-opened > div > div > div > img")
+	WebElement zoomMobimage;
+
+	@FindBy(css = ".product-primary-image.search-img .slick-dots li")
+	List<WebElement> mobSlickDots;
+
+	@FindBy(css = "#best_selling_items .slick-dots li")
+	List<WebElement> mobBSISlickDots;
+
+	@FindBy(css = "#best_selling_items ul[class*='slick-slider'] li[class*='slick-active']")
+	List<WebElement> activeBestSellingItems;
+
+	@FindBy(css = "#also_bought_items ul[class*='slick-slider'] li[class*='slick-active']")
+	List<WebElement> activePeopleWhoBoughtThisAlsoBoughtItems;
+
+	@FindBy(css = "a[class*='fancybox-close']")
+	WebElement zoomClose;
+
+	@FindBy(css = "[class*='product-features'] .accordion-head.active")
+	WebElement btnProductFeaturecollapse;
+
+	@FindBy(css = "[class*='product-features'] .accordion-head")
+	WebElement btnProductFeatureExpand;
+
+	@FindBy(css = ".slick-track div[class*='selected'] a")
+	WebElement Imgmain;
+
+	@FindBy(css = ".slick-track div[class*='selected'] a")
+	WebElement ImgDefaultThumbnail;
+
+	@FindBy(css = LISTOFQUANTITY)
+	List<WebElement> listOfQuantity;
+
+	@FindBy(css = LISTOFCOLOR)
+	List<WebElement> listOfColors;
+
+	@FindBy(css = ".input-text.opc-qty.field")
+	public WebElement quantityincartPage;
+
+	@FindBy(css = "p.promo.promo-shipping")
+	WebElement promoShippingMessage;
+
+	@FindBy(css = ".fancybox-nav.fancybox-prev>span")
+	WebElement btnZoomPrev;
+
+	@FindBy(css = "ul.size.size-options li:nth-child(1) a span strong")
+	WebElement defaultSize;
+
+	@FindBy(css = "select#Quantity >option[selected*='selected']")
+	public WebElement defaultQuantity;
+
+	@FindBy(css = "ul.color.color-options [class*='selected-value']")
+	WebElement selectedColorInPdp;
+
+	@FindBy(css = "ul.product-options li[class*='color'] ul[class*='color-options'] li:not([class*='selected'])")
+	List<WebElement> unSelectedColorInPdp;
+
+	@FindBy(css = "ul.product-options li[class*='color'] ul[class*='color-options'] li:not([class*='selected'])")
+	List<WebElement> unSelectedColorsInPdp;
+
+	@FindBy(css = "div[class='loader'][style*='block']")
+	WebElement loader;
+
+	@FindBy(css = "button[id='add-to-cart']")
+	WebElement btnAddtoCart;
+
+	@FindBy(css = ".slick-track div[class*='slide thumb']>a")
+	List<WebElement> thumbnailCount;
+
+	@CacheLookup
+	@FindBy(css = "form[name='simpleSearch'] button")
+	WebElement btnSearch;
+
+	@CacheLookup
+	@FindBy(css = "a[class='btn-minicart']")
+	WebElement btnCart;
+
+	@FindBy(css = "div.value.select-dropdown > span")
+	WebElement btnSize;
+
+	@CacheLookup
+	@FindBy(css = "li[class='attribute attribute-size'] span[class='text'] span")
+	WebElement sizeText;
+
+	@FindBy(css = "div[class='value select-dropdown'] ul li:nth-child(1)")
+	WebElement sizeOption;
+
+	@CacheLookup
+	@FindBy(css = "div[id='pdpMain']")
+	WebElement pdPContent;
+
+	@FindBy(css = "a[class='minicart'] span")
+	WebElement cartOverlay;
+
+	@FindBy(css = ".fancybox-nav.fancybox-next>span")
+	WebElement btnZoomNxt;
+
+	@FindBy(css = "span[class='breadcrumb-element last-element hide-mobile']")
+	WebElement bcLastCategoryName;
+
+	@FindBy(css = "div[class='breadcrumb'] a[href*='home']")
+	WebElement bcHome;
+
+	@FindBy(css = "span[class='minicart-quantity']")
+	String itemCount;
+
+	@FindBy(css = PRODUCT + " a ")
+	WebElement lblProductBrand;
+
+	@FindBy(css = "h1.product-name")
+	WebElement lblProductName;
+
+	@FindBy(css = QUANTITY)
+	WebElement btnQuantity;
+
+	@FindBy(css = "div[class='product-detail-image']")
+	WebElement imgLogo;
+
+	@FindBy(css = "header[class='product-detail-head']")
+	WebElement productDetailHeader;
+
+	@FindBy(css = ".product-detail-inner dd.bv-rating-ratio > a > span.bv-rating-stars-on.bv-rating-stars")
+	WebElement lnkStarRating;
+
+	@FindBy(css = "#pdpMain .bv-rating-stars-on.bv-rating-stars")
+	WebElement lnkMobStarRating;
+
+	@FindBy(css = "span[class='bv-rating-ratio-count']")
+	WebElement lblReviewsCount;
+
+	@FindBy(css = "#pdpMain dd.bv-rating-ratio-count > span span")
+	WebElement lblMobReviewsCount;
+
+	@FindBy(css = "div[class='product-price']")
+	WebElement lblProductPricing;
+
+	@FindBy(css = "span[class='price-original price-holder-alt'] strong")
+	WebElement lblOriginalPrice;
+
+	@FindBy(css = "span[class='price-checkout'] strong")
+	WebElement lblSeePriceIncheckout;
+
+	@FindBy(css = "span[class='discounts price-holder-alt'] strong")
+	WebElement lblSalePrice;
+
+	@FindBy(css = "span[class='discounts price-holder-alt coupon-percent-off'] strong")
+	WebElement lblSavingPercentage;
+
+	@FindBy(css = "h6[class='product-callout-title'] strong")
+	WebElement lblFinalPrice;
+
+	@FindBy(css = "p[class='savings'] em")
+	WebElement lblTotalSavingPercentage;
+
+	@FindBy(css = "ul[class='color color-options'] li[class='selectable selected'] a")
+	WebElement lnkColorSelection;
+
+	@FindBy(css = "#pdpMain > div.product-col-2.product-detail > div.product-shipping-restrictions > div")
+	WebElement lblProductShippingRestriction;
+
+	@FindBy(css = "div[class*='promos promos'] p")
+	WebElement lblPromoText;
+
+	@FindBy(css = "div [class='slide slick-slide slick-current slick-active'] div[class='slide-image'] img")
+	WebElement imgProductMain;
+
+	@FindBy(css = "div[id='thumbnails'][class='product-thumbnails']")
+	WebElement lblProductImageThumbnail;
+
+	@FindBy(css = "div[class='accordion product-features']")
+	WebElement lblProductFeatureAndDesc;
+
+	@FindBy(css = "div[class='accordion product-reviews']")
+	WebElement lblProductReviewSection;
+
+	@FindBy(css = "div[class='accordion product-reviews'] dl[class='bv-stars-container'] dd[class='bv-rating-ratio-number'] div")
+	WebElement lblAverageRatingProductReviewSection;
+
+	@FindBy(css = "div[class='accordion product-reviews'] dl[class='bv-stars-container'] dd[class='bv-rating-ratio']")
+	WebElement starRatingProductReviewSection;
+
+	@FindBy(css = "div[class='accordion product-reviews'] li:nth-child(1) div[class='bv-content-container']")
+	WebElement lblProductReviewContent;
+
+	@FindBy(css = "button[type='button'][aria-owns='bv-content-filter-dropdown-Rating'] span[class='bv-dropdown-title']")
+	WebElement btnRating;
+
+	@FindBy(css = "div[class='bv-control-bar-sort'] button")
+	WebElement btnSort;
+
+	@FindBy(css = "div[class='accordion'][id='best_selling_items']")
+	WebElement lblOurBestSellingItemsSection;
+
+	@FindBy(css = "div[class='accordion'][id='also_bought_items']")
+	WebElement lblAlsoBoughtItemsSection;
+
+	@FindBy(css = "div[class='accordion last-visited']")
+	WebElement lblRecentlyViewedSection;
+
+	@FindBy(css = "footer[class='footer']")
+	WebElement footer;
+
+	@FindBy(css = "div[class='product-number']")
+	WebElement lblProductItemNum;
+
+	@FindBy(css = "#itemno_1 div.order-item-content div div.order-item-title div.product-list-item div p a")
+	WebElement lblProductNameCart;
+
+	@FindBy(css = ".price-checkout")
+	WebElement seePriceInCheckout;
+
+	@FindBy(css = "span[class='globalbannercountdown']")
+	WebElement promoCountDown;
+
+	@FindBy(css = "span[class='bv-rating-stars-container'] abbr[class='bv-rating bv-rating-stars bv-rating-stars-off']")
+	List<WebElement> individualStarRating;
+
+	@FindBy(css = "ol[class='bv-content-list bv-content-list-Reviews bv-focusable'] li:nth-child(1) button:nth-child(1) span[class='bv-content-btn-count']")
+	WebElement lnkYesFirstReviewSection;
+
+	@FindBy(css = "div[class='bv-content-list-container'] li:nth-child(1)  button[class='bv-content-report-btn bv-focusable']")
+	WebElement btnReportFirstReviewSection;
+
+	@FindBy(css = "div[class*='promos-shipping']")
+	WebElement promoFreeShipping;
+
+	@FindBy(css = "span[class='bv-content-btn-pages-prev']")
+	WebElement btnPrevious;
+
+	@FindBy(css = "span[class='bv-content-btn-pages-next']")
+	WebElement btnNext;
+
+	@FindBy(css = "span[class='bv-content-btn-pages-load-more-text']")
+	WebElement lnkViewMore;
+
+	@FindBy(css = "span[class*='price-original']>strong")
+	WebElement txtOriginalPrice;
+
+	@FindBy(css = "span[class*='discounts price']>strong")
+	WebElement txtSalePrice;
+
+	@FindBy(css = "span.discounts.price-holder-alt.coupon-percent-off > strong")
+	WebElement txtCouponPrice;
+
+	@FindBy(css = "div.product-callout > h6 > strong")
+	WebElement txtFinalPrice;
+
+	@FindBy(css = ".product-standard-price>del")
+	WebElement txtSeePriceInCheckOutOriginalPrice;
+
+	@FindBy(css = ".current.color-current")
+	WebElement productColorName;
+
+	@FindBy(css = "div.product-col-2.product-detail > div:nth-child(3)")
+	WebElement lblShippingMessage;
+
+	@FindBy(css = "div.product-col-2.product-detail > div:nth-child(2)")
+	WebElement moblblShippingMessage;
+
+	@FindBy(css = "div.product-col-2.product-detail > div:nth-child(4)")
+	WebElement lblShipRestrictionMessage;
+
+	@FindBy(css = "div.product-col-2.product-detail > div:nth-child(3)")
+	WebElement moblblShipRestrictionMessage;
+
+	@FindBy(css = "div.product-col-2.product-detail > div:nth-child(5)")
+	WebElement lblShippingMethod;
+
+	@FindBy(css = "div.product-col-2.product-detail > div:nth-child(4)")
+	WebElement moblblShippingMethod;
+
+	@FindBy(css = "div[class='value select-dropdown']")
+	WebElement sizedrp;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of PDP Page - Ends *****************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	public PdpPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		headers = new Headers(driver).get();
+		elementLayer = new ElementLayer(driver);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		Utils.waitForPageLoad(driver);
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		/*BrowserActions.nap(7);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, pdPContent))) {
+			Log.fail("PDP Page did not open up. Site might be down.", driver);
+		}
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, pdPContent);
+
+	}
+
+	/**
+	 * To check pdp page is displayed
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+	public Boolean verifyPdpPage() throws Exception {
+		Boolean returntype = false;
+		if (lblProductName.isDisplayed()) {
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * to check product description section in pdp page
+	 * 
+	 * @return booelan value
+	 * @throws Exception
+	 */
+	public Boolean toCheckProductDescriptionSectionInPdpPage() throws Exception {
+		Boolean returntype = false;
+		try {
+			if (driver.findElement(By.cssSelector(".product-info >ul ~ p"))
+					.isDisplayed()) {
+
+				if (btnProductFeaturecollapse.isEnabled()) {
+
+					btnProductFeaturecollapse.click();
+
+					if (btnProductFeatureExpand.isDisplayed()) {
+						returntype = true;
+					}
+				}
+			} else {
+
+				driver.navigate().back();
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Product description in PDP page");
+		}
+		return returntype;
+	}
+
+	/**
+	 * verify details of the products in BEST SELLING ITEMS section
+	 * 
+	 * @return boolean value
+	 * @throws InterruptedException
+	 */
+	public Boolean verifyDetailsOfProductsInRecentlyViewedSection()
+			throws InterruptedException {
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "desktop") {
+			for (WebElement e : activeRecentlyViewedItems) {
+				if (e.findElement(By.cssSelector(" div.product-image img"))
+						.isDisplayed()
+
+						&& e.findElement(
+								By.cssSelector(" div[class*='rating-top']"))
+								.isDisplayed()
+
+						&& e.findElement(By.cssSelector(" div.product-name a"))
+								.isDisplayed()
+						&& e.findElement(By.cssSelector(" div.product-pricing"))
+								.isDisplayed()
+						&& e.findElement(
+								By.cssSelector(" div.product-swatches ul.swatch-list"))
+								.isDisplayed()) {
+					returntype = true;
+				} else {
+					returntype = false;
+				}
+			}
+		}
+		if (runPlatForm == "mobile") {
+			scrollToElement(secRecentlyViewed);
+			Utils.waitForPageLoad(driver);
+			if (driver
+					.findElement(
+							By.cssSelector("div[class*='last-visited'] [class*='slick-slider'] li[class*='slick-active'] div.product-image img"))
+					.isDisplayed()
+					&& driver
+							.findElement(
+									By.cssSelector("div[class*='last-visited'] [class*='slick-slider'] li[class*='slick-active'] div.product-content div[class*='bv-rating-top-statistic']"))
+							.isDisplayed()
+					&& driver
+							.findElement(
+									By.cssSelector("div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active'] div.product-content a[class='name-link']"))
+							.isDisplayed()
+					&& driver
+							.findElement(
+									By.cssSelector("div[class*='last-visited'] [class*='slick-slider'] li[class*='slick-active'] div.product-pricing"))
+							.isDisplayed()) {
+				returntype = true;
+
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Check Best selling items section in pdp page
+	 * 
+	 * @return boolean value
+	 */
+
+	public Boolean toCheckRecentlyViewedSectionInPdpPage() throws Exception {
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+		if (driver
+				.findElement(
+						By.cssSelector(".accordion.product-reviews+#best_selling_items"))
+				.isDisplayed()) {
+
+			if (btnRecentlyViewedCollapse.isEnabled()) {
+				btnRecentlyViewedCollapse.click();
+				Utils.waitForPageLoad(driver);
+
+				if (btnRecentlyViewedExpand.isDisplayed()) {
+					returntype = true;
+				}
+			}
+		}
+		return returntype;
+
+	}
+
+	/**
+	 * check clicking on product from Best selling items section, product is is
+	 * redirected to pdp page or not
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean toclickProductInBestSellingItemsSectionInPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		String ImageName = "";
+
+		if (runPlatForm == "desktop") {
+			List<WebElement> images = driver
+					.findElements(By
+							.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"));
+
+			for (WebElement image : images) {
+				ImageName = BrowserActions.getTextFromAttribute(driver, image,
+						"alt", "title of the image");
+				image.click();
+				Utils.waitForPageLoad(driver);
+				BrowserActions.nap(1);
+
+				if (ImageName.equalsIgnoreCase(lblProductName.getText())&&
+						(driver.findElement(By.cssSelector(".primary-logo.mb-hidden img[class='desktop-logo']")).isDisplayed()))
+						{
+						returntype = true;
+						break;
+						}
+					else{
+						Log.message("Navigate to Other than sheplers site");
+					}
+			}
+		}
+
+		if (runPlatForm == "mobile") {
+			scrollToElement(secBestSellingItems);
+
+			if (driver
+					.findElement(
+							By.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"))
+					.isDisplayed()) {
+				WebElement e = driver
+						.findElement(By
+								.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"));
+				ImageName = e.getText();
+				e.click();
+				Utils.waitForPageLoad(driver);
+				if(driver.findElement(By.cssSelector(".primary-logo.ds-hidden img[class='mobile-logo']")).isDisplayed())
+				{
+				returntype = true;
+				}
+				else{
+					Log.message("Navigate to Other than sheplers site");
+				}
+
+			}
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * check clicking on product fromPeople who bought this also bought section,
+	 * product is is redirected to pdp page or not
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean toclickProductInPeopleWhoBoughtSectionInPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+		String ImageName = "";
+
+		if (runPlatForm == "mobile") {
+			scrollToElement(secBestSellingItems);
+
+			if (driver
+					.findElement(
+							By.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"))
+					.isDisplayed()) {
+				WebElement e = driver
+						.findElement(By
+								.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"));
+				ImageName = e.getText();
+				e.click();
+				Utils.waitForPageLoad(driver);
+				if(driver.findElement(By.cssSelector(".primary-logo.ds-hidden img[class='mobile-logo']")).isDisplayed())
+				{
+				returntype = true;
+				}
+				else{
+					Log.message("Navigate to Other than sheplers site");
+				}
+			}
+		}
+
+		List<WebElement> images = driver
+				.findElements(By
+						.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"));
+		for (WebElement image : images) {
+			ImageName = BrowserActions.getTextFromAttribute(driver, image,
+					"alt", "title of the image");
+			BrowserActions.nap(1);
+			image.click();
+			Utils.waitForPageLoad(driver);
+			if (ImageName.equalsIgnoreCase(lblProductName.getText())&&
+				(driver.findElement(By.cssSelector(".primary-logo.mb-hidden img[class='desktop-logo']")).isDisplayed()))
+				{
+				returntype = true;
+				break;
+				}
+			else{
+				Log.message("Navigate to Other than sheplers site");
+			}
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * To Check Close Button in Zoom modal window in Product Details page
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+
+	public Boolean clickCloseButtonInZoomWindowInPdpPage() throws Exception {
+		Boolean returntype = false;
+		Utils.waitForElement(driver, zoomWindow);
+		if (zoomWindow.isDisplayed()) {
+			BrowserActions.clickOnElement(zoomClose, driver, "close button");
+			if (pdPContent.isDisplayed()) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Verifies the countdown in pdpd page
+	 */
+	/*
+	 * 
+	 * public Boolean checkCountdownInPdpPage(){ Boolean returntype = false;
+	 * if(!(elementLayer.existsElement(promoCountDown))){
+	 * 
+	 * } return isPageLoaded; }
+	 */
+
+	/**
+	 * To Add product to cart
+	 * 
+	 * @return CartPage
+	 * @throws Exception
+	 */
+	public CartPage addProductToCart() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnAddtoCart, driver,
+				"Clicked on the add to bag button");
+		Log.event("Product is Added to cart", StopWatch.elapsedTime(startTime));
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * if left navigation arrow is present in PeopleWhoBoughtSection and the
+	 * list of products differs ,if the swiping is done
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+
+	public Boolean CheckPreviousArrowNavigationsInPeopleWhoBoughtSectionOfPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		if (elementLayer.existsElement(NAVLEFTPEOPLEWHOBOUGHTSECTION)) {
+
+			for (WebElement element1 : imgPeopleWhoBoughtSection) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Previos button");
+				productList1.add(str);
+			}
+
+			BrowserActions.javascriptClick(navLeftPteopleWhoBoughtSection,
+					driver, "NavLeftBestSellingItems");
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(1);
+
+			for (WebElement element2 : imgPeopleWhoBoughtSection) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previos button");
+				productList2.add(str1);
+			}
+
+			if (!(productList1.containsAll(productList2))) {
+				returntype = true;
+			}
+		}
+		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(2);
+		return returntype;
+	}
+
+	/**
+	 * Check next arrow navigations in People Who Bought section pdp page
+	 * 
+	 * @return boolean value - if arrow navigates
+	 */
+
+	public Boolean CheckNextArrowNavigationsInPeopleWhoBoughtSectionOfPdpPage()
+			throws Exception {
+		Utils.waitForPageLoad(driver);
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		Utils.waitForPageLoad(driver);
+
+		if (elementLayer.existsElement(NAVRIGHTPEOPLEWHOBOUGHTSECTION)) {
+
+			for (WebElement element1 : imgPeopleWhoBoughtSection) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Next button");
+				productList1.add(str);
+			}
+
+			BrowserActions.javascriptClick(navRightPeopleWhoBoughtSection,
+					driver, "Next arrow");
+
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(2);
+
+			for (WebElement element2 : imgPeopleWhoBoughtSection) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previos button");
+				productList2.add(str1);
+			}
+
+			if (!(productList1.containsAll(productList2))) {
+				returntype = true;
+			}
+		}
+		Utils.waitForPageLoad(driver);
+
+		return returntype;
+	}
+
+	/**
+	 * Fetch select Product name
+	 * 
+	 * @return String Product Name
+	 * @throws Exception
+	 */
+	public String getStringFromSelectedProductName() throws Exception {
+		String txtLastBreadCrumb = BrowserActions.getText(driver,
+				bcLastCategoryName,
+				"fetching text from last bread crumb in pdp page");
+		return txtLastBreadCrumb;
+	}
+
+	/**
+	 * Fetch product name method
+	 * 
+	 * @return String txtProductName
+	 * @throws Exception
+	 */
+	public String getProductName() throws Exception {
+		Utils.waitForElement(driver, lblProductName);
+		String txtProductName = BrowserActions.getText(driver, lblProductName,
+				"Product Name").trim();
+		return txtProductName;
+	}
+
+	/**
+	 * gets item number of product
+	 * 
+	 * @return String txtItemNumber
+	 * @throws Exception
+	 */
+	public String getProductItemNo() throws Exception {
+		Utils.waitForElement(driver, lblProductItemNum);
+		Utils.waitForPageLoad(driver);
+		String txtItemNumber = BrowserActions.getText(driver,
+				lblProductItemNum, "Product Item No").trim();
+		return txtItemNumber;
+	}
+
+	/**
+	 * Fetch product name from cart page
+	 * 
+	 * @return String txtProductName
+	 * @throws Exception
+	 */
+	public String getCartProductName() throws Exception {
+		Utils.waitForElement(driver, lblCartProductName);
+		String txtProductName = BrowserActions.getText(driver,
+				lblCartProductName, "CartProduct Name").trim();
+		return txtProductName;
+	}
+
+	/**
+	 * To check Navigations in Zoom modal window
+	 * 
+	 * @return Zoom Page
+	 * @throws Exception
+	 */
+
+	public Boolean verifyNavigationInZoomModalWindoW() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String image1 = "";
+		String image2 = "";
+		BrowserActions.nap(2);
+		if (thumbnailCount.size() > 2) {
+
+			BrowserActions.clickOnElement(zoomIcon, driver, "Zoom icon");
+			Utils.waitForElement(driver, zoomWindow);
+
+			if (zoomWindow.isDisplayed()) {
+
+				BrowserActions.mouseHover(driver, zoomWindow);
+
+				WebElement element = (driver.findElement(By
+						.cssSelector("div.zoomContainer > div > div")));
+				if (element.getCssValue("display").contains("block")) {
+					image1 = BrowserActions.getTextFromAttribute(driver,
+							element, "style", "image");
+				}
+
+				Utils.waitForPageLoad(driver);
+				BrowserActions.nap(2);
+
+				if (btnZoomPrev.isEnabled()) {
+					BrowserActions.clickOnElement(btnZoomPrev, driver,
+							"Next button");
+					Utils.waitForPageLoad(driver);
+				}
+
+				BrowserActions.mouseHover(driver, zoomWindow);
+	
+				WebElement element1 = (driver.findElement(By
+						.cssSelector(".zoomWindow")));
+				if (element1.isEnabled()) {
+					if (element1.getCssValue("display").contains("block")){
+
+					image2 = BrowserActions.getTextFromAttribute(driver,
+							element1, "style", "image");
+				}
+				}
+
+				if (!image1.equalsIgnoreCase(image2)) {
+					if (verifyNextArrowNavigationInZoomModalWindoW(image2)) {
+						returntype = true;
+						return returntype;
+					}
+				}
+			}
+		}
+		Log.event("naviagate to Zoom Window Page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Check next arrow navigations in zoom modal window in pdp page
+	 * 
+	 * @param image2
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean verifyNextArrowNavigationInZoomModalWindoW(String image2)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		String image3 = " ";
+		BrowserActions.nap(2);
+		if (btnZoomNxt.isEnabled()) {
+			BrowserActions.clickOnElement(btnZoomPrev, driver, "Next button");
+		}
+
+		BrowserActions.mouseHover(driver, zoomWindow);
+
+		WebElement element2 = (driver
+				.findElement(By.cssSelector(".zoomWindow")));
+		Utils.waitForElement(driver, element2);
+		if (element2.isEnabled()) {
+			if (element2.getCssValue("display").contains("block")){
+			image3 = BrowserActions.getTextFromAttribute(driver, element2,
+					"style", "image");
+		}
+		}
+
+		if (!image2.equalsIgnoreCase(image3)) {
+			returntype = true;
+		}
+		Log.event("Verifying Next Arrow navigation in Zoom Window Page",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * check size and width combinations
+	 * 
+	 * @return void after size and width is checked
+	 * @throws Exception
+	 */
+
+	public void checkSizeAndWidthcombinationinOneVariation() throws Exception {
+		List<String> sizeList = new ArrayList<String>();
+
+		BrowserActions.clickOnElement(btnSize, driver, "Clicked Size Button");
+
+		List<WebElement> list = driver
+				.findElements(By
+						.cssSelector("ul[class*='select-dropdown-inner'] li span strong"));
+		for (WebElement e : list) {
+			String str = e.getText();
+			sizeList.add(str);
+		}
+
+		for (String s : sizeList) {
+			char string = s.charAt(s.length() - 1);
+			if (!(((char) string > 64) && ((char) string < 91))) {
+				Log.message(" Width is not given ");
+			}
+		}
+	}
+
+	/**
+	 * To verify default color in PDP page
+	 * 
+	 * @return String - selected color
+	 * @throws Exception
+	 */
+	public String verifyDefaultColorDispinPDPpage() throws Exception {
+
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("ul[class='color color-options'] li[class='selectable selected'] a"));
+
+		String selectedColorInPDPpage = BrowserActions.getTextFromAttribute(
+				driver, e, "data-color-name", "get color from PDP page");
+
+		return selectedColorInPDPpage;
+	}
+
+	/**
+	 * Check available Colors for the product in Product Detail Page
+	 * 
+	 * @return void after availability of colors is checked
+	 * @throws Exception
+	 */
+	public void listOfColorsInpdpPage() throws Exception {
+		List<String> colorList = new ArrayList<String>();
+		for (WebElement e : listOfColors) {
+			colorList.add(BrowserActions.getTextFromAttribute(driver, e,
+					"data-color-name", "color list"));
+		}
+	}
+
+	/**
+	 * Check if selected Thumbnail Color Images Displayed
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean checkIfselectedThumbnailColorImagesDisplayed()
+			throws Exception {
+		Boolean returntype = true;
+
+		WebElement element1 = driver
+				.findElement(By
+						.cssSelector("div[class='slide slick-slide slick-current slick-active'] a"));
+		String href1 = BrowserActions.getTextFromAttribute(driver, element1,
+				"href", "href link");
+		String color = selectedColorInPdp.getText();
+
+		unSelectedColorInPdp.get(0).click();
+
+		Utils.waitForPageLoad(driver);
+
+		String selectedcolor = selectedColorInPdp.getText();
+
+		Utils.waitUntilElementDisappear(driver, loader);
+
+		WebElement element2 = driver
+				.findElement(By
+						.cssSelector("div[class='slide slick-slide slick-current slick-active'] a"));
+		String href2 = BrowserActions.getTextFromAttribute(driver, element2,
+				"href", "href link");
+
+		if (color.equalsIgnoreCase(selectedcolor)) {
+			if (href1.equalsIgnoreCase(href2)) {
+				returntype = false;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * If image is changed ,clicking on next arrow When more than a single image
+	 * associated with product default image,
+	 * 
+	 * @return true
+	 * 
+	 * @return false
+	 */
+
+	public Boolean CheckMobMultipleproductMainImageaDisplayedInSwipeCarouselInPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+
+		WebElement element1 = driver
+				.findElement(By
+						.cssSelector(".product-primary-image.search-img [class*='slick-list']  [class*='slick-active']"));
+
+		if (element1.isDisplayed()) {
+			String str = BrowserActions.getTextFromAttribute(driver, element1,
+					"aria-describedby",
+					" image before clicking on Next button ");
+			BrowserActions.clickOnElement(NAVRIGHTMULTIPLEIMAGE, driver,
+					"click on Next arrow");
+
+			Utils.waitForPageLoad(driver);
+
+			WebElement element2 = driver
+					.findElement(By
+							.cssSelector(".product-primary-image.search-img [class*='slick-list']  [class*='slick-active']"));
+
+			String str1 = BrowserActions
+					.getTextFromAttribute(driver, element2, "aria-describedby",
+							" image after clicking on Next button ");
+
+			if (!(str.equalsIgnoreCase(str1))) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * if the number of indicators and product images are equal
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+
+	public Boolean checkIndicatorsForProductImagesInOuBestSellingItemssection()
+			throws Exception {
+		Boolean returntype = false;
+		List<WebElement> list = driver
+				.findElements(By
+						.cssSelector("#best_selling_items div.slick-track li[class*='slide slick-slide']:not([class*='cloned'])"));
+		int count = mobBSISlickDots.size();
+
+		if (driver
+				.findElement(
+						By.cssSelector("#best_selling_items .slick-list.draggable ~ ul.slick-dots"))
+				.isDisplayed()) {
+
+			if (count == list.size()) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * if the number of indicators and product images are equal in OUR
+	 * BESTSELLING ITEMS section
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+
+	public Boolean checkIndicatorsForProductImagesInPdpPage() throws Exception {
+		Boolean returntype = false;
+		List<WebElement> list = driver
+				.findElements(By
+						.cssSelector("div[class*='product-primary-image'] div[class*='slide slick-slide']:not([class*='cloned'])"));
+		int count = mobSlickDots.size();
+
+		if (driver
+				.findElement(
+						By.cssSelector("div[class*='product-primary-image'] .slick-list.draggable ~ ul.slick-dots"))
+				.isDisplayed()) {
+
+			if (count == list.size()) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Clicks on the Navigation arrows and checks the images are moving in a
+	 * swipe carousel
+	 * 
+	 * @return boolean - if arrows are verified
+	 * @throws Exception
+	 */
+	public Boolean checkNavigationsForProductImagesInPdpPage() throws Exception {
+		Boolean returntype = false;
+		WebElement Element1 = driver
+				.findElement(By
+						.cssSelector("div[class*='product-primary-image'] div[class*='slide slick-slide slick-current slick-active'] a"));
+		String product1 = BrowserActions.getTextFromAttribute(driver, Element1,
+				"href", "href link");
+
+		WebElement activeDot = driver
+				.findElement(By
+						.cssSelector(".product-primary-image.search-img .slick-dots li[class*='slick-active']"));
+		String indicator1 = BrowserActions.getTextFromAttribute(driver,
+				activeDot, "id", "id of active indiactor");
+
+		RIghtNavArrow.click();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(1);
+
+		WebElement Element2 = driver
+				.findElement(By
+						.cssSelector("div[class*='product-primary-image'] div[class*='slide slick-slide slick-current slick-active'] a"));
+		String product2 = BrowserActions.getTextFromAttribute(driver, Element2,
+				"href", "href link");
+
+		WebElement activeDot1 = driver
+				.findElement(By
+						.cssSelector(".product-primary-image.search-img .slick-dots li[class*='slick-active']"));
+		String indicator2 = BrowserActions.getTextFromAttribute(driver,
+				activeDot1, "id", "id of active indiactor");
+
+		if (!(product1.equalsIgnoreCase(product2))) {
+
+			if (!(indicator1.equalsIgnoreCase(indicator2))) {
+
+				returntype = true;
+			}
+		}
+
+		return returntype;
+
+	}
+
+	/**
+	 * Check left and right navigation for the alternate thumb nail images in
+	 * Product Detail Page
+	 * 
+	 * @return boolean value
+	 */
+
+	public Boolean checkNavigationArrowsForThumbNailsInPdpPage() {
+		Boolean returntype = true;
+		String NAVIGATIONARROWS = "#thumbnails button";
+		if (thumbnailCount.size() > 0) {
+			if (elementLayer.existsElement(NAVIGATIONARROWS)) {
+				returntype = false;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Check Best selling items section in pdp page
+	 * 
+	 * @return boolean value
+	 */
+
+	public Boolean toCheckBestSellingItemsInPdpPage() throws Exception {
+		Boolean returntype = true;
+
+		if (runPlatForm == "desktop") {
+			if (!(driver
+					.findElement(By
+							.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active']"))
+					.isDisplayed())) {
+				returntype = false;
+			}
+		}
+		if (runPlatForm == "mobile") {
+			if (!(driver
+					.findElement(By
+							.cssSelector("#best_selling_items ul[class*='slick-slider'] .slick-list.draggable li[class*='slick-active']"))
+					.isDisplayed())) {
+				returntype = false;
+			}
+		}
+		if (driver
+				.findElement(
+						By.cssSelector(".accordion.product-reviews+#best_selling_items"))
+				.isDisplayed()) {
+
+			if (btnBestSellingItemsCollapse.isEnabled()) {
+				btnBestSellingItemsCollapse.click();
+				Utils.waitForPageLoad(driver);
+
+				if (!(btnBestSellingItemsExpand.isDisplayed())) {
+					returntype = false;
+				}
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Navigate to Product With Promo shipping message
+	 * 
+	 * @param siteOffer
+	 * @throws Exception
+	 * 
+	 * @returns true
+	 */
+	public boolean checkProductWithPromoShippingMessage(String productOffer)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			if (promoShippingMessage.getText().contains(productOffer)) {
+				returntype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Navigate to Product With Promo shipping message");
+		}
+		Log.event("Navigate to Product With Promo shipping message",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Navigate to Product With Multiple Promotions
+	 * 
+	 * @param siteOffer
+	 * @throws Exception
+	 * 
+	 * @returns true
+	 */
+	public boolean checkProductWithMultiplePromotions() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		try {
+			WebElement promo1 = driver
+					.findElement(By
+							.cssSelector("div.promotions.promotions-shipping > div > p.promo.promo-shipping.promo-shipping-boots-ship-free-test"));
+			WebElement promo2 = driver
+					.findElement(By
+							.cssSelector("div.promotions.promotions-shipping > div > p.promo.promo-shipping.promo-shipping-free-ship-99"));
+
+			if (promo1.isDisplayed() && promo2.isDisplayed()) {
+				returntype = true;
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Navigate to Product With Promo shipping message");
+		}
+		Log.event("Navigate to Product With Promo shipping message",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Check People Who Bought Section in pdp page
+	 * 
+	 * @return true
+	 */
+
+	public Boolean toCheckPeopleWhoBoughtSectionInPdpPage() throws Exception {
+		Boolean returntype = true;
+
+		if (runPlatForm == "desktop") {
+			if (!(driver
+					.findElement(By
+							.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active']"))
+					.isDisplayed())) {
+				returntype = false;
+			}
+		}
+
+		if (runPlatForm == "mobile") {
+			if (!(driver
+					.findElement(By
+							.cssSelector("#also_bought_items ul[class*='slick-slider'] .slick-list.draggable li[class*='slick-active']"))
+					.isDisplayed())) {
+				returntype = false;
+			}
+		}
+		if (driver.findElement(
+				By.cssSelector("#best_selling_items+#also_bought_items"))
+				.isDisplayed()) {
+
+			if (btnPeopleBoughtCollapse.isEnabled()) {
+				btnPeopleBoughtCollapse.click();
+				Utils.waitForPageLoad(driver);
+
+				if (!(btnPeopleBoughtExpand.isDisplayed())) {
+					returntype = false;
+				}
+			}
+		}
+		return returntype;
+
+	}
+
+	/**
+	 * if left navigation arrow is present in BestSellingItems and clicking on
+	 * Right navigation arrow the list of products differs ,
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean CheckPreviousArrowNavigationsInBestSellingItemsOfPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		Utils.waitForPageLoad(driver);
+		if (elementLayer.existsElement(NAVLEFTBESTSELLINGITEMS)) {
+
+			for (WebElement element1 : imgBestSellingItems) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Previos button");
+				productList1.add(str);
+			}
+
+			BrowserActions.javascriptClick(navLeftBestSellingItems, driver,
+					"Next arrow");
+
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(2);
+
+			for (WebElement element2 : imgBestSellingItems) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previos button");
+				productList2.add(str1);
+			}
+			if (!(productList1.containsAll(productList2))) {
+				returntype = true;
+			}
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(2);
+		}
+		return returntype;
+	}
+
+	/**
+	 * if Right navigation arrow is present in BestSellingItems and clicking on
+	 * Right navigation arrow the list of products differs ,
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+
+	public Boolean CheckNextArrowNavigationsInBestSellingItemsOfPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		Utils.waitForPageLoad(driver);
+
+		if (elementLayer.existsElement(NAVRIGHTBESTSELLINGITEMS)) {
+
+			Utils.waitForElement(driver, navRightBestSellingItems, 60);
+
+			for (WebElement element1 : imgBestSellingItems) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Next button");
+				productList1.add(str);
+			}
+
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(2);
+
+			BrowserActions.javascriptClick(navRightBestSellingItems, driver,
+					"Next arrow");
+
+			for (WebElement element2 : imgBestSellingItems) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previos button");
+				productList2.add(str1);
+			}
+
+			if (!(productList1.containsAll(productList2))) {
+				returntype = true;
+			}
+		}
+		Utils.waitForPageLoad(driver);
+
+		return returntype;
+	}
+
+	/**
+	 * if all the details of the products is displayed correctly in
+	 * BESTSELLINGITEMSSection
+	 * 
+	 * @throws InterruptedException
+	 * @returns true
+	 */
+	public Boolean verifyDetailsOfProductsInBESTSELLINGITEMSSection()
+			throws InterruptedException {
+		Boolean returntype = false;
+		if (runPlatForm == "desktop") {
+			for (WebElement e : activeBestSellingItems) {
+				if (e.findElement(By.cssSelector(" div.product-image img"))
+						.isDisplayed()
+
+						&& e.findElement(By.cssSelector(" div.product-name a"))
+								.isDisplayed()
+						&& e.findElement(By.cssSelector(" div.product-pricing"))
+								.isDisplayed()
+						&& e.findElement(
+								By.cssSelector(" div.product-swatches ul.swatch-list"))
+								.isDisplayed()) {
+					returntype = true;
+				} else {
+					returntype = false;
+				}
+			}
+		}
+		if (runPlatForm == "mobile") {
+
+			if (driver
+					.findElement(
+							By.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image img"))
+					.isDisplayed()
+
+					&& driver
+							.findElement(
+									By.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-name a"))
+							.isDisplayed()
+					&& driver
+							.findElement(
+									By.cssSelector("#best_selling_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-pricing"))
+							.isDisplayed()) {
+				returntype = true;
+			}
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * if all the details of the products is displayed correctly in
+	 * PeopleWhoBoughtThisAlsoBoughtSection
+	 * 
+	 * @returns true
+	 */
+	public Boolean verifyDetailsOfProductsInPeopleWhoBoughtThisAlsoBoughtSection() {
+		Boolean returntype = false;
+		if (runPlatForm == "desktop") {
+			for (WebElement e : activePeopleWhoBoughtThisAlsoBoughtItems) {
+				if (e.findElement(By.cssSelector(" div.product-image img"))
+						.isDisplayed()
+
+						&& e.findElement(By.cssSelector(" div.product-name a"))
+								.isDisplayed()
+						&& e.findElement(By.cssSelector(" div.product-pricing"))
+								.isDisplayed()
+						&& e.findElement(
+								By.cssSelector(" div.product-swatches ul.swatch-list"))
+								.isDisplayed()) {
+					returntype = true;
+				} else {
+					returntype = false;
+				}
+			}
+		}
+		if (runPlatForm == "mobile") {
+			if (driver
+					.findElement(
+							By.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-image a[class='name-link'] img"))
+					.isDisplayed()
+
+					&& driver
+							.findElement(
+									By.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-name a"))
+							.isDisplayed()
+					&& driver
+							.findElement(
+									By.cssSelector("#also_bought_items ul[class*='slick-slider'] li[class*='slick-active'] div.product-pricing"))
+							.isDisplayed()) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Scrolls to the element
+	 * 
+	 * @param element
+	 * @throws InterruptedException
+	 */
+	public void scrollToElement(WebElement element) throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "desktop") {
+			BrowserActions.scrollToViewElement(element, driver);
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(element, driver);
+		}
+		Log.event("Scrolls the element", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * if left navigation arrow is present in RecentlyViewed and clicking on
+	 * left navigation arrow the list of products differs ,
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean CheckPreviousArrowNavigationsInRecentlyViewedOfPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		if (elementLayer.existsElement(NAVLEFTRECENTLYVIEWEDSECTION)) {
+
+			for (WebElement element1 : imgRecentlyViewedSection) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Previos button");
+				productList1.add(str);
+			}
+
+			BrowserActions.javascriptClick(navLeftRecentlyViewedSection,
+					driver, "Next arrow");
+
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(1);
+
+			for (WebElement element2 : imgRecentlyViewedSection) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previous button");
+				productList2.add(str1);
+			}
+
+			if (!(productList1.containsAll(productList2))) {
+				returntype = true;
+			}
+			BrowserActions.nap(1);
+		}
+		return returntype;
+	}
+
+	/**
+	 * if Right navigation arrow is present in RecentlyViewed and clicking on
+	 * Right navigation arrow the list of products differs ,
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean CheckNextArrowNavigationsInRecentlyViewedSectionOfPdpPage()
+			throws Exception {
+
+		Boolean returntype = false;
+		List<String> productList1 = new ArrayList<String>();
+		List<String> productList2 = new ArrayList<String>();
+
+		Utils.waitForPageLoad(driver);
+
+		if (elementLayer.existsElement(NAVRIGHTRECENTLYVIEWEDSECTION)) {
+
+			Utils.waitForElement(driver, navRightRecentlyViewedSection, 60);
+
+			for (WebElement element1 : imgRecentlyViewedSection) {
+				String str = BrowserActions.getTextFromAttribute(driver,
+						element1, "alt",
+						"products before clicking on Next button");
+				productList1.add(str);
+			}
+
+			BrowserActions.javascriptClick(navRightRecentlyViewedSection,
+					driver, "Next arrow");
+
+			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(1);
+
+			for (WebElement element2 : imgRecentlyViewedSection) {
+				String str1 = BrowserActions.getTextFromAttribute(driver,
+						element2, "alt",
+						"products after clicking on Previos button");
+				productList2.add(str1);
+			}
+
+			if (!(productList1.containsAll(productList2))) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * if count of thumbnails is greater than 7
+	 * 
+	 * @returns false
+	 * @throws Exception
+	 */
+	public Boolean CheckThumbnailCountInPdppage() throws Exception {
+		Boolean returntype = true;
+		if (thumbnailCount.size() > 7) {
+			returntype = false;
+		}
+		return returntype;
+	}
+
+	/**
+	 * if product image is present below item number in pdp page
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean CheckMobproductMainimageIsDisplayedAsDefaultImageInPdppage()
+			throws Exception {
+		Boolean returntype = false;
+		WebElement element1 = driver
+				.findElement(By
+						.cssSelector(".product-primary-image.search-img [class*='slick-list']  [class*='slick-active']"));
+		if (driver
+				.findElement(
+						By.cssSelector(".product-detail-head+.product-image-container-mobile"))
+				.isDisplayed()) {
+			if (element1.getAttribute("aria-describedby").contains(
+					"slick-slide00")) {
+			}
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * if default image is displayed as the product main image in pdp page
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean CheckproductMainimageIsDisplayedAsDefaultImageInPdppage()
+			throws Exception {
+		Boolean returntype = false;
+		String href1 = BrowserActions.getTextFromAttribute(driver, mainImage,
+				"href", "href link");
+		String href2 = BrowserActions.getTextFromAttribute(driver,
+				defaultImage, "href", "href link");
+
+		if ((href1.equalsIgnoreCase(href2))) {
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * Verifying Promotion call out message in PDP page
+	 * 
+	 * @return boolean - if Promotion call out message is displayed
+	 * @throws InterruptedException 
+	 */
+	public Boolean CheckPromotionCalloutDetailsForProductInPdpPage() throws InterruptedException {
+		Boolean returntype = true;
+		if (elementLayer.existsElement(promoCountDown)) {
+			if (promoCountDown.getText().contains("Hours")) {
+				WebElement element = driver.findElement(By.cssSelector("#product-content"));
+				scrollToElement(element);
+				if (driver
+						.findElement(
+								By.cssSelector("h6[class='product-callout-title']+p.savings>em"))
+						.isDisplayed()
+						&& (!(driver.findElement(By.cssSelector(".savings>em"))
+								.getText().trim().contains("Hours Left")))) {
+					returntype = false;
+				}
+			} else {
+				Log.message(" Promo count down is displayed only for days");
+			}
+		} else {
+			Log.message(" Camapign is not currently avaialble in the application ");
+		}
+		return returntype;
+	}
+
+	/**
+	 * if thumb nail page is displayed below Product main image
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean checkThumbnailsDispBelowProductMainImage() throws Exception {
+		Boolean returntype = true;
+		String thumbNail = null;
+
+		if (runPlatForm == "desktop") {
+			thumbNail = "slick-track div[class*='slide thumb']>a";
+			if (elementLayer.existsElement(thumbNail)) {
+				returntype = false;
+			}
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * if thumb nail page is not displayed below Product main image With Only
+	 * Default Image
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean checkThumbnailsDispWithOnlyDefaultImage() throws Exception {
+		Boolean returntype = false;
+
+		if (thumbnailCount.size() > 0) {
+			if (driver
+					.findElement(
+							By.cssSelector("div[class*='product-primary-image']+#thumbnails"))
+					.isDisplayed()) {
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * clicking on product from Recently Viewed section, product is is
+	 * redirected to pdp page
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+	public Boolean toclickProductInRecentlyViewedSectionInPdpPage()
+			throws Exception {
+		Boolean returntype = false;
+		String ImageName = "";
+
+		if (runPlatForm == "desktop") {
+			List<WebElement> images = driver
+					.findElements(By
+							.cssSelector("div[class*='last-visited'] ul[class*='slick-slider']  li[class*='slick-active'] div.product-image img"));
+			for (WebElement image : images) {
+				ImageName = BrowserActions.getTextFromAttribute(driver, image,
+						"alt", "title of the image");
+				image.click();
+
+				if (ImageName.contains(lblProductName.getText())) {
+					returntype = true;
+					break;
+				}
+			}
+		}
+		if (runPlatForm == "mobile") {
+			if (driver
+					.findElement(
+							By.cssSelector("div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active'] div.product-content a[class='name-link']"))
+					.isDisplayed()) {
+				WebElement e = driver
+						.findElement(By
+								.cssSelector("div[class*='last-visited'] ul[class*='slick-slider'] li[class*='slick-active'] div.product-content a[class='name-link']"));
+				ImageName = e.getText();
+				e.click();
+				returntype = true;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * check if color of the product is changed hovering on the other swatches
+	 * in pdp page
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean checkIfProductImageChangesHoveringOnOtherColor()
+			throws Exception {
+		Boolean returntype = true;
+		WebElement element1 = driver
+				.findElement(By
+						.cssSelector("div[class='slide slick-slide slick-current slick-active'] a"));
+		String href1 = BrowserActions.getTextFromAttribute(driver, element1,
+				"href", "href link");
+		String color = selectedColorInPdp.getText();
+
+		for (WebElement e : unSelectedColorsInPdp) {
+			BrowserActions.mouseHover(driver, e);
+			break;
+		}
+
+		Utils.waitForPageLoad(driver);
+
+		String selectedcolor = selectedColorInPdp.getText();
+
+		Utils.waitUntilElementDisappear(driver, loader);
+
+		WebElement element2 = driver
+				.findElement(By
+						.cssSelector("div[class='slide slick-slide slick-current slick-active'] a"));
+		String href2 = BrowserActions.getTextFromAttribute(driver, element2,
+				"href", "href link");
+
+		if (color.equalsIgnoreCase(selectedcolor)) {
+
+			if (href1.equalsIgnoreCase(href2)) {
+				returntype = false;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * Get default size text
+	 * 
+	 * @return String defaultSize
+	 * @throws Exception
+	 */
+	public String getSelectedSizeText() throws Exception {
+
+		String defaultSize = driver.findElement(
+				By.cssSelector("div.value.select-dropdown > span")).getText();
+		return defaultSize;
+	}
+
+	/**
+	 * select color
+	 * 
+	 * @return String selected color
+	 * @throws Exception
+	 */
+	public String selectColor() throws Exception {
+		String selectedColor = null;
+		List<WebElement> listOfColor = BrowserActions.checkLocators(driver,
+				LISTOFCOLOR);
+		if (listOfColor.size() > 0) {
+
+			BrowserActions.clickOnElement(listOfColor.get(0), driver,
+					"select color");
+			selectedColor = BrowserActions.getTextFromAttribute(driver,
+					SELECTEDCOLOR, "alt", "Getting attribute value");
+		}
+		System.out.print("SDFSDGFSDG " + selectedColor);
+		return selectedColor;
+	}
+
+	/**
+	 * Check Quantity for the product in Product Detail Page
+	 * 
+	 * @return void after list of quantity is fetched
+	 */
+	public void listOfProductQuantityInpdpPage() throws Exception {
+		List<String> productQuantity = new ArrayList<String>();
+		for (WebElement e : listOfQuantity) {
+			productQuantity.add(e.getText());
+		}
+	}
+
+	/**
+	 * check default quantity in pdp page
+	 * 
+	 * @return boolean value
+	 */
+
+	public boolean defaultProductQuantityInpdpPage() throws Exception {
+
+		String defaultSelectedQuantity = BrowserActions.getText(driver,
+				defaultQuantity, " defaultQuantity ");
+		if (defaultSelectedQuantity.equals("1")) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * verify presence of thumb nails in pdp page
+	 * 
+	 * @return true
+	 */
+	public Boolean verifyPresenceOfThumbnailsInPdppage() throws Exception {
+		Boolean returntype = false;
+		String thumbnails = ".slick-track div[class*='slide thumb']>a";
+		if (elementLayer.existsElement(thumbnails)) {
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * To check Zoom icon is clicked or not
+	 * 
+	 * @return void after zoom is clicked
+	 * @throws Exception
+	 */
+
+	public void clickOnZoomIcon() throws Exception {
+		BrowserActions.clickOnElement(zoomIcon, driver, "Zoom icon");
+	}
+
+	/**
+	 * To check zoom view in pdp page
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+
+	public Boolean verifyZoomViewInPdpPage() throws Exception {
+		Boolean returntype = false;
+		Utils.waitForElement(driver, zoomWindow);
+		if (zoomWindow.isDisplayed()) {
+			if (runPlatForm == "desktop") {
+				BrowserActions.mouseHover(driver, zoomWindow);
+			}
+			if (runPlatForm == "mobile") {
+				BrowserActions.doubleClick(zoomWindow);
+			}
+			if (driver
+					.findElement(
+							By.cssSelector("div.zoomContainer > div > div"))
+					.getCssValue("display").contains("block")) {
+				returntype = true;
+			}
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * To perform mouse hover on cart
+	 */
+	public void mouseOverMiniCart() {
+		Actions action = new Actions(driver);
+		action.moveToElement(btnCart);
+	}
+
+	/**
+	 * To fetch the bag text value in the minicart
+	 * 
+	 * @return String txtShippingMessage
+	 * @throws Exception
+	 */
+	public String getStringFromMiniCard() throws Exception {
+		mouseOverMiniCart();
+		String txtShippingMessage = BrowserActions.getText(driver, cartOverlay,
+				"Fetching the  bag overly text value in the minicart");
+		return txtShippingMessage;
+	}
+
+	/**
+	 * To navigate to search results page
+	 * 
+	 * @return SearchResultPage
+	 * @throws Exception
+	 */
+	public SearchResultPage navigateToSearchResultPage() throws Exception {
+		BrowserActions.clickOnElement(btnSearch, driver,
+				"Clicking Home Bread crumb");
+		return new SearchResultPage(driver).get();
+	}
+
+	/**
+	 * To get the product count
+	 * 
+	 * @return String product count
+	 * @throws Exception
+	 */
+	public String getProductCount() throws Exception {
+		String txtProductCount = BrowserActions.getText(driver, itemCount,
+				"Getting item count in the cart");
+		return txtProductCount;
+	}
+
+	/**
+	 * To get the product brand name
+	 * 
+	 * @return String - brand name
+	 * @throws Exception
+	 */
+	public String getProductBrandName() throws Exception {
+		String txtProductBrandName = BrowserActions.getText(driver,
+				lblProductBrand, "Product Brand Name").trim();
+		return txtProductBrandName;
+	}
+
+	/**
+	 * To navigate to Cart Page
+	 * 
+	 * @return CartPage
+	 * @throws Exception
+	 */
+	public CartPage navigateToBag() throws Exception {
+		mouseOverMiniCart();
+		BrowserActions.clickOnElement(btnCart, driver,
+				"Clicking View my bag Buton");
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * clicks on star rating in pdp main section
+	 * 
+	 * @return void after clicking star rating
+	 * @throws Exception
+	 */
+	public void clickOnStarRating() throws Exception {
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "desktop") {
+			BrowserActions
+					.clickOnElement(lnkStarRating, driver,
+							"Clicking star rating value to navigate to product review section");
+		}
+		if (runPlatForm == "mobile") {
+			Utils.waitForPageLoad(driver);
+			BrowserActions
+					.clickOnElement(lnkMobStarRating, driver,
+							"Clicking star rating value to navigate to product review section");
+		}
+	}
+
+	/**
+	 * To get Product name from Cart page
+	 * 
+	 * @return String - product name
+	 * @throws Exception
+	 */
+	public String getProductNameCart() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtProductName = BrowserActions.getText(driver,
+				lblProductNameCart, "Product Name in Cart");
+		Log.event("Fetching Product name from Cart page",
+				StopWatch.elapsedTime(startTime));
+		return txtProductName;
+	}
+
+	/**
+	 * To calculate the percentage total savings
+	 * 
+	 * @return String - total savings
+	 * @throws Exception
+	 */
+	public String calcPercentageOfTotalSaving() throws Exception {
+
+		Double salePrice = Double.parseDouble(BrowserActions
+				.getText(driver, lblSalePrice, "Sale price discount")
+				.substring(2).trim());
+		Double percentageSavingPrice = Double.parseDouble(BrowserActions
+				.getText(driver, lblSavingPercentage, "Percentage of saving")
+				.substring(2).trim());
+		Double originalPrice = Double.parseDouble(BrowserActions
+				.getText(driver, lblOriginalPrice, "Original price")
+				.substring(1).trim());
+
+		double percentageTotalSaving = (salePrice + percentageSavingPrice)
+				/ originalPrice * 100;
+		return "" + Math.round(percentageTotalSaving);
+	}
+
+	/**
+	 * 
+	 * To get the Total Savings Percentage Text
+	 * 
+	 * @return String - TotalSaving
+	 * @throws Exception
+	 */
+	public String getTotalSavingPercentageText() throws Exception {
+		String txtTotalSaving = BrowserActions.getText(driver,
+				lblTotalSavingPercentage, "% total saving").trim();
+		return txtTotalSaving;
+	}
+
+	/**
+	 * To Verify the Currency selected
+	 * 
+	 * @param dollarSelected
+	 * @return boolean - if currency is verified
+	 * @throws Exception
+	 */
+	public Boolean verifyCurrencySelectedInPdpPage(String dollarSelected)
+			throws Exception {
+		Boolean returntype = false;
+		WebElement e = driver.findElement(By
+				.cssSelector(".product-content-inner"));
+
+		if (e.getText().contains("Sale") && e.getText().contains("Coupon")) {
+
+			if (txtOriginalPrice.getText().toLowerCase()
+					.contains(dollarSelected)
+					&& txtSalePrice.getText().toLowerCase()
+							.contains(dollarSelected)
+					&& txtCouponPrice.getText().toLowerCase()
+							.contains(dollarSelected)
+					&& txtFinalPrice.getText().toLowerCase()
+							.contains(dollarSelected)) {
+				returntype = true;
+			}
+
+		} else if (e.getText().contains("Sale")
+				&& (!e.getText().contains("Coupon"))) {
+			if (txtOriginalPrice.getText().toLowerCase()
+					.contains(dollarSelected)
+					&& txtSalePrice.getText().toLowerCase()
+							.contains(dollarSelected)
+					&& txtFinalPrice.getText().toLowerCase()
+							.contains(dollarSelected)) {
+				returntype = true;
+			}
+
+		} else if (!e.getText().contains("Sale")
+				&& (!e.getText().contains("Coupon"))
+				&& (e.getText().contains("See price in checkout"))) {
+
+			if (txtSeePriceInCheckOutOriginalPrice.getText().toLowerCase()
+					.contains(dollarSelected)) {
+				returntype = true;
+			}
+		} else {
+
+			if (txtOriginalPrice.getText().contains(dollarSelected)
+					&& (!e.getText().contains("Sale"))
+					&& (!e.getText().contains("Coupon")))
+			/*
+			 * && txtFinalPrice.getText().toLowerCase()
+			 * .contains(dollarSelected)
+			 */{
+				returntype = true;
+			}
+		}
+
+		return returntype;
+	}
+
+	/**
+	 * verify the product is Final price in checkout product
+	 * 
+	 * @return boolean value
+	 */
+	public Boolean verifyFinalPriceIncheckOutProduct() {
+		Boolean returntype = false;
+		if (driver.findElement(
+				By.cssSelector(".product-price .product-standard-price"))
+				.isDisplayed()
+				&& driver.findElement(
+						By.cssSelector(".product-price .price-checkout"))
+						.isDisplayed()) {
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * To get the text See Price in Checkout
+	 * 
+	 * @return String - txtCategoryHeader
+	 * @throws Exception
+	 */
+	public String getTextPdpWithSeePriceCheckout() throws Exception {
+		String txtCategoryHeader = BrowserActions.getText(driver,
+				seePriceInCheckout,
+				"Fetching the invalid error message in the footer page");
+		return txtCategoryHeader;
+	}
+
+	/**
+	 * Filter by start rating
+	 * 
+	 * @return int - option
+	 * @throws Exception
+	 */
+	public int filterByStarRating() throws Exception {
+		int option = 0;
+		if (!btnRating.isDisplayed()) {
+			driver.findElement(
+					By.cssSelector("button[class='bv-content-btn bv-filter-control bv-expand-filter-button bv-focusable']"))
+					.click();
+		}
+		BrowserActions.nap(2);
+		BrowserActions.moveToElementJS(driver, btnRating);
+		BrowserActions.nap(2);
+		// BrowserActions.clickOnElement(btnRating,
+		// driver,"Clicking rating button on product review section");
+		List<WebElement> listOfStarRating = driver.findElements(By
+				.cssSelector("ul[id='bv-content-filter-dropdown-Rating'] li"));
+		int size = listOfStarRating.size();
+		for (int sz = 0; sz < size; sz++) {
+
+			try {
+				listOfStarRating.get(sz).click();
+				option = sz + 1;
+				break;
+			} catch (StaleElementReferenceException e) {
+				listOfStarRating.get(sz).click();
+			}
+			Utils.waitForPageLoad(driver);
+		}
+		return option;
+	}
+
+	/**
+	 * To verify Start Rating Filter
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean verifyStarRatingFilter(int rating) throws Exception {
+		boolean filterBy = driver
+				.findElement(
+						By.cssSelector("li[data-bv-filter-headerid='Rating'] button[data-bv-filter-option='"
+								+ rating + "']")).isDisplayed();
+		return filterBy;
+	}
+
+	/**
+	 * To get the number of YES clicks in product review section
+	 * 
+	 * @return int - YesClickCounts
+	 * @throws Exception
+	 */
+	public int getYesClickCounts() throws Exception {
+		int txtYesHelpfulCount = Integer.parseInt(BrowserActions.getText(
+				driver, lnkYesFirstReviewSection,
+				"Fetching number of person click yes link in review section"));
+		return txtYesHelpfulCount;
+	}
+
+	/**
+	 * To click the YES link in product review section
+	 * 
+	 * @return void after yes link is clicked
+	 * @throws Exception
+	 */
+	public void clickYesLink() throws Exception {
+		BrowserActions.actionClick(lnkYesFirstReviewSection, driver,
+				"Click on yes link in review section");
+	}
+
+	/**
+	 * To get the reported button text in review section
+	 * 
+	 * @return Stirng - txtReportInappropriate
+	 * @throws Exception
+	 */
+	public String getReportedText() throws Exception {
+		String txtReportInappropriate = BrowserActions.getText(driver,
+				btnReportFirstReviewSection,
+				"Fetching reported button text in review section");
+		return txtReportInappropriate;
+	}
+
+	/**
+	 * To click on report button in first review section
+	 * 
+	 * @return void after report link is clicked
+	 * @throws Exception
+	 */
+	public void clickReportLink() throws Exception {
+		BrowserActions.actionClick(btnReportFirstReviewSection, driver,
+				"Click on report button in first review section");
+	}
+
+	/**
+	 * To click on view more in review section
+	 * 
+	 * @return void after view more link is clicked
+	 * @throws Exception
+	 */
+	public void clickViewMoreLink() throws Exception {
+		BrowserActions.actionClick(lnkViewMore, driver,
+				"Click on view more in review section");
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * Check Add to Cart button in Product Detail Page
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean CheckAddToCartButtonWithToolTip() throws Exception {
+		WebElement a = driver.findElement(By.cssSelector(".quantity"));
+		WebElement b = driver.findElement(By.cssSelector(".form-actions"));
+
+		Point point1 = a.getLocation();
+		int Ycord1 = point1.getY();
+
+		Point point2 = b.getLocation();
+		int Ycord2 = point2.getY();
+
+		if (Ycord1 == Ycord2) {
+
+			if (btnAddtoCart.getAttribute("title").contains("Add to Cart")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * To click add to cart button without selecting size
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean clickAddToCartbtnNotSelectingsize() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnAddtoCart, driver, "Add To Cart");
+		boolean foundAlert = false;
+		WebDriverWait wait = new WebDriverWait(driver, 20 /* timeout in seconds */);
+
+		try {
+			if (wait.until(ExpectedConditions.alertIsPresent()) != null) {
+				foundAlert = true;
+				driver.switchTo().alert().accept();
+			}
+		} catch (Exception e) {
+			Log.message("e" + e);
+		}
+		Log.event(" Veriying Alert in PDP page ",
+				StopWatch.elapsedTime(startTime));
+		return foundAlert;
+	}
+
+	/**
+	 * gets the default values added to cart
+	 * 
+	 * @return cart values
+	 * @throws Exception
+	 */
+	public List<String> verifyCartPageWithDefaultValueS() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<String> cartValues = new ArrayList<String>();
+
+		Utils.waitForPageLoad(driver);
+
+		cartValues.add(BrowserActions.getTextFromAttribute(driver,
+				quantityincartPage, "value", "quantity in cart Page "));
+
+		List<WebElement> values = driver.findElements(By
+				.cssSelector("p[data-attribute] .value"));
+		for (WebElement e : values) {
+			cartValues.add(e.getText().toLowerCase());
+		}
+		Log.event("Values in cart page" + cartValues,
+				StopWatch.elapsedTime(startTime));
+		return cartValues;
+	}
+
+	/**
+	 * Add default size,color and quantity to cart
+	 * 
+	 * @return pdpValues
+	 * @throws Exception
+	 */
+	public List<String> verifyAddToCartButtonWithDefaultValueS()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<String> pdpValues = new ArrayList<String>();
+
+		pdpValues.add(BrowserActions.getText(driver, defaultQuantity,
+				" default Quantityin pdp "));
+
+		pdpValues.add(BrowserActions.getText(driver, selectedColorInPdp,
+				" default Color in pdp ").toLowerCase());
+
+		selectSize();
+		pdpValues.add(fetchSizeSelected().toLowerCase());
+
+		Utils.waitForElement(driver, btnAddtoCart);
+		BrowserActions.nap(2);
+		AddRemoveBagUtils.addToBag(btnAddtoCart, driver);
+		Log.event("Item added to Bag with values " + pdpValues,
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return pdpValues;
+	}
+
+	/**
+	 * Select size method
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	public String selectSize() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String selectedSize = null;
+		List<WebElement> listOfSize = null;
+		Utils.waitForPageLoad(driver);
+		if (elementLayer.existsElement(btnSize)) {
+
+			BrowserActions.nap(2);
+			if (BrowserActions.getText(driver, btnSize, "Size drop down")
+					.trim().contains("Select Size")) {
+
+				BrowserActions.clickOnElement(btnSize, driver,
+						"Clicked Size Button");
+				listOfSize = driver
+						.findElements(By
+								.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden'])"));
+
+				WebElement drptext = driver.findElement(By
+						.cssSelector("div[class='value select-dropdown'] ul"));
+
+				if (drptext.getText().contains("In Stock")) {
+					for (int size = 1; size <= listOfSize.size(); size++) {
+
+						if (runPlatForm == "desktop") {
+							WebElement fetchSize = driver
+									.findElement(By
+											.cssSelector("div[class='value select-dropdown'] ul li:nth-child("
+													+ size + ")"));
+							if (fetchSize.getText().contains("In Stock")) {
+								selectedSize = fetchSize.getText();
+
+								BrowserActions.clickOnElement(fetchSize,
+										driver,
+										"Clicked on the size from drop down");
+								BrowserActions.nap(5);
+								break;
+							}
+
+						}
+
+						if (runPlatForm == "mobile") {
+							WebElement fetchSizeMob = driver
+									.findElement(By
+											.cssSelector("div[class='value select-dropdown'] ul li:nth-child("
+													+ size
+													+ ") button[class='size-select-btn']"));
+							WebElement fetchSize = driver
+									.findElement(By
+											.cssSelector("div[class='value select-dropdown'] ul li:nth-child("
+													+ size + ")"));
+							if (fetchSize.getText().contains("In Stock")) {
+								selectedSize = fetchSizeMob.getText();
+								BrowserActions.clickOnElement(fetchSizeMob,
+										driver,
+										"Clicked on the size from drop down");
+								BrowserActions.nap(5);
+								break;
+							}
+						}
+
+					}
+				} else {
+					if (runPlatForm == "desktop") {
+						selectedSize = listOfSize.get(0).getText();
+						BrowserActions.clickOnElement(listOfSize.get(0),
+								driver, "Clicked on the size from drop down");
+					}
+					if (runPlatForm == "mobile") {
+						listOfSize = driver
+								.findElements(By
+										.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden']) button[class='size-select-btn']"));
+
+						selectedSize = listOfSize.get(0).getText();
+						BrowserActions.clickOnElement(listOfSize.get(0),
+								driver, "Clicked on the size from drop down");
+
+					}
+				}
+			}
+		}
+
+		Log.event("selected size in size dropdown ",
+				StopWatch.elapsedTime(startTime));
+
+		return selectedSize;
+
+	}
+
+	/**
+	 * Fetching the size from drop down
+	 * 
+	 * 
+	 * @return String fetched size
+	 * @throws Exception
+	 */
+	public String fetchSizeSelected() throws Exception {
+
+		Utils.waitForElement(driver, sizedrp, 40);
+		String selectedSize = BrowserActions.getText(driver, sizedrp,
+				"Fetching the size value");
+		return selectedSize;
+
+	}
+
+	/**
+	 * To fetch size from size drop down
+	 * 
+	 * @return String selectedSize
+	 */
+	public String fetchSize() {
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("div.value.select-dropdown > span > span.size > strong"));
+		String selectedSize = e.getText();
+		return selectedSize;
+	}
+
+	/**
+	 * Sort product reviews
+	 * 
+	 * @return String - options
+	 * @param optionToSort
+	 * @throws Exception
+	 */
+	public String sortProductReviews(int optionToSort) throws Exception {
+		String option;
+		BrowserActions.nap(2);
+		BrowserActions.moveToElementJS(driver, btnSort);
+		BrowserActions.nap(2);
+		List<WebElement> sortingOption = driver.findElements(By
+				.cssSelector("ul[role='menu'] li"));
+		try {
+			sortingOption.get(optionToSort - 1).click();
+		} catch (StaleElementReferenceException e) {
+			sortingOption.get(optionToSort - 1).click();
+		}
+		Utils.waitForPageLoad(driver);
+		option = driver
+				.findElement(
+						By.cssSelector("div[class='bv-control-bar-sort'] button span:nth-child(1)"))
+				.getText();
+		return option;
+
+	}
+
+	/**
+	 * Changing Default Values In PdpPage
+	 * 
+	 * @return String - selected color
+	 * @throws Exception
+	 * 
+	 */
+
+	public String selectOtherThanDefaultColor() throws Exception {
+		String selectedColor = null;
+		List<WebElement> listOfColor = BrowserActions.checkLocators(driver,
+				LISTOFCOLOR);
+		if (listOfColor.size() > 0) {
+			List<WebElement> unSelectedColors = BrowserActions.checkLocators(
+					driver, UNSELECTECOLORS);
+
+			Random r = new Random();
+			int rno = r.nextInt(unSelectedColors.size());
+
+			Utils.waitForElement(driver, unSelectedColors.get(rno));
+			selectedColor = BrowserActions.getTextFromAttribute(driver,
+					unSelectedColors.get(rno), "data-color-name",
+					"Getting attribute value");
+
+			BrowserActions.clickOnElement(unSelectedColors.get(rno), driver,
+					" select other default color ");
+		}
+		Utils.waitForPageLoad(driver);
+		return selectedColor;
+	}
+
+	/**
+	 * Compare the actual and Expected values
+	 * 
+	 * @return boolean - if values
+	 */
+
+	public boolean IsSelectedValuesDisplayed(List<String> expectedValues,
+			List<String> actualValues) {
+		Boolean returntype = true;
+		int i = 0;
+		for (String exp : expectedValues) {
+			if (exp.contains(actualValues.get(i++))) {
+			} else {
+				returntype = false;
+			}
+		}
+		return returntype;
+	}
+
+	/**
+	 * To verify the details in cartpage
+	 * 
+	 * @return List - cartValues
+	 * @throws Exception
+	 */
+	public List<String> verifyDetailsInCartPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<String> cartValues = new ArrayList<String>();
+
+		cartValues.add(BrowserActions.getTextFromAttribute(driver,
+				quantityincartPage, "value", "quantity in cart Page "));
+
+		List<WebElement> values = driver.findElements(By
+				.cssSelector("p[data-attribute] .value"));
+		for (WebElement e : values) {
+			cartValues.add(e.getText().toLowerCase());
+		}
+
+		Log.event("Values in cart page" + cartValues,
+				StopWatch.elapsedTime(startTime));
+		return cartValues;
+	}
+
+	/**
+	 * Changing Default Values In PdpPage
+	 * 
+	 * @return List - pdp values
+	 * @throws Exception
+	 * 
+	 */
+
+	public List<String> ChangingDefaultValuesInPdpPage() throws Exception {
+
+		final long startTime = StopWatch.startTime();
+		List<String> pdpValues = new ArrayList<String>();
+
+		Utils.waitForElement(driver, btnQuantity, 60);
+		pdpValues.add(quantityChange());
+
+		pdpValues.add(selectOtherThanDefaultColor().toLowerCase());
+
+		Utils.waitForElement(driver, btnSize, 60);
+		selectSize();
+		pdpValues.add(fetchSizeSelected().toLowerCase());
+		Utils.waitForPageLoad(driver);
+
+		Utils.waitForElement(driver, btnAddtoCart, 60);
+		AddRemoveBagUtils.addToBag(btnAddtoCart, driver);
+
+		Log.event("Item added to Bag with values " + pdpValues,
+				StopWatch.elapsedTime(startTime));
+		return pdpValues;
+	}
+
+	/**
+	 * check product features section in pdp page
+	 * 
+	 * @return void after product features section is verified
+	 * @throws Exception
+	 */
+
+	public void toCheckProductFeaturesSectionInPdpPage(String image)
+			throws Exception {
+
+		if (!imgProductFeature.isEmpty()) {
+
+			WebElement element1 = BrowserActions.checkLocator(driver,
+					"ul[class='list-product-info'] li [class*='content-asset'] img[src*='"
+							+ image + "']");
+
+			if (element1.getAttribute("src").contains("png")) {
+				if (runPlatForm == "desktop") {
+					BrowserActions.mouseHover(driver, element1);
+				}
+				if (runPlatForm == "mobile") {
+					BrowserActions.clickOnElement(element1, driver, "element");
+				}
+				if (!(zoomedFeature.isDisplayed())) {
+					Log.message(" Product feature is not a image ");
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check changing the Quantity for the product in Product Detail Page
+	 * 
+	 * @return String - quantity
+	 * @param countryDollar
+	 * @throws Exception
+	 */
+	public String quantityChange() throws Exception {
+		String quantity = "";
+
+		if (listOfQuantity.size() > 0) {
+
+			Random r = new Random();
+			int rno = r.nextInt(listOfQuantity.size());
+
+			if (rno == 0) {
+				rno = rno + 1;
+			}
+			quantity = listOfQuantity.get(rno).getText();
+			Utils.waitForElement(driver, btnQuantity);
+			Utils.waitForPageLoad(driver);
+			if (btnQuantity.isEnabled()) {
+				BrowserActions.clickOnElement(btnQuantity, driver,
+						"btn Quantity");
+				BrowserActions.nap(1);
+				if (listOfQuantity.get(rno).isDisplayed()) {
+					BrowserActions.clickOnElement(listOfQuantity.get(rno),
+							driver, " Quantity");
+				}
+			}
+		}
+
+		return quantity;
+	}
+
+	/**
+	 * To get the color name
+	 * 
+	 * @return Color of the product
+	 */
+	public String getColorName() {
+		String Color = productColorName.getText();
+		return Color;
+	}
+
+	/**
+	 * Select size other than default selected size
+	 * 
+	 * @return void
+	 * @throws Exception
+	 */
+
+	public String selectOtherThanDefaultSize(String selectedSize)
+			throws Exception {
+
+		List<WebElement> listSize = null;
+		List<WebElement> sizeList = null;
+		String othersize = null;
+
+		if (BrowserActions.getText(driver, btnSize, "Size drop down").trim()
+				.contains("Select Size")) {
+
+			BrowserActions.clickOnElement(btnSize, driver,
+					"Clicked Size Button");
+
+			if (runPlatForm == "desktop") {
+				listSize = driver
+						.findElements(By
+								.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden'])"));
+				sizeList = driver
+						.findElements(By
+								.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden']) span>strong"));
+			}
+
+			if (runPlatForm == "mobile") {
+				listSize = driver
+						.findElements(By
+								.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden']) button[class='size-select-btn']"));
+				sizeList = driver
+						.findElements(By
+								.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden']) span strong"));
+			}
+
+			BrowserActions.nap(5);
+
+			if (listSize.size() > 1) {
+				for (int i = 0; i < sizeList.size(); i++) {
+					othersize = sizeList.get(i).getText().trim();
+					if (!(selectedSize.trim().contains(othersize))) {
+						BrowserActions.clickOnElement(listSize.get(i), driver,
+								"select other size");
+						break;
+					}
+				}
+			} else {
+				listSize.get(0).click();
+			}
+
+		}
+		return othersize;
+	}
+
+	/**
+	 * increase the product quantity by one
+	 * 
+	 * @return String - changed quantity
+	 * @throws Exception
+	 */
+	public String quantityChangePlusOne() throws Exception {
+		String quantity = "";
+
+		quantity = listOfQuantity.get(1).getText();
+		Utils.waitForElement(driver, btnQuantity);
+
+		if (btnQuantity.isEnabled()) {
+			BrowserActions.clickOnElement(btnQuantity, driver, "btn Quantity");
+			if (listOfQuantity.get(1).isDisplayed()) {
+				BrowserActions.clickOnElement(listOfQuantity.get(1), driver,
+						" Quantity");
+			}
+		}
+
+		return quantity;
+	}
+
+	/**
+	 * Return select size value
+	 * 
+	 * @return String defaultSize
+	 * @return
+	 * @throws Exception
+	 */
+	public String getSelectedSize() throws Exception {
+		Utils.waitForPageLoad(driver);
+		WebElement element = driver
+				.findElement(By
+						.cssSelector("div.value.select-dropdown > span > span.size > strong"));
+		String defaultSize = BrowserActions.getText(driver, element,
+				"Selected size text");
+		return defaultSize;
+	}
+
+	/**
+	 * To select size using KeyBoard Arrow Keys
+	 * 
+	 * @return selectedSize
+	 * @throws Exception
+	 */
+	public String selectSizeUsingKeyBoard() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String selectedSize = null;
+		List<WebElement> listOfSize = null;
+
+		if (BrowserActions.getText(driver, btnSize, "Size drop down").trim()
+				.contains("Select Size")) {
+
+			BrowserActions.clickOnElement(btnSize, driver,
+					"Clicked Size Button");
+			listOfSize = driver
+					.findElements(By
+							.cssSelector("div[class='value select-dropdown'] ul li:not([class*='hidden'])"));
+
+			new Actions(driver).sendKeys(Keys.ARROW_DOWN).perform();
+			selectedSize = listOfSize.get(0).getText();
+			BrowserActions.nap(1);
+			new Actions(driver).sendKeys(Keys.ENTER).perform();
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("selected size in size dropdown ",
+				StopWatch.elapsedTime(startTime));
+		return selectedSize;
+	}
+
+}// PDPPAGE

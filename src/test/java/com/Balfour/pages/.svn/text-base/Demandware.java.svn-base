@@ -1,0 +1,421 @@
+package com.sheplers.pages;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.Utils;
+
+public class Demandware extends LoadableComponent<Demandware> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
+
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Demand ware Page ****************************
+	 **********************************************************************************************/
+
+	@FindBy(css = ".advertorialcontainer")
+	WebElement demandwarePage;
+
+	@FindBy(css = "td.top > table > tbody > tr:nth-child(4) > td > a")
+	WebElement sheplersLink;
+
+	@FindBy(css = "a.merchant-tools-link")
+	WebElement lnkmerchant;
+
+	@FindBy(css = "table tr:nth-child(5) td:nth-child(5) table tr:nth-child(1) td.overview_arrow")
+	WebElement lnkOrders;
+
+	@FindBy(css = "img[src*='open_orders']")
+	WebElement imgOrders;
+
+	@FindBy(css = "form[name='simple'] button#searchFocus")
+	WebElement btnFind;
+
+	@FindBy(css = "[name='OrderListForm']")
+	WebElement frmOrderList;
+
+	@FindBy(css = "[name='OrderListForm'] td:nth-child(7)")
+	List<WebElement> emailList;
+
+	@FindBy(css = "td[class*='e n s table_tabs_dis_background']:nth-child(2)")
+	WebElement lnkAttribute;
+
+	@FindBy(css = "td[class*='e n s table_tabs_dis_background']:nth-child(3)")
+	WebElement lnkPayment;
+
+	@FindBy(css = "tbody:nth-child(3) tr:nth-child(3) td:nth-child(2) input")
+	WebElement txtOMSNumber;
+
+	@FindBy(css = "form[name='AttributeForm']")
+	WebElement formAttribute;
+
+	@FindBy(css = "td[class*='table_header w s'] a")
+	WebElement lnkShipment;
+
+	@FindBy(css = "form[name='main']")
+	WebElement shipmentPage;
+
+	@FindBy(css = "table:nth-child(7) tr:nth-child(2) tr:nth-child(2)")
+	WebElement streetAddress;
+
+	@FindBy(css = "td[class*='table_title aldi top']")
+	WebElement topFormSection;
+
+	@FindBy(css = "form table:nth-child(2) tr:nth-child(10) td:nth-child(4) tr:nth-child(2)")
+	WebElement paymentStreet;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Demand ware Page - Ends *********************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 */
+	public Demandware(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}// AddressBookPage
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, demandwarePage))) {
+			Log.fail("My AddressBook Page did not open up.", driver);
+
+			Log.fail("AddressBookPage did not open up.", driver);
+
+		}
+		elementLayer = new ElementLayer(driver);
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}// load
+
+	/**
+	 * Navigate to the Order screen
+	 * 
+	 * @return void - if navigated to Order screen
+	 * @throws Exception
+	 */
+	public void orderNavigation() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkmerchant, driver,
+				"Merchant link is clicked");
+		BrowserActions.clickOnElement(sheplersLink, driver,
+				"Sheplers link is clicked");
+		BrowserActions.clickOnElement(lnkOrders, driver, "Order is clicked");
+		BrowserActions.clickOnElement(imgOrders, driver,
+				"Order image is clicked");
+		Log.event("Navigated to the order navigation page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Clicked on FindButton
+	 * 
+	 * @return void - if Clicked on FindButton
+	 * @throws Exception
+	 */
+	public void clckOnFindButton() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnFind, driver,
+				"Merchant link is clicked");
+		Log.event("Navigated to the order Listing page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Navigate to the Particular Order Details Page in Demand ware
+	 * 
+	 * @return boolean - if navigated to the Particular Order Details Page
+	 * @param emailAddress
+	 * @throws Exception
+	 */
+	public Boolean navigateToOrderPage(String emailAddress) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		Utils.waitForPageLoad(driver);
+		try {
+			for (int category = 1; category < emailList.size(); category++) {
+				WebElement e = driver.findElement(By
+						.cssSelector("[name='OrderListForm'] tr:nth-child("
+								+ category + ") td:nth-child(7)"));
+
+				if (e.getText().contains(emailAddress)) {
+					WebElement orderId = driver.findElement(By
+							.cssSelector("[name='OrderListForm'] tr:nth-child("
+									+ category + ") td:nth-child(1)"));
+					orderId.click();
+					returntype = true;
+					Log.event("Clicked on the Order Id for the order placed currently");
+					break;
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Navigated to the exact Order Page in Demanware which currently placed");
+		}
+		Log.event(
+				"Navigated to the exact Order Page in Demanware which currently placed",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * Click on the Attribute Tab Before fetching the OMS number
+	 * 
+	 * @return void - if attributes tab is clicked
+	 * @throws Exception
+	 */
+	public void clckAttribute() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkAttribute, driver,
+				"Attribute tab is clicked");
+		Log.event("Navigated to the order Listing page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetch the OMS Number
+	 * 
+	 * @return String fetched OMS number
+	 * @throws Exception
+	 */
+	public String fetchOMSNumber() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String OmsNumber = BrowserActions.getText(driver, txtOMSNumber,
+				"Fetches the value from OMS field");
+		Log.event("Fetches the OMS text value",
+				StopWatch.elapsedTime(startTime));
+		return OmsNumber;
+	}
+
+	/**
+	 * Navigated to Shipment Page
+	 * 
+	 * @return void - if Navigated to Shipment Page
+	 * @throws Exception
+	 */
+	public void navigateToShipmentPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkShipment, driver,
+				"Attribute tab is clicked");
+		Log.event("Navigated to Customer shipment page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetched the Shipment Street name
+	 * 
+	 * @return String fetched street name
+	 * @throws Exception
+	 */
+	public String fetchShipmentStreet() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String StreetName = BrowserActions.getText(driver, streetAddress,
+				"Fetches the Street name from the address");
+		Log.event("Fetches the OMS text value",
+				StopWatch.elapsedTime(startTime));
+		return StreetName;
+	}
+
+	/**
+	 * Navigated to the Payment Page
+	 * 
+	 * @return void - if Navigated to the Payment Page
+	 * @throws Exception
+	 */
+	public void navigateToPaymentPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkPayment, driver,
+				"Attribute tab is clicked");
+		Log.event("Navigated to Customer payment page in the DWRE",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetches the top header text of every Demand ware form
+	 * 
+	 * @return String txttopHeader
+	 * @throws Exception
+	 */
+	public String fetchTopFormHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txttopHeader = BrowserActions.getText(driver, topFormSection,
+				"Fetches the top header section text");
+		Log.event("Fetches the OMS text value",
+				StopWatch.elapsedTime(startTime));
+		return txttopHeader;
+	}
+
+	/**
+	 * Fetches the payment street name
+	 * 
+	 * @return String fetched payment name
+	 * @throws Exception
+	 */
+	public String fetchPaymentStreet() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String paymentStreetName = BrowserActions.getText(driver,
+				paymentStreet,
+				"Fetched the payment street from the payment address book");
+		Log.event("Fetches the payment street value",
+				StopWatch.elapsedTime(startTime));
+		return paymentStreetName;
+	}
+
+	/**
+	 * Fetch Shipping total from demandware
+	 * 
+	 * @param i
+	 * @return
+	 * @throws Exception
+	 */
+	public String fetchShippingTotal(int i, String CartSummary)
+			throws Exception {
+
+		final long startTime = StopWatch.startTime();
+		String num = Integer.toString(i);
+		String shippingPrice = null;
+		String shippingPriceValue = null;
+
+		switch (num) {
+
+		case "1":
+			if (CartSummary.contains("20% Savings")) {
+				WebElement shipment = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(9) td[class*='table_detail e s right']"));
+				shippingPrice = BrowserActions.getText(driver, shipment,
+						"Fetches the text from Shipping price");
+				shippingPriceValue = shippingPrice.replace("$", "").trim();
+				break;
+			} else {
+				WebElement shipment = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(8) td[class*='table_detail e s right']"));
+				shippingPrice = BrowserActions.getText(driver, shipment,
+						"Fetches the text from Shipping price");
+				shippingPriceValue = shippingPrice.replace("$", "").trim();
+				break;
+			}
+
+		case "2":
+			if (CartSummary.contains("20% Savings")) {
+				WebElement twoproductTax = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(10) td[class*='table_detail e s right']"));
+				String twoproduttaxPriceValue = BrowserActions.getText(driver,
+						twoproductTax, "Fetches the text from Shipping price");
+				shippingPriceValue = twoproduttaxPriceValue.replace("$", "")
+						.trim();
+				break;
+			} else {
+				WebElement twoproductTax = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(9) td[class*='table_detail e s right']"));
+				String twoproduttaxPriceValue = BrowserActions.getText(driver,
+						twoproductTax, "Fetches the text from Shipping price");
+				shippingPriceValue = twoproduttaxPriceValue.replace("$", "")
+						.trim();
+				break;
+			}
+		}
+
+		Log.event(
+				"Matches the tax value from the order summary section with Demandware",
+				StopWatch.elapsedTime(startTime));
+		return shippingPriceValue;
+	}
+
+	/**
+	 * Fetch Tax Price from demandware
+	 * 
+	 * @param i
+	 * @return
+	 * @throws Exception
+	 */
+	public String fetchTaxPrice(int i, String CartSummary) throws Exception {
+		final long startTime = StopWatch.startTime();
+		String num = Integer.toString(i);
+		String taxValue = null;
+
+		switch (num) {
+
+		case "1":
+			if (CartSummary.contains("20% Savings")) {
+				WebElement taxPrice = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(10) td[class*='table_detail e s right']"));
+				String taxPriceValue = BrowserActions.getText(driver, taxPrice,
+						"Fetches the text from Shipping price");
+				taxValue = taxPriceValue.replace("$", "").trim();
+				break;
+			} else {
+				WebElement taxPrice = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(9) td[class*='table_detail e s right']"));
+				String taxPriceValue = BrowserActions.getText(driver, taxPrice,
+						"Fetches the text from Shipping price");
+				taxValue = taxPriceValue.replace("$", "").trim();
+				break;
+			}
+		case "2":
+			if (CartSummary.contains("20% Savings")) {
+				WebElement twoproductTax = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(11) td[class*='table_detail e s right']"));
+				String twoproduttaxPriceValue = BrowserActions.getText(driver,
+						twoproductTax, "Fetches the text from Shipping price");
+				taxValue = twoproduttaxPriceValue.replace("$", "").trim();
+				break;
+			} else {
+				WebElement twoproductTax = driver
+						.findElement(By
+								.cssSelector("form[name='main'] tbody tr:nth-child(10) td[class*='table_detail e s right']"));
+				String twoproduttaxPriceValue = BrowserActions.getText(driver,
+						twoproductTax, "Fetches the text from Shipping price");
+				taxValue = twoproduttaxPriceValue.replace("$", "").trim();
+				break;
+			}
+		}
+
+		Log.event(
+				"Matches the tax value from the order summary section with Demandware",
+				StopWatch.elapsedTime(startTime));
+		return taxValue;
+	}
+
+}// DEMANDWARE

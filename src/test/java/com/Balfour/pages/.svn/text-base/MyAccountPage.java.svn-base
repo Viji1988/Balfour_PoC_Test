@@ -1,0 +1,830 @@
+package com.sheplers.pages;
+
+import java.util.LinkedHashMap;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.support.StopWatch;
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.Utils;
+
+public class MyAccountPage extends LoadableComponent<MyAccountPage> {
+
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public HomePage homePage;
+	public Headers headers;
+	public Footers footers;
+	public ElementLayer elementLayer;
+	public PdpPage pdpPage;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ************************ WebElements of My Account Page - Starts *****************************
+	 **********************************************************************************************/
+
+	public static final String Customer_EditFirstName = "input[name*='customer_firstname']";
+	public static final String Customer_EditLastName = "input[name*='customer_lastname']";
+	public static final String Customer_EditEmail = "input[name='dwfrm_profile_customer_email']";
+	public static final String Customer_EditConfirmEmail = "input[name='dwfrm_profile_customer_emailconfirm']";
+	public static final String Customer_EditPassword = "input[placeholder*='Password should']";
+	public static final String Customer_EditConfirmPassword = "input[name*='profile_login_passwordconfirm']";
+	public static final String Customer_btnUpdate = "button[name*='profile_confirm']";
+	public static final String Customer_btnCancel = "div[class*='button'] a[href*='account']";
+
+	public static final String searchField = "div[class='header-search']";
+
+	@FindBy(css = "div[class*='ca-account-landing']")
+	WebElement divMyAccount;
+
+	@FindBy(css = "h2[class='form-title']")
+	WebElement editPageHeader;
+
+	@FindBy(css = ".desktop-only nav a[href*='account']")
+	WebElement navAccount;
+
+	@FindBy(css = ".desktop-only nav a[href*='profile']")
+	WebElement navProfile;
+
+	@FindBy(css = ".account-options li:nth-child(2) h2")
+	WebElement navAddress;
+
+	@FindBy(css = ".desktop-only ul li a[href*='sheplers_us/payments']")
+	WebElement lnkBillinAddress;
+
+	@FindBy(css = "#primary > div > h6 > span:nth-child(1)")
+	WebElement nicknameinAccountPage;
+
+	@FindBy(css = ".desktop-only nav a[href*='payment']")
+	WebElement navPayment;
+
+	@FindBy(css = ".desktop-only nav a[href*='order']")
+	WebElement navOrder;
+
+	@FindBy(css = "ul[class='account-options'] a[title='Payment Methods']")
+	WebElement lnkBillingAddressandCreditCard;
+
+	@FindBy(css = "btn-expand tablet-only")
+	WebElement search;
+
+	@FindBy(css = searchField + " input[type='text']")
+	WebElement txtSearch;
+
+	@FindBy(css = "form[name='simpleSearch'] input#q")
+	WebElement txtMobSearch;
+
+	@FindBy(css = searchField + " button[type='submit']")
+	WebElement btnSearch;
+
+	@FindBy(css = "ul[class='menu-utility-user'] li a[href*='account']")
+	WebElement lblSignIn;
+
+	@FindBy(css = "div[class*='desktop-hidden'] [role='search'] button[type*='submit']")
+	WebElement mobbtnSearch;
+
+	@FindBy(css = "a[href='#search']")
+	WebElement mobBtnSearch;
+
+	@FindBy(css = ".account-options li:nth-child(1) h2")
+	WebElement lnkAccountSettings;
+
+	@FindBy(css = ".account-options li:nth-child(2) h2")
+	WebElement lnkAddressBook;
+
+	@FindBy(css = ".account-options li:nth-child(3) h2")
+	WebElement lnkPaymentMethod;
+
+	@FindBy(css = ".account-options li:nth-child(2) h2")
+	WebElement moblnkAddressBook;
+
+	@FindBy(css = ".account-options li:nth-child(4) h2")
+	WebElement lnkOrderHistory;
+
+	@FindBy(css = ".desktop-only>ul>li a[href*='payments']")
+	WebElement lnkPaymentMethods;
+
+	@FindBy(css = "ul.account-options a[href='https://staging-web-sheplers.demandware.net/s/sheplers_us/payments']")
+	WebElement lnkMobPaymentMethods;
+
+	@FindBy(css = ".account-logout")
+	WebElement lnkLogout;
+
+	@FindBy(css = ".ca-account-landing")
+	WebElement accountSection;
+
+	@FindBy(css = ".desktop-only nav")
+	WebElement navAccountSection;
+
+	@FindBy(css = ".content-asset.ca-account-landing")
+	WebElement mobnavAccountSection;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='account']")
+	WebElement drpAccount;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='profile']")
+	WebElement drpProfile;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='payment']")
+	WebElement drpPayment;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='order']")
+	WebElement drpOrder;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='address']")
+	WebElement drpAddress;
+
+	@FindBy(css = ".ca-account-nav-registered-dropdown a[href*='Logout']")
+	WebElement drpLogout;
+
+	@FindBy(css = "div[class='primary-content'] a[class='section-header-note address-create button']")
+	WebElement lnkAddNewBillingAddress;
+
+	@FindBy(css = Customer_EditFirstName)
+	WebElement editFirstName;
+
+	@FindBy(css = Customer_EditLastName)
+	WebElement editLastName;
+
+	@FindBy(css = Customer_EditEmail)
+	WebElement editEmailAddress;
+
+	@FindBy(css = Customer_EditConfirmEmail)
+	WebElement editConfirmEmailAddress;
+
+	@FindBy(css = Customer_EditPassword)
+	WebElement editPassword;
+
+	@FindBy(css = Customer_EditConfirmPassword)
+	WebElement editConfirmPassword;
+
+	@FindBy(css = Customer_btnUpdate)
+	WebElement editbtnUpdate;
+
+	@FindBy(css = Customer_btnCancel)
+	WebElement editbtnCancel;
+
+	@FindBy(css = ".section-create-account h1")
+	WebElement headerAddressBook;
+
+	@FindBy(css = ".section-header-note.address-create.button")
+	WebElement addNewAddressLink;
+
+	@FindBy(css = ".nav-content-container")
+	WebElement customerServiceSection;
+
+	@FindBy(css = ".first-child.has-dropdown>a>span")
+	WebElement lnkAccount;
+
+	@FindBy(css = "div:nth-child(2) > div > div.form-caption.error-message")
+	WebElement lblPasswordError;
+
+	@FindBy(css = "#dwfrm_profile_customer_emailconfirm-error")
+	WebElement lblConfirmEmailError;
+
+	@FindBy(css = "span[id*='dwfrm_profile_login_password']")
+	WebElement lblPasswordRequiredError;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ************************** WebElements of My Account Page - Ends *****************************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 *
+	 */
+	public MyAccountPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}// MyAccountPage
+
+	@Override
+	protected void isLoaded() {
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, divMyAccount))) {
+			Log.fail("My Account page did not open up.", driver);
+		}
+		homePage = new HomePage(driver).get();
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+	}// load
+
+	/**
+	 * To search single product with Keyword
+	 * 
+	 * @param textToSearch
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage searchsingleProductKeyword(String textToSearch)
+			throws Exception {
+		if (runPlatForm == "mobile") {
+			expandsearch();
+			BrowserActions.typeOnTextField(txtMobSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(mobbtnSearch, driver,
+					"Click on the search icon");
+		}
+		if (runPlatForm == "desktop") {
+			BrowserActions.typeOnTextField(txtSearch, textToSearch, driver,
+					"Search text is Entered");
+			BrowserActions.javascriptClick(btnSearch, driver,
+					"Click on the search icon");
+		}
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To check the product in the Cart
+	 * 
+	 * @param searchKey
+	 * @return CartPage
+	 * @throws Exception
+	 */
+	public CartPage checkproductInCart(String searchKey) throws Exception {
+		final long startTime = StopWatch.startTime();
+		PdpPage Pdppage = searchsingleProductKeyword(searchKey);
+		Pdppage.selectSize();
+		Utils.waitForElement(driver, headers.addToCart);
+		headers.addToCart();
+		Log.event("checked product in Cart!", StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return new CartPage(driver).get();
+	}
+
+	/**
+	 * Clicking on Payment Methods link
+	 * 
+	 * @returns PaymentMethodsPage
+	 * @throws Exception
+	 */
+	public PaymentMethodsPage navigateToPaymentMethodsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(lnkPaymentMethods, driver,
+					"Payment Methods link is clicked");
+		}
+
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(lnkMobPaymentMethods, driver,
+					"Payment Methods link is clicked");
+		}
+
+		Utils.waitForPageLoad(driver);
+		Log.event("navigates to Payment Methods Page!",
+				StopWatch.elapsedTime(startTime));
+		return new PaymentMethodsPage(driver).get();
+	}
+
+	/**
+	 * mobile- Expand the Search icon
+	 * 
+	 * @return void after search icon is expanded
+	 * @throws Exception
+	 */
+	public void expandsearch() throws Exception {
+		BrowserActions.clickOnElement(mobBtnSearch, driver,
+				"Expanding the search toggle");
+	}
+
+	/**
+	 * To click on Billing Address Link
+	 * 
+	 * @return void after clicking Billing Address Link
+	 * @throws Exception
+	 *             click on BillingAddress link
+	 */
+	public void clickonBillingAddressLink() throws Exception {
+		BrowserActions.clickOnElement(lnkBillinAddress, driver,
+				"Click on Billing Address");
+
+	}
+
+	/**
+	 * To get nickname from Account Page
+	 * 
+	 * @return String - name
+	 */
+	public String getnicknameFromAccountPage() {
+		String name = nicknameinAccountPage.getText();
+		return name;
+	}
+
+	/**
+	 * Verify the 'My Account' Page is placed on the left side of the page
+	 * 
+	 * @return boolean- return type
+	 */
+	public boolean verfiyMyAccountSection() {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			Point accountSectionLoc = navAccountSection.getLocation();
+			if ((accountSectionLoc.x > 60) && (accountSectionLoc.x < 425)) {
+				returntype = true;
+			}
+			Log.event(
+					"'My Account' section is placed on the left side of the page",
+					StopWatch.elapsedTime(startTime));
+		}
+		if (runPlatForm == "mobile") {
+			Point accountSectionLoc = mobnavAccountSection.getLocation();
+
+			if ((accountSectionLoc.x > 10) && (accountSectionLoc.x < 440)) {
+				returntype = true;
+			}
+			Log.event(
+					"'My Account' section is placed on the left side of the page",
+					StopWatch.elapsedTime(startTime));
+		}
+		return returntype;
+
+	}
+
+	/**
+	 * Naviagtes to Address Book page from Cart Page
+	 * 
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage NavigateToAddressBookPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.mouseHover(driver, lnkAccount);
+		BrowserActions.clickOnElement(lnkAddressBook, driver,
+				"Clicked on Payment Methods on the Header");
+		Utils.waitForPageLoad(driver);
+
+		Log.event("Clicked on Payment Methods on the Header",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * Verify the 'logout link' Page is placed on the middle of the page
+	 * 
+	 * @return boolean - return type
+	 */
+	public boolean verfiyLogoutLink() {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+			Point lnkLogoutLoc = lnkLogout.getLocation();
+
+			if ((lnkLogoutLoc.x > 480) && (lnkLogoutLoc.x < 990)) {
+				returntype = true;
+			}
+			Log.event("'Log Out' section is placed on the middle of the page",
+					StopWatch.elapsedTime(startTime));
+		}
+		if (runPlatForm == "mobile") {
+			Point lnkLogoutLoc = lnkLogout.getLocation();
+
+			if ((lnkLogoutLoc.x > 330) && (lnkLogoutLoc.x < 450)) {
+				returntype = true;
+			}
+			Log.event("'Log Out' section is placed on the middle of the page",
+					StopWatch.elapsedTime(startTime));
+		}
+		return returntype;
+	}
+
+	/**
+	 * Navigates to Billing Address and Credit Card Book
+	 * 
+	 * @throws Exception
+	 * @return PaymentMethodsPage
+	 */
+	public PaymentMethodsPage navigateToBillingAddressAndCreditCardBook()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkBillingAddressandCreditCard, driver,
+				"Clicked on the 'Address Book' link");
+		Log.event("Navigated to theBilling section page",
+				StopWatch.elapsedTime(startTime));
+		return new PaymentMethodsPage(driver).get();
+	}
+
+	/**
+	 * Verify Billing Address is Present or not
+	 * 
+	 * @return boolean - returntype
+	 */
+	public Boolean verifyIfBillingAddresIsPresent() {
+		Boolean returntype = false;
+		if (!(elementLayer.existsElement("#addresses > ul > li > h3"))) {
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * Navigates to New Billing Address Add Page
+	 * 
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage navigateToNewBillingAddressAddpage()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkAddNewBillingAddress, driver,
+				"Payment Methods link is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigated to the Payment Methods link page",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * Fetching the text from sign-in label
+	 * 
+	 * @return String - signInText
+	 * @throws Exception
+	 */
+	public String fetchSignedInLabel() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String signInText = BrowserActions.getText(driver, lblSignIn,
+				"Fetch text fromsign in label");
+		Log.event("fetch the sign in label text after logged-in",
+				StopWatch.elapsedTime(startTime));
+		return signInText;
+	}
+
+	/**
+	 * View customer profile drop down from header
+	 * 
+	 * @return void after customer profile is viewed
+	 * @throws Exception
+	 */
+	public void viewCustomerDropDown() throws Exception {
+		final long startTime = StopWatch.startTime();
+		try {
+			BrowserActions.mouseHover(driver, lblSignIn);
+		} catch (Exception exp) {
+			Log.message("SignIn element is not hovered");
+		}
+
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("click on the customer drop down",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Navigate to Account Edit Page
+	 * 
+	 * @return void after navigating to Account Edit Page
+	 * @throws Exception
+	 */
+	public void navigateToEditPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkAccountSettings, driver,
+				"Clicked on the 'Edit Account' link");
+		Utils.waitForPageLoad(driver, 10);
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Fetch the Edit Account Page Header Text
+	 * 
+	 * @return String - txtHeader
+	 * @throws Exception
+	 */
+	public String fetchEditPageHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = BrowserActions.getText(driver, editPageHeader,
+				"Extact text from the Header");
+		Log.event("Get header text of edit account page",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * Navigate to the Edit account Page via header drop down
+	 * 
+	 * @return void after navigating to Edit account Page via header drop down
+	 * @throws Exception
+	 */
+	public void navigateToNavEditPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(navProfile, driver,
+				"Clicked on the 'Edit Account' link");
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Navigate to the Address book page via address book link
+	 * 
+	 * @return void after navigating to Address book page via address book link
+	 * @throws Exception
+	 */
+	public void navigateToAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(lnkAddressBook, driver,
+					"Clicked on the 'Address Book' link");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(moblnkAddressBook, driver,
+					"Clicked on the 'Address Book' link");
+		}
+		Log.event("Navigated to the Address Book page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * 
+	 * Navigate to the Address book page via Add New address link
+	 * 
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage clickOnAddAddressBookLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(addNewAddressLink, driver,
+				"Clicked on the 'Address Book' link");
+		Log.event("Navigated to the add Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * Fetch the header text from Address book Page
+	 * 
+	 * @return String- txtHeader
+	 * @throws Exception
+	 */
+	public String fetchAddressBookHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtHeader = BrowserActions.getText(driver, headerAddressBook,
+				"Extact text from the Header");
+
+		Log.event("Get header text of Address Book page",
+				StopWatch.elapsedTime(startTime));
+		return txtHeader;
+	}
+
+	/**
+	 * Navigate to the Address Book Page via header drop down
+	 * 
+	 * @return void after navigating to Address Book Page via header drop down
+	 * @throws Exception
+	 */
+	public void navigateToNavAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(navAddress, driver,
+				"Clicked on the 'Edit Account' link");
+		Log.event("Navigated to the edit account page",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Navigate to the Order history Page via link in the My Account section
+	 * 
+	 * @return OrderHistoryPage
+	 * @throws Exception
+	 */
+	public OrderHistoryPage navigateToOrderHistoryPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkOrderHistory, driver,
+				"Clicked on the 'Address Book' link");
+		Log.event("Navigated to the Order History page",
+				StopWatch.elapsedTime(startTime));
+		return new OrderHistoryPage(driver).get();
+	}
+
+	/**
+	 * Navigates to PaymentMethodPage
+	 * 
+	 * @return PaymentMethodsPage
+	 * @throws Exception
+	 */
+	public PaymentMethodsPage navigateToPaymentMethodPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkPaymentMethod, driver,
+				"Payment Methods link is clicked");
+		Utils.waitForPageLoad(driver);
+		Log.event("Navigated to the Payment Methods link page",
+				StopWatch.elapsedTime(startTime));
+		return new PaymentMethodsPage(driver).get();
+	}
+
+	/**
+	 * Clicking Logout link
+	 * 
+	 * @return void after click logout
+	 * @throws Exception
+	 */
+	public void clickLogoutLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkLogout, driver,
+				"LogOut link is clicked");
+		Log.event("Navigated to Home page by clicking Logout link",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * If the customer service section is placed on the left side of the Page
+	 *
+	 * @return boolean-returntype
+	 */
+	public boolean verfiyCustomerService() {
+		Boolean returntype = false;
+		final long startTime = StopWatch.startTime();
+		Point customerServiceLoc = driver.findElement(
+				By.cssSelector(".nav-content-container")).getLocation();
+		if ((customerServiceLoc.x > 60) && (customerServiceLoc.x < 450)) {
+			returntype = true;
+			Log.event(
+					"Customer service section is placed at the left side of the Page",
+					StopWatch.elapsedTime(startTime));
+		}
+		return returntype;
+	}
+
+	/**
+	 * Click on Account setting link in account page
+	 * 
+	 * @return void after clicking Account setting link in account page
+	 * @throws Exception
+	 */
+	public void clickOnAccountSettings() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkAccountSettings, driver,
+				"Account settings link is clicked");
+		Log.event(
+				"Navigated to Edit Account page by clicking Account settings link",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * Filling data in Edit Account page
+	 * 
+	 * @param editAccountDetails
+	 * @return void after edit account form is filled
+	 * @throws Exception
+	 */
+	public void editAccount(LinkedHashMap<String, String> editAccountDetails)
+			throws Exception {
+		LinkedHashMap<String, String> editAccount = new LinkedHashMap<String, String>();
+		editAccount.put(
+				"type_FirstName_" + editAccountDetails.get("editfirstname"),
+				Customer_EditFirstName);
+		editAccount.put(
+				"type_lastname_" + editAccountDetails.get("editlastname"),
+				Customer_EditLastName);
+		editAccount.put("type_emailid_" + editAccountDetails.get("editemail"),
+				Customer_EditEmail);
+		editAccount.put(
+				"type_confirmemailid_"
+						+ editAccountDetails.get("editconfirmemail"),
+				Customer_EditConfirmEmail);
+		editAccount
+				.put("type_confirmemailid_"
+						+ editAccountDetails.get("editpassword"),
+						Customer_EditPassword);
+		editAccount.put(
+				"type_confirmpassword_"
+						+ editAccountDetails.get("editconfirmPassword"),
+				Customer_EditConfirmPassword);
+		editAccount.put("click_apply button has been clicked",
+				Customer_btnUpdate);
+
+		AccountUtils.doAccountOperations(editAccount, driver);
+		Utils.waitForPageLoad(driver);
+
+	}
+
+	/**
+	 * click Address book link in my account page
+	 * 
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage clickAddressBook() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkAddressBook, driver,
+				"Address Book link is clicked");
+		Log.event(
+				"Navigated to Address Book page by clicking Address Book link",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+
+	}
+
+	/**
+	 * Navigate to Address Book Page By clicking Address Book in side Link
+	 * 
+	 * @return AddressBookPage
+	 * @throws Exception
+	 */
+	public AddressBookPage navigateToAddressBookPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.clickOnElement(navAddress, driver,
+					"Clicked on the 'AddressBook' link");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(moblnkAddressBook, driver,
+					"Clicked on the 'Address Book' link");
+		}
+		Log.event("Navigated to the AddressBook page",
+				StopWatch.elapsedTime(startTime));
+		return new AddressBookPage(driver).get();
+	}
+
+	/**
+	 * Edit the Account and cancel to save
+	 * 
+	 * @return void after clicking cancel option
+	 * @param editAccountDetails
+	 */
+	public void editAccountWithCancelOption(
+			LinkedHashMap<String, String> editAccountDetails) throws Exception {
+		LinkedHashMap<String, String> editAccount = new LinkedHashMap<String, String>();
+		editAccount.put(
+				"type_FirstName_" + editAccountDetails.get("editfirstname"),
+				Customer_EditFirstName);
+		editAccount.put(
+				"type_lastname_" + editAccountDetails.get("editlastname"),
+				Customer_EditLastName);
+		editAccount.put("type_emailid_" + editAccountDetails.get("editemail"),
+				Customer_EditEmail);
+		editAccount.put(
+				"type_confirmemailid_"
+						+ editAccountDetails.get("editconfirmemail"),
+				Customer_EditConfirmEmail);
+		editAccount
+				.put("type_confirmemailid_"
+						+ editAccountDetails.get("editpassword"),
+						Customer_EditPassword);
+		editAccount.put(
+				"type_confirmpassword_"
+						+ editAccountDetails.get("editconfirmPassword"),
+				Customer_EditConfirmPassword);
+		editAccount.put("click_cancel button has been clicked",
+				Customer_btnCancel);
+
+		AccountUtils.doAccountOperations(editAccount, driver);
+		Utils.waitForPageLoad(driver);
+
+	}
+
+	public void clickUpdateWithoutFillingMandatoryFields() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		BrowserActions.clickOnElement(editbtnUpdate, driver,
+				"Click Update Without Mandatory Fields");
+		Log.event("Clicked Update Without Mandatory Fields",
+				StopWatch.elapsedTime(startTime));
+	}
+
+}// MYACCOUNTPAGE

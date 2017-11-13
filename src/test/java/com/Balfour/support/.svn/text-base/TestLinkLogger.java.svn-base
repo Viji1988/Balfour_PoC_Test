@@ -1,0 +1,64 @@
+package com.sheplers.support;
+
+import java.io.IOException;
+
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+
+import utils.sheplers.testlink.MapToTestLink;
+import utils.sheplers.testlink.TestLinkAPIClient;
+import utils.sheplers.testlink.TestLinkAPIException;
+import utils.sheplers.testlink.TestLinkAPIResults;
+
+public class TestLinkLogger {
+
+	EnvironmentPropertiesReader environmentPropertiesReader;
+	
+	@AfterMethod(alwaysRun = true)
+	public final void tearDown(ITestResult result) throws IOException, TestLinkAPIException {
+
+		String testLinkResult,notes;
+		TestLinkAPIClient api = null;
+		environmentPropertiesReader = new EnvironmentPropertiesReader("env.properties");
+		MapToTestLink mapToTestLink = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(MapToTestLink.class);
+		String runPlatForm = Utils.getRunPlatForm();
+			if(runPlatForm == "desktop"){
+			if (mapToTestLink != null) {
+				String testCase = mapToTestLink.testCaseID();
+				if (result.isSuccess()) {
+					testLinkResult = TestLinkAPIResults.TEST_PASSED;
+					notes = "Executed successfully";
+					api = new TestLinkAPIClient(environmentPropertiesReader.getTestLinkDevKey().trim(), environmentPropertiesReader.getTestlinkURL().trim());
+					api.reportTestCaseResult(environmentPropertiesReader.getTestProject().trim(), environmentPropertiesReader.getTestPlan().trim(), environmentPropertiesReader.getTestSuiteID().trim(), testCase, notes, testLinkResult, environmentPropertiesReader.getTestBuildId());
+				}
+				else {
+					testLinkResult = TestLinkAPIResults.TEST_FAILED;
+					notes = "Execution Failed";
+					api = new TestLinkAPIClient(environmentPropertiesReader.getTestLinkDevKey().trim(), environmentPropertiesReader.getTestlinkURL().trim());
+					api.reportTestCaseResult(environmentPropertiesReader.getTestProject().trim(), environmentPropertiesReader.getTestPlan().trim(), environmentPropertiesReader.getTestSuiteID().trim(), testCase, notes, testLinkResult, environmentPropertiesReader.getTestBuildId());
+				}
+			}
+		}
+		
+		if (runPlatForm == "mobile"){
+			
+			if (mapToTestLink != null) {
+				String testCase = mapToTestLink.mobileTestCaseID();
+				if (result.isSuccess()) {
+					testLinkResult = TestLinkAPIResults.TEST_PASSED;
+					notes = "Executed successfully";
+					api = new TestLinkAPIClient(environmentPropertiesReader.getTestLinkDevKey().trim(), environmentPropertiesReader.getTestlinkURL().trim());
+					api.reportTestCaseResult(environmentPropertiesReader.getTestProject().trim(), environmentPropertiesReader.getTestPlan().trim(), environmentPropertiesReader.getTestSuiteID().trim(), testCase, notes, testLinkResult, environmentPropertiesReader.getTestBuildId());
+				}
+				else {
+					testLinkResult = TestLinkAPIResults.TEST_FAILED;
+					notes = "Execution Failed";
+					api = new TestLinkAPIClient(environmentPropertiesReader.getTestLinkDevKey().trim(), environmentPropertiesReader.getTestlinkURL().trim());
+					api.reportTestCaseResult(environmentPropertiesReader.getTestProject().trim(), environmentPropertiesReader.getTestPlan().trim(), environmentPropertiesReader.getTestSuiteID().trim(), testCase, notes, testLinkResult, environmentPropertiesReader.getTestBuildId());
+				}
+			}
+		}
+	}
+	
+}

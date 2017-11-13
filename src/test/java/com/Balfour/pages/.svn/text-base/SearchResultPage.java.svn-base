@@ -1,0 +1,1215 @@
+package com.sheplers.pages;
+
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class SearchResultPage extends LoadableComponent<SearchResultPage> {
+
+	private static WebDriver driver;
+	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
+	private boolean restrictionInternMessage;
+	public CategoryGridPage gridPage;
+
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Search ResultPage - Starts ******************
+	 **********************************************************************************************/
+
+	private static final String SIZE = "div.refinementSize";
+	private static final String BRAND = "div[class*='refinement brand'] ul li label";
+	private static final String PRODUCTIMAGE = "div[class='product-image']";
+	private static final String lblProdcount = "#search-result-items";
+	private static final String COLLAPSECATEGORY = ".refinements div[class*='gender']>h3[class*='expanded']";
+
+	@FindBy(css = "#primary > div.desktop-only > div > h1 > span")
+	public WebElement productCount;
+
+	@FindBy(css = ".mobile-only .keyword-search-phrase-header")
+	WebElement productMobCount;
+
+	@FindBy(css = ".list-selections>li>span a[class='close-btn']")
+	List<WebElement> btnClose;
+
+	@FindBy(css = ".list-selections>li>span")
+	WebElement yourselections;
+
+	@FindBy(css = "div.desktop-only > div > h1 > a.keyword-search-phrase-header-link")
+	public WebElement searchResultHeader;
+
+	@FindBy(css = "div.mobile-only > div > h1 > a.keyword-search-phrase-header-link")
+	public WebElement searchMobResultHeader;
+
+	@FindBy(css = "div[class='product-content'] a[class='name-link']")
+	List<WebElement> productName;
+
+	@FindBy(css = "div#primary h1 span.keyword-search-phrase-header")
+	public WebElement lblSearchResultHeader;
+
+	@FindBy(css = "div.mobile-only h1 a[class*='keyword-search-phrase-header']")
+	WebElement lblMobSearchResultHeader;
+
+	@FindBy(css = "div#primary h1 a.keyword-search-phrase-header-link")
+	public WebElement lnkSearchResultHeader;
+
+	@FindBy(css = "#primary")
+	public WebElement searchResultMain;
+
+	@FindBy(css = "label[for='q'] span[class='hide-mobile']")
+	WebElement lblSearchText;
+
+	@FindBy(css = "span[class='breadcrumb-element breadcrumb-result-text']")
+	static WebElement lblSearchResult;
+
+	@FindBy(css = "div[class='search-result-content '] ul[id='search-result-items'] li:nth-child(1)")
+	static WebElement searchResult;
+
+	@FindBy(css = "a[class='mini-cart-link']")
+	WebElement miniCart;
+
+	@FindBy(css = "div[class='mini-cart-name']")
+	WebElement miniCartProductName;
+
+	@FindBy(css = "div[class='refineby-attribute']")
+	WebElement btnFilterBy;
+
+	@FindBy(css = SIZE)
+	WebElement btnsize;
+
+	@FindBy(css = ".refinements div[style*='block']")
+	WebElement expandCategory;
+
+	@FindBy(css = SIZE + " ul[style*='none']")
+	public WebElement btnSizeExpand;
+
+	@FindBy(css = SIZE + " i[class='toggle-plus-minus']")
+	WebElement btnSizeCollapse;
+
+	@FindBy(css = SIZE + " ul li a")
+	List<WebElement> listSelectSize;
+
+	@FindBy(css = SIZE + " ul li a i[class='toggle-check toggle-check-active']")
+	WebElement clrSelected;
+
+	@FindBy(css = "li a[class='close-btn'][href='null']")
+	WebElement lnkClearAll;
+
+	@FindBy(css = "div[class*='no-hits-banner'] h3")
+	WebElement lblNoSearchResult;
+
+	@FindBy(css = "div[class='section-header section-did-you-mean'] p span[class='did-you-mean-term']")
+	WebElement lblDidYouMeanTerm;
+
+	@FindBy(css = "div[class='section-header section-did-you-mean'] p a[class='no-hits-search-term-suggest']")
+	WebElement lnkDidYouMeanTermLink;
+
+	@FindBy(css = "div[class='no-hits-search'] input[name='q']")
+	WebElement txtTryANewSearch;
+
+	@FindBy(css = "div[class='no-hits-search'] i[class='ico ico-search']")
+	WebElement btnTryNewSearch;
+
+	// brand
+
+	@FindBy(css = BRAND)
+	WebElement lblBrand;
+
+	@FindBy(css = BRAND + " span[class='viewmore-refinement']")
+	WebElement btnBrandViewMore;
+
+	@FindBy(css = BRAND + " ul li:not([class*='hidden'])")
+	List<WebElement> listBrand;
+
+	@FindBy(css = BRAND)
+	List<WebElement> listSubBrand;
+
+	@FindBy(css = BRAND + " ul li")
+	List<WebElement> listAllBrands;
+
+	@FindBy(css = "h1.product-name")
+	WebElement lblProductNamePdp;
+
+	@FindBy(css = "a[title='Go to Product: Roper Infant Boys' Brown Chunklet Cowboy Boots']")
+	WebElement lblProductNameCart;
+
+	@FindBy(css = "div[class='product-suggestions'] div[class='product-image'] img")
+	List<WebElement> listYouMayAlsoLike;
+
+	@FindBy(css = "div[class='product-suggestions-left'] div[class='product-suggestions'] a")
+	List<WebElement> listSuggestedCategory;
+
+	@FindBy(xpath = "//div[@id='secondary']//*[contains(.,'Color')]")
+	static WebElement colourfilter;
+
+	@FindBy(xpath = "//div[@id='secondary']//*[contains(.,'Color')]/i")
+	static WebElement colorfilterTab;
+
+	@FindBy(css = "ul[class ='clearfix swatches refinementColor ']")
+	static WebElement colordisplayTab;
+
+	@FindBy(css = "ul[class ='clearfix swatches refinementColor ']")
+	static WebElement btncolordisplayTab;
+
+	@FindBy(css = "(//*[@class='view-more-less']//*[contains(.,'View More')])[1]")
+	static WebElement btnviewmoreTab;
+
+	@FindBy(css = "[@class='clearfix swatches refinementColor ']//*[contains(.,'White')]//i")
+	static WebElement btncolorblackclick;
+
+	@FindBy(css = "div[class='product-tile']")
+	List<WebElement> productContent;
+
+	@FindBy(css = PRODUCTIMAGE)
+	WebElement btnProductimage;
+
+	@FindBy(css = PRODUCTIMAGE + " a[class='thumb-link'] picture")
+	WebElement btnProductThumb;
+
+	@FindBy(css = PRODUCTIMAGE + " a[id='quickviewbutton']")
+	WebElement btnQuickView;
+
+	@FindBy(css = "#primary #results-products")
+	WebElement lblProductFount;
+
+	@FindBy(css = ".results-hits")
+	WebElement lblTotalViewingProduct;
+
+	@FindBy(css = "div[class='product-content']")
+	List<WebElement> productDesc;
+
+	@FindBy(css = ".product-info")
+	WebElement productInfo;
+
+	@FindBy(css = "div[class='product-col-2 product-detail']")
+	WebElement restrictionMessage;
+
+	@FindBy(css = "div.product-suggestions-right > div > div")
+	WebElement lblYouMightAlsoLike;
+
+	@FindBy(css = lblProdcount)
+	WebElement productTile;
+
+	@FindBy(css = "p.no-hits-category-links")
+	WebElement lblNoResultContentSlot;
+
+	@FindBy(css = "#primary > div > div.no-hits-footer > div > ul li")
+	WebElement listOfCategories;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Search ResultPage - Ends ********************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	@SuppressWarnings("static-access")
+	public SearchResultPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		elementLayer = new ElementLayer(driver);
+	}
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+
+		try {
+			Utils.switchWindows(driver, "Search result Page", "title", "false");
+		} catch (Exception e) {
+		}
+
+		Utils.waitForElement(driver, searchResultHeader);
+
+	}
+
+	@Override
+	protected void isLoaded() throws Error {
+
+		Utils.waitForPageLoad(driver);
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, searchResultMain))) {
+			Log.fail("Search result Page did not open up. Site might be down.",
+					driver);
+		}
+
+	}
+
+	/**
+	 * gets header text
+	 * 
+	 * @return searchHeaderText
+	 * @throws Exception
+	 */
+
+	public String getSearchPageHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String searchHeaderText = null;
+		if (runPlatForm == "desktop") {
+			searchHeaderText = BrowserActions.getText(driver,
+					searchResultHeader, "Search Result Page Header!");
+		}
+		if (runPlatForm == "mobile") {
+			searchHeaderText = BrowserActions.getText(driver,
+					searchMobResultHeader, "Search Result Page Header!");
+
+		}
+		Log.event(" Gets text from Search Page header!",
+				StopWatch.elapsedTime(startTime));
+		return searchHeaderText;
+	}
+
+	/**
+	 * get text from no search results page
+	 * 
+	 * @return String - noResultText
+	 * @throws Exception
+	 */
+	public String getTextNoSearchResult() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String noResultText = null;
+		noResultText = BrowserActions.getText(driver, lblNoSearchResult,
+				"Search Result Page Header!");
+		Log.event(" Gets text from No Search Page header!",
+				StopWatch.elapsedTime(startTime));
+		return noResultText;
+	}
+
+	/**
+	 * click on SearchPageHeaderLink
+	 * 
+	 * <<<<<<< .mine
+	 * 
+	 * @return void after clicking SearchPageHeaderLink =======
+	 * @return void >>>>>>> .r1089
+	 * @throws Exception
+	 */
+	public void clickSearchPageHeaderLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		lnkSearchResultHeader.click();
+		Log.event(" clicks SearchPage Header Link!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * click on did you Mean Term Link
+	 * 
+	 * <<<<<<< .mine
+	 * 
+	 * @return void after clicking did you Mean Term Link =======
+	 * @return void >>>>>>> .r1089
+	 * @throws Exception
+	 */
+
+	public void clickdidYouMeanTermLink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		lnkDidYouMeanTermLink.click();
+		Log.event(" clicks SearchPage Header Link!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To get text from header slot in search results page
+	 * 
+	 * @return String headerText
+	 */
+	public String getTextSearchResultHeaderSlot1() {
+		final long startTime = StopWatch.startTime();
+		String headerText = null;
+		if (runPlatForm == "desktop") {
+			headerText = searchResultHeader.getText();
+		}
+
+		if (runPlatForm == "mobile") {
+			headerText = searchMobResultHeader.getText();
+		}
+		Log.event("gets headerText", StopWatch.elapsedTime(startTime));
+		return headerText;
+	}
+
+	/**
+	 * To get text from search result header container
+	 * 
+	 * <<<<<<< .mine
+	 * 
+	 * @return String text from search result header container =======
+	 * @return String headerText from search result header container >>>>>>>
+	 *         .r1089
+	 */
+	public String getTextSearchResultHeaderContainer() {
+		final long startTime = StopWatch.startTime();
+		String headerText = " ";
+		if (runPlatForm == "desktop") {
+			headerText = lblSearchResultHeader.getText();
+		}
+		if (runPlatForm == "mobile") {
+			headerText = lblMobSearchResultHeader.getText();
+		}
+		Log.event("gets headerText", StopWatch.elapsedTime(startTime));
+		return headerText;
+	}
+
+	/**
+	 * To navigate to PDP Page
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage navigateToPDP() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnProductThumb, driver, "product image");
+		Log.event("Navgates to PDP Page", StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To get a text from search result text box
+	 * 
+	 * @return txtSearchTextBox
+	 * @throws Exception
+	 */
+
+	public String getTextFromSearchTextBox() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtSearchTextBox = BrowserActions.getText(driver, lblSearchText,
+				"Fetching the search text value  in the search result page");
+		Log.event("Navgates to PDP Page", StopWatch.elapsedTime(startTime));
+		return txtSearchTextBox;
+	}
+
+	/**
+	 * If coupon is not disp for coupon excluded product
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+
+	public boolean checkCoupondetailsNotDispForCouponExcProducts()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		int count = 0;
+		String productName = "";
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			WebElement element = BrowserActions
+					.checkLocator(
+							driver,
+							lblProdcount
+									+ " li:nth-child("
+									+ category
+									+ ") .product-tile .product-content .product-name .name-link");
+			productName = BrowserActions.getText(driver, element,
+					"Product Name in Grid page");
+
+			Utils.waitForElement(driver, e, 60);
+
+			if (e.findElement(By.cssSelector("div.product-pricing")).getText()
+					.trim().replaceAll("\\s", "").contains("Coupon")) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			return true;
+		}
+		Log.message(productName + " contains Coupon ");
+		Log.event("Check coupon excluded products",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * checkSeePriceInCheckout products are Displayed searching with Final price
+	 * in CheckOut
+	 * 
+	 * @return void
+	 * @return void
+	 * @throws Exception
+	 */
+	public Boolean checksSeePriceCheckoutProductsDispForFinalCheckOut()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean	returntype = true;
+		int count = 0;
+		Utils.waitForPageLoad(driver);
+
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+				if (e.findElement(By.cssSelector(".product-pricing")).getText().contains("See price in checkout")) {
+					count++;
+				}
+			}
+			if (count == 0) {
+				returntype = false;
+			}
+		Log.event("Check See price in check out products",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * if Total Savings Are Not Displayed For SalesExcProduct()
+	 * 
+	 * @return true
+	 */
+
+	public boolean checkTotalSavingsAreNotDispForSalesExcProduct() {
+		int count = 0;
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+
+			Utils.waitForElement(driver, e, 60);
+			if (e.findElement(By.cssSelector(".product-pricing")).getText()
+					.trim().replaceAll("\\s", "").contains("TotalSavings")) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			return true;
+		}
+		Log.message(count + "products are not sale Excluded Products");
+		Log.event(
+				"Check TotalSavings Are Not Displayed For Sales ExcProducts ",
+				StopWatch.elapsedTime(startTime));
+		return false;
+	}
+
+	/**
+	 * If products contains text "See price in checkout"
+	 * 
+	 * @return PdpPage
+	 */
+	public PdpPage navigatePdpWithFinalPriceAtCheckoutProducts() {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category <= productDesc.size(); category++) {
+			WebElement e = driver.findElement(By
+					.cssSelector("ul[id='search-result-items']>li:nth-child("
+							+ category + ")"));
+			
+			if (e.getText().contains("See price in checkout")) {
+				
+				try{
+				e.findElement(By.cssSelector(".product-name")).click();
+				}
+				catch(Exception exp){
+					Log.event("Final Price At Checkout Product is not clickable");
+				}
+				
+				break;
+			}
+		}
+		Log.event(
+				"Check TotalSavings Are Not Displayed For Sales ExcProducts ",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * select Multiple options from Search Refinement Panel
+	 * 
+	 * @param categoryRefinement
+	 * @returns txtSelected
+	 * @throws Exception
+	 */
+	public String selectFirstBrand(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtSelected = " ";
+		checkIfCategoryIsexpanded(categoryRefinement);
+		txtSelected = listSubBrand.get(0).getText();
+		BrowserActions.clickOnElement(listSubBrand.get(0), driver,
+				"Clicks a random image from the alternate images");
+		Utils.waitForPageLoad(driver);
+		Log.event(" First Brand Refinements selected ",
+				StopWatch.elapsedTime(startTime));
+		return txtSelected;
+	}
+
+	/**
+	 * To get text from search result
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public String getTextFromSearchResult() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtSearchResultText = BrowserActions.getText(driver,
+				lnkSearchResultHeader,
+				"Fetching the Search result value in the search result page");
+		Log.event(" getTextFromSearchResult ", StopWatch.elapsedTime(startTime));
+		return txtSearchResultText;
+	}
+
+	/**
+	 * To select Product
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage selectProduct() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(searchResult, driver, "Search result");
+		Log.event(" selects Product ", StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * Checks search Refinement Panel is present below category grid header
+	 * 
+	 * @return returntype
+	 */
+	public Boolean checkSearchRefinementPanelBelowCategoryHeader() {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = false;
+		if (driver.findElement(
+				By.cssSelector("div.mobile-only ~ div.refinements-inner"))
+				.isDisplayed()) {
+			Log.event(" checks SearchRefinementPanel Below CategoryHeader ",
+					StopWatch.elapsedTime(startTime));
+			returntype = true;
+		}
+		return returntype;
+	}
+
+	/**
+	 * To Verify the product details(Price, name and swatch)
+	 * 
+	 * @return void after products are verified
+	 * @return void after Verify the product details
+	 * @throws Exception
+	 */
+	public void verifyProductDetails() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement productColorVariation = null;
+		WebElement productName = null;
+		WebElement productPrice = null;
+
+		for (int category = 1; category < productContent.size(); category++) {
+			WebElement e = productContent.get(category);
+			BrowserActions.scrollToViewElement(e, driver);
+			productColorVariation = e.findElement(By
+					.cssSelector("img[class='swatch-image']"));
+			productName = e.findElement(By.cssSelector("a[class='name-link']"));
+			productPrice = e.findElement(By
+					.cssSelector("div[class='product-pricing']"));
+
+			productColorVariation.isDisplayed();
+			productName.isDisplayed();
+			productPrice.isDisplayed();
+		}
+		Log.event(" verifyProductDetails ", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To mouse over the bagoverly and click
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage bagOverlyProduct() throws Exception {
+		final long startTime = StopWatch.startTime();
+		Actions action = new Actions(driver);
+		action.moveToElement(miniCart);
+		BrowserActions.clickOnElement(miniCartProductName, driver,
+				"clicking producy name in the overly bag");
+		Log.event(" bagOverlyProduct ", StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+
+	}
+
+	/**
+	 * <<<<<<< .mine click on collapse size
+	 * 
+	 * ======= click on collapse size
+	 * 
+	 * @return void after size is collapsed >>>>>>> .r1089
+	 * @return void after collapse size is clicked
+	 * @throws Exception
+	 */
+	public void clickToCollapseSize() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnSizeCollapse, driver,
+				"size option are expanded");
+		Log.event(" Collapses Size ", StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * scroll to view btnsize
+	 * 
+	 * @return void after scrolled
+	 * @throws InterruptedException
+	 */
+	public void scrollToSize() throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		try{
+		BrowserActions.scrollToViewElement(btnsize, driver);
+		}catch(Exception e){
+			Log.event("btnsize elemnt is missing in page ");
+		}
+		Log.event(" Collapses Size ", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To select brand
+	 * 
+	 * @return void after selecting brand
+	 * @throws Exception
+	 */
+	public void selectFirstBrand() throws Exception {
+		final long startTime = StopWatch.startTime();
+		listBrand.get(0).click();
+		Log.event(" selects first brand ", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To Verify the No. of Brands in Search Refinement
+	 * 
+	 * @return void after No. of Brands in Search Refinement is verified
+	 * @throws Exception
+	 */
+
+	public void verifyBrandList(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (listBrand.size() <= 10) {
+
+			WebElement btnMoreRefine = BrowserActions.checkLocator(driver,
+					"div[class*='" + categoryRefinement
+							+ "'] ul li a[class*='more-link']");
+			
+			String txtbtnMore = BrowserActions.getText(driver, btnMoreRefine, "btnMoreRefine");
+			
+			if (txtbtnMore.equalsIgnoreCase("More")) {
+				Log.event("9 Brands are there defaultly in Brand refinement",
+						StopWatch.elapsedTime(startTime));
+			} else
+				Log.message("More Link NOT present");
+		}
+		Log.event(" verify brand list ", StopWatch.elapsedTime(startTime));
+	}
+	/**
+	 * Verify Scroll option
+	 * 
+	 * @return void if scrolled
+	 * @param element
+	 * @throws InterruptedException
+	 */
+	public void scrollToElement(WebElement element) throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		if (runPlatForm == "desktop") {
+			BrowserActions.scrollToViewElement(element, driver);
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.scrollToViewElement(element, driver);
+		}
+		Log.event("Scrolls the element", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To check if all the categories are collapsed
+	 * 
+	 * @returns true
+	 * @throws Exception
+	 */
+	public Boolean CheckCategoriesInSearchRefinementPanelIsCollapsed()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		CheckCategoriesInSearchRefinementPanelIsExpanded();
+		Utils.waitForPageLoad(driver);
+		if(runPlatForm == "mobile")
+		{
+		WebElement element = driver.findElement(By.cssSelector(".section-callouts"));
+		scrollToElement(element);
+		}
+		
+		List<WebElement> catList = driver
+				.findElements(By
+						.cssSelector("div[class*='refinement'] h3[class*='expanded']"));
+		for (WebElement cat : catList) {
+			if (!(elementLayer.existsElement(cat))) {
+				BrowserActions.scrollToViewElement(cat, driver);
+			}
+			BrowserActions.clickOnElement(cat, driver, "category");
+			Utils.waitForPageLoad(driver);
+			if (cat.getAttribute("class").contains("expanded")) {
+				returntype = false;
+			}
+		}
+		Log.event("checks categories are collapsed or not!",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * To check if all the categories are expanded
+	 * 
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public Boolean CheckCategoriesInSearchRefinementPanelIsExpanded()
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		List<WebElement> catList = driver
+				.findElements(By
+						.cssSelector("div[class*='refinement '] h3:not([class*='expanded'])"));
+		for (WebElement cat : catList) {
+			if (!(elementLayer.existsElement(cat))) {
+				BrowserActions.scrollToViewElement(cat, driver);
+			}
+			BrowserActions.clickOnElement(cat, driver, "category");
+			Utils.waitForPageLoad(driver);
+			if (!(cat.getAttribute("class").contains("expanded"))) {
+				returntype = false;
+			}
+		}
+		Log.event("checks categories are expanded or not!",
+				StopWatch.elapsedTime(startTime));
+
+		return returntype;
+	}
+
+	/**
+	 * To verify Less link in search refinement
+	 * 
+	 * @return void after verifying less link
+	 * 
+	 */
+	public void verifyMore(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (listAllBrands.size() > 9) {
+			WebElement btnMoreRefine = BrowserActions.checkLocator(driver,
+					"div[class*='" + categoryRefinement
+							+ "'] ul li a[class*='more-link']");
+			String txtbtnMore = BrowserActions.getText(driver, btnMoreRefine, "btnMoreRefine");
+
+			if (btnMoreRefine.isDisplayed()
+					&& txtbtnMore.equalsIgnoreCase("More")) {
+			} else {
+				Log.message("More link NOT present");
+			}
+		}
+		Log.event("More link in search Refinement found",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To select Multiple options from Search Refinement Panel
+	 * 
+	 * @return void after multiple refinement is selected
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void selectMultipleRefinment(String categoryRefinement)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int count = 0; count < 2; count++) {
+			checkIfCategoryIsexpanded(categoryRefinement);
+
+			List<WebElement> list = BrowserActions.checkLocators(driver,
+					".refinements div[class*='" + categoryRefinement
+							+ "'] ul.checks > li > div > label");
+
+			BrowserActions.clickOnElement(list.get(count), driver,
+					"Clicks a random image from the alternate images");
+			Utils.waitForPageLoad(driver);
+		}
+		Log.event("Multiple Refinements selected",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * check if any category is expanded
+	 * 
+	 * @return void after category is expanded
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void checkIfCategoryIsexpanded(String categoryRefinement)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (!elementLayer.existsElement(COLLAPSECATEGORY)) {
+			expandCategory(categoryRefinement);
+			Log.event("check If Category Is expanded",
+					StopWatch.elapsedTime(startTime));
+		}
+	}
+
+	/**
+	 * Check details of the selected search refinement label
+	 * 
+	 * @return true
+	 * @throws Exception
+	 */
+	public Boolean checkDetailsOfSelectedSearchRefinements(
+			String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		Boolean returntype = true;
+		String refinement = BrowserActions.getTextFromAttribute(driver,
+				yourselections, "data-refgroup-id", "selected items");
+
+		if (driver.findElement(
+				By.cssSelector(".desktop-only+.product-selections"))
+				.isDisplayed()) {
+			if (refinement.contains(categoryRefinement)) {
+				for (WebElement e : btnClose) {
+					if (!(e.isDisplayed())) {
+						returntype = false;
+					}
+				}
+
+			}
+		}
+		Log.event("checked Details Of SelectedSearchRefinements",
+				StopWatch.elapsedTime(startTime));
+		return returntype;
+	}
+
+	/**
+	 * click on close icon
+	 * 
+	 * @return void
+	 * @throws Exception 
+	 */
+
+	public void clickOnCloseIcon() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnClose.get(0), driver,
+				"Clicks a random image from the alternate images");
+		Log.event("Close icon is clicked", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To check correct product count
+	 * 
+	 * @return String - product count
+	 * @throws Exception
+	 */
+
+	public String getProductCountinSearchPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String text = null;
+		if (runPlatForm == "desktop") {
+			text = BrowserActions.getText(driver,
+					productCount, "product Count!");
+		}
+		if (runPlatForm == "mobile") {
+			text = BrowserActions.getText(driver,
+					productMobCount, "productMobCount!");
+		}
+		String Count = BrowserActions.trimNumber(text);
+		Log.event(" gets product count in search page",
+				StopWatch.elapsedTime(startTime));
+		return Count;
+	}
+
+	/**
+	 * fetch ProductName To Click
+	 * 
+	 * @return String - Product Name
+	 * @throws Exception
+	 */
+	public String fetchProductNameToClick() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String selectedProductName = null;
+		if (productName.size() > 0) {
+			int rand = ThreadLocalRandom.current().nextInt(1,
+					productContent.size());
+			try{
+				selectedProductName = (productName.get(rand - 1).getText());
+			}
+			catch(Exception e){
+				Log.event("Selected Product Name is not obtained");		
+			}
+		}
+		Log.event(" gets selected product name in search page",
+				StopWatch.elapsedTime(startTime));
+		return selectedProductName;
+	}
+
+	/**
+	 * To navigate to PDPPage by selecting random product
+	 * 
+	 * @param ProductToClick
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage navigateToPDP(String ProductToClick) throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 1; category < productName.size(); category++) {
+			String e = productName.get(category).getText();
+			if (e.equalsIgnoreCase(ProductToClick)) {
+				try{
+				productName.get(category).click();
+				}
+				catch(Exception exp){
+					Log.event("Selected Product Name is not clicked");		
+				}
+				break;
+			}
+		}
+		Log.event(" navigates To PDP  page", StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To navigate to a Product With International Shipping Message
+	 * 
+	 * @return restrictionInternMessage
+	 */
+	public boolean navigateToProductWithInternationalShippingMessage() {
+		final long startTime = StopWatch.startTime();
+
+		if (restrictionMessage.getText().contains("not able to ship")) {
+		} else {
+			driver.navigate().back();
+		}
+
+		Log.event(" navigated To Product With InternationalShippingMessage ",
+				StopWatch.elapsedTime(startTime));
+		return restrictionInternMessage;
+	}
+
+	/**
+	 * Check every category has checkbox near to it
+	 * 
+	 * @param categoryRefinement
+	 * @return categoryRefinementDisplayedProperly
+	 */
+	public boolean checkCheckboxNearCategory(String categoryRefinement) {
+		final long startTime = StopWatch.startTime();
+		Boolean categoryRefinementDisplayedProperly = true;
+		List<WebElement> categoryCount = driver.findElements(By
+				.cssSelector(".refinements div[class*='" + categoryRefinement
+						+ "'] .refinement-body li:not([class*='toggleable']"));
+
+		for (int category = 1; category <= categoryCount.size()-1; category++) {
+
+			if (!(driver.findElement(By.cssSelector(".refinements div[class*='"
+					+ categoryRefinement + "'] .refinement-body li:nth-child("
+					+ category + ") input[type='checkbox']+.form-label")))
+					.isDisplayed()) {
+				categoryRefinementDisplayedProperly = false;
+			}
+		}
+		Log.event(" Checkbox Near Category is verified ",
+				StopWatch.elapsedTime(startTime));
+		return categoryRefinementDisplayedProperly;
+	}
+
+	/**
+	 * Checks whether product count is displayed besides the selected label
+	 * 
+	 * @param categoryRefinement
+	 * @return number
+	 * @throws InterruptedException
+	 */
+
+	public String CheckTotalAvailableProductCountIsDisplayedNearSelectedproductLabel(
+			String categoryRefinement) throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		String number = " ";
+		if (runPlatForm == "mobile") {
+			Utils.waitForPageLoad(driver);
+			BrowserActions.scrollToViewElement(yourselections, driver);
+		}
+		number = BrowserActions.trimNumber(yourselections.getText());
+		Log.event(
+				" TotalAvailable ProductCountIs displayed Near SelectedproductLabel ",
+				StopWatch.elapsedTime(startTime));
+		return number;
+	}
+
+	/**
+	 * Click on a particular category Refinement
+	 * 
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void expandCategory(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement expandCategory = driver.findElement(By
+				.cssSelector(".refinements div[class*='" + categoryRefinement
+						+ "'] h3"));
+		BrowserActions.clickOnElement(expandCategory, driver,
+				"clicking on a particular category from refinement");
+		Utils.waitForPageLoad(driver);
+		Log.event(" category is expanded", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Closing the category refinement
+	 * 
+	 * @param categoryRefinement
+	 * @throws Exception
+	 */
+	public void closeCategory(String categoryRefinement) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		WebElement expandCategory = driver.findElement(By
+				.cssSelector(".refinements div[class*='" + categoryRefinement
+						+ "'] h3"));
+		BrowserActions.clickOnElement(expandCategory, driver,
+				"closing the particular category from refinement panel");
+		Utils.waitForPageLoad(driver);
+		Log.event(" category is closed", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To search with try a new search text box
+	 * 
+	 * @param searchKeyWord
+	 * @throws Exception
+	 */
+
+	public CategoryGridPage tryNewSearch(String searchKeyWord) throws Exception {
+		final long startTime = StopWatch.startTime();
+		txtTryANewSearch.sendKeys(searchKeyWord);
+		BrowserActions.clickOnElement(btnTryNewSearch, driver,
+				"Click on try new search button");
+		Log.event("try New Search", StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To select First product in YouMayAlsoLike section
+	 * 
+	 * @return PdpPage
+	 * @throws Exception
+	 */
+	public PdpPage selectFirstYouMayAlsoLikeProduct() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int product = 0; product < listYouMayAlsoLike.size();) {
+			BrowserActions.clickOnElement(listYouMayAlsoLike.get(product), driver,
+					"Click on list You May AlsoLike  product");
+			break;
+		}
+		Log.event(" selected First product in YouMayAlsoLike section ",
+				StopWatch.elapsedTime(startTime));
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * To select First Suggested Category
+	 * 
+	 * @return CategoryGridPage
+	 * @throws Exception
+	 */
+	public CategoryGridPage selectFirstSuggestedCategory() throws Exception {
+		final long startTime = StopWatch.startTime();
+		for (int category = 0; category < listSuggestedCategory.size();) {
+			BrowserActions.clickOnElement(listSuggestedCategory.get(category), driver,
+					"Click on list Suggested Category");
+			break;
+		}
+		Utils.waitForPageLoad(driver);
+		Log.event("selected First Suggested Category",
+				StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * Search product count
+	 * 
+	 * @return String count
+	 * @throws Exception
+	*/
+
+	public String getSearchPageHeaderCount() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String searchHeaderText = null;
+		String count = null;
+		if (runPlatForm == "desktop") {
+			searchHeaderText = BrowserActions.getText(driver,
+					searchResultHeader, "Search Result Page Header!");
+			count = BrowserActions.trimNumber(searchHeaderText);
+		}
+		if (runPlatForm == "mobile") {
+			searchHeaderText = BrowserActions.getText(driver,
+					searchMobResultHeader, "Search Result Page Header!");
+			count = BrowserActions.trimNumber(searchHeaderText);
+
+		}
+		Log.event(" Gets text from Search Page header!",
+				StopWatch.elapsedTime(startTime));
+		return count;
+	}
+
+	/**
+	 * Verify search Refinement contain count in bracket
+	 * 
+	 * @param categoryRefinement
+	 *            <<<<<<< .mine
+	 * @return boolean - if count is available
+	 * @throws Exception
+	 */
+	public boolean VerifyAvailableCountInSearchPanel() throws Exception {
+		Boolean checkstatus = false;
+		Utils.waitForPageLoad(driver);
+		List<WebElement> list = driver
+				.findElements(By
+						.cssSelector("div [style='display: block;'] ul > li > div.checkbox"));
+		for (WebElement e : list) {
+			String name = BrowserActions.getText(driver,
+					e, "Available Count In Search Panel!");
+			if (name.matches(".*\\d.*")) {
+				checkstatus = true;
+			} else {
+				checkstatus = false;
+				break;
+			}
+		}
+		return checkstatus;
+	}
+
+}// SEARCHRESULTSPAGE

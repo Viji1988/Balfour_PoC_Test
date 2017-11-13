@@ -1,0 +1,737 @@
+<html>
+<head>
+<title>TestNG:  Sheplers - Test (Desktop)</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Sheplers - Test (Desktop)</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Jul 28 18:31:04 IST 2017</td>
+</tr>
+<tr><td>Total time:</td><td>147 seconds (147785 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>desktop </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sheplers.testscripts.cartcheckoutsection.OrderPlacement.tearDown()'><b>tearDown</b><br>Test class: com.sheplers.testscripts.cartcheckoutsection.OrderPlacement<br>Parameters: [TestResult name=TC_SHEPLERS_OP_076 status=SUCCESS method=OrderPlacement.TC_SHEPLERS_OP_076(java.lang.String)[pri:0, instance:com.sheplers.testscripts.cartcheckoutsection.OrderPlacement@60285225] output=<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:05 092 - Running platform type:: desktop</small> </font> </div>]<br/>
+<a href="#Output-551201507" onClick='toggleBox("Output-551201507", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-551201507" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-551201507">
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:28 744 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:28 749 - Running platform type:: desktop</small> </font> </div><br/>
+</div>
+</td>
+<td><div><pre>utils.sheplers.testlink.TestLinkAPIException: The call to the xml-rpc client failed.
+URL: https://testlink.ops.bootbarn.io/testlink/lib/api/xmlrpc/v1/xmlrpc.php
+Method: tl.getProjects
+Parameters:
+    devKey=&apos;94e7b9b7c6080e23c7a3393732042291&apos;
+	at utils.sheplers.testlink.TestLinkAPIClient.executeXmlRpcMethod(TestLinkAPIClient.java:1196)
+	at utils.sheplers.testlink.TestLinkAPIClient.execXmlRpcMethodWithCache(TestLinkAPIClient.java:1125)
+	at utils.sheplers.testlink.TestLinkAPIClient.getProjects(TestLinkAPIClient.java:680)
+	at utils.sheplers.testlink.TestLinkAPIHelper.getProjectInfo(TestLinkAPIHelper.java:51)
+	at utils.sheplers.testlink.TestLinkAPIHelper.getProjectID(TestLinkAPIHelper.java:35)
+	at utils.sheplers.testlink.TestLinkAPIClient.reportTestCaseResult(TestLinkAPIClient.java:153)
+	at com.sheplers.support.TestLinkLogger.tearDown(TestLinkLogger.java:33)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:523)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:224)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:723)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.xmlrpc.client.XmlRpcHttpTransportException: HTTP server returned unexpected status: Not Found
+	at org.apache.xmlrpc.client.XmlRpcSunHttpTransport.getInputStream(XmlRpcSunHttpTransport.java:94)
+	at org.apache.xmlrpc.client.XmlRpcStreamTransport.sendRequest(XmlRpcStreamTransport.java:152)
+	at org.apache.xmlrpc.client.XmlRpcHttpTransport.sendRequest(XmlRpcHttpTransport.java:143)
+	at org.apache.xmlrpc.client.XmlRpcSunHttpTransport.sendRequest(XmlRpcSunHttpTransport.java:69)
+	at org.apache.xmlrpc.client.XmlRpcClientWorker.execute(XmlRpcClientWorker.java:56)
+	at org.apache.xmlrpc.client.XmlRpcClient.execute(XmlRpcClient.java:167)
+	at org.apache.xmlrpc.client.XmlRpcClient.execute(XmlRpcClient.java:158)
+	at org.apache.xmlrpc.client.XmlRpcClient.execute(XmlRpcClient.java:147)
+	at utils.sheplers.testlink.TestLinkAPIClient.executeXmlRpcMethod(TestLinkAPIClient.java:1151)
+	... 23 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace551201507", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace551201507'><pre>utils.sheplers.testlink.TestLinkAPIException: The call to the xml-rpc client failed.
+URL: https://testlink.ops.bootbarn.io/testlink/lib/api/xmlrpc/v1/xmlrpc.php
+Method: tl.getProjects
+Parameters:
+    devKey=&apos;94e7b9b7c6080e23c7a3393732042291&apos;
+	at utils.sheplers.testlink.TestLinkAPIClient.executeXmlRpcMethod(TestLinkAPIClient.java:1196)
+	at utils.sheplers.testlink.TestLinkAPIClient.execXmlRpcMethodWithCache(TestLinkAPIClient.java:1125)
+	at utils.sheplers.testlink.TestLinkAPIClient.getProjects(TestLinkAPIClient.java:680)
+	at utils.sheplers.testlink.TestLinkAPIHelper.getProjectInfo(TestLinkAPIHelper.java:51)
+	at utils.sheplers.testlink.TestLinkAPIHelper.getProjectID(TestLinkAPIHelper.java:35)
+	at utils.sheplers.testlink.TestLinkAPIClient.reportTestCaseResult(TestLinkAPIClient.java:153)
+	at com.sheplers.support.TestLinkLogger.tearDown(TestLinkLogger.java:33)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:523)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:224)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:723)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
+	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.xmlrpc.client.XmlRpcHttpTransportException: HTTP server returned unexpected status: Not Found
+	at org.apache.xmlrpc.client.XmlRpcSunHttpTransport.getInputStream(XmlRpcSunHttpTransport.java:94)
+	at org.apache.xmlrpc.client.XmlRpcStreamTransport.sendRequest(XmlRpcStreamTransport.java:152)
+	at org.apache.xmlrpc.client.XmlRpcHttpTransport.sendRequest(XmlRpcHttpTransport.java:143)
+	at org.apache.xmlrpc.client.XmlRpcSunHttpTransport.sendRequest(XmlRpcSunHttpTransport.java:69)
+	at org.apache.xmlrpc.client.XmlRpcClientWorker.execute(XmlRpcClientWorker.java:56)
+	at org.apache.xmlrpc.client.XmlRpcClient.execute(XmlRpcClient.java:167)
+	at org.apache.xmlrpc.client.XmlRpcClient.execute(XmlRpcClient.java:158)
+	at org.apache.xmlrpc.client.XmlRpcClient.execute(XmlRpcClient.java:147)
+	at utils.sheplers.testlink.TestLinkAPIClient.executeXmlRpcMethod(TestLinkAPIClient.java:1151)
+	... 23 more
+</pre></div></td>
+<td>3</td>
+<td>com.sheplers.testscripts.cartcheckoutsection.OrderPlacement@60285225</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sheplers.testscripts.cartcheckoutsection.OrderPlacement.TC_SHEPLERS_OP_076()'><b>TC_SHEPLERS_OP_076</b><br>Test class: com.sheplers.testscripts.cartcheckoutsection.OrderPlacement<br>Test method: Verify to place a order from Geo-Targeting location [AUS] with the promotional items for the location<br>Parameters: (Browser: chrome, Hub: Aspire1698, Node: LOCALHOST), chrome_XP<br/>
+<a href="#Output-308697404" onClick='toggleBox("Output-308697404", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-308697404" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-308697404">
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:05 092 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:05 364 - TestCaseID:: TC_SHEPLERS_OP_076</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:09 397 - <b>0</b> - Driver::initialize::Get - com.sheplers.support.WebDriverFactory.get(WebDriverFactory.java:523)</small> </font> </div><br/>
+&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Verify to place a order from Geo-Targeting location [AUS] with the promotional items for the location BUGID:BOOT-1594 COMMENTS:20% coupon discount is only displayed in Order Summary; But not in PLP, PDP and 'Your Order' section in cart page.</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;<br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:09 418 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:09 645 - Page URL:: data:,</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:09 645 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:15 902 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div.top-banner-inner]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:15 903 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:15 971 - Page URL:: https://storefront:bootboot@staging-web-sheplers.demandware.net/s/sheplers_us/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:15 971 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:16 080 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:16 081 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:16 128 - Page URL:: https://storefront:bootboot@staging-web-sheplers.demandware.net/s/sheplers_us/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:16 128 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:16 239 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-message">&emsp;1. Navigated to 'Sheplers' Home Page!&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_1.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:16 604 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: #ext-gen18]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:17 279 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: .dw-sf-control-menu-preview]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:22 743 - Page URL:: https://storefront:bootboot@staging-web-sheplers.demandware.net/s/sheplers_us/?__sitedate=&__sourcecode=&__customergroup=%22australia%22&__abtest=&__abtestsegment=&__previewid=</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:22 743 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:22 744 - <b>0</b> - Site change for Geo Targeting - com.sheplers.pages.HomePage.changeGeoTarget(HomePage.java:667)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:22 824 - <b>0</b> - Top banner Text - com.sheplers.pages.HomePage.getTextFromTopBanner(HomePage.java:683)</small> </font> </div><br/>
+<div class="test-message">&emsp;2. The Website Geo loacation for Australia is confirmed&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_2.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:23 103 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: ul[class='menu-utility-user'] li a[href*='account']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 506 - <b>0</b> - clicked on Sign In label! - com.sheplers.pages.headers.Headers.navigateToSignInPage(Headers.java:361)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 567 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 567 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 568 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 570 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 638 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 639 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 764 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 764 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 885 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 886 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 989 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 990 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:25 991 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 052 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 053 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 167 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 167 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 224 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 225 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 309 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 359 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 359 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 464 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div[class='form-create-account']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 464 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 509 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 509 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 585 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 586 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 627 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 628 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 717 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-message">&emsp;3. Navigate to Sign In Page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 758 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/login?original=%2fs%2fsheplers_us%2faccount</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 758 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:26 865 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: a[class='btn btn-block btn-brown-border']]</small> </font> </div><br/>
+<div class="test-message">&emsp;4. Navigated to the Account creation Page successfully</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 021 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name*='customer_firstname']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 232 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/register</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 233 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 316 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name*='customer_lastname']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 486 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/register</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 487 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 570 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name='dwfrm_profile_customer_email']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 869 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/register</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 869 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:29 955 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name='dwfrm_profile_customer_emailconfirm']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 214 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/register</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 214 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 345 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name*='dwfrm_profile_login_password']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 597 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/register</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 597 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 766 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name*='profile_login_passwordconfirm']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 980 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/register</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:30 980 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:31 159 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: button[name*='confirm']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:33 915 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:33 915 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:33 962 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:33 962 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:33 964 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 012 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 013 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 142 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div[class*='ca-account-landing']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 142 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 143 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 190 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 190 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 292 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 292 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 337 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 338 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 447 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 501 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:34 501 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 693 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div.top-banner-inner]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 693 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 741 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 741 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 902 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 902 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 961 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:36 962 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 128 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 128 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 201 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 202 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 397 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 397 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 482 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/account</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 482 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 685 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-message">&emsp;5. Navigated to the 'My Account' Page after successful Loged In</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:37 951 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: .search-holder input[id='q']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:38 203 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: .search-holder button[type='submit']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 476 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 477 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 477 - <b>0</b> - Searched the provided product! - com.sheplers.pages.HomePage.KeywordSearchResult(HomePage.java:272)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 479 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 482 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 591 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 592 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 744 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 802 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 802 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 859 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 859 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 928 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div[id='pdpMain']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 987 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:45 987 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:46 025 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div[id='pdpMain']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:46 125 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: h1.product-name]</small> </font> </div><br/>
+<div class="test-message">&emsp;6. The page exactly navigates to the result page of '28448X'&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_3.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:46 424 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:46 424 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:48 556 - <b>0</b> - selected size in size dropdown  - com.sheplers.pages.PdpPage.selectSize(PdpPage.java:2584)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:48 800 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div[class='value select-dropdown']]</small> </font> </div><br/>
+<div class="test-message">&emsp;7. Selected size ' UNSIZED In Stock – Ships in 3 business days ' in Pdp page </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:48 937 - Page URL:: http://staging-web-sheplers.demandware.net/s/sheplers_us/hiend-accents-bandera-super-queen-5-piece-bedding-set/28448x.html</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:48 937 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:49 044 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: button[id='add-to-cart']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:49 184 - <b>0</b> - Product is Added to cart - com.sheplers.pages.PdpPage.addProductToCart(PdpPage.java:775)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:49 188 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:55 005 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:55 006 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 116 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: [class*='confirmation-checkout']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 116 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 232 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 232 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 372 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 373 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 417 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 418 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 526 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 526 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 526 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 565 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 566 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 641 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 641 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 687 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 687 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 757 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 764 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 765 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 802 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 803 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 890 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 891 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 893 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 931 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 931 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 997 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:56 997 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 131 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 131 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 329 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 329 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 329 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 329 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 486 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 486 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 618 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 618 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 666 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 666 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 795 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 846 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:31:57 846 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:00 573 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div.top-banner-inner]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:00 574 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:00 617 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:00 618 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 616 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 616 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 732 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 732 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 878 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 878 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 928 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:01 928 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 032 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 032 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 132 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 133 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 252 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 252 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 252 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 252 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 353 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 353 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 396 - <b>0</b> - Searched the provided product! - com.sheplers.pages.CartPage.verifyCartPage(CartPage.java:730)</small> </font> </div><br/>
+<div class="test-message">&emsp;8. Clicking on Add to Cart Button in PDP page, Cart page is displayed &emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_4.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 553 - <b>0</b> - product Tile Quantity fetched - com.sheplers.pages.CartPage.productTileQuantity(CartPage.java:2787)</small> </font> </div><br/>
+<div class="test-message">&emsp;9. Customer successfully added '1'products in the Cart Page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 602 - <b>0</b> -  Item Count 1 - com.sheplers.pages.CartPage.getItemCountInYourOrdersPane(CartPage.java:1152)</small> </font> </div><br/>
+<div class="test-message">&emsp;10. 1 items are added in cart </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 640 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 640 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 748 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: select[id='dwfrm_billingaddress_country']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 984 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 985 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 985 - <b>0</b> - Selected the country from Billing section - com.sheplers.pages.CartPage.billingselectCountry(CartPage.java:1548)</small> </font> </div><br/>
+<div class="test-message">&emsp;11. Selected 'Australia' from the country dropdown</div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:02 985 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 030 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 030 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 030 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 072 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 072 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 073 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 109 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 109 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 110 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 190 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 190 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 190 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 232 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 232 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 232 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 299 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 299 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 299 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 345 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 346 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 346 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 386 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 386 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 387 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 428 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 428 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 429 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 465 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 465 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 466 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 504 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 504 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 504 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 549 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 550 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 550 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 594 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 594 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 594 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 634 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 634 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 634 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 670 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 671 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 671 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 709 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 710 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 710 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 755 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 755 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 756 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 803 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 803 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 803 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 847 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 848 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 848 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 886 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 886 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 886 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 987 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 987 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:03 987 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 149 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 149 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 150 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 213 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 213 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 213 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 265 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 265 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 265 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 300 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 300 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 301 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 343 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 343 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 343 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 389 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 389 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 389 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 433 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 433 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 434 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 466 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 467 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 467 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 497 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 497 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 497 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 533 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 534 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 534 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 575 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 576 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 576 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 623 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 623 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 623 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 654 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 654 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 654 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 689 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 690 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 691 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 733 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 733 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 733 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 776 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 776 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 777 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 819 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 820 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 820 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 859 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 860 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 860 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 891 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 891 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 891 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 927 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 927 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 928 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 971 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 971 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:04 971 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 105 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 105 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 105 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 185 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 185 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 185 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 509 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 509 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 509 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 665 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 665 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 665 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 752 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 752 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 752 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 792 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 793 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 793 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 840 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 841 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="brown"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 841 - Option not matched - please read Method document to pass correct form of parameter. Try: Type/Click/Select</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 881 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 882 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:05 951 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_firstName']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 136 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 137 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 223 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_lastName']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 463 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 463 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 651 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_address1']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 960 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:06 961 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 040 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_city']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 227 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 228 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 300 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_postal']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 493 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 494 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 581 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_phone']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 824 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 824 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:07 938 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='dwfrm_billingaddress_email']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:08 299 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:08 299 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:08 300 - <b>0</b> - Billing address information is entered - com.sheplers.pages.CartPage.enterBillingAddress(CartPage.java:1679)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:08 409 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:08 409 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-message">&emsp;12. Billing address details are entered successfully&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_5.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:10 673 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id='submitBilling']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:12 908 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:12 908 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:12 909 - <b>0</b> - Clicked proceed to check out! - com.sheplers.pages.CartPage.clckProceedToCheckout(CartPage.java:1842)</small> </font> </div><br/>
+<div class="test-message">&emsp;13. Clicking on Proceed To Checkout navigates to Shipping Address section</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:13 002 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:13 002 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:13 373 - <b>0</b> -  Verifying Final price   - com.sheplers.pages.CartPage.FinalPriceInCartPage(CartPage.java:1354)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:14 166 - <b>0</b> -  Verifying subTotal  - com.sheplers.pages.CartPage.verifyTheSubTotalInCartPage(CartPage.java:1243)</small> </font> </div><br/>
+<div class="test-message">&emsp;14. SubTotal price is  similar in Order Details Section and Order Summary section &emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_6.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:14 317 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:14 318 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 578 - <b>0</b> - verify the OrderTotal price - com.sheplers.pages.CartPage.verifyOrderTotal(CartPage.java:2389)</small> </font> </div><br/>
+<div class="test-message">&emsp;15. OrderTotal Price is Matched</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 632 - <b>0</b> - Fetch the tax value from the checkout page - com.sheplers.pages.CartPage.fetchTaxValue(CartPage.java:2803)</small> </font> </div><br/>
+<div class="test-message">&emsp;16. Tax Price mentioned in the Checkout page is0.00</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 706 - <b>0</b> - Fetch the tax value from the checkout page - com.sheplers.pages.CartPage.fetchShipmentValue(CartPage.java:2819)</small> </font> </div><br/>
+<div class="test-message">&emsp;17. Shipping Price mentioned in the Checkout page is10.00</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 745 - <b>0</b> - Retured the Cart Page text - com.sheplers.pages.CartPage.fetchOrderSummaryContent(CartPage.java:2039)</small> </font> </div><br/>
+<div class="test-message">&emsp;18. Fetch order summary details from cart page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 816 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: img[src*='visa']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 884 - <b>0</b> - Card Type is selected - com.sheplers.pages.CartPage.selectCardType(CartPage.java:1971)</small> </font> </div><br/>
+<div class="test-message">&emsp;19. Cardvisa is selected</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:15 909 - <b>0</b> - CardType in the input field verified - com.sheplers.pages.CartPage.verifyCardTypeInField(CartPage.java:1994)</small> </font> </div><br/>
+<div class="test-message">&emsp;20. selected Card Type is seen in Card Number Image&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_7.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 107 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: #dwfrm_billing_paymentMethods_creditCard_owner]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 314 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 314 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 387 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div[class*='payment-method-expanded'] input[id*='creditCard_number']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 600 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 600 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 756 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[id*='dwfrm_billing_paymentMethods_creditCard_cvn']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 949 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:16 949 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 066 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 066 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 222 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 222 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 222 - <b>0</b> - Payment information is entered - com.sheplers.pages.CartPage.enterPaymentDetails(CartPage.java:1750)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 326 - Page URL:: https://staging-web-sheplers.demandware.net/s/sheplers_us/checkout</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 326 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-message">&emsp;21. payment details are added&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_8.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:17 558 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: #submitOPCPayment]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 663 - <b>0</b> - Place Order is selected - com.sheplers.pages.CartPage.ClickPlaceOrder(CartPage.java:2010)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 667 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 667 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 682 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 682 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 682 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 783 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-sheplers_us-site/default/cosummary-confirmation</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:47 783 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 051 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: div [class='top-banner-bar']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 051 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 207 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-sheplers_us-site/default/cosummary-confirmation</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 207 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 472 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> class name: footer]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 660 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-sheplers_us-site/default/cosummary-confirmation</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 660 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 759 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-sheplers_us-site/default/cosummary-confirmation</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 759 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:48 935 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: .confirmation-message>h1]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 107 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-sheplers_us-site/default/cosummary-confirmation</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 107 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 202 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-sheplers_us-site/default/cosummary-confirmation</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 202 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 231 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: .confirmation-message>h1]</small> </font> </div><br/>
+<div class="test-message">&emsp;22. Navigate to Order Confirmation Page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 277 - <b>0</b> - Retured SalesTax value from orderConfirmation Page - com.sheplers.pages.OrderConfirmationPage.getSalesTaxPrice(OrderConfirmationPage.java:565)</small> </font> </div><br/>
+<div class="test-message">&emsp;23. Tax calculated in the checkout and order confirmation page is similar&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_9.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 455 - <b>0</b> - fetching the shipping price - com.sheplers.pages.OrderConfirmationPage.fetchShippingPrice(OrderConfirmationPage.java:581)</small> </font> </div><br/>
+<div class="test-message">&emsp;24. Shipping price calculated in the checkout and order confirmation page is similar&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_10.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 623 - <b>0</b> -  Item Count 1 - com.sheplers.pages.OrderConfirmationPage.multipleItemCount(OrderConfirmationPage.java:722)</small> </font> </div><br/>
+<div class="test-message">&emsp;25. Total Product Quantity is matched in Order Confirmation Page&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_11.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:49 782 - <b>0</b> - Shipping cost value from Order Confirmation Page - com.sheplers.pages.OrderConfirmationPage.getShippingCost(OrderConfirmationPage.java:442)</small> </font> </div><br/>
+<div class="test-message">&emsp;26. The Prdocut is placed with Site Promotion of shipping cost:10 is displayed&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_12.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-message">&emsp;27. Closing the current driver</div><br/>
+<div class="test-message">&emsp;28. Redirected to 'Staging' Demandware site</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 109 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name='LoginForm_Login']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 385 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-site/default/viewapplication-processlogin</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 385 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 458 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: input[name='LoginForm_Password']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 616 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-site/default/viewapplication-processlogin</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 616 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:53 690 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: button[type='submit']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:57 963 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-site/default/viewapplication-displaywelcomepage</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:57 963 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 118 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-site/default/viewapplication-displaywelcomepage</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 118 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 119 - Running platform type:: desktop</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 213 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-site/default/viewapplication-displaywelcomepage</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 213 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 353 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: .advertorialcontainer]</small> </font> </div><br/>
+<div class="test-message">&emsp;29. Logged into the 'Staging' Demandware</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:32:58 456 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: a.merchant-tools-link]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:00 892 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: td.top > table > tbody > tr:nth-child(4) > td > a]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:03 734 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: table tr:nth-child(5) td:nth-child(5) table tr:nth-child(1) td.overview_arrow]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:06 765 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: img[src*='open_orders']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:09 903 - <b>0</b> - Navigated to the order navigation page - com.sheplers.pages.Demandware.orderNavigation(Demandware.java:139)</small> </font> </div><br/>
+<div class="test-message">&emsp;30. Navigated to the Order List page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:10 063 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: form[name='simple'] button#searchFocus]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:13 135 - <b>0</b> - Navigated to the order Listing page - com.sheplers.pages.Demandware.clckOnFindButton(Demandware.java:153)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:13 248 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: [name='OrderListForm']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:13 248 - All elements checked on this page:: [frmOrderList]</small> </font> </div><br/>
+<div class="test-message">&emsp;31. Page Navigated to the Order List Page&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_13.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:13 429 - Page URL:: https://staging-web-sheplers.demandware.net/on/demandware.store/sites-site/default/vieworderlist_52-dispatch?defaultbutton=simplesearch&searchtype=simple&ordersearchform2_searchtype=simple&ordersearchform2_simplesearchterm=&simplesearch=&csrf_token=mdnfpce5g9uqop_-m6deyxz-pzzpha8mrojq_8c5oqfnp8gfmddu6nvpedc_77zpkjoyikyjk1mnroyo6kocax1bbd5dyul9liwyqagfmlshcuqouxef36ak46jtcsvbn2ogcn3wwznhuti8pnv0_gueixx2whtcpjx6ijwpsimrqjxagss</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:13 430 - <b>0</b> - Page Load Wait: (Sync) - com.sheplers.support.Utils.waitForPageLoad(Utils.java:80)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:16 224 - Clicked on the Order Id for the order placed currently</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:16 224 - <b>0</b> - Navigated to the exact Order Page in Demanware which currently placed - com.sheplers.pages.Demandware.navigateToOrderPage(Demandware.java:188)</small> </font> </div><br/>
+<div class="test-message">&emsp;32. Clicked on the Order number for which the order placed currently</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:16 265 - <b>0</b> - Matches the tax value from the order summary section with Demandware - com.sheplers.pages.Demandware.fetchTaxPrice(Demandware.java:415)</small> </font> </div><br/>
+<div class="test-message">&emsp;33. Tax total is displayed properly in demandware&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_14.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:16 461 - <b>0</b> - Matches the tax value from the order summary section with Demandware - com.sheplers.pages.Demandware.fetchShippingTotal(Demandware.java:357)</small> </font> </div><br/>
+<div class="test-message">&emsp;34. Shipping price is displayed as same in Demanware&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_15.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:16 728 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: td[class*='table_header w s'] a]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:19 388 - <b>0</b> - Navigated to Customer shipment page - com.sheplers.pages.Demandware.navigateToShipmentPage(Demandware.java:233)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:19 451 - <b>0</b> - Fetches the OMS text value - com.sheplers.pages.Demandware.fetchTopFormHeader(Demandware.java:278)</small> </font> </div><br/>
+<div class="test-message">&emsp;35. Navigated to the page where customer Shipment details will be displayed&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_16.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:19 607 - <b>0</b> - Fetches the OMS text value - com.sheplers.pages.Demandware.fetchShipmentStreet(Demandware.java:248)</small> </font> </div><br/>
+<div class="test-message">&emsp;36. Even in Demandware the address which used for placing the order is updated correctly &emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_17.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-message">&emsp;37. Navigate back to the Order Details Page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:20 446 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: td[class*='e n s table_tabs_dis_background']:nth-child(3)]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:23 209 - <b>0</b> - Navigated to Customer payment page in the DWRE - com.sheplers.pages.Demandware.navigateToPaymentPage(Demandware.java:263)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:23 254 - <b>0</b> - Fetches the OMS text value - com.sheplers.pages.Demandware.fetchTopFormHeader(Demandware.java:278)</small> </font> </div><br/>
+<div class="test-message">&emsp;38. Navigated to the page where Payment and billing address details will be displayed&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_18.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:23 425 - <b>0</b> - Fetches the payment street value - com.sheplers.pages.Demandware.fetchPaymentStreet(Demandware.java:294)</small> </font> </div><br/>
+<div class="test-message">&emsp;39. Even in Demandware the address which used for placing the order is updated correctly &emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_19.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-message">&emsp;40. Navigate back to the Order Details Page</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:24 154 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: td[class*='e n s table_tabs_dis_background']:nth-child(2)]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:27 585 - <b>0</b> - Navigated to the order Listing page - com.sheplers.pages.Demandware.clckAttribute(Demandware.java:204)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:27 719 - Element is displayed:: [[RemoteWebDriver: chrome on XP (ea911ce5-0df6-4320-ab12-cafeb026926d)] -> css selector: form[name='AttributeForm']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:27 720 - All elements checked on this page:: [formAttribute]</small> </font> </div><br/>
+<div class="test-message">&emsp;41. Page Navigated to the Attribute form&emsp;<a href=".\ScreenShot\TC_SHEPLERS_OP_076_20.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Jul 18:33:27 905 - <b>0</b> - Fetches the OMS text value - com.sheplers.pages.Demandware.fetchOMSNumber(Demandware.java:218)</small> </font> </div><br/>
+<div class="test-message">&emsp;42. The OMS number of the current order placement is</div><br/>
+<div class="test-message">&emsp;
+</div><br/>
+<div class="test-message">&emsp;<b><font face='Comic Sans MS' color='#06014F'>Actual Result:</font></b></div><br/>
+<div class="test-message">&emsp;<b><font face='Calibri' color='black'>Placed Order successfully with promotional items to 'Australia' with Shipping price of : '$ 10'</font></b></div><br/>
+<div class="test-message">&emsp;<b><font face='Comic Sans MS' color='#06014F'>Expected Result:</font></b></div><br/>
+<div class="test-message">&emsp;<b><font face='Calibri' color='black'>Order should be placed successfully with promotional items to 'Australia' with Shipping price of  '$ 10'</font></b></div><br/>
+<div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;<br/>
+</div>
+</td>
+<td></td>
+<td>139</td>
+<td>com.sheplers.testscripts.cartcheckoutsection.OrderPlacement@60285225</td></tr>
+</table><p>
+</body>
+</html>

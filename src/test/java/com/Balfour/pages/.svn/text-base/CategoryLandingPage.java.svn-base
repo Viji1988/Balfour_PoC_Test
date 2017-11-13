@@ -1,0 +1,875 @@
+package com.sheplers.pages;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.pages.footers.Footers;
+import com.sheplers.pages.headers.Headers;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class CategoryLandingPage extends LoadableComponent<CategoryLandingPage> {
+
+	private static WebDriver driver;
+	private boolean isPageLoaded;
+	public Headers headers;
+	public Footers footers;
+	public ElementLayer elementLayer;
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ******************************* WebElements of Category Landing Page Starts ******************
+	 **********************************************************************************************/
+
+	public static final String CATERGORYSECTIONLEFTSIDE = "div[class='categories'] div[class='category']";
+	public static final String CATEGORYMAINSECTIONHEADER = "section[class='section-block'] header[class='section-header']";
+	public static final String CATEGORYMAINSECTIONBODY = "div[class='section-body']";
+	public static final String CATEGORYCONTENTSECTIONPRODUCT = CATEGORYMAINSECTIONBODY
+			+ " ul";
+	public static final String STYLENUMBERCATEGORYLANDINGSECTION = "ul a p[class*='style-number']";
+	public static final String BRANDSECTIONPRODUCTLOGO = "ul[class='brands'] a div[class='brand-logo']";
+	public static final String BRANDSECTIONPRODUCTBRANDNAME = "ul[class='brands'] a p[class='brand-name']";
+	public static final String BRANDSECTIONPRODUCTSTYLENUMBER = "ul[class='brands'] a p[lass*='style-number']";
+	private static final String HEADER_SUB_CATEGORY_l3 = ".category>ul>li";
+
+	@FindBy(css = CATEGORYCONTENTSECTIONPRODUCT)
+	WebElement lnkCategoryContentSectionProduct;
+
+	@FindBy(css = BRANDSECTIONPRODUCTLOGO)
+	WebElement brandSectionProductLogo;
+
+	@FindBy(css = BRANDSECTIONPRODUCTBRANDNAME)
+	WebElement brandSectionProductBrandName;
+
+	@FindBy(css = BRANDSECTIONPRODUCTSTYLENUMBER)
+	WebElement brandSectionProductStyleNumber;
+
+	@FindBy(css = "div[class='category-slot']")
+	WebElement categorySlotHeader;
+
+	@FindBy(css = ".view-btn.viewallbrands.mobile-only")
+	WebElement lnkAllBrands;
+	
+	@FindBy(css = "div.table-sizes.category-size-matrix > table")
+    WebElement sizeMatrixTable;
+	
+	@FindBy(css = ".brands li:not([style='display: none;'])")
+	List<WebElement> brandsCount;
+
+	@FindBy(css = ".mobile-only div[class*='slot-grid-header']")
+	WebElement mobSearchHeader;
+
+	@FindBy(css = ".brands li")
+	List<WebElement> actualBrandCount;
+
+	@FindBy(css = "a[class*='viewallbrands']")
+	WebElement viewAllBrands;
+
+	@FindBy(css = "div[class*='size-matrix']")
+	WebElement sizeMatrix;
+
+	@FindBy(css = ".clearfix.swatches.size.mobile-only") 
+	WebElement mobSizeMatrix;
+	
+	@FindBy(css = "table > tbody > tr:nth-child(1) > td")
+	WebElement sizeMatrixWidthAndLength;
+
+	@FindBy(css = "table > tbody > tr > td")
+	WebElement sizeMatrixSizes;
+
+	@FindBy(css = "ul[class='brands'] img[src*='ariat']")
+	WebElement lnkAriatBrandSection;
+
+	@FindBy(css = "ul[class='brands'] a[href*='Cinch']")
+	WebElement lnkCinchBrandSection;
+
+	@FindBy(css = "ul[class='brands'] a[href*='Cattleman']")
+	WebElement lnkElyCattlemanBrandSection;
+
+	@FindBy(css = "ul[class='brands'] a[href*='Wrangler']")
+	WebElement lnkWranglerBrandSection;
+
+	@FindBy(css = "ul[class='brands'] a[href*='Carhartt']")
+	WebElement lnkCarharttBrandSection;
+
+	@FindBy(css = "ul[class='brands'] a[href*='Scully']")
+	WebElement lnkScullyBrandSection;
+
+	@FindBy(css = "ul[class='brands'] a[href*='Levis']")
+	WebElement lnkLevisBrandSection;
+
+	@FindBy(css = "div[class='category-slot'] h1")
+	WebElement categorySlotHeaderHeading1;
+
+	@FindBy(css = "div[class='category-slot mobile-only'] h2")
+	WebElement mobCategoryHeader;
+
+	@FindBy(css = ".categories ul li")
+	List<WebElement> txtCategoryLandingPage;
+
+	@FindBy(css = ".slick-track div[class*='slide thumb']>a")
+	List<WebElement> thumbnailCount;
+
+	@FindBy(css = "div[class='desktop-only'] div[class='content-slot slot-grid-header']")
+	WebElement categoryGridSlotHeader;
+
+	@FindBy(css = "div[class='desktop-only'] div[class='content-slot slot-grid-header'] h1")
+	WebElement categoryGridSlotHeaderHeading1;
+
+	@FindBy(css = "div[class='desktop-only'] div[class='content-slot slot-grid-header'] p")
+	WebElement categoryGridSlotHeaderProductsAvailable;
+
+	@FindBy(css = "div[class='category-breadcrumbs breadcrumb']")
+	List<WebElement> lstTxtProductInBreadcrumb;
+
+	@FindBy(css = "a[title*='View All'][class='view-btn']")
+	WebElement lnkViewAll;
+
+	@FindBy(css = "div[class='product-selections'] ul[class='list-selections'] span[data-refgroup-id='size']")
+	WebElement selectedSize;
+
+	@FindBy(css = CATERGORYSECTIONLEFTSIDE)
+	WebElement categorySectionLeftSide;
+
+	@FindBy(css = CATERGORYSECTIONLEFTSIDE + " a[href*='Ariat']")
+	WebElement lnkAriatCategoryLeftSide;
+
+	@FindBy(css = "div[class='main-content'] section[class='section-block']")
+	WebElement mainSection;
+
+	@FindBy(css = CATEGORYMAINSECTIONHEADER)
+	WebElement mainSectionHeader;
+
+	@FindBy(css = "div[class='categories']")
+	WebElement categoryLandingPage;
+
+	@FindBy(css = "div[class='product-tile']")
+	List<WebElement> productContent;
+
+	@FindBy(xpath = "//div[@class='main-content']//section[@class='section-block']//div[@class='section-body']//*[contains(.,'Shop by size for fastest delivery')]")
+	WebElement shopBySizeForFastestDelivery;
+
+	@FindBy(css = "li[class='first-last'] a[class='page-next']")
+	WebElement lnkNext;
+
+	@FindBy(css = "li[class='first-last'] a[class='page-previous']")
+	WebElement lnkPrevious;
+
+	@FindBy(css = "div[class='sidebar-category']")
+	WebElement mainCategoryLandingPage;
+
+	@FindBy(css = ".customer-service .service-toggle-item")
+	WebElement customerServiceMenu;
+
+	@FindBy(css = ".category-slot.mobile-only")
+	WebElement mobMainCategoryLandingPage;
+
+	@FindBy(css = "tfoot > tr > td > span")
+	WebElement sizeslotBanner;
+	
+	@FindBy(css = "img[src*='close_square_transparent.png']")
+	WebElement popupClose;
+
+	/**********************************************************************************************
+	 ****************************** WebElements of Category Landing Page Ends *********************
+	 **********************************************************************************************/
+
+	/**
+	 * constructor of the class
+	 * 
+	 * @param driver
+	 *            : Webdriver
+	 * 
+	 * @param url
+	 *            : UAT URL
+	 */
+	@SuppressWarnings("static-access")
+	public CategoryLandingPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		headers = new Headers(driver).get();
+		footers = new Footers(driver).get();
+		elementLayer = new ElementLayer(driver);
+	}
+
+	@Override
+	protected void load() {
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+
+		try {
+			Utils.switchWindows(driver, "Category landing Page", "title",
+					"false");
+		} catch (Exception e) {
+		}
+		if (runPlatForm == "desktop") {
+			Utils.waitForElement(driver, mainCategoryLandingPage);
+		}
+		if (runPlatForm == "mobile") {
+			Utils.waitForElement(driver, mobMainCategoryLandingPage);
+		}
+
+		if (runPlatForm == "desktop") {
+			Utils.waitForElement(driver, mainCategoryLandingPage);
+		}
+
+		if (runPlatForm == "desktop") {
+			Utils.waitForElement(driver, mobMainCategoryLandingPage);
+		}
+
+	}
+
+	@Override
+	protected void isLoaded() throws Error {
+
+		if (!isPageLoaded) {
+
+			Assert.fail();
+		}
+
+		/*BrowserActions.nap(5);
+		try {
+			BrowserActions.clickOnElement(popupClose, driver, "X icon in the subscribe pop up will be clicked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+
+		if (runPlatForm == "desktop") {
+
+			if (isPageLoaded
+
+			&& !(Utils.waitForElement(driver, mainCategoryLandingPage))) {
+
+				Log.fail(
+
+				"Category landing Page did not open up. Site might be down.",
+
+				driver);
+			}
+
+			if (runPlatForm == "desktop") {
+				if (isPageLoaded
+						&& !(Utils.waitForElement(driver,
+								mainCategoryLandingPage))) {
+					Log.fail(
+							"Category landing Page did not open up. Site might be down.",
+							driver);
+				}
+
+			}
+
+			if (runPlatForm == "mobile") {
+				if (isPageLoaded
+						&& !(Utils.waitForElement(driver,
+								mobMainCategoryLandingPage))) {
+
+					if (runPlatForm == "mobile") {
+						if (isPageLoaded
+								&& !(Utils.waitForElement(driver,
+										mobMainCategoryLandingPage))) {
+							Log.fail(
+									"Category landing Page did not open up. Site might be down.",
+									driver);
+						}
+					}
+
+					Log.fail(
+
+							"Category landing Page did not open up. Site might be down.",
+
+							driver);
+				}
+
+			}
+
+		}
+	}
+
+	//
+	/**
+	 * To get text in Breadcrumb
+	 * 
+	 * @return BreadcrumText
+	 */
+	public ArrayList<String> getTextInBreadcrumb() {
+		ArrayList<String> breadcrumbText = new ArrayList<>();
+		List<WebElement> lstElement = null;
+		/*
+		 * if (Utils.getRunPlatForm() == "mobile") { lstElement =
+		 * txtProductInBreadcrumbMobile; } else
+		 */{
+			lstElement = lstTxtProductInBreadcrumb;
+		}
+		for (WebElement element : lstElement) {
+			if (!element.getText().equals(""))
+				breadcrumbText.add(element.getText());
+		}
+		return breadcrumbText;
+	}
+
+	/**
+	 * To get text from header slot
+	 * 
+	 * @return txtCategoryHeader
+	 */
+	public String getTextFromCategoryLandingHeader() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtCategoryHeader = null;
+		if (runPlatForm == "desktop") {
+			txtCategoryHeader = BrowserActions.getText(driver,
+					categorySlotHeaderHeading1,
+					"fetch text from Category landing Header");
+			txtCategoryHeader = txtCategoryHeader.trim().replaceAll("%s", "");
+		}
+		if (runPlatForm == "mobile") {
+			Utils.waitForPageLoad(driver);
+			txtCategoryHeader = BrowserActions.getText(driver,
+					mobCategoryHeader, "Fetching the text of CLP");
+			txtCategoryHeader = txtCategoryHeader.trim().replaceAll("%s", "");
+			Log.event("Fetched Text!", StopWatch.elapsedTime(startTime));
+		}
+		return txtCategoryHeader;
+
+	}
+
+	/**
+	 * Expand the Customer service section from footer
+	 * 
+	 * @return void - if Customer service section expanded
+	 * @throws Exception
+	 */
+	public void expandCustomerServices() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(customerServiceMenu, driver,
+				"clicked on the Customer service toggle");
+		Utils.waitForPageLoad(driver, 30);
+		Log.event("clicked on the Customer service toggle!",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To click On SubCategoryLink in category landing page
+	 * 
+	 * @param txtToMatch1
+	 *            - txtToMatch1
+	 * @param Url
+	 *            - Url
+	 * @return Category Grid Page after clicking on SubCategoryLink
+	 * @throws Exception
+	 */
+	public CategoryGridPage clickOnSubCategoryLink(String txtToVerify)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> subcategoryLinks = driver.findElements(By
+				.cssSelector(HEADER_SUB_CATEGORY_l3));
+		for (WebElement element : subcategoryLinks) {
+			Utils.waitForElement(driver, element);
+			if (element.getText().contains(txtToVerify)) {
+				BrowserActions.clickOnElement(element, driver,
+						"clicked on the sub category links");
+				break;
+
+			}
+			Log.event("Sub Category Link is clicked!",
+					StopWatch.elapsedTime(startTime));
+		}
+		return new CategoryGridPage(driver).get();
+
+	}
+
+	/**
+	 * navigates to selected brand page
+	 * 
+	 * @param BrandToSelect
+	 * @return Category Grid Page
+	 * @throws Exception
+	 */
+	public CategoryGridPage navigateToSelectedBrandPage(String BrandToSelect)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = BrowserActions.checkLocator(driver,
+				CATEGORYCONTENTSECTIONPRODUCT + " a[href*='" + BrandToSelect
+						+ "']");
+		BrowserActions.clickOnElement(e, driver, "navigates to brand page");
+		Log.event("select the particular brands page from the list",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * Verify default color in Grid page
+	 * 
+	 * @return The selected color in Grid page
+	 * @throws Exception
+	 */
+	public String verifyDefaultColorDispinGridpage(String productTitle)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement imageElement = driver.findElement(By
+				.cssSelector("h6[class='product-name'] a[title*='"
+						+ productTitle + "']"));
+
+		WebElement color = imageElement.findElement(By.xpath("../.."))
+				.findElement(By.cssSelector("ul a[class='swatch selected']"));
+
+		String selectedColorInGridPage = BrowserActions.getTextFromAttribute(
+				driver, color, "title", "Getting selected color");
+
+		String[] parts = selectedColorInGridPage.split(",");
+		String part2 = parts[1];
+		Log.event("Default Color in Grid Page is verified!",
+				StopWatch.elapsedTime(startTime));
+		return part2;
+
+	}
+
+	/**
+	 * To get text from header slot
+	 * 
+	 * @return The text from Header Slot
+	 */
+	public String getTextCategoryGridHeaderSlot1() {
+		final long startTime = StopWatch.startTime();
+		String headerText = categoryGridSlotHeaderHeading1.getText();
+		Log.event("Got text from header slot!",
+				StopWatch.elapsedTime(startTime));
+		return headerText;
+	}
+
+	/**
+	 * To get products available text from header slot
+	 * 
+	 * @return Number of Available Products
+	 */
+	public String getTextCategoryAvailableProducts() {
+		final long startTime = StopWatch.startTime();
+		String numberOfavailableProd = categoryGridSlotHeaderProductsAvailable
+				.getText();
+		Log.event("Got products available text from header slot",
+				StopWatch.elapsedTime(startTime));
+		return numberOfavailableProd;
+	}
+
+	/**
+	 * To select category text from left hand side navigation panel
+	 * 
+	 * @param categoryName
+	 * @return void if category text from left hand side navigation panel
+	 *         selected
+	 */
+	public void selectCategoryFromCategoryPanel(String categoryName) {
+		final long startTime = StopWatch.startTime();
+		try {
+			driver.findElement(
+					By.cssSelector(CATERGORYSECTIONLEFTSIDE + " a[href*='"
+							+ categoryName + "']")).click();
+		} catch (Exception e) {
+			Log.event("Cateogory is not selected");
+		}
+		Log.event("Category from left Hand panel is selected!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * @param element
+	 * @throws InterruptedException
+	 * @return void - if element scrolled
+	 */
+	public void scrollToElement(WebElement element) throws InterruptedException {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		BrowserActions.scrollToViewElement(element, driver);
+		Log.event("Scrolls the element", StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * To select category from any category content landing section
+	 * 
+	 * @param categoryTitle
+	 * @return Category Grid Page after category from any category content
+	 *         landing section is selected
+	 * @throws Exception
+	 */
+	public CategoryGridPage selectCategoryFromCategoryContentLandingSection(
+			String categoryTitle) throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		WebElement e = BrowserActions.checkLocator(driver,
+				CATEGORYCONTENTSECTIONPRODUCT + " a[title*='" + categoryTitle
+						+ "']");
+		BrowserActions.clickOnElement(e, driver,
+				"navigates to selected category page");
+		Log.event(
+				"Category is selected from Category Content Landing Section!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * Selects Style number from Category Content Landing Section
+	 * 
+	 * @param numberStyles
+	 * @return void - if styles selected
+	 * @throws Exception
+	 */
+	public CategoryGridPage selectStylesNumberFromCategoryContentLandingSection(
+			String numberStyles) throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> list = driver.findElements(By
+				.cssSelector("ul.styles .style-number.visible"));
+		for (WebElement e : list) {
+			if (e.getText().contains(numberStyles)) {
+				BrowserActions.clickOnElement(e, driver, "style number");
+				break;
+			}
+		}
+		Log.event("Style Number is selected!", StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To select size from size matrix panel in category landing section  
+	 *  @param width  
+	 * @throws Exception 
+	 * 
+	 * @param length  
+	 * @return CategoryGridPage - if size from panel is selected
+	 */
+	public CategoryGridPage selectSizeFromSizeMatrixPanel(String width,
+			String length) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if(runPlatForm == "desktop"){
+		try {
+			driver.findElement(
+					By.xpath("html/body/div/div[2]/div[2]/div/div[3]/section[1]/div/div/table//tr[contains(.,'"
+							+ width + "')]//td[contains(.,'" + length + "')]/a"))
+					.click();
+		} catch (Exception e) {
+			Log.event("Size is not selected from size matrix panel");
+		}
+		}
+		if(runPlatForm == "mobile")
+		{
+			WebElement mobLength = driver.findElement(By.xpath("//*[@class='slide-down-swatch']/a[contains(text(),'" + length + "')]"));
+			BrowserActions.clickOnElement(mobLength, driver, "mobile Length");
+			BrowserActions.nap(10);
+			WebElement mobWidth = driver.findElement(By.xpath("//*[@style='display: block;']/li/a[contains(text(),'"+width+"')]"));
+			BrowserActions.clickOnElement(mobWidth, driver, "mobile Width");
+		}
+		Log.event("Size is selected from Size Matrix Panel!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To get selected size on content grid page
+	 * 
+	 * @return Selected Size Text
+	 */
+	public String getSelectedSizeFromCategoryContentLandingPage() {
+		final long startTime = StopWatch.startTime();
+		Utils.waitForPageLoad(driver);
+		String selectedSizeText = selectedSize.getText();
+		Log.event("Size is got from Category Landing Page!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return selectedSizeText;
+	}
+
+	/**
+	 * To close filtered selected size on content grid page by clicking (X) icon
+	 * 
+	 * @return void - if filtered selected size is closed
+	 */
+	public void closeFilteredSelectedSizeFromCategoryGridPage() {
+		final long startTime = StopWatch.startTime();
+
+		try {
+			driver.findElement(
+					By.cssSelector("div[class='product-selections'] ul[class='list-selections'] span[data-refgroup-id='size'] a[class='close-btn']"))
+					.click();
+		} catch (Exception e) {
+			Log.event("Selected search is not closed size matrix panel");
+		}
+
+		Log.event("Filtered search is closed!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To click next link on content grid page by clicking next link
+	 * 
+	 * @return void - if navigated to next page
+	 */
+	public void clickNextPageLinkOnCategoryGridPage() {
+		final long startTime = StopWatch.startTime();
+		lnkNext.click();
+		Log.event("clicked on Next link in Category Grid Page!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To click next link on content grid page by clicking next link
+	 * 
+	 * @return void - if previous link clicked
+	 * @throws Exception
+	 */
+	public void clickPreviousPageLinkOnCategoryGridPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkPrevious, driver,
+				"Click on previous link");
+		Log.event("clicked on Previous link in Category Grid Page!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To Verify the Product Tile
+	 * 
+	 * @return void if Product Tile is verified
+	 * @throws Exception
+	 * 
+	 */
+	public void verifyProductTile() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement productImage = null;
+		WebElement productDesc = null;
+
+		for (int category = 1; category < productContent.size(); category++) {
+			WebElement e = productContent.get(category);
+			productImage = e.findElement(By
+					.cssSelector("div[class='product-image']"));
+			productDesc = e.findElement(By
+					.cssSelector("div[class='product-content']"));
+
+			productImage.isDisplayed();
+			productDesc.isDisplayed();
+			Log.event("Product title is verified!",
+					StopWatch.elapsedTime(startTime));
+		}
+	}
+
+	/**
+	 * To Navigate to Product List Page from Category Landing Page
+	 * 
+	 * @return Category Grid Page
+	 * @throws Exception
+	 */
+	public CategoryGridPage navigateToProductListPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkViewAll, driver,
+				"Click on the view all link in the Category Landing Page");
+		Log.event("Navigated to Product List Page!",
+				StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+	/**
+	 * To select product from category content landing section
+	 * 
+	 * @param productTitle
+	 * @return PdpPage after selecting product
+	 */
+	public PdpPage selectProductFromCategoryContentSection(String productTitle) {
+		final long startTime = StopWatch.startTime();
+		driver.findElement(
+				By.cssSelector("h6[class='product-name'] a[title*='"
+						+ productTitle + "']")).click();
+		Log.event("Selected from category content landing section!",
+				StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);
+		return new PdpPage(driver).get();
+	}
+
+	/**
+	 * Verify the brands section is displayed properly
+	 * 
+	 * @return Brand
+	 */
+	public boolean verifyBrandsDisplay() {
+		final long startTime = StopWatch.startTime();
+		boolean brandDisplayed = false;
+		WebElement brandPresent = driver
+				.findElement(By
+						.cssSelector("div.main-content > section:nth-child(3) > div > ul"));
+		if (elementLayer.existsElement(brandPresent)) {
+			brandDisplayed = true;
+		}
+		Log.event("Get the count of the Brands displayed",
+				StopWatch.elapsedTime(startTime));
+		return brandDisplayed;
+
+	}
+
+	/**
+	 * Verify the brands section is displayed properly
+	 * 
+	 * @return Brand
+	 */
+	public boolean getCountOfBrandslink() {
+		final long startTime = StopWatch.startTime();
+		boolean brandDisplayed = false;
+		if (brandsCount.size() <= 8) {
+			brandDisplayed = true;
+		}
+		Log.event("Get the count of the Brands displayed",
+				StopWatch.elapsedTime(startTime));
+		return brandDisplayed;
+
+	}
+
+	/**
+	 * Clicked on the 'Show More' button
+	 * 
+	 * @throws Exception
+	 * @return void - if show more clicked
+	 */
+	public void clickOnShowMore() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (actualBrandCount.size() > 8) {
+			BrowserActions.clickOnElement(viewAllBrands, driver,
+					"clicked on the 'show more' button");
+		} else
+			Log.message("Please check the data, Since the brands links are less than 8");
+		Log.event("Get the count of the Brands displayed",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+	/**
+	 * verify all the brands are displayed
+	 * 
+	 * @return All the Brands
+	 */
+	public boolean verfiyAllBrandsDisplayed() {
+		final long startTime = StopWatch.startTime();
+		boolean allBrandDisplayed = false;
+		if (brandsCount.size() > 8) {
+			allBrandDisplayed = true;
+		}
+		Log.event("verified all the brands are displayed",
+				StopWatch.elapsedTime(startTime));
+		return allBrandDisplayed;
+
+	}
+
+	/**
+	 * If an invalid size is selected, then it prompts
+	 * 
+	 * @return CategoryLandingPage
+	 * @throws Exception
+	 */
+	public CategoryLandingPage selectInValidSize() throws Exception {
+		final long startTime = StopWatch.startTime();
+		List<WebElement> elements = driver
+				.findElements(By
+						.cssSelector(".table-sizes.size-matrix>table>tbody>tr>td>a[href='#']"));
+		for (WebElement element : elements) {
+			if (element.getAttribute("class").contains(" ")) {
+				BrowserActions.clickOnElement(element, driver, "Click on size");
+				break;
+			}
+		}
+		Log.event("Selected invalid size!", StopWatch.elapsedTime(startTime));
+		return new CategoryLandingPage(driver).get();
+	}
+
+	/**
+	 * click on all Brands link
+	 * 
+	 * @return void - if show more is clicked
+	 * @throws Exception
+	 *
+	 */
+	public void clickOnShowMoreBrandsink(String categoryTitle) throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "mobile") {
+			String cat = CATEGORYCONTENTSECTIONPRODUCT + " a[title*='"
+					+ categoryTitle + "']";
+			if (!(elementLayer.existsElement(cat))) {
+				try {
+					scrollToElement(lnkAllBrands);
+				} catch (Exception e) {
+					Log.event("lnkAllBrands element is not found in page");
+				}
+			}
+			BrowserActions.clickOnElement(lnkAllBrands, driver,
+					" clicking on Show All Brands link ");
+			Log.event("All the Brands gets displayed",
+					StopWatch.elapsedTime(startTime));
+		}
+	}
+
+	/**
+	 * click selected size in size matrix table
+	 * 
+	 * @param length
+	 * @param width
+	 * @return CategoryGridPage after selecting size in matrix panel
+	 * @throws Exception
+	 */
+	public CategoryGridPage clickSizeInSizeTable() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("table > tbody > tr:nth-child(5) > td:nth-child(3) > a"));
+		BrowserActions.clickOnElement(e, driver, "clicks size in size table ");
+		Utils.waitForPageLoad(driver);
+		Log.event("Select particular size in size matrix table",
+				StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+
+	}
+
+	/**
+	 * navigate to product list page by clicking  from refinement link
+	 * @return
+	 * @throws Exception 
+	 */
+	public CategoryGridPage navigateToProductListPageFromRefinementlink() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("div[class='category'] ul > li > a[title='All Cowboy Boots']"));
+		BrowserActions.clickOnElement(e, driver, "clicks all cowboy boots link ");
+		Utils.waitForPageLoad(driver);
+		Log.event("clicks all cowboy boots link",
+				StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+	public CategoryGridPage navigateToProductListPagebySelectingToeCategory(String ToeCategory) throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement e = driver
+				.findElement(By
+						.cssSelector("div[class='section-body'] ul.toe-styles li a[title*='"+ToeCategory+"']"));
+		BrowserActions.clickOnElement(e, driver, "clicks category by teo type");
+		Utils.waitForPageLoad(driver);
+		Log.event("clicks category by toe type",
+				StopWatch.elapsedTime(startTime));
+		return new CategoryGridPage(driver).get();
+	}
+
+}// CATEGORYLANDING PAGE

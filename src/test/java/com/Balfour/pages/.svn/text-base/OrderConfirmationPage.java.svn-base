@@ -1,0 +1,746 @@
+package com.sheplers.pages;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.TimeZone;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.sheplers.reusablecomponents.AccountUtils;
+import com.sheplers.reusablecomponents.BusinessManager;
+import com.sheplers.support.BrowserActions;
+import com.sheplers.support.Log;
+import com.sheplers.support.StopWatch;
+import com.sheplers.support.Utils;
+
+public class OrderConfirmationPage extends
+		LoadableComponent<OrderConfirmationPage> {
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
+	public PaymentMethodsPage paymentMethodsPage;
+	public MyAccountPage myaccountPage;
+	public HomePage homePage;
+
+	String runPlatForm = Utils.getRunPlatForm();
+
+	/**********************************************************************************************
+	 ********************** WebElements of Order Confirmation Page - Starts ***********************
+	 **********************************************************************************************/
+
+	private static final String DWRE_Username = "input[name='LoginForm_Login']";
+	private static final String DWRE_Password = "input[name='LoginForm_Password']";
+	private static final String DWRE_btnLogin = "button[type='submit']";
+
+	public static final String Customer_Password = "input[placeholder='Password should be 6 - 15 characters']";
+	public static final String Customer_ConfirmPassword = "input[placeholder='Confirm Password']";
+	public static final String Btn_Submit = "button[name='dwfrm_profile_confirm']";
+
+	@CacheLookup
+	@FindBy(css = ".confirmation-message>h1")
+	WebElement orderConfirmationPagemain;
+
+	@FindBy(css = "div.order-total > p > span.value")
+	WebElement orderTotal;
+
+	@FindBy(css = "div[class='order-total-info'] div[class*='breakdown'] p:nth-child(3) span:nth-child(2)")
+	WebElement shipPrice;
+
+	@CacheLookup
+	@FindBy(css = "div[class='shipping-address']>div:nth-child(3)")
+	WebElement lblShippingAddress;
+
+	@FindBy(css = ".order-history-info p:nth-child(1) span:nth-child(2)")
+	WebElement orderConfirmationPageordersDate;
+
+	@FindBy(css = "ul.account-options a[href='https://staging-web-sheplers.demandware.net/s/sheplers_us/payments']")
+	WebElement lnkMobPaymentMethods;
+
+	@FindBy(css = "dl[class='billing-info'] dd p")
+	List<WebElement> orderConfirmationPagebillingAddress;
+
+	@FindBy(css = "dl[class='billing-info'] dd p")
+	List<WebElement> OrderConfirmationPagePaymentDetails;
+
+	@FindBy(css = ".shipping-info>dd>p")
+	List<WebElement> orderConfirmationPageshippingAddress;
+
+	@FindBy(css = "div[class='order-total-info'] div[class='order-total'] p span[class='value']")
+	WebElement orderTotalPrice;
+
+	@FindBy(css = ".login-box-content.clearfix")
+	WebElement createAccountSection;
+
+	@FindBy(css = ".user-panel a[href*='payments']")
+	WebElement lnkPaymentMethods;
+
+	@FindBy(css = ".user-panel a[href*='account']")
+	WebElement lnkMyAccount;
+
+	@FindBy(css = "#second-mobnav > ul > li.has-dropdown > a > span")
+	WebElement mobLnkMyAccount;
+
+	@FindBy(css = "div.order-item-title > div.product-list-item > div > p > a")
+	List<WebElement> orderItem;
+
+	@FindBy(css = "div.order-history-shipping-info > dl.shipping-info > dd:nth-child(4) > p")
+	WebElement shippingMethod;
+
+	@FindBy(css = "p.item-total-price > span.value")
+	WebElement itemTotal;
+
+	@FindBy(css = "div.order-total-info > div.breakdown > p:nth-child(3) > span.value")
+	WebElement shippingCost;
+
+	@FindBy(css = "div.order-total-info > div.breakdown > p:nth-child(2) > span.value")
+	WebElement salesTax;
+
+	@FindBy(css = "div.product-list-item > div > p > a")
+	WebElement productName;
+
+	@FindBy(css = "div.order-item-information > p:nth-child(1) > span.value")
+	WebElement productColor;
+
+	@FindBy(css = "div.order-item-information > p:nth-child(2) > span.value")
+	WebElement productSize;
+
+	@FindBy(css = "div.order-item-information > p:nth-child(3) > span.value")
+	WebElement productStyle;
+
+	@FindBy(css = "div.order-item-details.col2 > div > p:nth-child(1) > span.value")
+	WebElement productPrice;
+
+	@FindBy(css = "p.item-qty > span.value")
+	WebElement productQty;
+
+	@FindBy(css = "#wrapper > div.top-banner > div.top-banner-bar > div.shell > div.top-banner-bar-aside > nav > ul > li.has-dropdown > a > span")
+	WebElement loginDropDown;
+
+	@FindBy(css = "#navigation > nav > ul > li.first-child.has-dropdown > a > span")
+	WebElement moblblUsername;
+
+	@FindBy(css = "div.order-confirmation-details.fullWidth > div.content-asset.ca-cart-badges > ul li")
+	WebElement SecurityBadgesInOrderConfirmationPage;
+
+	/**********************************************************************************************
+	 ************************ WebElements of Order Confirmation Page - Ends ***********************
+	 **********************************************************************************************/
+
+	public OrderConfirmationPage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
+				Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+		paymentMethodsPage = new PaymentMethodsPage(driver);
+		elementLayer = new ElementLayer(driver);
+		myaccountPage = new MyAccountPage(driver);
+		homePage = new HomePage(driver);
+	}
+
+	@Override
+	protected void isLoaded() {
+
+		Utils.waitForPageLoad(driver);
+
+		if (!isPageLoaded) {
+			Assert.fail();
+		}
+
+		Utils.waitForPageLoad(driver);
+
+		if (isPageLoaded
+				&& !(Utils.waitForElement(driver, orderConfirmationPagemain))) {
+			Log.fail(
+					"Order Confirmation Page did not open up. Site might be down.",
+					driver);
+		}
+
+	}// isLoaded
+
+	@Override
+	protected void load() {
+
+		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
+
+		try {
+			Utils.switchWindows(driver, "OrderConfirmation Page", "title",
+					"false");
+		} catch (Exception e) {
+		}
+
+		Utils.waitForElement(driver, orderConfirmationPagemain);
+
+	}// load
+
+	/**
+	 * To get date from Order Confirmation Page
+	 * 
+	 * @return String ExpectedOrderDate
+	 * @throws Exception
+	 */
+	public String getDateFromOrderDetails() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ExpectedOrderDate = "";
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+			String OrderDate = BrowserActions.getText(driver,
+					orderConfirmationPageordersDate,
+					"orderConfirmationPageordersDate");
+			Date date = formatter.parse(OrderDate);
+			ExpectedOrderDate = formatter.format(date);
+		} catch (Exception e) {
+			Log.exception(e);
+		}
+		Log.event("Fetched date to verify order date",
+				StopWatch.elapsedTime(startTime));
+		return ExpectedOrderDate;
+
+	}
+
+	/**
+	 * To get Billing Address to verify in Order Confirmation Page
+	 * 
+	 * @param billingAddressVerify
+	 * @return boolean value
+	 * @throws Exception
+	 */
+	public boolean getBillingAddressToVerify(String billingAddressVerify)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = true;
+		try {
+			if (orderConfirmationPagebillingAddress != null) {
+				for (int count = 1; count < orderConfirmationPagebillingAddress
+						.size(); count++) {
+					String ExpectedValue = orderConfirmationPagebillingAddress
+							.get(count).getText().trim();
+					if (ExpectedValue.equalsIgnoreCase(billingAddressVerify)) {
+						Log.event("Fetched Address to verify Billing Address",
+								StopWatch.elapsedTime(startTime));
+						return checkstatus;
+					}
+
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Get billing address text for verifcation");
+		}
+		return false;
+	}
+
+	/**
+	 * To get Shipping Address to verify in Order Confirmation Page
+	 * 
+	 * @param shippingAddressVerify
+	 * @return boolean - if Shipping Address to verify is fetched
+	 * @throws Exception
+	 */
+	public boolean getShippingAddressToVerify(String shippingAddressVerify)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		try {
+			boolean checkstatus = true;
+			if (orderConfirmationPageshippingAddress != null) {
+				for (int count = 1; count < orderConfirmationPageshippingAddress
+						.size(); count++) {
+					String ExpectedValue = orderConfirmationPageshippingAddress
+							.get(count).getText();
+					if (ExpectedValue.contains(shippingAddressVerify)) {
+						Log.event("Fetched Address to verify shipping address",
+								StopWatch.elapsedTime(startTime));
+						return checkstatus;
+					}
+				}
+			}
+		}// try
+		catch (Exception e) {
+			Log.event("Get shipping address text for verifcation");
+		}
+		return false;
+	}
+
+	/**
+	 * Fetch Order Item in order confirmation page
+	 * 
+	 * @return list of order items
+	 * @throws Exception
+	 */
+	public List<String> getOrderItemInConfirmationPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		ArrayList<String> list = new ArrayList<String>();
+		for (WebElement e : orderItem) {
+			String product = BrowserActions.getTextFromAttribute(driver, e,
+					"title", "get item text");
+			list.add(product);
+		}
+		Log.event("Fetched Address to verify shipping address",
+				StopWatch.elapsedTime(startTime));
+		return list;
+	}
+
+	/**
+	 * Fetch Order Total in order confirmation page
+	 * 
+	 * @return String - order total from order confirmation page
+	 * @throws Exception
+	 */
+	public String getOrderTotal() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String total = BrowserActions.getText(driver, orderTotal, "orderTotal")
+				.replace("$", "").replace(",", "");
+		Log.event("get text of OrderTotal", StopWatch.elapsedTime(startTime));
+		return total;
+
+	}
+
+	/**
+	 * Fetch shipping method in order confirmation Page
+	 * 
+	 * @return String shipping method from order confirmation Page
+	 * @throws Exception
+	 */
+	public String getShippingMethodInOrderConfirmationPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String txtShippingMethod = BrowserActions.getText(driver,
+				shippingMethod, "shippingMethod");
+		Log.event("Fetch shippingMethod from order Confirmation page",
+				StopWatch.elapsedTime(startTime));
+		return txtShippingMethod;
+	}
+
+	/**
+	 * To get card type to verify payment
+	 * 
+	 * @param cardType
+	 * @return boolean value
+	 */
+	public boolean getPaymentInformationToVerify(String cardType) {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = true;
+		if (OrderConfirmationPagePaymentDetails != null) {
+			for (int count = 1; count < OrderConfirmationPagePaymentDetails
+					.size(); count++) {
+				String ExpectedValue = OrderConfirmationPagePaymentDetails
+						.get(count).getText().toLowerCase();
+				if (ExpectedValue.startsWith(cardType)) {
+					Log.event("Fetched card type to verify payment details",
+							StopWatch.elapsedTime(startTime));
+					return checkstatus;
+				}
+
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Order total verifying with cart Page order total value
+	 * 
+	 * @param orderTotal
+	 * @return boolean - if order total is verified
+	 */
+	public boolean getOrderTotalToVerify(String orderTotal) {
+		final long startTime = StopWatch.startTime();
+		boolean checkstatus = false;
+		String ExpectedOrderTotal = orderTotalPrice.getText();
+		if (ExpectedOrderTotal.equals(orderTotal)) {
+			checkstatus = true;
+		}
+		Log.event("verifying Order Total in Order confirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return checkstatus;
+	}
+
+	/**
+	 * convert Indian date to USA date
+	 * 
+	 * @return String date
+	 * @throws Exception
+	 */
+	public String getUSsystemDate() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String sDateInAmerica = "";
+		try {
+
+			SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+
+			Calendar calendar = Calendar.getInstance();
+			TimeZone fromTimeZone = calendar.getTimeZone();
+			TimeZone toTimeZone = TimeZone.getTimeZone("CST");
+
+			calendar.setTimeZone(fromTimeZone);
+			calendar.add(Calendar.MILLISECOND, fromTimeZone.getRawOffset() * -1);
+			if (fromTimeZone.inDaylightTime(calendar.getTime())) {
+				calendar.add(Calendar.MILLISECOND, calendar.getTimeZone()
+						.getDSTSavings() * -1);
+			}
+
+			calendar.add(Calendar.MILLISECOND, toTimeZone.getRawOffset());
+			if (toTimeZone.inDaylightTime(calendar.getTime())) {
+				calendar.add(Calendar.MILLISECOND, toTimeZone.getDSTSavings());
+			}
+
+			Date currentDate = calendar.getTime();
+			sDateInAmerica = formatter.format(currentDate);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		}
+		Log.event("Converted into American Date",
+				StopWatch.elapsedTime(startTime));
+		return sDateInAmerica;
+	}
+
+	/**
+	 * Navigate to payment Methods Page by clicking from header
+	 * 
+	 * @return void after navigating to PaymentMethodsPage
+	 * @throws Exception
+	 */
+	public void navigateToPaymentMethodsPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+		if (runPlatForm == "desktop") {
+			BrowserActions.mouseHover(driver, loginDropDown);
+			BrowserActions.clickOnElement(lnkPaymentMethods, driver,
+					"Clicked on the payment methods in login drop down");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(lnkMobPaymentMethods, driver,
+					"Clicked on the payment methods in login drop down");
+		}
+		Log.event(
+				"click Payment methods from login in drop down from header Page",
+				StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Fetch Shipping cost value from Order Confirmation Page
+	 * 
+	 * @return String ShipCost
+	 */
+	public String getShippingCost() {
+		final long startTime = StopWatch.startTime();
+		WebElement shippingCost = driver.findElement(By
+				.cssSelector(".breakdown p:nth-child(3) .value"));
+		String ShipCost = shippingCost.getText();
+		Log.event("Shipping cost value from Order Confirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ShipCost;
+
+	}
+
+	/**
+	 * Create account in Order Confirmation Page
+	 * 
+	 * @return void after clicking create account
+	 * @param accountDetails
+	 * @throws Exception
+	 */
+	public void createAccount(LinkedHashMap<String, String> accountDetails)
+			throws Exception {
+		final long startTime = StopWatch.startTime();
+		LinkedHashMap<String, String> accountDetails1 = new LinkedHashMap<String, String>();
+		accountDetails1.put("type_password_" + accountDetails.get("password"),
+				Customer_Password);
+		accountDetails1
+				.put("type_confirmpassword_"
+						+ accountDetails.get("confirmPassword"),
+						Customer_ConfirmPassword);
+		accountDetails1.put("click_apply button has been clicked", Btn_Submit);
+		AccountUtils.doAccountOperations(accountDetails1, driver);
+		Utils.waitForPageLoad(driver);
+
+		Log.event("Data is entered to create account",
+
+		StopWatch.elapsedTime(startTime));
+	}
+
+	/**
+	 * Navigate to My account using Login Drop down
+	 * 
+	 * @return MyAccountPage
+	 * @throws Exception
+	 */
+	public MyAccountPage navigateToMyAccountPage() throws Exception {
+		final long startTime = StopWatch.startTime();
+
+		if (runPlatForm == "desktop") {
+			BrowserActions.mouseHover(driver, loginDropDown);
+			BrowserActions.clickOnElement(lnkMyAccount, driver,
+					"Clicked on the MyAccount in login drop down");
+		}
+		if (runPlatForm == "mobile") {
+			BrowserActions.clickOnElement(mobLnkMyAccount, driver,
+					"Clicked on the MyAccount in login drop down");
+		}
+
+		Log.event("click MyAccount from login in drop down from header Page",
+				StopWatch.elapsedTime(startTime));
+		return new MyAccountPage(driver).get();
+	}
+
+	/**
+	 * To login into Demandware Website
+	 * 
+	 * @param demandwareLogin
+	 * @return Demandware
+	 * @throws Exception
+	 */
+	public Demandware loginToDemandware(
+			LinkedHashMap<String, String> demandwareLogin) throws Exception {
+		LinkedHashMap<String, String> demandwareUserLogin = new LinkedHashMap<String, String>();
+
+		demandwareUserLogin.put(
+				"type_emailid_" + demandwareLogin.get("DemandwareUsername"),
+				DWRE_Username);
+		demandwareUserLogin.put(
+				"type_password_" + demandwareLogin.get("DemandwarePassword"),
+				DWRE_Password);
+		demandwareUserLogin.put("click_submit button has been clicked",
+				DWRE_btnLogin);
+
+		BusinessManager.login_businessmanager(demandwareUserLogin, driver);
+
+		Utils.waitForPageLoad(driver);
+		return new Demandware(driver).get();
+	}
+
+	/**
+	 * Fetch Item Total from orderConfirmation Page
+	 * 
+	 * @return String - items total value from orderConfirmation Page
+	 * @throws Exception
+	 */
+	public String getItemTotalPrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ItemTotalValue = BrowserActions.getText(driver, itemTotal,
+				"itemTotal");
+
+		Log.event("Retured Item Total value from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ItemTotalValue;
+	}
+
+	/**
+	 * Fetch shipping cost from orderConfirmation page
+	 * 
+	 * @return String ShippingCost from order confirmation page
+	 * @throws Exception
+	 */
+	public String getShippingCostPrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ShippingCost = BrowserActions.getText(driver, shippingCost,
+				"itemTotal");
+		Log.event("Retured Shipping cost value from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ShippingCost;
+	}
+
+	/**
+	 * Fetch Sales tax from order confirmation page
+	 * 
+	 * @return String - SalesTax from order confirmation page
+	 * @throws Exception
+	 */
+	public String getSalesTaxPrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String SalesTax = BrowserActions.getText(driver, salesTax, "salesTax")
+				.replace("$", "");
+		Log.event("Retured SalesTax value from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return SalesTax;
+	}
+
+	/**
+	 * Fetch Shipping Price from order confirmation page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String fetchShippingPrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String shippingPrice = BrowserActions.getText(driver, shipPrice,
+				"Fetches the text from Shipping price");
+		String shipValue = shippingPrice.replace("$", "");
+		Log.event("fetching the shipping price",
+				StopWatch.elapsedTime(startTime));
+		return shipValue;
+	}
+
+	/**
+	 * Fetch Shipping Method form order confirmation page
+	 * 
+	 * @return String - ShippingMethod from order confirmation page
+	 * @throws Exception
+	 */
+	public String getShippingMethod() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ShippingMethod = BrowserActions.getText(driver, shippingMethod,
+				"GETS shipping Method");
+		Log.event("Retured Shipping Method from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ShippingMethod;
+
+	}
+
+	/**
+	 * Fetch Product name from order confirmation Page
+	 * 
+	 * @return String - ProductName order confirmation Page
+	 * @throws Exception
+	 */
+	public String getProductName() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductName = BrowserActions.getText(driver, productName,
+				"GETS PRODUCT NAME");
+		Log.event("Retured ProductName from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ProductName;
+	}
+
+	/**
+	 * Fetch product color from order confirmation page
+	 * 
+	 * @return String ProductColor from order confirmation page
+	 * @throws Exception
+	 */
+	public String getProductColor() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductColor = BrowserActions.getText(driver, productColor,
+				"GETS PRODUCT color");
+		Log.event("Retured ProductColor from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ProductColor;
+	}
+
+	/**
+	 * Fetch product size from order confirmation page
+	 * 
+	 * @return String ProductSize from order confirmation page
+	 * @throws Exception
+	 */
+	public String getProductSize() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductSize = BrowserActions.getText(driver, productSize,
+				"GETS PRODUCT SIZE");
+		Log.event("Retured ProductSize from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ProductSize;
+	}
+
+	/**
+	 * Fetch ProductStyle from order confirmaion Page
+	 * 
+	 * @return String ProductStyle from order confirmaion Page
+	 * @throws Exception
+	 */
+	public String getProductStyle() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductStyle = BrowserActions.getText(driver, productStyle,
+				"GETS PRODUCT style");
+		Log.event("Retured ProductStyle from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ProductStyle;
+	}
+
+	/**
+	 * Fetch Product Price from order confirmation page
+	 * 
+	 * @return String ProductPrice from order confirmation page
+	 * @throws Exception
+	 */
+	public String getProductPrice() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductPrice = BrowserActions.getText(driver, productPrice,
+				"GETS PRODUCT PRICE");
+		Log.event("Retured ProductPrice from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ProductPrice;
+	}
+
+	/**
+	 * Fetch Product Quantity from order confirmation Page
+	 * 
+	 * @return String ProductQty from order confirmation Page
+	 * @throws Exception
+	 */
+	public String getProductQty() throws Exception {
+		final long startTime = StopWatch.startTime();
+		String ProductQty = BrowserActions.getText(driver, productQty,
+				"GETS PRODUCT QTY");
+		Log.event("Retured ProductQty from orderConfirmation Page",
+				StopWatch.elapsedTime(startTime));
+		return ProductQty;
+	}
+
+	/**
+	 * Gets the count of items besides the products in cart page
+	 * 
+	 * @return Interger total count
+	 * @throws Exception
+	 */
+	public Integer multipleItemCount() throws Exception {
+
+		final long startTime = StopWatch.startTime();
+		int a = 0;
+		int totalValue = 0;
+
+		List<WebElement> list = driver.findElements(By
+
+		.cssSelector("div > p.item-qty > span.value"));
+
+		for (WebElement element : list) {
+
+			String value = BrowserActions.getText(driver, element, "gets text");
+
+			try {
+				a = Integer.parseInt(value);
+			} catch (Exception e) {
+				Log.event("String value is not converted toInteger");
+			}
+
+			totalValue = totalValue + a;
+
+		}
+
+		Log.event(" Item Count " + totalValue, StopWatch.elapsedTime(startTime));
+
+		return totalValue;
+
+	}
+
+	/**
+	 * Click Return To shopping link in order confirmation page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickReturnToShopping() throws Exception {
+		final long startTime = StopWatch.startTime();
+		WebElement returnToShopping = driver.findElement(By
+				.cssSelector("div.actions > a"));
+		BrowserActions.clickOnElement(returnToShopping, driver,
+				"return to shopping Link");
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicking Return To shopping link",
+				StopWatch.elapsedTime(startTime));
+
+	}
+
+}// ORDERCONFIRMATION PAGE
+
